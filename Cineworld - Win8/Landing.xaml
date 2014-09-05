@@ -1,0 +1,90 @@
+﻿<common:LayoutAwarePage xmlns:Controls1="using:Cineworld.Controls"  xmlns:UI="using:Microsoft.Advertising.WinRT.UI"  xmlns:callisto="using:Callisto.Effects"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cineworld"
+    xmlns:common="using:Cineworld.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="using:WinRTXamlToolkit.Controls"                        
+    x:Name="pageRoot"
+    x:Class="Cineworld.Landing"
+    mc:Ignorable="d" Loaded="pageRoot_Loaded">
+
+    <common:LayoutAwarePage.Resources>
+
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">My Application</x:String>
+    </common:LayoutAwarePage.Resources>
+    <Page.BottomAppBar>
+        <AppBar x:Name="appBar" Background="Gray">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnInfo" Style="{StaticResource HelpAppBarButtonStyle}" AutomationProperties.Name="Info" Click="btnInfo_Click" />
+                <Button x:Name="btnSettings" Style="{StaticResource SettingsAppBarButtonStyle}" Click="btnSettings_Click" />
+                <Button x:Name="btnRefresh" Style="{StaticResource RefreshAppBarButtonStyle}" Click="btnRefresh_Click"/>
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
+    <Grid Style="{StaticResource LayoutRootStyle}">
+        <Grid  x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <local:BannerControl ViewTitle="Unofficial Cineworld" Grid.Column="1" Margin="20"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Controls1:AdDisplayControl VerticalAlignment="Top" />
+
+                <Controls:WrapPanel Grid.Column="1" x:Name="wpHubTiles" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent">
+
+                </Controls:WrapPanel>
+            </Grid>
+            <!--/ScrollViewer-->
+            <Button x:Name="btnFilledViewOnly" Grid.Row="1" Visibility="Collapsed" Click="btnFilledViewOnly_Click" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button.Content>
+                    <TextBlock TextWrapping="Wrap" Text="Snapped View is not supported. Please view app in filled view" />
+                </Button.Content>
+            </Button>
+
+            <Grid x:Name="gProgress" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="100" Background="White" Visibility="Collapsed">
+                <ProgressRing x:Name="prProgress" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="False" Height="80" Width="80" Foreground="#FFB51C10"/>
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+
+                <!-- Visual states reflect the application's view state -->
+                <VisualStateGroup x:Name="ApplicationViewStates">
+                    <VisualState x:Name="FullScreenLandscape"/>
+                    <VisualState x:Name="Filled"/>
+
+                    <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                    <VisualState x:Name="FullScreenPortrait" />
+
+                    <!-- The back button and title have different styles when snapped -->
+                    <VisualState x:Name="Snapped">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="wpHubTiles" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="btnFilledViewOnly" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </Grid>
+</common:LayoutAwarePage>

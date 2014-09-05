@@ -1,0 +1,151 @@
+﻿<phone:PhoneApplicationPage xmlns:local="clr-namespace:Cineworld"  
+    x:Class="CineWorld.ConfigSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" 
+    shell:SystemTray.IsVisible="True" shell:SystemTray.ForegroundColor="White" shell:SystemTray.BackgroundColor="#FF231F20" shell:SystemTray.Opacity="0"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="SettingsHeaderTemplate">
+            <TextBlock Text="{Binding}" TextWrapping="Wrap"  Foreground="{StaticResource PhoneForegroundBrush}" />
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <phone:Pivot x:Name="pMain" Title="Settings" TitleTemplate="{StaticResource PivotTitle}" HeaderTemplate="{StaticResource PivotItemHeader}">
+            <phone:PivotItem Header="general">
+                <StackPanel Orientation="Vertical">
+                    <toolkit:ListPicker x:Name="lbRegion" Header="Region"  FontSize="{StaticResource PhoneFontSizeNormal}"  Margin="12, 0" Background="LightGray" HeaderTemplate="{StaticResource SettingsHeaderTemplate}">
+                        <toolkit:ListPicker.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Background="LightGray" Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </toolkit:ListPicker.ItemsPanel>
+                        <ListBoxItem Content="UK" Foreground="Black"/>
+                        <ListBoxItem Content="Ireland" Foreground="Black"/>
+                    </toolkit:ListPicker>
+
+                    <toolkit:ToggleSwitch x:Name="btnLocationServices" Header="Location services" Margin="0, 12, 0, -24" Click="btnLocationServices_Click">
+                        <toolkit:ToggleSwitch.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap"  Foreground="{StaticResource PhoneForegroundBrush}" />
+                                    <HyperlinkButton FontSize="20" Content="Privacy Policy" Tap="HyperlinkButton_Tap"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ToggleSwitch.HeaderTemplate>
+                    </toolkit:ToggleSwitch>
+
+                    <toolkit:ToggleSwitch x:Name="btnInAppNavToMobileWeb" Header="Cineworld mobile for in-app ticketing" Margin="0, 0, 0, -24" Click="btnInAppNavToMobileWeb_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+                    
+                    <Button Content="Support app / remove ads" x:Name="btnRemoveAds" Tap="btnRemoveAds_Tap" />
+                </StackPanel>
+            </phone:PivotItem>
+            <phone:PivotItem Header="look &amp; feel">
+                <StackPanel>
+                    <toolkit:ListPicker x:Name="lbTheme" Header="Theme"  FontSize="{StaticResource PhoneFontSizeNormal}"  Margin="12, 12, 0, 0" Background="LightGray" HeaderTemplate="{StaticResource SettingsHeaderTemplate}">
+                        <toolkit:ListPicker.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Background="LightGray"  Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </toolkit:ListPicker.ItemsPanel>
+                        <ListBoxItem Content="Dark" Foreground="Black"/>
+                        <ListBoxItem Content="Light" Foreground="Black"/>
+                    </toolkit:ListPicker>
+
+                    <toolkit:ToggleSwitch x:Name="btnCleanBackground" Header="Keep background clean" Margin="0, 12, 0, -24" Click="btnCleanBackground_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+
+                    <toolkit:ToggleSwitch x:Name="btnAudioSupport" Header="Audio Support" Margin="0, 12, 0, -24" Click="btnAudioSupport_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+
+                    <toolkit:ToggleSwitch x:Name="btnLockscreen" Header="Lockscreen posters (stored in app)" Margin="0, 0, 0, -24" Click="btnLockscreen_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+                    <toolkit:ToggleSwitch x:Name="btnTileAnimation" Header="Tile posters" Margin="0, 0, 0, -24" Click="btnTileAnimation_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+                </StackPanel>
+            </phone:PivotItem>
+        </phone:Pivot>
+
+        <TextBlock Text="Press the back button to exit settings" HorizontalAlignment="Center" FontWeight="Bold" Margin="0, 0, 0, 12" Grid.Row="2"/>
+
+        <!--Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12, 0, 12, 0">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical">
+                    <toolkit:ListPicker x:Name="lbRegion" Header="Region"  FontSize="{StaticResource PhoneFontSizeNormal}"  Margin="12, 0" Background="LightGray" HeaderTemplate="{StaticResource SettingsHeaderTemplate}">
+                        <toolkit:ListPicker.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Background="LightGray" Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </toolkit:ListPicker.ItemsPanel>
+                        <ListBoxItem Content="UK" Foreground="Black"/>
+                        <ListBoxItem Content="Ireland" Foreground="Black"/>
+                    </toolkit:ListPicker>
+
+                    <toolkit:ToggleSwitch x:Name="btnLocationServices" Header="Location services" Margin="0, 12, 0, -24" Click="btnLocationServices_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+
+                    <toolkit:ToggleSwitch x:Name="btnInAppNavToMobileWeb" Header="Cineworld mobile for in-app ticketing" Margin="0, 0, 0, -24" Click="btnInAppNavToMobileWeb_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+
+                    <toolkit:ListPicker x:Name="lbTheme" Header="Theme"  FontSize="{StaticResource PhoneFontSizeNormal}"  Margin="12, 12, 0, 0" Background="LightGray" HeaderTemplate="{StaticResource SettingsHeaderTemplate}">
+                        <toolkit:ListPicker.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Background="LightGray"  Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </toolkit:ListPicker.ItemsPanel>
+                        <ListBoxItem Content="Dark" Foreground="Black"/>
+                        <ListBoxItem Content="Light" Foreground="Black"/>
+                    </toolkit:ListPicker>
+
+                    <toolkit:ToggleSwitch x:Name="btnCleanBackground" Header="Keep background clean" Margin="0, 12, 0, -24" Click="btnCleanBackground_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+
+                    <toolkit:ToggleSwitch x:Name="btnLockscreen" Header="Lockscreen posters (stored in app)" Margin="0, 0, 0, -24" Click="btnLockscreen_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+                    <toolkit:ToggleSwitch x:Name="btnTileAnimation" Header="Tile posters" Margin="0, 0, 0, -24" Click="btnTileAnimation_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+
+                    
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <TextBlock Text="Press the back button to exit settings" HorizontalAlignment="Center" FontWeight="Bold" Margin="0, 0, 0, 12" Grid.Row="2"/>
+
+        <local:BannerControl ViewTitle="Settings" /-->
+    </Grid>
+</phone:PhoneApplicationPage>

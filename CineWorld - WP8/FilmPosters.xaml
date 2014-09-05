@@ -1,0 +1,70 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Cineworld.FilmPosters"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.ForegroundColor="White" shell:SystemTray.BackgroundColor="#FF231F20" shell:SystemTray.Opacity="0"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+    
+    <phone:PhoneApplicationPage.Resources>
+        
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <!--Grid.Background>
+            <ImageBrush ImageSource="SplashScreenImage-WVGA.jpg" Opacity="0.2" Stretch="UniformToFill" />
+        </Grid.Background-->
+        <phone:Pivot Title="Posters" x:Name="pMain" TitleTemplate="{StaticResource PivotTitle}" HeaderTemplate="{StaticResource PivotItemHeader}">
+
+            <!--Panorama item one-->
+            <phone:PivotItem Header="allowed" x:Name="piShowingToday">
+                <phone:LongListSelector 
+                    x:Name="lstAllowed" 
+                    IsGroupingEnabled="False"
+                    Background="Transparent"
+                    GridCellSize="96, 144" 
+                    LayoutMode="Grid" 
+                    ItemsSource="{Binding AllowedFilms, Mode=TwoWay}"
+                    Margin="12, -12, 0, 0">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="6, 6" Width="96" Height="144">
+                                <Image Source="{Binding MediumPosterUrl}" Height="144" Width="96" Margin="0, 0, 0, 0" Stretch="UniformToFill" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" toolkit:SlideInEffect.LineIndex="2" Tap="AllowedImage_Tap"  Tag="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </phone:PivotItem>
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="ignored">
+                <phone:LongListSelector 
+                    x:Name="lstIgnored" 
+                    Background="Transparent"
+                    LayoutMode="Grid" 
+                    GridCellSize="96, 144" 
+                    ItemsSource="{Binding IgnoredFilms, Mode=TwoWay}"
+                    Margin="12, -12, 0, 0">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="6, 6" Width="96" Height="144">
+                                <Image Source="{Binding MediumPosterUrl}" Height="144" Width="94" Margin="0, 0, 0, 0" Stretch="UniformToFill" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" toolkit:SlideInEffect.LineIndex="2" Tap="IgnoredImage_Tap"  Tag="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+    
+</phone:PhoneApplicationPage>

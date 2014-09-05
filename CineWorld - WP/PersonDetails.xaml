@@ -1,0 +1,89 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="CineWorld.PersonDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:local="clr-namespace:Cineworld"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#FF231F20" shell:SystemTray.ForegroundColor="White" shell:SystemTray.Opacity="0"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <controls:Pivot x:Name="pMain" Grid.Row="0" TitleTemplate="{StaticResource PivotTitle}" HeaderTemplate="{StaticResource PivotItemHeader}">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="details">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical" Margin="12, 0, 0, 0">
+                        <Image x:Name="piPoster" Width="185" Height="278" HorizontalAlignment="Left" Stretch="UniformToFill" Grid.Column="0" VerticalAlignment="Top" Margin="0"/>
+
+                        <StackPanel Orientation="Vertical" x:Name="spBirthPlace">
+                            <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0, 12, 0, 0"  FontSize="{StaticResource PhoneFontSizeNormal}" FontWeight="Bold" Text="Place of Birth" />
+                            <TextBlock x:Name="tbBirthPlace" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0, 12, 0, 0"  FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" x:Name="spBirthDay">
+                            <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0, 12, 0, 0"  FontSize="{StaticResource PhoneFontSizeNormal}" FontWeight="Bold" Text="Birthday" />
+                            <TextBlock x:Name="tbBirthDay" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0, 12, 0, 0"  FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" x:Name="spDeathDay">
+                            <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0, 12, 0, 0"  FontSize="{StaticResource PhoneFontSizeNormal}" FontWeight="Bold" Text="Deathday" />
+                            <TextBlock x:Name="tbDeathDay" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0, 12, 0, 0"  FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" x:Name="spWebsite">
+                            <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0, 12, 0, 0"  FontSize="{StaticResource PhoneFontSizeNormal}" FontWeight="Bold" Text="Website" />
+                            <HyperlinkButton x:Name="hlbWebsite" HorizontalAlignment="Left" Margin="-12, 12, -12, 0" FontSize="{StaticResource PhoneFontSizeNormal}" Click="hlbWebsite_Click"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" x:Name="spBiography">
+                            <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0, 12, 0, 0"  FontSize="{StaticResource PhoneFontSizeNormal}" FontWeight="Bold" Text="Biography" />
+                            <TextBlock x:Name="tbBiography" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0, 12, 0, 0"  FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="movies">
+                <ListBox 
+                    Name="lstMain" 
+                    ItemTemplate="{StaticResource ItemTemplatePerson}"  
+                    Margin="0, -24, 0, 0"
+                    />
+            </controls:PivotItem>
+        </controls:Pivot>
+        <local:SpinnerControl Grid.Row="0" x:Name="scWaiting" Background="White" VerticalAlignment="Center" Status="Please wait" IsSpinning="False" HorizontalAlignment="Stretch" />
+    </Grid>
+
+</phone:PhoneApplicationPage>

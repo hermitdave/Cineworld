@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="Cineworld.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cineworld"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="White">
+        <StackPanel VerticalAlignment="Top" Margin="20">
+            <TextBlock TextWrapping="Wrap" Style="{StaticResource CaptionTextStyle}" Margin="0,0,0,10" Foreground="Black">
+                Hi, I am a small time freelance developer and primarily developed this app for personal use. <LineBreak/>
+                This app does not store any user info.<LineBreak/>
+                The use of Ads and in-app purchase to remove ads is to support the application service which isn't owned / hosted by cineworld in any ways.<LineBreak/>
+                <Bold>This app is not created by cineworld</Bold>, 
+                however i am registered with cineworld as an app developer.
+            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="E-mail" Style="{StaticResource ItemTextStyle}"  VerticalAlignment="Center" Margin="0,0,0,10" Foreground="Black"/>
+                <HyperlinkButton Content="info@invokeit.co.uk" NavigateUri="mailto:info@invokeit.co.uk" Margin="10,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Web" Style="{StaticResource ItemTextStyle}"  VerticalAlignment="Center" Margin="0,0,0,10" Foreground="Black"/>
+                <HyperlinkButton Content="facebook.com/CineworldMetro" NavigateUri="http://www.facebook.com/pages/CineworldMetro/477303595629118" Margin="25,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Twitter" Style="{StaticResource ItemTextStyle}"  VerticalAlignment="Center" Margin="0,0,0,10" Foreground="Black"/>
+                <HyperlinkButton Content="@cineworldmetro" NavigateUri="http://www.twitter.com/cineworldmetro" Margin="5,0,0,0" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

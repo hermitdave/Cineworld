@@ -1,0 +1,12 @@
+/.nuget
+
+bin
+
+obj
+csx
+packages
+
+*.suo
+
+*.user
+apppackages

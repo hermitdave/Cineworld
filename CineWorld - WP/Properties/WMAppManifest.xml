@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <AppExtra xmlns="" AppPlatformVersion="8.0">
+    <Extra Name="Tiles" />
+  </AppExtra>
+  <App xmlns="" ProductID="{2f109ba5-26dc-4e4c-8f49-fe9a2493ccf4}" Title="Cineworld" RuntimeType="Silverlight" Version="2.2.0.3" Genre="apps.normal" Author="Hermit Dave" Description="Sample description" Publisher="Invoke IT Limited" BitsPerPixel="32">
+    <IconPath IsRelative="true" IsResource="false">Images\ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_LOCATION" />
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+      <Capability Name="ID_CAP_MEDIALIB" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="Landing.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="WP-CineBackgroundTask" Source="WP-CineBackgroundTask" Type="WP_CineBackgroundTask.ScheduledAgent" />
+      </ExtendedTask>
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="CineWorldToken" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Images\AppTile.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>Cineworld</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>
