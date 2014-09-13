@@ -218,7 +218,7 @@ namespace CineWorld
                 {
                     userPosition = watcher.Position;
 
-                    IEnumerable<CinemaInfo> oc = App.Cinemas.Values.OrderBy(c => GeoMath.Distance(userPosition.Location.Latitude, userPosition.Location.Longitude, c.Latitude, c.Longitute, GeoMath.MeasureUnits.Miles)).Take(1);
+                    IEnumerable<CinemaInfo> oc = App.Cinemas.Values.Where(c => !PinnedCinemas.Contains(c.ID)).OrderBy(c => GeoMath.Distance(userPosition.Location.Latitude, userPosition.Location.Longitude, c.Latitude, c.Longitute, GeoMath.MeasureUnits.Miles)).Take(1);
                     if (oc.Count() > 0)
                     {
                         int iCin = oc.First().ID;

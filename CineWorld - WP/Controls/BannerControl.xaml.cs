@@ -58,5 +58,10 @@ namespace Cineworld
             get { return GetValue(ViewTitleProperty).ToString(); }
             set { SetValue(ViewTitleProperty, value); }
         }
+
+        private void adControl_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
+        {
+
+        }
     }
 }

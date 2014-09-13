@@ -16,7 +16,6 @@ using Cineworld;
 using Microsoft.Phone.Scheduler;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Xml;
-using Cimbalino.Phone.Toolkit.Services;
 using Microsoft.Phone.Tasks;
 
 namespace CineWorld
@@ -109,7 +108,7 @@ namespace CineWorld
             finally
             {
                 // Call this on launch to initialise the feedback helper
-                NokiaFeedbackDemo.Helpers.FeedbackHelper.Default.Launching();
+                //NokiaFeedbackDemo.Helpers.FeedbackHelper.Default.Launching();
             }
         }
 
@@ -154,41 +153,20 @@ namespace CineWorld
             }
         }
 
-        public static string GetManifestAttributeValue(string attributeName)
-        {
-            var xmlReaderSettings = new XmlReaderSettings
-            {
-                XmlResolver = new XmlXapResolver()
-            };
+        //public static string GetManifestAttributeValue(string attributeName)
+        //{
+        //    var xmlReaderSettings = new XmlReaderSettings
+        //    {
+        //        XmlResolver = new XmlXapResolver()
+        //    };
 
-            using (var xmlReader = XmlReader.Create("WMAppManifest.xml", xmlReaderSettings))
-            {
-                xmlReader.ReadToDescendant("App");
+        //    using (var xmlReader = XmlReader.Create("WMAppManifest.xml", xmlReaderSettings))
+        //    {
+        //        xmlReader.ReadToDescendant("App");
 
-                return xmlReader.GetAttribute(attributeName);
-            }
-        }
-
-        private async void CheckForUpdatedVersion()
-        {
-            var currentVersion = new Version(GetManifestAttributeValue("Version"));
-
-            MarketplaceInformationService infoService = new MarketplaceInformationService();
-
-#if DEBUG
-            var info = await infoService.GetAppInformationAsync("9b255dee-4682-49d8-88bc-d568e40f84bc");
-#else
-            var info = await infoService.GetAppInformationAsync();
-#endif
-
-            var updatedVersion = new Version(info.Entry.Version);
-
-            if (updatedVersion > currentVersion
-                && MessageBox.Show("Do you want to install the new version now?", "Update Available", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-            {
-                new MarketplaceDetailTask().Show();
-            }
-        }
+        //        return xmlReader.GetAttribute(attributeName);
+        //    }
+        //}
 
         string periodicTaskName = "CineworldPA";
 
@@ -210,7 +188,6 @@ namespace CineWorld
                 {
                 }
             }
-
             periodicTask = new PeriodicTask(periodicTaskName) 
             { 
                 

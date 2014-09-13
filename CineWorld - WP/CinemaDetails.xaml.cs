@@ -88,9 +88,6 @@ namespace CineWorld
                 else
                 {
                     iCin = SelectedCinema.ID;
-                    FeedbackOverlay.SetIsVisible(this.feedback, false);
-                    FeedbackOverlay.SetIsNotVisible(this.feedback, true);
-                    this.feedback.Visibility = System.Windows.Visibility.Collapsed;
                 }
 
                 if (this.NavigationContext.QueryString.ContainsKey("Region"))

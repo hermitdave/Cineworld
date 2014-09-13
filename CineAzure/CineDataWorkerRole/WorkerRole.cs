@@ -14,7 +14,6 @@ using Microsoft.WindowsAzure.Storage.Blob;
 using System.Threading.Tasks;
 using Cineworld;
 using System.Globalization;
-using dev.virtualearth.net.webservices.v1.geocode;
 using Newtonsoft.Json;
 using System.Configuration;
 using System.IO.Compression;
@@ -583,6 +582,9 @@ namespace CineDataWorkerRole
             
             foreach (var cinema in cinemas.cinemas)
             {
+                //if (cinema.id != 91)
+                //    continue;
+
                 Task<Films> tf = cws.GetFilms(region, false, cinema.id);
 
                 Task<List<CinemaReview>> tReviews = mobileService.GetCinemaReviews(cinema.id);
@@ -605,34 +607,54 @@ namespace CineDataWorkerRole
                     }
                     else
                     {
-                        GeocodeServiceClient gsc = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
-                        GeocodeRequest request = new GeocodeRequest()
-                        {
-                            Address = new dev.virtualearth.net.webservices.v1.common.Address()
+                        Bing.MapsClient mapClient = new Bing.MapsClient("At7qhfJw20G5JptEm0fdIaMehzBAU6GT4jJRpznGY_rdPRa5NquCN5GP8bzzdG0d", "en-GB");
+                        var tLocation = mapClient.LocationQuery(
+                            new Bing.Maps.Address()
                             {
                                 AddressLine = cinema.address,
                                 PostalCode = cinema.postcode,
                                 CountryRegion = (region == RegionDef.GB ? "United Kingdom" : "Ireland")
-                            },
-                            Credentials = new dev.virtualearth.net.webservices.v1.common.Credentials()
-                            {
-                                ApplicationId = "At7qhfJw20G5JptEm0fdIaMehzBAU6GT4jJRpznGY_rdPRa5NquCN5GP8bzzdG0d"
                             }
-                        };
-                        GeocodeResponse resp = null;
-                        Task<GeocodeResponse> tresp = gsc.GeocodeAsync(request);
-                        if (!tresp.IsFaulted && tresp.Result != null)
-                            resp = tresp.Result;
+                            );
 
-                        if (resp.Results != null && resp.Results.Count() > 0 && resp.Results.First() != null)
+                        tLocation.Wait();
+
+                        Bing.Maps.Location location = null;
+
+                        try
                         {
-                            dev.virtualearth.net.webservices.v1.common.GeocodeResult res = resp.Results.First();
-                            if (res.Locations != null && res.Locations.First() != null)
+                            if (!tLocation.IsFaulted && tLocation.Result != null)
                             {
-                                dev.virtualearth.net.webservices.v1.common.GeocodeLocation loc = res.Locations.First();
-                                ci.Latitude = loc.Latitude;
-                                ci.Longitute = loc.Longitude;
+                                location = tLocation.Result.GetLocations().FirstOrDefault();
                             }
+                        }
+                        catch { }
+
+                        //GeocodeServiceClient gsc = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
+                        //GeocodeRequest request = new GeocodeRequest()
+                        //{
+                        //    Address = new dev.virtualearth.net.webservices.v1.common.Address()
+                        //    {
+                        //        AddressLine = cinema.address,
+                        //        PostalCode = cinema.postcode,
+                        //        CountryRegion = (region == RegionDef.GB ? "United Kingdom" : "Ireland")
+                        //    },
+                        //    Credentials = new dev.virtualearth.net.webservices.v1.common.Credentials()
+                        //    {
+                        //        ApplicationId = "At7qhfJw20G5JptEm0fdIaMehzBAU6GT4jJRpznGY_rdPRa5NquCN5GP8bzzdG0d"
+                        //    }
+                        //};
+                        //GeocodeResponse resp = null;
+                        //Task<GeocodeResponse> tresp = gsc.GeocodeAsync(request);
+                        //tresp.Wait();
+
+                        //if (!tresp.IsFaulted && tresp.Result != null)
+                        //    resp = tresp.Result;
+
+                        if (location != null && location.Point != null && location.Point.Coordinates.Length == 2)
+                        {
+                            ci.Latitude = location.Point.Coordinates[0];
+                            ci.Longitute = location.Point.Coordinates[1];
                         }
                     }
 

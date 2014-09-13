@@ -13,7 +13,8 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#FF231F20" shell:SystemTray.ForegroundColor="White" shell:SystemTray.Opacity="0"
+    shell:SystemTray.IsVisible="True" 
+    shell:SystemTray.Opacity="0"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     toolkit:TiltEffect.IsTiltEnabled="True" BackKeyPress="PhoneApplicationPage_BackKeyPress">
 
@@ -236,7 +237,6 @@
         </controls:Pivot>
             
         <local:SpinnerControl Grid.Row="0" x:Name="scWaiting" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center" Status="Please wait" Background="Transparent" IsSpinning="False" Margin="10"/>
-        <local:FeedbackOverlay Grid.RowSpan="2" EnableAnimation="True" x:Name="feedback" />
     </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->

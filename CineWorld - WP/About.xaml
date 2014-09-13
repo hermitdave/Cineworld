@@ -13,7 +13,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#FF231F20" shell:SystemTray.ForegroundColor="White" shell:SystemTray.Opacity="0"
+    shell:SystemTray.IsVisible="True" 
+    shell:SystemTray.Opacity="0"
     toolkit:TiltEffect.IsTiltEnabled="True">
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -45,7 +46,7 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <local:BannerControl ViewTitle="Cineworld" />
+        <local:BannerControl ViewTitle="Unofficial Cineworld" />
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0" Background="Transparent">
             <ScrollViewer>
@@ -54,7 +55,10 @@
                     <TextBlock TextAlignment="Center" FontSize="{StaticResource PhoneFontSizeSmall}" Margin="0,0,0,24" Text="created by Invoke IT Limited" Foreground="{StaticResource PhoneForegroundBrush}" />
 
                     <TextBlock Foreground="{StaticResource PhoneForegroundBrush}" TextAlignment="Left" FontSize="{StaticResource PhoneFontSizeSmall}" Margin="12,0,12,24" TextWrapping="Wrap">
-                        Hi, I am a small time freelance developer who primarily developed this app for personal use. <LineBreak/>This app does not store any user info and generates no revenue to me. This app is not created by cineworld
+                        Hi, I am a small time freelance developer and primarily developed this app for personal use. <LineBreak/>
+                This app does not store any user info.<LineBreak/>
+                The use of Ads is to support the application service which isn't owned / hosted by cineworld in any ways.<LineBreak/>
+                <Bold>This app is not created by cineworld</Bold>, 
                 however i am registered with cineworld as an app developer.
                     </TextBlock>
 

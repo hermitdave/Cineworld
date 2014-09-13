@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Express 2012 for Windows Phone
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CineWorld - WP7", "CineWorld - WP\CineWorld - WP7.csproj", "{411E1BA6-B2E6-49C0-AC12-D5BD313F7615}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WP7-CineBackgroundTask", "WP-CineBackgroundTask\WP7-CineBackgroundTask.csproj", "{A2FEFCA1-C053-4480-9619-16ED65C1C9FE}"

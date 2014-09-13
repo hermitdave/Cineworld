@@ -16,6 +16,7 @@ using WP7Helpers.Common;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
+using System.IO;
 
 namespace CineWorld
 {
@@ -23,7 +24,9 @@ namespace CineWorld
     {
         ObservableCollection<FilmInfo> AllowFilms = new ObservableCollection<FilmInfo>();
         ObservableCollection<FilmInfo> IgnoredFilms = new ObservableCollection<FilmInfo>();
-        
+
+        MediaLibrary mediaLib = new MediaLibrary();
+
         public FilmPosters()
         {
             InitializeComponent();
@@ -121,9 +124,16 @@ namespace CineWorld
 
                 string original = fi.MediumPosterUrl.OriginalString.Replace("w500", "original");
 
-                byte[] data = await new AsyncWebClient().SavePictureLocally(original);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    await new AsyncWebClient().SavePictureLocally(original, stream);
 
-                new MediaLibrary().SavePicture(fi.Title, data);
+                    stream.Position = 0;
+
+                    string filename = System.IO.Path.GetFileName(original);
+
+                    mediaLib.SavePicture(filename, stream);
+                }
             }
         }
 

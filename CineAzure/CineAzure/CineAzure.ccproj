@@ -50,7 +50,7 @@
     <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
-    <PublishProfile Include="Profiles\CineAzureProduction.azurePubxml" />
+    <PublishProfile Include="Profiles\cineazureProduction.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

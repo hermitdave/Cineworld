@@ -12,7 +12,8 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#FF231F20" shell:SystemTray.ForegroundColor="White" shell:SystemTray.Opacity="0"
+    shell:SystemTray.IsVisible="True" 
+    shell:SystemTray.Opacity="0"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     toolkit:TiltEffect.IsTiltEnabled="True">
 
@@ -25,13 +26,10 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <local:BannerControl />
+        <local:BannerControl ViewTitle="Unofficial Cineworld" />
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0" >
-            <!--Grid.Background>
-                <ImageBrush ImageSource="SplashScreenImage.jpg" Opacity="0.2" Stretch="UniformToFill" />
-            </Grid.Background-->
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -61,7 +59,6 @@
             </ScrollViewer>
             <local:SpinnerControl Grid.Row="0" Grid.RowSpan="2" Margin="10" x:Name="scWaiting" Background="White" VerticalAlignment="Center" Status="Please wait" IsSpinning="False" HorizontalAlignment="Stretch" />
         </Grid>
-        <local:FeedbackOverlay Grid.RowSpan="2" EnableAnimation="True" />
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

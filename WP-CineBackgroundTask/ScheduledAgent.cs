@@ -64,65 +64,16 @@ namespace WP_CineBackgroundTask
 
             BaseStorageHelper bsh = new BaseStorageHelper();
 
-            if (currentHour > 4 && currentHour < 23)
-            {
-                List<Task> tasks = new List<Task>();
-
-                tasks.Add(bsh.DownloadFiles());
-
-                HashSet<int> preferrredCinemas = new HashSet<int>();
-
-                if (Config.FavCinemas != null)
-                {
-                    foreach (var cinema in Config.FavCinemas)
-                        preferrredCinemas.Add(cinema);
-                }
-
-                char[] cSep = { '&', '=' };
-
-                foreach (var tile in ShellTile.ActiveTiles)
-                {
-                    string[] parts = tile.NavigationUri.ToString().Split(cSep, StringSplitOptions.RemoveEmptyEntries);
-                    int iCin = -1;
-
-                    if (parts.Length == 2)
-                    {
-                        // cinema id is second part
-                        iCin = int.Parse(parts[1]);
-                    }
-                    else if (parts.Length == 4)
-                    {
-                        // cinema id is second part
-                        iCin = int.Parse(parts[1]);
-
-                        if (Config.Region != (Config.RegionDef)int.Parse(parts[3]))
-                            continue;
-                    }
-                    else
-                        continue;
-
-                    if (iCin != -1 && !preferrredCinemas.Contains(iCin))
-                        preferrredCinemas.Add(iCin);
-                }
-
-                foreach (int cin in preferrredCinemas)
-                {
-                    tasks.Add(new BaseStorageHelper().GetCinemaFilmListings(cin));
-                }
-                
-                await TaskEx.WhenAll(tasks);
-            }
-
             await bsh.DownloadPosters();
 
             List<Uri> images = await bsh.GetImageList();
 
-            await SetTileBackgroundImage(images);
+            SetTileBackgroundImage(images);
 
             NotifyComplete();
         }
 
-        private async Task SetTileBackgroundImage(List<Uri> images)
+        private void SetTileBackgroundImage(List<Uri> images)
         {
             Random random = new Random();
 

@@ -13,7 +13,8 @@
     x:Class="CineWorld.FilmDetails" 
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#FF231F20" shell:SystemTray.ForegroundColor="White" shell:SystemTray.Opacity="0"
+    shell:SystemTray.IsVisible="True" 
+    shell:SystemTray.Opacity="0"
     toolkit:TiltEffect.IsTiltEnabled="True">
 
     <phone:PhoneApplicationPage.Resources>

@@ -3,7 +3,7 @@
   <AppExtra xmlns="" AppPlatformVersion="8.0">
     <Extra Name="Tiles" />
   </AppExtra>
-  <App xmlns="" ProductID="{2f109ba5-26dc-4e4c-8f49-fe9a2493ccf4}" Title="Cineworld" RuntimeType="Silverlight" Version="2.2.0.3" Genre="apps.normal" Author="Hermit Dave" Description="Sample description" Publisher="Invoke IT Limited" BitsPerPixel="32">
+  <App xmlns="" ProductID="{2f109ba5-26dc-4e4c-8f49-fe9a2493ccf4}" Title="Cineworld Unofficial" RuntimeType="Silverlight" Version="2.2.0.4" Genre="apps.normal" Author="Hermit Dave" Description="Unofficial Cineworld cinemas app for Windows Phone" Publisher="Invoke IT Limited" BitsPerPixel="32">
     <IconPath IsRelative="true" IsResource="false">Images\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
@@ -12,11 +12,13 @@
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
       <Capability Name="ID_CAP_MEDIALIB" />
+      <Capability Name="ID_CAP_MICROPHONE" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="Landing.xaml" />
       <ExtendedTask Name="BackgroundTask">
-        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="WP-CineBackgroundTask" Source="WP-CineBackgroundTask" Type="WP_CineBackgroundTask.ScheduledAgent" />
+        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="WP-CineBackgroundTask" Source="WP-CineBackgroundTask" Type="WP-CineBackgroundTask.ScheduledAgent" />
       </ExtendedTask>
     </Tasks>
     <Tokens>

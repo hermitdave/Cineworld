@@ -61,12 +61,6 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cimbalino.Phone.Toolkit">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.3.1.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="Cimbalino.Phone.Toolkit.Background">
-      <HintPath>..\packages\Cimbalino.Phone.Toolkit.Background.3.1.0\lib\sl4-wp71\Cimbalino.Phone.Toolkit.Background.dll</HintPath>
-    </Reference>
     <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.0.7.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\wp71\Coding4Fun.Toolkit.Controls.dll</HintPath>
@@ -75,6 +69,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\PhoneThemeManager.1.4\lib\sl4-windowsphone71\JeffWilcox.PhoneThemeManager.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="microsoft.advertising.mobile.ui, Version=6.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Devices.Sensors" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls" />
     <Reference Include="microsoft.phone.controls.maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
@@ -175,6 +172,9 @@
     <Compile Include="..\CineWorld\CinemaInfo.cs">
       <Link>SharedCode\CinemaInfo.cs</Link>
     </Compile>
+    <Compile Include="..\CineWorld\config.cs">
+      <Link>SharedCode\config.cs</Link>
+    </Compile>
     <Compile Include="..\CineWorld\Configuration.cs">
       <Link>SharedCode\Configuration.cs</Link>
     </Compile>
@@ -245,9 +245,6 @@
     <Compile Include="Controls\BannerControl.xaml.cs">
       <DependentUpon>BannerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FeedbackOverlay.xaml.cs">
-      <DependentUpon>FeedbackOverlay.xaml</DependentUpon>
-    </Compile>
     <Compile Include="FilmData.cs" />
     <Compile Include="FilmDetails.xaml.cs">
       <DependentUpon>FilmDetails.xaml</DependentUpon>
@@ -256,9 +253,7 @@
       <DependentUpon>FilmPosters.xaml</DependentUpon>
     </Compile>
     <Compile Include="Group.cs" />
-    <Compile Include="Helpers\FeedbackHelper.cs" />
     <Compile Include="Helpers\ImageSourceConverter.cs" />
-    <Compile Include="Helpers\StorageHelper.cs" />
     <Compile Include="InAppBrowser.xaml.cs">
       <DependentUpon>InAppBrowser.xaml</DependentUpon>
     </Compile>
@@ -316,10 +311,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Page Include="Controls\BannerControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\FeedbackOverlay.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -439,6 +430,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WP-CineBackgroundTask\WP7-CineBackgroundTask.csproj">
+      <Project>{A2FEFCA1-C053-4480-9619-16ED65C1C9FE}</Project>
+      <Name>WP7-CineBackgroundTask</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
