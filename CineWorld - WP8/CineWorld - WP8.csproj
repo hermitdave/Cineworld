@@ -316,8 +316,6 @@
       <DependentUpon>FilmPosters.xaml</DependentUpon>
     </Compile>
     <Compile Include="Group.cs" />
-    <Compile Include="Helpers\FeedbackHelper.cs" />
-    <Compile Include="Helpers\StorageHelper.cs" />
     <Compile Include="InAppBrowser.xaml.cs">
       <DependentUpon>InAppBrowser.xaml</DependentUpon>
     </Compile>

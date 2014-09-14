@@ -254,7 +254,7 @@
     </Grid>
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Default" BackgroundColor="#FF231F20" ForegroundColor="White">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
             <!--shell:ApplicationBarIconButton x:Name="btnPinSecondary" IconUri="/Images/appbar.pin.png" Text="pin" Click="btnPinSecondary_Click"/>
             <shell:ApplicationBarIconButton x:Name="btnFavourite" IconUri="/Images/appbar.favs.addto.rest.png" Text="favourite" Click="btnFavourite_Click"/>
             <shell:ApplicationBarIconButton x:Name="btnUnfavourite" IconUri="/Images/appbar.favs.rem.rest.png" Text="unfavourite" Click="btnUnfavourite_Click"/>

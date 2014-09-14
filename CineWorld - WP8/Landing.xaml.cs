@@ -220,7 +220,7 @@ namespace CineWorld
                         {
                             userPosition = pos.Coordinate.ToGeoCoordinate();
 
-                            this.LoadNearestCinema(cinemaDownloads, lsh);
+                            this.LoadNearestCinema(cinemaDownloads, lsh, bForce);
                         }
                     }
                     catch { }
@@ -232,16 +232,7 @@ namespace CineWorld
             catch { }
         }
 
-        //void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
-        //{
-        //    if (e.Status == GeoPositionStatus.Ready)
-        //    {
-        //        LoadNearestCinema();
-        //        watcher.Stop();
-        //    }
-        //}
-
-        private void LoadNearestCinema(List<Task> cinemaDownloads, LocalStorageHelper lsh)
+        private void LoadNearestCinema(List<Task> cinemaDownloads, LocalStorageHelper lsh, bool bForce)
         {
             if(userPosition == null || (userPosition.Latitude == 0 && userPosition.Longitude == 0))
                 return;
@@ -265,7 +256,7 @@ namespace CineWorld
                             if (App.Cinemas.ContainsKey(iCin))
                             {
                                 PinnedCinemas.Add(iCin);
-                                cinemaDownloads.Add(lsh.GetCinemaFilmListings(iCin, true));
+                                cinemaDownloads.Add(lsh.GetCinemaFilmListings(iCin, bForce));
 
                                 CinemaInfo ci = App.Cinemas[iCin];
                                 string message = null;

@@ -75,7 +75,7 @@
         <!--Button x:Name="btnSubmit" Grid.Row="2" Margin="12" Content="Submit" Click="btnSubmit_Click" /-->
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Default" BackgroundColor="#FF231F20" ForegroundColor="White">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Default">
             <shell:ApplicationBarIconButton x:Name="btnSubmit" IconUri="/Toolkit.Content/ApplicationBar.Check.png" Text="submit" Click="btnSubmit_Click"/>
             <shell:ApplicationBarIconButton x:Name="btnCancel" IconUri="/Toolkit.Content/ApplicationBar.Cancel.png" Text="cancel" Click="btnCancel_Click"/>
         </shell:ApplicationBar>

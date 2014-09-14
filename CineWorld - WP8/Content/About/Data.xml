@@ -61,6 +61,14 @@
     </Item>
     <Item Title="history"
           Type="text">
+      3.2.1.8
+      Offload IAP product listing call to background thread to speed up processing
+      Minimised application bar across app to increase available view space 
+      
+      3.2.1.7
+      Display cost to remove ads / support app on the button itself
+      Tweak to download lesser data unless app needs it
+      
       3.2.1.6
       Added IAP option to disable ads right below the ads
       Modified the app title as suggested by Cineworld to indicate unofficial nature

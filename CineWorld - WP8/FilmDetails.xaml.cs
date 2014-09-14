@@ -114,6 +114,8 @@ namespace CineWorld
 
             this.ApplicationBar.Buttons.Clear();
 
+            this.ApplicationBar.Mode = ApplicationBarMode.Minimized;
+
             if (!String.IsNullOrWhiteSpace(SelectedFilm.YoutubeTrailer))
                 this.ApplicationBar.Buttons.Add(this.abibTrailer);
 

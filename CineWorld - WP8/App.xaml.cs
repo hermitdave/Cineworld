@@ -21,9 +21,10 @@ using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Phone.Tasks;
 using Telerik.Windows.Controls;
-using NokiaFeedbackDemo.Helpers;
 using Microsoft.Phone.BackgroundAudio;
 using Windows.ApplicationModel.Store;
+using Windows.Storage;
+using System.Threading;
 
 namespace CineWorld
 {
@@ -125,19 +126,24 @@ namespace CineWorld
             {
                 App.IsFree = true;
             }
+
+            if (App.IsFree)
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(GetProductListing));
+            }
+            
+            await CheckNokiaMusicCountryCode();
+            
+            this.StartPeriodicAgent();
+        }
+
+        private static async void GetProductListing(object state)
+        {
             try
             {
                 App.ListingInfo = await CurrentApp.LoadListingInformationAsync();
             }
             catch { }
-
-            ApplicationUsageHelper.Init("2.2");
-            
-            await CheckNokiaMusicCountryCode();
-            //CheckForUpdatedVersion();
-            PromptForRating();
-
-            this.StartPeriodicAgent();
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -180,59 +186,6 @@ namespace CineWorld
             {
                 // An unhandled exception has occurred; break into the debugger
                 System.Diagnostics.Debugger.Break();
-            }
-        }
-
-//        public static string GetManifestAttributeValue(string attributeName)
-//        {
-//            var xmlReaderSettings = new XmlReaderSettings
-//            {
-//                XmlResolver = new XmlXapResolver()
-//            };
-
-//            using (var xmlReader = XmlReader.Create("WMAppManifest.xml", xmlReaderSettings))
-//            {
-//                xmlReader.ReadToDescendant("App");
-
-//                return xmlReader.GetAttribute(attributeName);
-//            }
-//        }
-
-//        private async void CheckForUpdatedVersion()
-//        {
-//            var currentVersion = new Version(GetManifestAttributeValue("Version"));
-
-//            MarketplaceInformationService infoService = new MarketplaceInformationService();
-
-//#if DEBUG
-//            var info = await infoService.GetAppInformationAsync("9b255dee-4682-49d8-88bc-d568e40f84bc");
-//#else
-//            var info = await infoService.GetAppInformationAsync();
-//#endif
-
-//            var updatedVersion = new Version(info.Entry.Version);
-
-//            if (updatedVersion > currentVersion
-//                && MessageBox.Show("Do you want to install the new version now?", "Update Available", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-//            {
-//                new MarketplaceDetailTask().Show();
-//            }
-//        }
-
-        private void PromptForRating()
-        {
-            string REVIEWED = "REVIEWED";
-            bool reviewed = StorageHelper.GetSetting<bool>(REVIEWED);
-
-            if (!reviewed)
-            {
-                RadRateApplicationReminder rateAppReminder = new RadRateApplicationReminder()
-                {
-                    RecurrencePerUsageCount = 5,
-                    SkipFurtherRemindersOnYesPressed = true,
-                    AreFurtherRemindersSkipped = ApplicationUsageHelper.ApplicationRunsCountTotal > 10
-                };
-                rateAppReminder.Notify();
             }
         }
 
