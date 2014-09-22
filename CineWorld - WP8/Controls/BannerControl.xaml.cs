@@ -18,24 +18,29 @@ namespace Cineworld
         {
             InitializeComponent();
 
+            this.btnHub.IsFrozen = !App.IsFree;
+
             if (App.IsFree)
             {
+                this.btnHub.Tap -= btnHub_Tap;
+                this.btnHub.Tap += btnHub_Tap;
+
                 this.adControl.Visibility = System.Windows.Visibility.Visible;
 
-                if(App.ListingInfo != null && App.ListingInfo.ProductListings != null && App.ListingInfo.ProductListings.ContainsKey(App.AdFreeIAP))
-                {
-                    this.btnRemoveAds.Content = String.Format("{0} - {1}", this.btnRemoveAds.Content, App.ListingInfo.ProductListings[App.AdFreeIAP].FormattedPrice);
-                }
+                //if(App.ListingInfo != null && App.ListingInfo.ProductListings != null && App.ListingInfo.ProductListings.ContainsKey(App.AdFreeIAP))
+                //{
+                //    this.btnRemoveAds.Content = String.Format("{0} - {1}", this.btnRemoveAds.Content, App.ListingInfo.ProductListings[App.AdFreeIAP].FormattedPrice);
+                //}
 
-                this.btnRemoveAds.Visibility = System.Windows.Visibility.Visible;
+                //this.btnRemoveAds.Visibility = System.Windows.Visibility.Visible;
             }
             else
             {
                 this.adControl.IsEnabled = false;
                 this.adControl.Visibility = System.Windows.Visibility.Collapsed;
-                this.btnRemoveAds.Visibility = System.Windows.Visibility.Collapsed;
+                //this.btnRemoveAds.Visibility = System.Windows.Visibility.Collapsed;
             }
-        }
+        }   
 
         public static readonly DependencyProperty ViewTitleProperty = DependencyProperty.RegisterAttached("ViewTitle", typeof(String), typeof(BannerControl), new PropertyMetadata("", OnViewTitleChanged));
         private static void OnViewTitleChanged(DependencyObject theTarget, DependencyPropertyChangedEventArgs e)
@@ -68,6 +73,15 @@ namespace Cineworld
         }
 
         private async void btnRemoveAds_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                await CurrentApp.RequestProductPurchaseAsync(App.AdFreeIAP, false);
+            }
+            catch { }
+        }
+
+        private async void btnHub_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             try
             {

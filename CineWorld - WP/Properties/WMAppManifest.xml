@@ -3,7 +3,7 @@
   <AppExtra xmlns="" AppPlatformVersion="8.0">
     <Extra Name="Tiles" />
   </AppExtra>
-  <App xmlns="" ProductID="{2f109ba5-26dc-4e4c-8f49-fe9a2493ccf4}" Title="Cineworld Unofficial" RuntimeType="Silverlight" Version="2.2.0.5" Genre="apps.normal" Author="Hermit Dave" Description="Unofficial Cineworld cinemas app for Windows Phone" Publisher="Invoke IT Limited" BitsPerPixel="32">
+  <App xmlns="" ProductID="{2f109ba5-26dc-4e4c-8f49-fe9a2493ccf4}" Title="Cineworld Unofficial" RuntimeType="Silverlight" Version="2.2.0.6" Genre="apps.normal" Author="Hermit Dave" Description="Unofficial Cineworld cinemas app for Windows Phone" Publisher="Invoke IT Limited" BitsPerPixel="32">
     <IconPath IsRelative="true" IsResource="false">Images\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />

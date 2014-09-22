@@ -60,18 +60,31 @@ namespace Cineworld
         public static bool ShowRegion { get; set; }
 
 #if WINDOWS_PHONE
-        static IsolatedStorageSettings settings = null;
+        static IsolatedStorageSettings _Settings = null;
+
+        static IsolatedStorageSettings Settings
+        {
+            get
+            {
+                if (_Settings == null)
+                {
+                    _Settings = IsolatedStorageSettings.ApplicationSettings;
+                }
+
+                return _Settings;
+            }
+        }
 
         public static void Initialise()
         {
-            settings = IsolatedStorageSettings.ApplicationSettings;
+            var s = Settings;
 
             ShowSettings = false;
 
             bool bDelete = false;
             string version = String.Empty;
             
-            if (!settings.TryGetValue(VersionTag, out version))
+            if (!Settings.TryGetValue(VersionTag, out version))
                 bDelete = ShowSettings = true;
             else
             {
@@ -95,8 +108,8 @@ namespace Cineworld
 
             if (ShowSettings)
             {
-                settings[VersionTag] = NewAppVersion;
-                settings.Save();
+                Settings[VersionTag] = NewAppVersion;
+                Settings.Save();
             }
 
             var r = Region;
@@ -108,21 +121,21 @@ namespace Cineworld
             {
                 ApplicationTheme t = ApplicationTheme.Light;
 
-                if (!settings.Contains(ThemeTag))
+                if (!Settings.Contains(ThemeTag))
                 {
-                    settings.Add(ThemeTag, (int)t);
-                    settings.Save();
+                    Settings.Add(ThemeTag, (int)t);
+                    Settings.Save();
                 }
                 else
-                    t = (ApplicationTheme)((int)settings[ThemeTag]);
+                    t = (ApplicationTheme)((int)Settings[ThemeTag]);
 
                 return t;
             }
 
             set
             {
-                settings[ThemeTag] = (int)value;
-                settings.Save();
+                Settings[ThemeTag] = (int)value;
+                Settings.Save();
             }
         }
 
@@ -132,21 +145,21 @@ namespace Cineworld
             {
                 bool b = false;
 
-                if (!settings.Contains(AudioSupportTag))
+                if (!Settings.Contains(AudioSupportTag))
                 {
-                    settings.Add(AudioSupportTag, false);
-                    settings.Save();
+                    Settings.Add(AudioSupportTag, false);
+                    Settings.Save();
                 }
                 else
-                    b = (bool)(settings[AudioSupportTag]);
+                    b = (bool)(Settings[AudioSupportTag]);
 
                 return b;
             }
 
             set
             {
-                settings[AudioSupportTag] = value;
-                settings.Save();
+                Settings[AudioSupportTag] = value;
+                Settings.Save();
             }
         }
 
@@ -156,21 +169,21 @@ namespace Cineworld
             {
                 bool b = false;
 
-                if (!settings.Contains(CleanBackgroundTag))
+                if (!Settings.Contains(CleanBackgroundTag))
                 {
-                    settings.Add(CleanBackgroundTag, false);
-                    settings.Save();
+                    Settings.Add(CleanBackgroundTag, false);
+                    Settings.Save();
                 }
                 else
-                    b = (bool)(settings[CleanBackgroundTag]);
+                    b = (bool)(Settings[CleanBackgroundTag]);
 
                 return b;
             }
 
             set
             {
-                settings[CleanBackgroundTag] = value;
-                settings.Save();
+                Settings[CleanBackgroundTag] = value;
+                Settings.Save();
             }
         }
 
@@ -180,21 +193,21 @@ namespace Cineworld
             {
                 bool? b = null;
 
-                if (!settings.Contains(AllowNokiaMusicTag))
+                if (!Settings.Contains(AllowNokiaMusicTag))
                 {
-                    settings.Add(AllowNokiaMusicTag, null);
-                    settings.Save();
+                    Settings.Add(AllowNokiaMusicTag, null);
+                    Settings.Save();
                 }
                 else
-                    b = (bool?)(settings[AllowNokiaMusicTag]);
+                    b = (bool?)(Settings[AllowNokiaMusicTag]);
 
                 return b;
             }
 
             set
             {
-                settings[AllowNokiaMusicTag] = value;
-                settings.Save();
+                Settings[AllowNokiaMusicTag] = value;
+                Settings.Save();
             }
         }
 
@@ -204,21 +217,21 @@ namespace Cineworld
             {
                 RegionDef d = RegionDef.UK;
 
-                if (!settings.Contains(RegionTag))
+                if (!Settings.Contains(RegionTag))
                 {
-                    settings.Add(RegionTag, (int)d);
-                    settings.Save();
+                    Settings.Add(RegionTag, (int)d);
+                    Settings.Save();
                 }
                 else
-                    d = (RegionDef)((int)settings[RegionTag]);
+                    d = (RegionDef)((int)Settings[RegionTag]);
 
                 return d;
             }
 
             set
             {
-                settings[RegionTag] = (int)value;
-                settings.Save();
+                Settings[RegionTag] = (int)value;
+                Settings.Save();
 #if !WINDOWS_PHONE
                 if (RegionChanged != null)
                     RegionChanged();
@@ -232,21 +245,21 @@ namespace Cineworld
             {
                 bool b = true;
 
-                if (!settings.Contains(UseLocationTag))
+                if (!Settings.Contains(UseLocationTag))
                 {
-                    settings.Add(UseLocationTag, true);
-                    settings.Save();
+                    Settings.Add(UseLocationTag, true);
+                    Settings.Save();
                 }
                 else
-                    b = (bool)(settings[UseLocationTag]);
+                    b = (bool)(Settings[UseLocationTag]);
 
                 return b;
             }
 
             set
             {
-                settings[UseLocationTag] = value;
-                settings.Save();
+                Settings[UseLocationTag] = value;
+                Settings.Save();
             }
         }
 
@@ -256,21 +269,21 @@ namespace Cineworld
             {
                 bool b = true;
 
-                if (!settings.Contains(UseMobileWebTag))
+                if (!Settings.Contains(UseMobileWebTag))
                 {
-                    settings.Add(UseMobileWebTag, true);
-                    settings.Save();
+                    Settings.Add(UseMobileWebTag, true);
+                    Settings.Save();
                 }
                 else
-                    b = (bool)(settings[UseMobileWebTag]);
+                    b = (bool)(Settings[UseMobileWebTag]);
 
                 return b;
             }
 
             set
             {
-                settings[UseMobileWebTag] = value;
-                settings.Save();
+                Settings[UseMobileWebTag] = value;
+                Settings.Save();
             }
         }
 
@@ -280,21 +293,21 @@ namespace Cineworld
             {
                 bool b = true;
 
-                if (!settings.Contains(AnimateLockscreenTag))
+                if (!Settings.Contains(AnimateLockscreenTag))
                 {
-                    settings.Add(AnimateLockscreenTag, true);
-                    settings.Save();
+                    Settings.Add(AnimateLockscreenTag, true);
+                    Settings.Save();
                 }
                 else
-                    b = (bool)(settings[AnimateLockscreenTag]);
+                    b = (bool)(Settings[AnimateLockscreenTag]);
 
                 return b;
             }
 
             set
             {
-                settings[AnimateLockscreenTag] = value;
-                settings.Save();
+                Settings[AnimateLockscreenTag] = value;
+                Settings.Save();
             }
         }
 
@@ -304,22 +317,22 @@ namespace Cineworld
             {
                 string s = null;
 
-                if (!settings.Contains(CurrentLockscreenTag))
+                if (!Settings.Contains(CurrentLockscreenTag))
                 {
-                    settings.Add(CurrentLockscreenTag, String.Empty);
-                    settings.Save();
+                    Settings.Add(CurrentLockscreenTag, String.Empty);
+                    Settings.Save();
                     s = String.Empty;
                 }
                 else
-                    s = (string)(settings[CurrentLockscreenTag]);
+                    s = (string)(Settings[CurrentLockscreenTag]);
 
                 return s;
             }
 
             set
             {
-                settings[CurrentLockscreenTag] = value;
-                settings.Save();
+                Settings[CurrentLockscreenTag] = value;
+                Settings.Save();
             }
         }
 
@@ -329,21 +342,21 @@ namespace Cineworld
             {
                 bool b = true;
 
-                if (!settings.Contains(AnimateTilesTag))
+                if (!Settings.Contains(AnimateTilesTag))
                 {
-                    settings.Add(AnimateTilesTag, true);
-                    settings.Save();
+                    Settings.Add(AnimateTilesTag, true);
+                    Settings.Save();
                 }
                 else
-                    b = (bool)(settings[AnimateTilesTag]);
+                    b = (bool)(Settings[AnimateTilesTag]);
 
                 return b;
             }
 
             set
             {
-                settings[AnimateTilesTag] = value;
-                settings.Save();
+                Settings[AnimateTilesTag] = value;
+                Settings.Save();
             }
         }
 
@@ -353,22 +366,22 @@ namespace Cineworld
             {
                 List<int> films = null;
 
-                if (!settings.Contains(FilmPostersToIgnoreTag))
+                if (!Settings.Contains(FilmPostersToIgnoreTag))
                 {
                     films = new List<int>();
-                    settings.Add(FilmPostersToIgnoreTag, films);
-                    settings.Save();
+                    Settings.Add(FilmPostersToIgnoreTag, films);
+                    Settings.Save();
                 }
                 else
-                    films = (List<int>)settings[FilmPostersToIgnoreTag];
+                    films = (List<int>)Settings[FilmPostersToIgnoreTag];
 
                 return films;
             }
 
             set
             {
-                settings[FilmPostersToIgnoreTag] = value;
-                settings.Save();
+                Settings[FilmPostersToIgnoreTag] = value;
+                Settings.Save();
             }
         }
 
@@ -378,22 +391,22 @@ namespace Cineworld
             {
                 List<int> cinemas = null;
 
-                if (!settings.Contains(FavCinemasTag))
+                if (!Settings.Contains(FavCinemasTag))
                 {
                     cinemas = new List<int>();
-                    settings.Add(FavCinemasTag, cinemas);
-                    settings.Save();
+                    Settings.Add(FavCinemasTag, cinemas);
+                    Settings.Save();
                 }
                 else
-                    cinemas = (List<int>)settings[FavCinemasTag];
+                    cinemas = (List<int>)Settings[FavCinemasTag];
 
                 return cinemas;
             }
 
             set
             {
-                settings[FavCinemasTag] = value;
-                settings.Save();
+                Settings[FavCinemasTag] = value;
+                Settings.Save();
             }
         }
 
@@ -403,22 +416,22 @@ namespace Cineworld
             {
                 string guid = null;
 
-                if (!settings.Contains(UserGuidTag))
+                if (!Settings.Contains(UserGuidTag))
                 {
                     guid = Guid.NewGuid().ToString("D");
-                    settings.Add(UserGuidTag, guid);
-                    settings.Save();
+                    Settings.Add(UserGuidTag, guid);
+                    Settings.Save();
                 }
                 else
-                    guid = (string)settings[UserGuidTag];
+                    guid = (string)Settings[UserGuidTag];
 
                 return guid;
             }
 
             set
             {
-                settings[FavCinemasTag] = value;
-                settings.Save();
+                Settings[FavCinemasTag] = value;
+                Settings.Save();
             }
         }
 
@@ -428,18 +441,18 @@ namespace Cineworld
             {
                 string name = null;
 
-                if (!settings.Contains(UserNameTag))
+                if (!Settings.Contains(UserNameTag))
                     name = String.Empty;
                 else
-                    name = (string)settings[UserNameTag];
+                    name = (string)Settings[UserNameTag];
 
                 return name;
             }
 
             set
             {
-                settings[UserNameTag] = value;
-                settings.Save();
+                Settings[UserNameTag] = value;
+                Settings.Save();
             }
         }
 #else

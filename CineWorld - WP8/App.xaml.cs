@@ -116,6 +116,8 @@ namespace CineWorld
         // This code will not execute when the application is reactivated
         private async void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            FlurryWP8SDK.Api.StartSession("DFV4QFT2HKS3YX6JMCSD");
+
             if (CurrentApp.LicenseInformation != null
                 && CurrentApp.LicenseInformation.ProductLicenses != null
                 && CurrentApp.LicenseInformation.ProductLicenses.ContainsKey(AdFreeIAP))
@@ -151,7 +153,7 @@ namespace CineWorld
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             // Ensure that application state is restored appropriately
-            
+            FlurryWP8SDK.Api.StartSession("DFV4QFT2HKS3YX6JMCSD");
         }
 
         // Code to execute when the application is deactivated (sent to background)

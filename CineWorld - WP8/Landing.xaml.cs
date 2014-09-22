@@ -23,8 +23,6 @@ using System.IO.IsolatedStorage;
 using System.Text;
 using CineWorld.Services;
 using Cineworld.Services;
-//using Cimbalino.Phone.Toolkit.Services;
-//using Cimbalino.Phone.Toolkit.Helpers;
 
 namespace CineWorld
 {
@@ -37,7 +35,6 @@ namespace CineWorld
             Nearest
         }
 
-        //GeoCoordinateWatcher watcher = null;
         HashSet<int> PinnedCinemas = new HashSet<int>();
         public static GeoCoordinate userPosition = null;
         
@@ -64,39 +61,28 @@ namespace CineWorld
 
             SpeechSynthesisService.CancelExistingRequests();
 
-            //if (Config.ShowSettings)
-            //{
-            //    NavigationService.Navigate(new Uri("/ConfigSettings.xaml", UriKind.Relative));
-            //    return;
-            //}
-            //else
+            if (!Config.ShowCleanBackground)
             {
-                if (!Config.ShowCleanBackground)
+                this.LayoutRoot.Background = new ImageBrush()
                 {
-                    this.LayoutRoot.Background = new ImageBrush()
-                    {
-                        ImageSource = new BitmapImage(new Uri("SplashScreenImage-WVGA.jpg", UriKind.Relative)),
-                        Opacity = 0.2,
-                        Stretch = Stretch.UniformToFill
-                    };
-                }
-                else
-                {
-                    this.LayoutRoot.Background = new SolidColorBrush(Colors.Transparent);
-                }
-
-                if (bLoaded)
-                {
-                    this.PinnedCinemas.Clear();
-                    this.wpHubTiles.Children.Clear();
-                    await this.LoadPinnedAndFavouriteCinemas();
-                    return;
-                }
-
-                await ExecuteInitialDataLoad();
-
-                bLoaded = true;
+                    ImageSource = new BitmapImage(new Uri("SplashScreenImage-WVGA.jpg", UriKind.Relative)),
+                    Opacity = 0.2,
+                    Stretch = Stretch.UniformToFill
+                };
             }
+            else
+            {
+                this.LayoutRoot.Background = new SolidColorBrush(Colors.Transparent);
+            }
+
+            if (bLoaded)
+            {
+                return;
+            }
+
+            await ExecuteInitialDataLoad();
+
+            bLoaded = true;
         }
 
         private async Task ExecuteInitialDataLoad(bool bForce = false)
@@ -218,6 +204,12 @@ namespace CineWorld
 
                         if (pos != null && pos.Coordinate != null)
                         {
+                            try
+                            {
+                                FlurryWP8SDK.Api.SetLocation(pos.Coordinate.Latitude, pos.Coordinate.Longitude, (float)pos.Coordinate.Accuracy);
+                            }
+                            catch { }
+                                
                             userPosition = pos.Coordinate.ToGeoCoordinate();
 
                             this.LoadNearestCinema(cinemaDownloads, lsh, bForce);

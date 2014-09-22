@@ -58,9 +58,19 @@
       Cineworld do not have ticket purchasing API. Their own apps use in-app browser to purchase tickets. This is something that isn't in my control.
       There are issues with mobile website and checkboxes - accepting booking T &amp; Cs and using stored card details. Cineworld is aware of this.      
       FYI, with Windows Phone 8.1 I can see that the checkboxes behave properly so either way fix is on its way.
+    
+      Ads and removal
+      The app is unofficial app and incurs expenses. The ads in themselves do not generate enough revenue.
+      However the idea is that those who like the app, will opt to remove the ads. If ads return, the locally stored license info has been corrupted. 
+      In such cases, please restart the app or try opting to remove ads (you will not have to pay again)
+      
     </Item>
     <Item Title="history"
           Type="text">
+      3.2.1.9
+      Remove IAP Button and replaced cineworld logo with a hub tile that provides same functionality
+      Added flurry analytics to capture some crashes
+      
       3.2.1.8
       Offload IAP product listing call to background thread to speed up processing
       Minimised application bar across app to increase available view space 
