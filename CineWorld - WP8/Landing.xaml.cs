@@ -23,6 +23,7 @@ using System.IO.IsolatedStorage;
 using System.Text;
 using CineWorld.Services;
 using Cineworld.Services;
+using Telerik.Windows.Controls;
 
 namespace CineWorld
 {
@@ -37,8 +38,6 @@ namespace CineWorld
 
         HashSet<int> PinnedCinemas = new HashSet<int>();
         public static GeoCoordinate userPosition = null;
-        
-        bool bLoaded = false;
         
         public Landing()
         {
@@ -75,14 +74,7 @@ namespace CineWorld
                 this.LayoutRoot.Background = new SolidColorBrush(Colors.Transparent);
             }
 
-            if (bLoaded)
-            {
-                return;
-            }
-
             await ExecuteInitialDataLoad();
-
-            bLoaded = true;
         }
 
         private async Task ExecuteInitialDataLoad(bool bForce = false)
@@ -196,26 +188,37 @@ namespace CineWorld
                 {
                     Geolocator locator = null;
 
-                    try
+                    if (userPosition == null)
                     {
-                        locator = new Geolocator();
-
-                        var pos = await locator.GetGeopositionAsync(TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(10));
-
-                        if (pos != null && pos.Coordinate != null)
+                        try
                         {
-                            try
-                            {
-                                FlurryWP8SDK.Api.SetLocation(pos.Coordinate.Latitude, pos.Coordinate.Longitude, (float)pos.Coordinate.Accuracy);
-                            }
-                            catch { }
-                                
-                            userPosition = pos.Coordinate.ToGeoCoordinate();
+                            locator = new Geolocator();
 
-                            this.LoadNearestCinema(cinemaDownloads, lsh, bForce);
+                            var pos = await locator.GetGeopositionAsync(TimeSpan.FromMinutes(5), TimeSpan.FromSeconds(10));
+
+                            if (pos != null && pos.Coordinate != null)
+                            {
+                                try
+                                {
+                                    FlurryWP8SDK.Api.SetLocation(pos.Coordinate.Latitude, pos.Coordinate.Longitude, (float)pos.Coordinate.Accuracy);
+                                }
+                                catch { }
+
+                                userPosition = pos.Coordinate.ToGeoCoordinate();
+
+                                if (Microsoft.Devices.Environment.DeviceType == Microsoft.Devices.DeviceType.Emulator)
+                                {
+                                    userPosition = new GeoCoordinate(51.5072, -0.1275);
+                                }
+                            }
                         }
+                        catch { }
                     }
-                    catch { }
+
+                    if(userPosition != null)
+                    {
+                        this.LoadNearestCinema(cinemaDownloads, lsh, bForce);
+                    }
                 }
 
                 if (cinemaDownloads.Count > 0)
@@ -236,10 +239,19 @@ namespace CineWorld
                 if (!filteredCinemas.Any())
                     return;
 
-                IEnumerable<CinemaInfo> oc = filteredCinemas.OrderBy(c => GeoMath.Distance(userPosition.Latitude, userPosition.Longitude, c.Latitude, c.Longitute, GeoMath.MeasureUnits.Miles)).Take(1);
-                if (oc.Any())
+                int MaxCinemaCount = 9;
+
+                int CountRequest = MaxCinemaCount - PinnedCinemas.Count;
+
+                IEnumerable<CinemaInfo> cinemasByLocation = filteredCinemas.OrderBy(c => GeoMath.Distance(userPosition.Latitude, userPosition.Longitude, c.Latitude, c.Longitute, GeoMath.MeasureUnits.Miles)).Take(CountRequest);
+                foreach(var cinema in cinemasByLocation)
                 {
-                    int iCin = oc.First().ID;
+                    var distance = GeoMath.Distance(userPosition.Latitude, userPosition.Longitude, cinema.Latitude, cinema.Longitute, GeoMath.MeasureUnits.Miles);
+                    
+                    if (distance > 50)
+                        continue;
+
+                    int iCin = cinema.ID;
 
                     lock (PinnedCinemas)
                     {
@@ -256,7 +268,7 @@ namespace CineWorld
                                 {
                                     this.Dispatcher.BeginInvoke(() =>
                                     {
-                                        this.SetTile(ci, CinemaTileType.Nearest);
+                                        this.SetTile(ci, CinemaTileType.Nearest, distance);
                                     });
                                 }
                                 catch (Exception ex)
@@ -274,44 +286,40 @@ namespace CineWorld
         }
 
         static int tileIndex = 2;
-        private void SetTile(CinemaInfo ci, CinemaTileType cinemaType)
+        private void SetTile(CinemaInfo ci, CinemaTileType cinemaType, double distance = 0)
         {
             if (ci == null)
                 return;
 
-            Tile t = new Tile() 
+            Grid gFront = new Grid();
+            gFront.Children.Add(new Image() { Source = new BitmapImage(new Uri("Images/CineTileFront.png", UriKind.Relative)) });
+            gFront.Children.Add(new TextBlock() { Margin = new Thickness(6), Text = ci.Name, TextWrapping = TextWrapping.Wrap});
+
+            Grid gBack = new Grid();
+            gBack.Children.Add(new Image() { Source = new BitmapImage(new Uri("Images/CineTileBack.png", UriKind.Relative)) });
+            switch (cinemaType)
+            {
+                case CinemaTileType.Nearest:
+                    gBack.Children.Add(new TextBlock() { Margin = new Thickness(6), Text = String.Format("{0:N2} miles", distance), TextWrapping = TextWrapping.Wrap });
+                    break;
+
+                default:
+                    gBack.Children.Add(new TextBlock() { Margin = new Thickness(6), Text = cinemaType.ToString(), TextWrapping = TextWrapping.Wrap });
+                    break;
+            }
+            
+            RadCustomHubTile t = new RadCustomHubTile() 
             { 
                 CommandParameter = ci.ID, 
                 Margin = new Thickness(12, 12, 0, 0), 
-                Height = 210, 
-                Width = 210, 
-                Foreground = new SolidColorBrush(Colors.White),
-                Background = new ImageBrush()
-                {
-                    ImageSource = new BitmapImage(new Uri("Images/Background.png", UriKind.Relative))
-                }
+                Height = 144, 
+                Width = 144, 
+                FrontContent =  gFront,
+                BackContent = gBack
             };
 
-            Grid g = new Grid();
-            g.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) });
-            g.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
-
-            TextBlock tbTopText = new TextBlock() { Text = cinemaType.ToString(), Margin = new Thickness(12), VerticalAlignment = System.Windows.VerticalAlignment.Top };
-            Grid.SetColumn(tbTopText, 0);
-            Grid.SetRow(tbTopText, 0);
-            g.Children.Add(tbTopText);
-            
-            TextBlock tbBottomText = new TextBlock() { Margin = new Thickness(12), VerticalAlignment = System.Windows.VerticalAlignment.Bottom, TextWrapping = TextWrapping.Wrap };
-            tbBottomText.Text = ci.Name;
             t.Tap += t_Tap;
             
-            Grid.SetColumn(tbBottomText, 0);
-            Grid.SetRow(tbBottomText, 1);
-            
-            g.Children.Add(tbBottomText);
-
-            t.Content = g;
-
             TurnstileFeatherEffect.SetFeatheringIndex(t, tileIndex++);
 
             this.wpHubTiles.Children.Add(t);
@@ -398,19 +406,36 @@ namespace CineWorld
 
         private async Task SpeakOutLoud(object sender)
         {
-            ButtonBase buttonbase = (sender as ButtonBase);
-            Grid g = buttonbase.Content as Grid;
-
             StringBuilder sb = new StringBuilder();
-            foreach (var child in g.Children)
+                
+            if(sender is ButtonBase)
+            { 
+                ButtonBase buttonbase = (sender as ButtonBase);
+                Grid g = buttonbase.Content as Grid;
+
+                GetTextContent(sb, g);
+
+                
+            }
+            else if(sender is RadCustomHubTile)
             {
-                if (child is TextBlock)
-                    sb.AppendLine((child as TextBlock).Text);
+                RadCustomHubTile t = sender as RadCustomHubTile;
+                GetTextContent(sb, t.FrontContent as Grid);
+                GetTextContent(sb, t.BackContent as Grid);
             }
 
             if (sb.Length > 0)
             {
                 await SpeechSynthesisService.SpeakOutLoud(sb.ToString());
+            }
+        }
+
+        private static void GetTextContent(StringBuilder sb, Grid g)
+        {
+            foreach (var child in g.Children)
+            {
+                if (child is TextBlock)
+                    sb.AppendLine((child as TextBlock).Text);
             }
         }
 
@@ -450,10 +475,10 @@ namespace CineWorld
 
         private async void t_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            ButtonBase buttonbase = sender as ButtonBase;
-            if (Config.AudioSupport && buttonbase.Tag == null)
+            RadCustomHubTile t = sender as RadCustomHubTile;
+            if (Config.AudioSupport && t.Tag == null)
             {
-                buttonbase.Tag = DateTime.Now;
+                t.Tag = DateTime.Now;
                 await SpeakOutLoud(sender);
                 e.Handled = true;
 
@@ -461,7 +486,6 @@ namespace CineWorld
             }
             else
             {
-                Tile t = (sender as Tile);
                 int iCin = (int)t.CommandParameter;
 
                 var SelectedCinema = App.Cinemas[iCin];

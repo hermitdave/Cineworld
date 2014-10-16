@@ -4,6 +4,7 @@
     xmlns:local="clr-namespace:Cineworld"
     xmlns:coding4fun="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -19,9 +20,6 @@
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
-            <!--toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardIn"/>
-            </toolkit:NavigationInTransition.Backward-->
             <toolkit:NavigationInTransition.Forward>
                 <toolkit:TurnstileTransition Mode="ForwardIn"/>
             </toolkit:NavigationInTransition.Forward>
@@ -32,14 +30,11 @@
             <toolkit:NavigationOutTransition.Backward>
                 <toolkit:TurnstileTransition Mode="BackwardOut"/>
             </toolkit:NavigationOutTransition.Backward>
-            <!--toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardOut"/>
-            </toolkit:NavigationOutTransition.Forward-->
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
     
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Margin="-12, 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -50,39 +45,41 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0">
-            <!--Grid.Background>
-                <ImageBrush ImageSource="SplashScreenImage-WVGA.jpg" Opacity="0.2" Stretch="UniformToFill" />
-            </Grid.Background-->
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Margin="12, 0, 12, 0" Grid.Row="0">
-                <coding4fun:ImageTile x:Name="itFilms" Width="210" Height="210" Rows="2" AnimationType="Fade" Tap="itFilms_Tap" Margin="12, 12, 0, 0" toolkit:TurnstileFeatherEffect.FeatheringIndex="1" IsFrozen="True" >
+                <coding4fun:ImageTile x:Name="itFilms" Width="300" Height="144" Columns="6" Rows="2" AnimationType="Fade" Tap="itFilms_Tap" Margin="12, 12, 0, 0" toolkit:TurnstileFeatherEffect.FeatheringIndex="1" IsFrozen="True" >
                     <coding4fun:ImageTile.Content>
-                        <Grid Width="186" Height="186">
-                            <TextBlock Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Text="all films" />
+                        <Grid Width="300" Height="144">
+                            <TextBlock Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Text="all films" Margin="6"/>
                         </Grid>
                     </coding4fun:ImageTile.Content>
                 </coding4fun:ImageTile>
-                <coding4fun:Tile x:Name="tCinemas" Width="210" Height="210" Tap="tCinemas_Tap" Margin="12, 12, 0, 0" toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
+                <coding4fun:Tile x:Name="tCinemas" Width="144" Height="144" Tap="tCinemas_Tap" Margin="12, 12, 0, 0" toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
                     <coding4fun:Tile.Background>
                         <ImageBrush ImageSource="Images/Background.png" />
                     </coding4fun:Tile.Background>
                     <coding4fun:Tile.Content>
                         <Grid>
-                            <TextBlock Foreground="White" Margin="12" VerticalAlignment="Bottom" Text="all cinemas" />
+                            <TextBlock Foreground="White" Margin="6" VerticalAlignment="Bottom" Text="all cinemas" />
                         </Grid>
                     </coding4fun:Tile.Content>
                 </coding4fun:Tile>
             </StackPanel>
             <ScrollViewer x:Name="ccMain" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                <toolkit:WrapPanel x:Name="wpHubTiles" Margin="12, 0, 12, 12"/>
+                <toolkit:WrapPanel x:Name="wpHubTiles" Margin="12, 0, 12, 12">
+                    <!--toolkit:HubTile Notification="hello 123" DisplayNotification="True" Title="my2p"  /-->
+                    <!--telerik:RadCustomHubTile Title="Cinema name" BackContent="1.20 miles">
+                        <telerik:RadCustomHubTile.FrontContent>
+                            <Image Source="Images/Background.png" />
+                        </telerik:RadCustomHubTile.FrontContent>
+                    </-->
+                </toolkit:WrapPanel>
             </ScrollViewer>
-            <local:SpinnerControl Grid.Row="0" Grid.RowSpan="2" x:Name="scWaiting" Background="White" VerticalAlignment="Center" Status="Please wait" IsSpinning="False" HorizontalAlignment="Stretch" />
+            <local:SpinnerControl Grid.Row="0" Grid.RowSpan="2" x:Name="scWaiting" Background="White" VerticalAlignment="Center" Status="Please wait" IsSpinning="False" HorizontalAlignment="Stretch" Visibility="Collapsed" />
         </Grid>
-        <!--local:FeedbackOverlay Grid.RowSpan="2" EnableAnimation="True" /-->
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

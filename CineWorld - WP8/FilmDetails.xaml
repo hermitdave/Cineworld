@@ -71,13 +71,6 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 
-
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Default" BackgroundColor="#FF231F20" ForegroundColor="White">
-            <!--shell:ApplicationBarIconButton x:Name="btnTrailer" IconUri="/Images/appbar.transport.play.rest.png" Text="trailer" Click="btnViewTrailer_Click"/>
-            <shell:ApplicationBarIconButton x:Name="btnShare" IconUri="/Images/appbar.share03.png" Text="share" Click="btnShare_Click"/-->
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
         <phone:Panorama x:Name="pMain" Title="{Binding TitleWithClassification}" Template="{StaticResource PanoramaControlTemplate1}" TitleTemplate="{StaticResource PanoramaTitle}" HeaderTemplate="{StaticResource PanoramaItemHeader}" SelectionChanged="pMain_SelectionChanged">
@@ -179,5 +172,7 @@
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>
-
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Default" />
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

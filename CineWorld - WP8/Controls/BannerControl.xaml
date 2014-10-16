@@ -19,7 +19,7 @@
             Grid.Row="1"
             HorizontalScrollBarVisibility="Auto"
             >
-            <Grid x:Name="TitlePanel" Margin="0">
+            <Grid x:Name="TitlePanel" Margin="24, 0, 0, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />

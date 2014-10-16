@@ -67,6 +67,10 @@
     </Item>
     <Item Title="history"
           Type="text">
+      3.2.2.0
+      Restored Application Bar to default size
+      Modified Landing page to include more cinemas
+      
       3.2.1.9
       Remove IAP Button and replaced cineworld logo with a hub tile that provides same functionality
       Added flurry analytics to capture some crashes
