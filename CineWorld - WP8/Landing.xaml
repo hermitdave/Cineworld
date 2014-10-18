@@ -50,7 +50,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Margin="12, 0, 12, 0" Grid.Row="0">
-                <coding4fun:ImageTile x:Name="itFilms" Width="300" Height="144" Columns="6" Rows="2" AnimationType="Fade" Tap="itFilms_Tap" Margin="12, 12, 0, 0" toolkit:TurnstileFeatherEffect.FeatheringIndex="1" IsFrozen="True" >
+                <coding4fun:ImageTile x:Name="itFilms" Width="300" Height="144" LargeTileColumns="1" Columns="3" LargeTileRows="1" Rows="1" AnimationType="Fade" Tap="itFilms_Tap" Margin="12, 12, 0, 0" toolkit:TurnstileFeatherEffect.FeatheringIndex="1" IsFrozen="True" >
                     <coding4fun:ImageTile.Content>
                         <Grid Width="300" Height="144">
                             <TextBlock Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Text="all films" Margin="6"/>

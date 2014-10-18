@@ -109,6 +109,37 @@ namespace Cineworld
 
         Dictionary<DateTime, Dictionary<int, FilmInfo>> dateFilms = new Dictionary<DateTime, Dictionary<int, FilmInfo>>();
 
+        internal IEnumerable<FilmInfo> GetForDate(DateTime userSelected)
+        {
+            if (dateFilms.Count == 0)
+            {
+                foreach (var film in this._Collection)
+                {
+                    foreach (var pi in film.Performances)
+                    {
+                        Dictionary<int, FilmInfo> filmList = null;
+                        if (!dateFilms.TryGetValue(pi.PerformanceTS.Date, out filmList))
+                        {
+                            filmList = new Dictionary<int, FilmInfo>();
+                            dateFilms.Add(pi.PerformanceTS.Date, filmList);
+                        }
+
+                        if (!filmList.ContainsKey(film.EDI))
+                        {
+                            var f = film.Clone();
+                            f.Performances = new List<PerformanceInfo>(film.Performances.Where(p => p.PerformanceTS.Date == pi.PerformanceTS.Date));
+                            filmList.Add(film.EDI, f);
+                        }
+                    }
+                }
+            }
+
+            if (!dateFilms.ContainsKey(userSelected))
+                return new List<FilmInfo>();
+
+            return dateFilms[userSelected].Values;
+        }
+
         internal IEnumerable<Group<FilmInfo>> GetGroupForDate(DateTime userSelected)
         {
             if (dateFilms.Count == 0)

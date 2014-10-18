@@ -95,57 +95,12 @@
 
                     <toolkit:ToggleSwitch x:Name="btnLockscreen" Header="Lockscreen posters (stored in app)" Margin="0, 0, 0, -24" Click="btnLockscreen_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
                     <toolkit:ToggleSwitch x:Name="btnTileAnimation" Header="Tile posters" Margin="0, 0, 0, -24" Click="btnTileAnimation_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
+
+                    <toolkit:ToggleSwitch x:Name="btnGroupData" Header="Group films  &amp; cinemas" Margin="0, 0, 0, -24" Click="btnGroupData_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
                 </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>
 
-        <TextBlock Text="Press the back button to exit settings" HorizontalAlignment="Center" FontWeight="Bold" Margin="0, 0, 0, 12" Grid.Row="2"/>
-
-        <!--Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12, 0, 12, 0">
-            <ScrollViewer>
-                <StackPanel Orientation="Vertical">
-                    <toolkit:ListPicker x:Name="lbRegion" Header="Region"  FontSize="{StaticResource PhoneFontSizeNormal}"  Margin="12, 0" Background="LightGray" HeaderTemplate="{StaticResource SettingsHeaderTemplate}">
-                        <toolkit:ListPicker.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Background="LightGray" Orientation="Vertical" />
-                            </ItemsPanelTemplate>
-                        </toolkit:ListPicker.ItemsPanel>
-                        <ListBoxItem Content="UK" Foreground="Black"/>
-                        <ListBoxItem Content="Ireland" Foreground="Black"/>
-                    </toolkit:ListPicker>
-
-                    <toolkit:ToggleSwitch x:Name="btnLocationServices" Header="Location services" Margin="0, 12, 0, -24" Click="btnLocationServices_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
-
-                    <toolkit:ToggleSwitch x:Name="btnInAppNavToMobileWeb" Header="Cineworld mobile for in-app ticketing" Margin="0, 0, 0, -24" Click="btnInAppNavToMobileWeb_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
-
-                    <toolkit:ListPicker x:Name="lbTheme" Header="Theme"  FontSize="{StaticResource PhoneFontSizeNormal}"  Margin="12, 12, 0, 0" Background="LightGray" HeaderTemplate="{StaticResource SettingsHeaderTemplate}">
-                        <toolkit:ListPicker.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Background="LightGray"  Orientation="Vertical" />
-                            </ItemsPanelTemplate>
-                        </toolkit:ListPicker.ItemsPanel>
-                        <ListBoxItem Content="Dark" Foreground="Black"/>
-                        <ListBoxItem Content="Light" Foreground="Black"/>
-                    </toolkit:ListPicker>
-
-                    <toolkit:ToggleSwitch x:Name="btnCleanBackground" Header="Keep background clean" Margin="0, 12, 0, -24" Click="btnCleanBackground_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
-
-                    <toolkit:ToggleSwitch x:Name="btnLockscreen" Header="Lockscreen posters (stored in app)" Margin="0, 0, 0, -24" Click="btnLockscreen_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
-                    <toolkit:ToggleSwitch x:Name="btnTileAnimation" Header="Tile posters" Margin="0, 0, 0, -24" Click="btnTileAnimation_Click" HeaderTemplate="{StaticResource SettingsHeaderTemplate}"/>
-
-                    
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
-
-        <TextBlock Text="Press the back button to exit settings" HorizontalAlignment="Center" FontWeight="Bold" Margin="0, 0, 0, 12" Grid.Row="2"/>
-
-        <local:BannerControl ViewTitle="Settings" /-->
+        <TextBlock Text="Press the back button to exit settings" HorizontalAlignment="Center" FontWeight="Bold" Margin="0, 0, 0, 12" Grid.Row="2"/>    
     </Grid>
 </phone:PhoneApplicationPage>

@@ -55,17 +55,27 @@ namespace CineWorld
                     upcomig.Add(film);
             }
 
-            FilmData cdCurrent = new FilmData(current);
+            this.lstMain.IsGroupingEnabled = this.lstUpcoming.IsGroupingEnabled = Config.GroupData;
 
-            var dataLetter = cdCurrent.GetGroupsByLetter();
+            if (Config.GroupData)
+            {
+                FilmData cdCurrent = new FilmData(current);
 
-            this.lstMain.ItemsSource = dataLetter.ToList();
+                var dataLetter = cdCurrent.GetGroupsByLetter();
 
-            FilmData cdUpcoming = new FilmData(upcomig);
+                this.lstMain.ItemsSource = dataLetter.ToList();
 
-            var dataLetterUpcoming = cdUpcoming.GetGroupsByLetter();
+                FilmData cdUpcoming = new FilmData(upcomig);
 
-            this.lstUpcoming.ItemsSource = dataLetterUpcoming.ToList();
+                var dataLetterUpcoming = cdUpcoming.GetGroupsByLetter();
+
+                this.lstUpcoming.ItemsSource = dataLetterUpcoming.ToList();
+            }
+            else
+            {
+                this.lstMain.ItemsSource = current;
+                this.lstUpcoming.ItemsSource = upcomig;
+            }
 
             bLoaded = true;
         }

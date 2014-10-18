@@ -71,6 +71,8 @@ namespace CineWorld
 
             this.btnTileAnimation.IsChecked = Config.AnimateTiles;
 
+            this.btnGroupData.IsChecked = Config.GroupData;
+
             this.btnInAppNavToMobileWeb.IsChecked = Config.UseMobileWeb;
 
             this.lbTheme.SelectionChanged -= lbTheme_SelectionChanged;
@@ -166,6 +168,11 @@ namespace CineWorld
         private async void btnRemoveAds_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             await CurrentApp.RequestProductPurchaseAsync(App.AdFreeIAP, false);
+        }
+
+        private void btnGroupData_Click(object sender, RoutedEventArgs e)
+        {
+            Config.GroupData = this.btnGroupData.IsChecked == true;
         }
     }
 }

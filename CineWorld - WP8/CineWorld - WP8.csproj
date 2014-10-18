@@ -310,6 +310,7 @@
     <Compile Include="ConfigSettings.xaml.cs">
       <DependentUpon>ConfigSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SuperSlider2.cs" />
     <Compile Include="CustomUriMapper.cs" />
     <Compile Include="FilmData.cs" />
     <Compile Include="FilmDetails.xaml.cs">

@@ -38,22 +38,12 @@ namespace CineWorld
         ApplicationBarIconButton abibShare = null;
         ApplicationBarIconButton abibSoundTrack = null;
 
-        bool bLoaded = false;
-
         public ShowPerformances()
         {
             InitializeComponent();
         }
 
-        //private void SpinAndWait(bool bNewVal)
-        //{
-        //    this.scWaiting.IsSpinning = bNewVal;
-        //    this.pMain.IsEnabled = !bNewVal;
-        //    this.pMain.Opacity = (bNewVal ? 0.5 : 1);
-        //}
-
         
-
         protected async override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -119,8 +109,6 @@ namespace CineWorld
 
             if (bError)
                 MessageBox.Show("Error downloading showtime data");
-            else
-                bLoaded = true;            
         }
 
         void btnShare_Click(object sender, EventArgs e)

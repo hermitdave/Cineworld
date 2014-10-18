@@ -170,9 +170,7 @@
                         ItemTemplate="{StaticResource ItemTemplateWithShowTimes}"  
                         HideEmptyGroups="True"
                         GroupHeaderTemplate="{StaticResource GroupHeader}"
-                        IsGroupingEnabled="True" 
                         Grid.Row="1"
-                        ItemsSource="{Binding FilmsForDate}"
                         Margin="0, 0, 0, 0"
                     />
                 </Grid>
@@ -185,8 +183,6 @@
                     JumpListStyle="{StaticResource JumpListStyle}" 
                     ItemTemplate="{StaticResource ItemTemplateWithoutShowTimes}"  
                     GroupHeaderTemplate="{StaticResource GroupHeader}"
-                    IsGroupingEnabled="True" 
-                    ItemsSource="{Binding ShowingFilms}"
                     Margin="0, -24, 0, 0" />
             </phone:PivotItem>
 
@@ -197,8 +193,6 @@
                     JumpListStyle="{StaticResource JumpListStyle}" 
                     ItemTemplate="{StaticResource ItemTemplateWithoutShowTimes}"  
                     GroupHeaderTemplate="{StaticResource GroupHeader}"
-                    IsGroupingEnabled="True" 
-                    ItemsSource="{Binding ComingSoonFilms}"
                     Margin="0, -24, 0, 0" />
             </phone:PivotItem>
 

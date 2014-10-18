@@ -198,13 +198,13 @@ public class FilmInfo
     {
         get
         {
-            char c = Title[0];
+            char c = Char.ToUpperInvariant(Title[0]);
             int iChar = (int)c;
 
-            if (iChar >= 48 && iChar <= 57)
-                return '#';
-            else
+            if (iChar >= 65 && iChar <= 90)
                 return c;
+            else
+                return '#';
 
         }
     }

@@ -44,6 +44,7 @@ namespace Cineworld
         public const string CurrentLockscreenTag = "currentlockscreen";
         public const string FilmPostersToIgnoreTag = "ignorefilms";
         public const string AnimateTilesTag = "tileposters";
+        public const string GroupDataTag = "groupData";
         public const string UserGuidTag = "guid";
         public const string UserNameTag = "user";
         public const string VersionTag = "version";
@@ -356,6 +357,30 @@ namespace Cineworld
             set
             {
                 Settings[AnimateTilesTag] = value;
+                Settings.Save();
+            }
+        }
+
+        public static bool GroupData
+        {
+            get
+            {
+                bool b = false;
+
+                if (!Settings.Contains(GroupDataTag))
+                {
+                    Settings.Add(GroupDataTag, false);
+                    Settings.Save();
+                }
+                else
+                    b = (bool)(Settings[GroupDataTag]);
+
+                return b;
+            }
+
+            set
+            {
+                Settings[GroupDataTag] = value;
                 Settings.Save();
             }
         }

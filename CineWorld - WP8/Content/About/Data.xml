@@ -67,6 +67,19 @@
     </Item>
     <Item Title="history"
           Type="text">
+      3.2.2.3
+      Fix for Films for Date when showing upgrouped in Cinema Details
+      
+      3.2.2.2
+      Removed progress bar while looking up cinemas by location.. Landing page active sooner.
+      Updated cinema tile layout slightly on landing page
+      Added Option to view all film / cinema data ungrouped or grouped 
+      Fixed grouped bracket to include films starting ' in # group
+      
+      3.2.2.1
+      Changed poster size when showing the picture tile for films
+      Prevent automatically downloading cinema data for nearest cinemas to speed up initial start up
+      
       3.2.2.0
       Restored Application Bar to default size
       Modified Landing page to include more cinemas

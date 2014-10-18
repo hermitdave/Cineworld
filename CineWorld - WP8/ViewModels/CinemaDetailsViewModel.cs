@@ -15,9 +15,14 @@ namespace CineWorld.ViewModels
     {
         public CinemaDetailsViewModel()
         {
-            this.ShowingFilms = new ObservableCollection<Group<FilmInfo>>();
-            this.ComingSoonFilms = new ObservableCollection<Group<FilmInfo>>();
-            this.FilmsForDate = new ObservableCollection<Group<FilmInfo>>();
+            this.GroupCurrent = new ObservableCollection<Group<FilmInfo>>();
+            this.GroupUpcoming = new ObservableCollection<Group<FilmInfo>>();
+            this.GroupFilmsForDate = new ObservableCollection<Group<FilmInfo>>();
+
+            this.Current = new ObservableCollection<FilmInfo>();
+            this.Upcoming = new ObservableCollection<FilmInfo>();
+            this.FilmsForDate = new ObservableCollection<FilmInfo>();
+            
         }
 
         public CinemaInfo CinemaDetails { get; set; }
@@ -31,26 +36,40 @@ namespace CineWorld.ViewModels
             this.CinemaDetails = selectedCinema;
             this.filmData = new FilmData(films);
 
-            List<FilmInfo> current = new List<FilmInfo>();
-            List<FilmInfo> upcomig = new List<FilmInfo>();
+            List<FilmInfo> currentFilms = new List<FilmInfo>();
+            List<FilmInfo> upcomingFilms = new List<FilmInfo>();
 
             foreach (var film in films)
             {
                 if (film.Release <= DateTime.UtcNow)
-                    current.Add(film);
+                    currentFilms.Add(film);
                 else
-                    upcomig.Add(film);  
+                    upcomingFilms.Add(film);  
             }
 
-            this.ShowingFilms = new ObservableCollection<Group<FilmInfo>>(new FilmData(current).GetGroupsByLetter());
+            foreach(var currentFilm in currentFilms)
+            {
+                this.Current.Add(currentFilm);
+            }
 
-            this.ComingSoonFilms = new ObservableCollection<Group<FilmInfo>>(new FilmData(upcomig).GetGroupsByLetter());
+            foreach(var upcomingFilm in upcomingFilms)
+            {
+                this.Upcoming.Add(upcomingFilm);
+            }
+
+            this.GroupCurrent = new ObservableCollection<Group<FilmInfo>>(new FilmData(currentFilms).GetGroupsByLetter());
+
+            this.GroupUpcoming = new ObservableCollection<Group<FilmInfo>>(new FilmData(upcomingFilms).GetGroupsByLetter());
 
             this.SetFilmsForDate(DateTime.Today);
 
             this.RaisePropertyChanged("CinemaDetails");
-            this.RaisePropertyChanged("ShowingFilms");
-            this.RaisePropertyChanged("ComingSoonFilms");
+            this.RaisePropertyChanged("Current");
+            this.RaisePropertyChanged("Upcoming");
+            this.RaisePropertyChanged("FilmsForDate");
+            this.RaisePropertyChanged("GroupCurrent");
+            this.RaisePropertyChanged("GroupUpcoming");
+            this.RaisePropertyChanged("GroupFilmsForDate");
             this.RaisePropertyChanged("FilmAppointmentSource");
             this.RaisePropertyChanged("FirstCinemaDate");
             this.RaisePropertyChanged("LastCinemaDate");
@@ -59,21 +78,31 @@ namespace CineWorld.ViewModels
             this.Initialised = true;
         }
 
-        public ObservableCollection<Group<FilmInfo>> ShowingFilms { get; private set; }
-        public ObservableCollection<Group<FilmInfo>> ComingSoonFilms { get; private set; }
-        public ObservableCollection<Group<FilmInfo>> FilmsForDate { get; private set; }
+        public ObservableCollection<FilmInfo> Current { get; private set; }
+        public ObservableCollection<FilmInfo> Upcoming { get; private set; }
+        public ObservableCollection<FilmInfo> FilmsForDate { get; private set; }
+
+        public ObservableCollection<Group<FilmInfo>> GroupCurrent { get; private set; }
+        public ObservableCollection<Group<FilmInfo>> GroupUpcoming { get; private set; }
+        public ObservableCollection<Group<FilmInfo>> GroupFilmsForDate { get; private set; }
 
         public bool SetFilmsForDate(DateTime dtSelected)
         {
+            this.FilmsForDate.Clear();
+            foreach(var filmForDate in this.filmData.GetForDate(dtSelected))
+            {
+                this.FilmsForDate.Add(filmForDate);
+            }
+
             var selectedDayFilms = this.filmData.GetGroupForDate(dtSelected).ToList();
 
             if(selectedDayFilms.Count > 0)
             {
-                this.FilmsForDate.Clear();
+                this.GroupFilmsForDate.Clear();
 
                 foreach (var entry in selectedDayFilms)
                 {
-                    this.FilmsForDate.Add(entry);
+                    this.GroupFilmsForDate.Add(entry);
                 }
 
                 this.UserSelectedDate = dtSelected;

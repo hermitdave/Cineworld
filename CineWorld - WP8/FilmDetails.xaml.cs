@@ -114,8 +114,6 @@ namespace CineWorld
 
             this.ApplicationBar.Buttons.Clear();
 
-            //this.ApplicationBar.Mode = ApplicationBarMode.Minimized;
-
             if (!String.IsNullOrWhiteSpace(SelectedFilm.YoutubeTrailer))
                 this.ApplicationBar.Buttons.Add(this.abibTrailer);
 
@@ -176,10 +174,19 @@ namespace CineWorld
             //    this.btnPlay.Visibility = System.Windows.Visibility.Visible;
             //else
             //    this.btnPlay.Visibility = System.Windows.Visibility.Collapsed;
-            
-            CinemaData cd = new CinemaData(App.FilmCinemas[SelectedFilm.EDI]);
-            var dataLetter = cd.GetGroupsByLetter();
-            lstMain.ItemsSource = dataLetter.ToList();
+
+            var films = App.FilmCinemas[SelectedFilm.EDI];
+            this.lstMain.IsGroupingEnabled = Config.GroupData;
+            if (Config.GroupData)
+            {
+                CinemaData cd = new CinemaData(films);
+                var dataLetter = cd.GetGroupsByLetter();
+                lstMain.ItemsSource = dataLetter.ToList();
+            }
+            else
+            {
+                lstMain.ItemsSource = films;
+            }
 
             if(SelectedFilm.FilmCast == null || SelectedFilm.FilmCast.Count == 0)
             {

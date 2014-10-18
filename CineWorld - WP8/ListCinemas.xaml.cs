@@ -46,27 +46,20 @@ namespace CineWorld
 
             LoadPushpins();
 
-            //using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
-            //{
-            //    using (FileStream fs = isf.OpenFile("cinemadetails.csv", FileMode.Create))
-            //    {
-            //        using (StreamWriter sw = new StreamWriter(fs))
-            //        {
-            //            sw.WriteLine("id, postcode, longitude, latitude");
+            this.lstMain.IsGroupingEnabled = Config.GroupData;
 
-            //            foreach (var entry in App.Cinemas.Values)
-            //            {
-            //                sw.WriteLine(String.Format("{0}, {1}, {2}, {3}", entry.ID, entry.Postcode, entry.Longitute, entry.Latitude));
-            //            }
-            //        }
-            //    }
-            //}
+            if (Config.GroupData)
+            {
+                CinemaData cd = new CinemaData(App.Cinemas);
 
-            CinemaData cd = new CinemaData(App.Cinemas);
-
-            var dataLetter = cd.GetGroupsByLetter();
-
-            this.lstMain.ItemsSource = dataLetter.ToList();
+                var dataLetter = cd.GetGroupsByLetter();
+                
+                this.lstMain.ItemsSource = dataLetter.ToList();
+            }
+            else
+            {
+                this.lstMain.ItemsSource = App.Cinemas.Values.ToList();
+            }
 
             bLoaded = true;
         }

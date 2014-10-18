@@ -138,7 +138,23 @@ namespace CineWorld
                     if (!this.viewModel.Initialised)
                     {
                         this.viewModel.Initialise(SelectedCinema, App.CinemaFilms[iCin]);
-                        ResetLLS();
+
+                        this.lstShowByDate.IsGroupingEnabled = this.lstCurrent.IsGroupingEnabled = this.lstUpcoming.IsGroupingEnabled = Config.GroupData;
+
+                        if (Config.GroupData)
+                        {
+                            this.lstShowByDate.SetBinding(LongListSelector.ItemsSourceProperty, new System.Windows.Data.Binding() { Source = this.viewModel.GroupFilmsForDate });
+                            ResetLLS();
+
+                            this.lstCurrent.SetBinding(LongListSelector.ItemsSourceProperty, new System.Windows.Data.Binding() { Source = this.viewModel.GroupCurrent });
+                            this.lstUpcoming.SetBinding(LongListSelector.ItemsSourceProperty, new System.Windows.Data.Binding() { Source = this.viewModel.GroupUpcoming });
+                        }
+                        else
+                        {
+                            this.lstShowByDate.SetBinding(LongListSelector.ItemsSourceProperty, new System.Windows.Data.Binding() { Source = this.viewModel.FilmsForDate });
+                            this.lstCurrent.SetBinding(LongListSelector.ItemsSourceProperty, new System.Windows.Data.Binding() { Source = this.viewModel.Current });
+                            this.lstUpcoming.SetBinding(LongListSelector.ItemsSourceProperty, new System.Windows.Data.Binding() { Source = this.viewModel.Upcoming });
+                        }
                     }
                 }
                 catch(Exception ex)
@@ -573,9 +589,9 @@ namespace CineWorld
         {
             lstShowByDate.UpdateLayout();
 
-            if (this.lstShowByDate.ItemsSource != null && this.viewModel.FilmsForDate.Count != 0 && this.lstShowByDate.ItemsSource.Count != 0)
+            if(Config.GroupData && this.lstShowByDate.ItemsSource != null && this.viewModel.GroupFilmsForDate.Count != 0 && this.lstShowByDate.ItemsSource.Count != 0)
             {
-                Group<FilmInfo> selectedgroup = this.viewModel.FilmsForDate.FirstOrDefault(g => g.HasItems);
+                Group<FilmInfo> selectedgroup = this.viewModel.GroupFilmsForDate.FirstOrDefault(g => g.HasItems);
                 if (selectedgroup != null)
                     lstShowByDate.ScrollTo(selectedgroup);
             }

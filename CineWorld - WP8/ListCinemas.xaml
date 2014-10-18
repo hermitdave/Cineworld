@@ -47,7 +47,6 @@
                     JumpListStyle="{StaticResource JumpListStyle}" 
                     GroupHeaderTemplate="{StaticResource GroupHeader}"
                     HideEmptyGroups="True"
-                    IsGroupingEnabled="True" 
                     Margin="0, -24, 0, 0"
                     >
                     <phone:LongListSelector.ItemTemplate>

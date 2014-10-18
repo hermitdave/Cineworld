@@ -24,13 +24,14 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Controls:RadHubTile x:Name="btnHub" Height="72" Width="72" Margin="0, -7, 0, 0" ImageSource="/Images/CineworldStore.png" Background="Transparent" IsFrozen="True">
-                    <Controls:RadHubTile.BackContentTemplate>
-                        <DataTemplate>
-                            <Image Source="/Images/NoAds.png" Stretch="UniformToFill"/>
-                        </DataTemplate>
-                    </Controls:RadHubTile.BackContentTemplate>
-                </Controls:RadHubTile>
+                <Controls:RadCustomHubTile x:Name="btnHub" Height="72" Width="72" Margin="0, -7, 0, 0" Background="Transparent" IsFrozen="True">
+                    <Controls:RadCustomHubTile.FrontContent>
+                        <Image Source="/Images/CineworldStore.png" Stretch="Uniform"/>
+                    </Controls:RadCustomHubTile.FrontContent>
+                    <Controls:RadCustomHubTile.BackContent>
+                        <Image Source="/Images/NoAds.png" Stretch="Uniform"/>
+                    </Controls:RadCustomHubTile.BackContent>
+                </Controls:RadCustomHubTile>
                 <TextBlock x:Name="tbTitle" Margin="0, 12, 12, 24" TextWrapping="NoWrap" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextTitle2Style}"/>
             </Grid>
         </ScrollViewer>

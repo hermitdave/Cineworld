@@ -81,7 +81,6 @@
                     JumpListStyle="{StaticResource JumpListStyle}" 
                     ItemTemplate="{StaticResource ItemTemplateWithoutShowTimes}"  
                     GroupHeaderTemplate="{StaticResource GroupHeader}"
-                    IsGroupingEnabled="True" 
                     Margin="0, -24, 0, 0"
                     />
             </phone:PivotItem>
@@ -93,7 +92,6 @@
                     JumpListStyle="{StaticResource JumpListStyle}" 
                     ItemTemplate="{StaticResource ItemTemplateWithoutShowTimes}"  
                     GroupHeaderTemplate="{StaticResource GroupHeader}"
-                    IsGroupingEnabled="True" 
                     Margin="0, -24, 0, 0"
                     />
             </phone:PivotItem>
