@@ -119,7 +119,31 @@
                 </ScrollViewer>
             </phone:PanoramaItem>
 
-            <!--Panorama item two-->
+            <phone:PanoramaItem Header="backdrops" x:Name="piBackdrops"  Visibility="{Binding Backdrops, Converter={StaticResource VisibilityConverter}}">
+                <ListBox x:Name="lbBackdrops" Margin="12, -12, 0, 0" ItemsSource="{Binding Backdrops}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding}" Tag="{Binding}" Tap="Image_Tap" Stretch="UniformToFill" Margin="0, 12, 0, 0" Width="468"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="posters" x:Name="piPosters"  Visibility="{Binding Posters, Converter={StaticResource VisibilityConverter}}">
+                <ListBox x:Name="lbPosters" Margin="12, -12, 0, 0" ItemsSource="{Binding Posters}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <toolkit:WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding}" Tag="{Binding}" Tap="Image_Tap" Stretch="UniformToFill" Margin="0, 12, 12, 0" Width="192"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </phone:PanoramaItem>
+
             <phone:PanoramaItem Header="cast" x:Name="piCast"  Visibility="{Binding FilmCast, Converter={StaticResource VisibilityConverter}}">
                 <ListBox x:Name="lbCast" Margin="12, -12, 0, 0" ItemsSource="{Binding FilmCast}">
                     <ListBox.ItemTemplate>
@@ -130,7 +154,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Image Source="{Binding ProfilePicture}" Stretch="UniformToFill" Margin="0, 12, 0, 0" />
+                                <Image Source="{Binding ProfilePicture}" Stretch="UniformToFill" Width="192" Margin="0, 12, 0, 0" />
 
                                 <TextBlock Text="{Binding Title}" FontSize="{StaticResource PhoneFontSizeNormal}" Margin="12, 12, 12, 0" TextWrapping="Wrap"  Grid.Column="1" />
                             </Grid>

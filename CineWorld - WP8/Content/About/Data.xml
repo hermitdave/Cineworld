@@ -67,6 +67,10 @@
     </Item>
     <Item Title="history"
           Type="text">
+      3.2.2.4
+      Added Backdrops and Posters to Film Details
+      Added ability view and save images
+      
       3.2.2.3
       Fix for Films for Date when showing upgrouped in Cinema Details
       

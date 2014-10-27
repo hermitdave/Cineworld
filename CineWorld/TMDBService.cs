@@ -16,6 +16,7 @@ namespace Cineworld
         public const string MovieDetailsApiUrl = "movie/";
         public const string PersonDetailsApiUrl = "person/";
         public const string ConfigApiUrl = "configuration";
+        public const string ImagesApiUrl = "images";
 
         public const string AppKeyTag = "api_key";
         public const string QueryTag = "query";
@@ -86,6 +87,18 @@ namespace Cineworld
             Movie m = JsonConvert.DeserializeObject<Movie>(data);
 
             return m;
+        }
+
+        public async Task<FilmImages> GetFilmImages(int filmID)
+        {
+            string url = String.Format("{0}{1}{2}/{3}?{4}={5}&append_to_response=credits", BaseAPIUrl, MovieDetailsApiUrl, filmID, ImagesApiUrl, AppKeyTag, APIKey);
+
+            AsyncWebClient awc = new AsyncWebClient();
+            string data = await awc.GetStringAsync(url);
+
+            FilmImages i = JsonConvert.DeserializeObject<FilmImages>(data);
+
+            return i;
         }
 
 #else

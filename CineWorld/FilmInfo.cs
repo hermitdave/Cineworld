@@ -51,6 +51,8 @@ public class FilmInfo
         ShowingAtCinemas = new List<CinemaInfo>();
         Reviews = new List<FilmReview>();
         Genres = new List<string>();
+        Backdrops = new List<Uri>();
+        Posters = new List<Uri>();
     }
 
     public int EDI { get; set; }
@@ -69,9 +71,8 @@ public class FilmInfo
 
     public string YoutubeTrailer { get; set; }
 
-    //public YouTube.YouTubeUri Trailer480P { get; set; }
-    //public YouTube.YouTubeUri Trailer720P { get; set; }
-    //public YouTube.YouTubeUri Trailer1080P { get; set; }
+    public List<Uri> Backdrops { get; set; }
+    public List<Uri> Posters { get; set; }
 
     public List<FilmReview> Reviews { get; set; }
 

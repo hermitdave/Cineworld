@@ -11,7 +11,7 @@ using System.IO.IsolatedStorage;
 using System.Net.Http;
 #else
 using System.Net.Http;
-using System.IO;
+//using System.IO;
 #endif
 #if NETFX_CORE
 using Windows.Storage;

@@ -14,7 +14,7 @@ namespace CineDataWorkerRole.MobileService
 
         public async Task<List<FilmReview>> GetFilmReviews(FilmInfo film)
         {
-            List<FilmReview> filmReviews = await MobileService.GetTable<FilmReview>().Where(r => r.Movie == film.EDI || r.TmdbId == film.TmdbId && r.TmdbId != 0).ToListAsync();
+            List<FilmReview> filmReviews = await MobileService.GetTable<FilmReview>().Where(r => r.Movie == film.EDI || r.TmdbId == film.TmdbId && r.TmdbId != 0).OrderByDescending(r => r.ReviewTS).ToListAsync();
 
             return filmReviews;
         }
@@ -33,7 +33,7 @@ namespace CineDataWorkerRole.MobileService
 
         public async Task<List<CinemaReview>> GetCinemaReviews(int Id)
         {
-            List<CinemaReview> cinemaReviews = await MobileService.GetTable<CinemaReview>().Where(r => r.Cinema == Id).ToListAsync();
+            List<CinemaReview> cinemaReviews = await MobileService.GetTable<CinemaReview>().Where(r => r.Cinema == Id).OrderByDescending(r=> r.ReviewTS).ToListAsync();
 
             return cinemaReviews;
         }

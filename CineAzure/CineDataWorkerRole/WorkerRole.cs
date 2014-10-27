@@ -7,7 +7,6 @@ using System.Threading;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
-using Microsoft.WindowsAzure.StorageClient;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -69,15 +68,6 @@ namespace CineDataWorkerRole
         {
             // This is a sample worker implementation. Replace with your logic.
             Trace.WriteLine("CineDataWorkerRole entry point called", "Information");
-
-            //try
-            //{
-            //    this.StartWCFService();
-            //}
-            //catch (Exception ex)
-            //{
-            //    LogError(ex, null);
-            //}
 
             TMDBService tmdb = new TMDBService();
 
@@ -438,6 +428,8 @@ namespace CineDataWorkerRole
 
         private void ProcessData()
         {
+            return;
+
             Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["CineStorageConStr"].ConnectionString);
 
             Microsoft.WindowsAzure.Storage.Blob.CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
@@ -614,8 +606,7 @@ namespace CineDataWorkerRole
                                 AddressLine = cinema.address,
                                 PostalCode = cinema.postcode,
                                 CountryRegion = (region == RegionDef.GB ? "United Kingdom" : "Ireland")
-                            }
-                            );
+                            });
 
                         tLocation.Wait();
 
@@ -629,27 +620,6 @@ namespace CineDataWorkerRole
                             }
                         }
                         catch { }
-
-                        //GeocodeServiceClient gsc = new GeocodeServiceClient("BasicHttpBinding_IGeocodeService");
-                        //GeocodeRequest request = new GeocodeRequest()
-                        //{
-                        //    Address = new dev.virtualearth.net.webservices.v1.common.Address()
-                        //    {
-                        //        AddressLine = cinema.address,
-                        //        PostalCode = cinema.postcode,
-                        //        CountryRegion = (region == RegionDef.GB ? "United Kingdom" : "Ireland")
-                        //    },
-                        //    Credentials = new dev.virtualearth.net.webservices.v1.common.Credentials()
-                        //    {
-                        //        ApplicationId = "At7qhfJw20G5JptEm0fdIaMehzBAU6GT4jJRpznGY_rdPRa5NquCN5GP8bzzdG0d"
-                        //    }
-                        //};
-                        //GeocodeResponse resp = null;
-                        //Task<GeocodeResponse> tresp = gsc.GeocodeAsync(request);
-                        //tresp.Wait();
-
-                        //if (!tresp.IsFaulted && tresp.Result != null)
-                        //    resp = tresp.Result;
 
                         if (location != null && location.Point != null && location.Point.Coordinates.Length == 2)
                         {
@@ -766,6 +736,8 @@ namespace CineDataWorkerRole
                 }
             }
 
+            return;
+
             Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["CineStorageConStr"].ConnectionString);
 
             Microsoft.WindowsAzure.Storage.Blob.CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
@@ -780,12 +752,10 @@ namespace CineDataWorkerRole
                 {
                     using (StreamWriter sw = new StreamWriter(gzipStream))
                     {
-                        sw.Write(JsonConvert.SerializeObject(filmsForCinema));
+                        await sw.WriteAsync(JsonConvert.SerializeObject(filmsForCinema));
                     }
                 }
             }
-
-            await Task.Delay(100);
         }
 
         
@@ -814,10 +784,11 @@ namespace CineDataWorkerRole
                 //    continue;
 
                 Task<Cinemas> tcinemas = cws.GetCinemas(region, false, int.MinValue, film.edi);
-
+                
                 if (!currentFilms.ContainsKey(film.edi) || !currentFilms[film.edi].TMDBDataLoaded)
                 {
                     Movie movieData = null;
+                    Task<FilmImages> tmovieImages = null;
 
                     FilmInfo filminfo = new FilmInfo() { EDI = film.edi, Classification = !String.IsNullOrWhiteSpace(film.classification) ? film.classification : "TBC", Title = film.ProcessedTitle, TMDBDataLoaded = false };
 
@@ -830,14 +801,18 @@ namespace CineDataWorkerRole
                             Task<Results> tres = tmdb.GetSearchResults(film.CleanTitle, ukRelease);
                             tres.Wait();
                             if (!tres.IsFaulted && tres.Result != null)
+                            {
                                 res = tres.Result;
+                            }
 
                             if (res.SearchResults == null || res.SearchResults.Count == 0 && ukRelease != DateTime.MinValue)
                             {
                                 Task<Results> tres2 = tmdb.GetSearchResults(film.CleanTitle, DateTime.MinValue);
                                 tres2.Wait();
                                 if (!tres2.IsFaulted && tres2.Result != null)
+                                {
                                     res = tres2.Result;
+                                }
                             }
 
                             if (res.SearchResults != null && res.SearchResults.Count > 0)
@@ -847,10 +822,14 @@ namespace CineDataWorkerRole
                                 Task<Movie> tmovieData = tmdb.GetMovieDetails(movieSearchRes.Id);
                                 tmovieData.Wait();
 
-                                if (!tmovieData.IsFaulted && tmovieData.Result != null)
-                                    movieData = tmovieData.Result;
+                                tmovieImages = tmdb.GetFilmImages(movieSearchRes.Id);
 
-                                if (movieData.Trailers.Youtube != null && movieData.Trailers.Youtube.Count > 0 && !String.IsNullOrEmpty(movieData.Trailers.Youtube[0].Source))
+                                if (!tmovieData.IsFaulted && tmovieData.Result != null)
+                                {
+                                    movieData = tmovieData.Result;
+                                }
+
+                                if (movieData.Trailers != null && movieData.Trailers.Youtube != null && movieData.Trailers.Youtube.Count > 0 && !String.IsNullOrEmpty(movieData.Trailers.Youtube[0].Source))
                                 {
                                     if (movieData.Trailers.Youtube[0].Source.IndexOf('=') == -1)
                                     {
@@ -858,7 +837,9 @@ namespace CineDataWorkerRole
                                         movieData.YouTubeTrailerID = trailerparts[trailerparts.Length - 1];
                                     }
                                     else
+                                    {
                                         movieData.YouTubeTrailerID = movieData.Trailers.Youtube[0].Source;
+                                    }
                                 }
                                 else
                                 {
@@ -869,40 +850,17 @@ namespace CineDataWorkerRole
                                         movieData.YouTubeTrailerID = tyoutube.Result;
                                 }
 
-                                //if (!String.IsNullOrEmpty(movieData.YouTubeTrailerID))
-                                //{
-                                //    Task<MyToolkit.Multimedia.YouTube.YouTubeUri> tUri480 = MyToolkit.Multimedia.YouTube.GetVideoUriAsync(movieData.YouTubeTrailerID, MyToolkit.Multimedia.YouTubeQuality.Quality480P);
-                                //    tUri480.Wait();
-
-                                //    if (!tUri480.IsCanceled && tUri480.Result != null && tUri480.Result.IsValid)
-                                //    {
-                                //        movieData.Trailer480P = tUri480.Result;
-                                //    }
-
-                                //    Task<MyToolkit.Multimedia.YouTube.YouTubeUri> tUri720 = MyToolkit.Multimedia.YouTube.GetVideoUriAsync(movieData.YouTubeTrailerID, MyToolkit.Multimedia.YouTubeQuality.Quality720P);
-                                //    tUri720.Wait();
-
-                                //    if (!tUri720.IsCanceled && tUri720.Result != null && tUri720.Result.IsValid)
-                                //    {
-                                //        movieData.Trailer720P = tUri720.Result;
-                                //    }
-
-                                //    Task<MyToolkit.Multimedia.YouTube.YouTubeUri> tUri1080 = MyToolkit.Multimedia.YouTube.GetVideoUriAsync(movieData.YouTubeTrailerID, MyToolkit.Multimedia.YouTubeQuality.Quality1080P);
-                                //    tUri1080.Wait();
-
-                                //    if (!tUri1080.IsCanceled && tUri1080.Result != null && tUri1080.Result.IsValid)
-                                //    {
-                                //        movieData.Trailer1080P = tUri1080.Result;
-                                //    }
-                                //}
-
                                 if (ukRelease == DateTime.MinValue)
                                 {
                                     Country c = movieData.Releases.Countries.FirstOrDefault(country => String.Compare(country.Iso31661, region == RegionDef.GB ? "GB" : "IE", StringComparison.OrdinalIgnoreCase) == 0);
                                     if (c != null)
+                                    {
                                         ukRelease = DateTime.ParseExact(c.ReleaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                                    }
                                     else if (!String.IsNullOrEmpty(movieSearchRes.ReleaseDate))
+                                    {
                                         ukRelease = DateTime.ParseExact(movieSearchRes.ReleaseDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                                    }
                                 }
 
                                 movieData.CineworldReleaseDate = ukRelease;
@@ -926,6 +884,32 @@ namespace CineDataWorkerRole
                                 filminfo.Genres.Add(g.Name);
                         }
 
+                        if(tmovieImages != null)
+                        {
+                            tmovieImages.Wait();
+
+                            if(!tmovieImages.IsFaulted && tmovieImages.Result != null)
+                            {
+                                if (tmovieImages.Result.Backdrops != null)
+                                {
+                                    foreach (var backdrop in tmovieImages.Result.Backdrops)
+                                    {
+                                        string url = string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("mediumposterwidth"), backdrop.FilePath);
+                                        filminfo.Backdrops.Add(new Uri(url));
+                                    }
+                                }
+
+                                if (tmovieImages.Result.Posters != null)
+                                {
+                                    foreach (var poster in tmovieImages.Result.Posters)
+                                    {
+                                        string url = string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("mediumposterwidth"), poster.FilePath);
+                                        filminfo.Posters.Add(new Uri(url));
+                                    }
+                                }
+                            }
+                        }
+                        
                         if (!String.IsNullOrEmpty(movieData.PosterPath))
                         {
                             string poster = string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("posterwidth"), movieData.PosterPath);
@@ -933,13 +917,17 @@ namespace CineDataWorkerRole
                             string mediumposter = string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("mediumposterwidth"), movieData.PosterPath);
 
                             if (!MoviePosters.ContainsKey(filminfo.TmdbId))
+                            {
                                 MoviePosters.Add(filminfo.TmdbId, mediumposter);
+                            }
 
                             filminfo.PosterUrl = new Uri(poster);
                             filminfo.MediumPosterUrl = new Uri(mediumposter);
                         }
                         else if (!String.IsNullOrEmpty(film.poster_url))
+                        {
                             filminfo.PosterUrl = new Uri(film.poster_url);
+                        }
 
                         if (!String.IsNullOrEmpty(movieData.BackdropPath))
                         {
@@ -948,10 +936,6 @@ namespace CineDataWorkerRole
                         }
 
                         filminfo.YoutubeTrailer = movieData.YouTubeTrailerID;
-
-                        //filminfo.Trailer480P = movieData.Trailer480P;
-                        //filminfo.Trailer720P = movieData.Trailer720P;
-                        //filminfo.Trailer1080P = movieData.Trailer1080P;
 
                         filminfo.Release = movieData.CineworldReleaseDate;
 
@@ -971,8 +955,10 @@ namespace CineDataWorkerRole
                     }
                     else
                     {
-                        if(!String.IsNullOrEmpty(film.poster_url))
+                        if (!String.IsNullOrEmpty(film.poster_url))
+                        {
                             filminfo.PosterUrl = new Uri(film.poster_url);
+                        }
                     }
 
                     Task<List<FilmReview>> tReviews = mobileService.GetFilmReviews(filminfo);
@@ -1019,62 +1005,7 @@ namespace CineDataWorkerRole
 
         public override void OnStop()
         {
-            this.StopWCFService();
-
             base.OnStop();
-        }
-
-        private void StopWCFService()
-        {
-            if(serviceHost != null)
-            {
-                try
-                {
-                    serviceHost.Close();
-                }
-
-                catch (Exception ex)
-                {
-                    LogError(ex, null);
-                    throw;
-                }
-            }
-        }
-
-        private void StartWCFService()
-        {
-            try
-            {
-                //ServiceHost serviceHost = new ServiceHost(typeof(CineMobileService));
-
-                //NetTcpBinding binding = new NetTcpBinding(SecurityMode.None);
-
-                //// define an external endpoint for client traffic
-                //RoleInstanceEndpoint externalEndPoint = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["WcfMessenger"];
-
-                //string endpoint = String.Format("net.tcp://{0}:9191/WcfMessenger", externalEndPoint.IPEndpoint);
-
-                //serviceHost.AddServiceEndpoint(typeof(ICineMobileSerivce), binding, endpoint);
-
-                //serviceHost.Open();
-
-                //ServiceHost serviceHost = new ServiceHost(typeof(CineMobileService));
-
-                BasicHttpBinding binding = new BasicHttpBinding();
-
-                // define an external endpoint for client traffic
-                RoleInstanceEndpoint externalEndPoint = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["WcfMessenger"];
-
-                string endpoint = String.Format("http://{0}/WcfMessenger", externalEndPoint.IPEndpoint);
-
-                serviceHost.AddServiceEndpoint(typeof(ICineMobileSerivce), binding, endpoint);
-
-                serviceHost.Open();
-            }
-            catch(Exception ex)
-            {
-                this.LogError(ex, null);
-            }
         }
     }
 }

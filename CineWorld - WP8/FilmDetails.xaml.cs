@@ -78,7 +78,7 @@ namespace CineWorld
             {
                 MessageBox.Show("Error fetching film details");
             }
-            
+
             this.abibTrailer = new ApplicationBarIconButton() { Text = "trailer", IconUri = new Uri("/Images/appbar.transport.play.rest.png", UriKind.Relative) };
             this.abibTrailer.Click += this.btnViewTrailer_Click;
 
@@ -399,6 +399,17 @@ namespace CineWorld
                 ShowPerformances.ShowFilmDetails = false;
                 NavigationService.Navigate(new Uri("/ShowPerformances.xaml", UriKind.Relative));
             }
+        }
+
+        private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Uri uri = (sender as Image).Tag as Uri;
+
+            string original = uri.OriginalString;
+
+            PhotoViewer.photoUri = new Uri(original.Replace("w500", "original"), UriKind.Absolute);
+
+            NavigationService.Navigate(new Uri("/PhotoViewer.xaml", UriKind.Relative));
         }
     }
 }
