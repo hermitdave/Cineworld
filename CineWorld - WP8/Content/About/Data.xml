@@ -67,57 +67,62 @@
     </Item>
     <Item Title="history"
           Type="text">
+
+      3.2.2.5
+      Added Backdrops and Posters to Film Details when going through Cinema Details
+      Modified Cinema details to reflow the performance buttons
+      
       3.2.2.4
       Added Backdrops and Posters to Film Details
       Added ability view and save images
-      
+
       3.2.2.3
       Fix for Films for Date when showing upgrouped in Cinema Details
-      
+
       3.2.2.2
       Removed progress bar while looking up cinemas by location.. Landing page active sooner.
       Updated cinema tile layout slightly on landing page
-      Added Option to view all film / cinema data ungrouped or grouped 
+      Added Option to view all film / cinema data ungrouped or grouped
       Fixed grouped bracket to include films starting ' in # group
-      
+
       3.2.2.1
       Changed poster size when showing the picture tile for films
       Prevent automatically downloading cinema data for nearest cinemas to speed up initial start up
-      
+
       3.2.2.0
       Restored Application Bar to default size
       Modified Landing page to include more cinemas
-      
+
       3.2.1.9
       Remove IAP Button and replaced cineworld logo with a hub tile that provides same functionality
       Added flurry analytics to capture some crashes
-      
+
       3.2.1.8
       Offload IAP product listing call to background thread to speed up processing
-      Minimised application bar across app to increase available view space 
-      
+      Minimised application bar across app to increase available view space
+
       3.2.1.7
       Display cost to remove ads / support app on the button itself
       Tweak to download lesser data unless app needs it
-      
+
       3.2.1.6
       Added IAP option to disable ads right below the ads
       Modified the app title as suggested by Cineworld to indicate unofficial nature
-      
+
       3.2.1.5
       Added ad support and IAP options to see if it possible to keep the service running
       Take down notice removed
       Use newer location API and show non pinned / favourited nearest cinema
       3.2.1.4
       Added take down notice
-      
+
       3.2.1.3
       Fixed issue with saving poster locally to Saved Pictures.
-      
+
       3.2.1.2
       Modified the tile templates (primary and secondary) to use transparent image and flip tile template
       Added Uri schema for use by 3rd party apps
-      
+
       3.2.1.1
       Reworked poster management to not use Cineworld film identifier.
       Updated film reviews to be shared between various flavours of movie being shown going forward.

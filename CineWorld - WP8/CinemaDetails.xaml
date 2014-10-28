@@ -45,6 +45,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -53,8 +54,51 @@
 
                 <TextBlock Text="{Binding TitleWithClassification}" FontSize="{StaticResource PhoneFontSizeNormal}" FontWeight="Bold" Margin="12, 12, 0, 0" TextWrapping="Wrap" Grid.ColumnSpan="2"/>
 
-                <Image Source="{Binding PosterUrl}" Height="278" Width="185" Margin="12, 0, 0, 0" Stretch="UniformToFill" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" toolkit:SlideInEffect.LineIndex="1" Tap="FilmListing_Tap" Tag="{Binding}"/>
-                <ItemsControl ItemsSource="{Binding Performances}" Grid.Row="1" Grid.Column="1" Margin="0, -12, 0, 0" toolkit:SlideInEffect.LineIndex="1">
+                <Image Source="{Binding MediumPosterUrl}" Height="282" Width="184" Margin="12, 0, 0, 0" Stretch="UniformToFill" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" toolkit:SlideInEffect.LineIndex="1" Tap="FilmListing_Tap" Tag="{Binding}"/>
+                <ItemsControl ItemsSource="{Binding PerformancesPrimary}" Grid.Row="1" Grid.Column="1" Margin="0, -12, 0, 0" toolkit:SlideInEffect.LineIndex="1">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <toolkit:WrapPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.Template>
+                        <ControlTemplate TargetType="ItemsControl">
+                            <ItemsPresenter />
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button 
+                                    Click="Button_Click" 
+                                    IsEnabled="{Binding AvailableFuture}" 
+                                    CommandParameter="{Binding}" 
+                                    Width="110"
+                                    Height="110" 
+                                    Margin="0, 0, -12, -12">
+                                    <Button.Content>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock 
+                                            Text="{Binding TimeString}" 
+                                            VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                                            <TextBlock Grid.Row="1"
+                                            Text="{Binding Type}" FontSize="15" 
+                                            VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl ItemsSource="{Binding PerformancesSecondary}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 0, 0, 0" toolkit:SlideInEffect.LineIndex="1">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <toolkit:WrapPanel Orientation="Horizontal" HorizontalAlignment="Left"/>

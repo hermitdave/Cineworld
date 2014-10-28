@@ -647,5 +647,16 @@ namespace CineWorld
 
             await SpeechSynthesisService.SpeakOutLoud(sb.ToString());
         }
+
+        private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Uri uri = (sender as Image).Tag as Uri;
+
+            string original = uri.OriginalString;
+
+            PhotoViewer.photoUri = new Uri(original.Replace("w500", "original"), UriKind.Absolute);
+
+            NavigationService.Navigate(new Uri("/PhotoViewer.xaml", UriKind.Relative));
+        }
     }
 }

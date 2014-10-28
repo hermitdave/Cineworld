@@ -150,6 +150,36 @@ public class FilmInfo
     [JsonIgnore]
     public List<PerformanceInfo> Performances { get; set; }
 
+    [JsonIgnore]
+    public List<PerformanceInfo> PerformancesPrimary
+    {
+        get
+        {
+            if (this.Performances == null)
+                return null;
+
+            if (this.Performances.Count <= 6)
+                return this.Performances;
+
+            return this.Performances.Take(6).ToList();
+        }
+    }
+
+    [JsonIgnore]
+    public List<PerformanceInfo> PerformancesSecondary
+    {
+        get
+        {
+            if (this.Performances == null)
+                return null;
+
+            if (this.Performances.Count <= 6)
+                return null;
+
+            return this.Performances.Skip(6).ToList();
+        }
+    }
+
 #if AZURE
     public bool ShowingToday { get; set; }
 #else
