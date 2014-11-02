@@ -83,7 +83,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Image Tap="FilmPoster_Tap" Source="{Binding PosterUrl}" Height="278" Width="185" Stretch="UniformToFill" Grid.Column="0" VerticalAlignment="Top" Margin="0" toolkit:SlideInEffect.LineIndex="1"/>
+                            <Image Tap="FilmPoster_Tap" Source="{Binding PosterImage}" Height="278" Width="185" Stretch="UniformToFill" Grid.Column="0" VerticalAlignment="Top" Margin="0" toolkit:SlideInEffect.LineIndex="1"/>
                             <!--coding4fun:RoundButton x:Name="btnPlay" ButtonWidth="150" ButtonHeight="150" HorizontalAlignment="Center" VerticalAlignment="Center" Content="&#xE102;" FontFamily="Segoe UI Symbol" FontSize="72" Visibility="Collapsed" Click="btnPlay_Click" Foreground="White" Background="Transparent" BorderBrush="White" toolkit:SlideInEffect.LineIndex="1"/-->
 
                             <StackPanel Orientation="Vertical" Grid.Column="1" Margin="12, 0, 0, 0" toolkit:SlideInEffect.LineIndex="1">

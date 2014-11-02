@@ -67,7 +67,9 @@
     </Item>
     <Item Title="history"
           Type="text">
-
+      3.2.2.6
+      Use high quality poster when available otherwise fallback to cineworld supplied poster
+      
       3.2.2.5
       Added Backdrops and Posters to Film Details when going through Cinema Details
       Modified Cinema details to reflow the performance buttons
