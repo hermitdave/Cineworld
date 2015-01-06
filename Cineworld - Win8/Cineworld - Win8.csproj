@@ -392,6 +392,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.SfInput.WinRT">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\12.4.0.24\Assemblies for WinRT\8.0\Syncfusion.SfInput.WinRT.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfShared.WinRT">
+      <HintPath>C:\Program Files (x86)\Syncfusion\Essential Studio\12.4.0.24\Assemblies for WinRT\8.0\Syncfusion.SfShared.WinRT.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\win8\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
@@ -412,9 +418,6 @@
     </SDKReference>
     <SDKReference Include="MSAdvertisingXaml, Version=6.1">
       <Name>MSAdvertisingXaml</Name>
-    </SDKReference>
-    <SDKReference Include="Syncfusion 8.0 controls for WinRT XAML, Version=12.1.0.43">
-      <Name>Syncfusion 8.0 Controls for WinRT XAML</Name>
     </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">

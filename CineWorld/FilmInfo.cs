@@ -4,10 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
-#if WINDOWS_PHONE
 using System.Linq;
-#endif
 
 public class FilmInfo
 {
