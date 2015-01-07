@@ -1,5 +1,4 @@
-﻿using Callisto.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -107,12 +106,12 @@ namespace Cineworld
 
             this.AllowSearch(false);
 
-            if (!Landing.bLoaded)
-            {
-                SettingsPane.GetForCurrentView().CommandsRequested -= MainPage_CommandsRequested;
+            //if (!Landing.bLoaded)
+            //{
+            //    SettingsPane.GetForCurrentView().CommandsRequested -= MainPage_CommandsRequested;
 
-                SettingsPane.GetForCurrentView().CommandsRequested += MainPage_CommandsRequested;
-            } 
+            //    SettingsPane.GetForCurrentView().CommandsRequested += MainPage_CommandsRequested;
+            //} 
             
             DataTransferManager.GetForCurrentView().DataRequested += CinemaDetails_DataRequested;
 
@@ -338,60 +337,60 @@ namespace Cineworld
             }
         }
 
-        private void MainPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
-        {
-            if (command == null)
-            {
-                command = new SettingsCommand("Support", "Support", (x) =>
-                {
-                    SettingsFlyout settings = new SettingsFlyout();
-                    settings.Content = new About();
-                    settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-                    settings.Background = new SolidColorBrush(Colors.White);
-                    settings.HeaderText =
-                        "Support";
-                    settings.IsOpen = true;
-                });
-            }
+        //private void MainPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        //{
+        //    if (command == null)
+        //    {
+        //        command = new SettingsCommand("Support", "Support", (x) =>
+        //        {
+        //            SettingsFlyout settings = new SettingsFlyout();
+        //            settings.Content = new About();
+        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
+        //            settings.Background = new SolidColorBrush(Colors.White);
+        //            settings.HeaderText =
+        //                "Support";
+        //            settings.IsOpen = true;
+        //        });
+        //    }
 
-            if (!args.Request.ApplicationCommands.Contains(command))
-                args.Request.ApplicationCommands.Add(command);
+        //    if (!args.Request.ApplicationCommands.Contains(command))
+        //        args.Request.ApplicationCommands.Add(command);
 
-            if (command2 == null)
-            {
-                command2 = new SettingsCommand("PrivacyPolicy", "Privacy Policy", (x) =>
-                {
-                    SettingsFlyout settings = new SettingsFlyout();
-                    settings.Content = new PrivacyPolicy();
-                    settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-                    settings.Background = new SolidColorBrush(Colors.White);
-                    settings.HeaderText =
-                        "Privacy Policy";
-                    settings.IsOpen = true;
-                });
-            }
+        //    if (command2 == null)
+        //    {
+        //        command2 = new SettingsCommand("PrivacyPolicy", "Privacy Policy", (x) =>
+        //        {
+        //            SettingsFlyout settings = new SettingsFlyout();
+        //            settings.Content = new PrivacyPolicy();
+        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
+        //            settings.Background = new SolidColorBrush(Colors.White);
+        //            settings.HeaderText =
+        //                "Privacy Policy";
+        //            settings.IsOpen = true;
+        //        });
+        //    }
 
-            if (!args.Request.ApplicationCommands.Contains(command2))
-                args.Request.ApplicationCommands.Add(command2);
+        //    if (!args.Request.ApplicationCommands.Contains(command2))
+        //        args.Request.ApplicationCommands.Add(command2);
 
-            if (command3 == null)
-            {
-                command3 = new SettingsCommand("Settings", "Options", (x) =>
-                {
-                    SettingsFlyout settings = new SettingsFlyout();
-                    settings.Content = new Settings();
-                    settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-                    settings.Background = new SolidColorBrush(Colors.White);
-                    settings.HeaderText =
-                        "Options";
-                    settings.IsOpen = true;
-                });
-            }
+        //    if (command3 == null)
+        //    {
+        //        command3 = new SettingsCommand("Settings", "Options", (x) =>
+        //        {
+        //            SettingsFlyout settings = new SettingsFlyout();
+        //            settings.Content = new Settings();
+        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
+        //            settings.Background = new SolidColorBrush(Colors.White);
+        //            settings.HeaderText =
+        //                "Options";
+        //            settings.IsOpen = true;
+        //        });
+        //    }
 
-            if (!args.Request.ApplicationCommands.Contains(command3))
-                args.Request.ApplicationCommands.Add(command3);
+        //    if (!args.Request.ApplicationCommands.Contains(command3))
+        //        args.Request.ApplicationCommands.Add(command3);
 
-        }
+        //}
 
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -534,11 +533,9 @@ namespace Cineworld
             flyOut.Content = new ViewReviews();
             ViewReviews.ReviewTarget = Review.ReviewTargetDef.Cinema;
             ViewReviews.SelectedCinema = SelectedCinema;
-            flyOut.Background = new SolidColorBrush(Colors.White);
-
-            flyOut.PlacementTarget = sender as UIElement;
-            flyOut.Placement = PlacementMode.Top;
-            flyOut.IsOpen = true;
+            
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void btnRateCinema_Click(object sender, RoutedEventArgs e)
@@ -548,11 +545,8 @@ namespace Cineworld
             Review.ReviewTarget = Review.ReviewTargetDef.Cinema;
             Review.SelectedCinema = SelectedCinema;
 
-            flyOut.Background = new SolidColorBrush(Colors.White);
-
-            flyOut.PlacementTarget = sender as UIElement;
-            flyOut.Placement = PlacementMode.Top;
-            flyOut.IsOpen = true;
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void radShowByDate_Click(object sender, RoutedEventArgs e)

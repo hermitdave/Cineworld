@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.ApplicationSettings;
-using Callisto.Controls;
 using Windows.Devices.Geolocation;
 using Coding4Fun.Toolkit.Controls;
 
@@ -28,10 +27,10 @@ namespace Cineworld
         public static bool bLoaded = false;
         HashSet<int> PinnedCinemas = new HashSet<int>();
 
-        static SettingsCommand command = null;
-        static SettingsCommand command2 = null;
-        static SettingsCommand command3 = null;
-        static SettingsCommand command4 = null;
+        //static SettingsCommand command = null;
+        //static SettingsCommand command2 = null;
+        //static SettingsCommand command3 = null;
+        //static SettingsCommand command4 = null;
 
         DispatcherTimer dtHideAppBar = new DispatcherTimer();
 
@@ -41,61 +40,61 @@ namespace Cineworld
             this.InitializeComponent();
         }
 
-        public static void MainPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
-        {
-            if (command == null)
-            {
-                command = new SettingsCommand("Support", "Support", (x) =>
-                {
-                    SettingsFlyout settings = new SettingsFlyout();
-                    settings.Content = new About();
-                    settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-                    settings.Background = new SolidColorBrush(Colors.White);
-                    settings.HeaderText =
-                        "Support";
-                    settings.IsOpen = true;
-                });
-            }
+        //public static void MainPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        //{
+        //    if (command == null)
+        //    {
+        //        command = new SettingsCommand("Support", "Support", (x) =>
+        //        {
+        //            SettingsFlyout settings = new SettingsFlyout();
+        //            settings.Content = new About();
+        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
+        //            settings.Background = new SolidColorBrush(Colors.White);
+        //            settings.HeaderText =
+        //                "Support";
+        //            settings.IsOpen = true;
+        //        });
+        //    }
 
-            if(!args.Request.ApplicationCommands.Contains(command))
-                args.Request.ApplicationCommands.Add(command);
+        //    if(!args.Request.ApplicationCommands.Contains(command))
+        //        args.Request.ApplicationCommands.Add(command);
 
-            if (command2 == null)
-            {
-                command2 = new SettingsCommand("PrivacyPolicy", "Privacy Policy", (x) =>
-                {
-                    SettingsFlyout settings = new SettingsFlyout();
-                    settings.Content = new PrivacyPolicy();
-                    settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-                    settings.Background = new SolidColorBrush(Colors.White);
-                    settings.HeaderText =
-                        "Privacy Policy";
-                    settings.IsOpen = true;
-                });
-            }
+        //    if (command2 == null)
+        //    {
+        //        command2 = new SettingsCommand("PrivacyPolicy", "Privacy Policy", (x) =>
+        //        {
+        //            SettingsFlyout settings = new SettingsFlyout();
+        //            settings.Content = new PrivacyPolicy();
+        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
+        //            settings.Background = new SolidColorBrush(Colors.White);
+        //            settings.HeaderText =
+        //                "Privacy Policy";
+        //            settings.IsOpen = true;
+        //        });
+        //    }
 
-            if(!args.Request.ApplicationCommands.Contains(command2))
-                args.Request.ApplicationCommands.Add(command2);
+        //    if(!args.Request.ApplicationCommands.Contains(command2))
+        //        args.Request.ApplicationCommands.Add(command2);
 
-            if (command3 == null)
-            {
-                command3 = new SettingsCommand("Settings", "Options", (x) =>
-                {
-                    SettingsFlyout settings = new SettingsFlyout();
-                    settings.Content = new Settings();
-                    settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-                    settings.Background = new SolidColorBrush(Colors.White);
-                    settings.HeaderText =
-                        "Options";
-                    settings.IsOpen = true;
-                });
-            }
+        //    if (command3 == null)
+        //    {
+        //        command3 = new SettingsCommand("Settings", "Options", (x) =>
+        //        {
+        //            SettingsFlyout settings = new SettingsFlyout();
+        //            settings.Content = new Settings();
+        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
+        //            settings.Background = new SolidColorBrush(Colors.White);
+        //            settings.HeaderText =
+        //                "Options";
+        //            settings.IsOpen = true;
+        //        });
+        //    }
 
-            if(!args.Request.ApplicationCommands.Contains(command3))
-                args.Request.ApplicationCommands.Add(command3);
+        //    if(!args.Request.ApplicationCommands.Contains(command3))
+        //        args.Request.ApplicationCommands.Add(command3);
 
             
-        }
+        //}
 
 
         /// <summary>
@@ -154,9 +153,9 @@ namespace Cineworld
             this.SpinAndWait(false);
 
             
-            SettingsPane.GetForCurrentView().CommandsRequested -= MainPage_CommandsRequested;
+            //SettingsPane.GetForCurrentView().CommandsRequested -= MainPage_CommandsRequested;
 
-            SettingsPane.GetForCurrentView().CommandsRequested += MainPage_CommandsRequested;
+            //SettingsPane.GetForCurrentView().CommandsRequested += MainPage_CommandsRequested;
 
             bLoaded = true;
             
@@ -457,11 +456,9 @@ namespace Cineworld
         {
             SettingsFlyout settings = new SettingsFlyout();
             settings.Content = new About();
-            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
             settings.Background = new SolidColorBrush(Colors.White);
-            settings.HeaderText =
-                "Support";
-            settings.IsOpen = true;
+            settings.Title = "Support";
+            settings.Show();
         }
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
@@ -473,11 +470,9 @@ namespace Cineworld
         {
             SettingsFlyout settings = new SettingsFlyout();
             settings.Content = new Settings();
-            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
             settings.Background = new SolidColorBrush(Colors.White);
-            settings.HeaderText =
-                "Options";
-            settings.IsOpen = true;
+            settings.Title = "Options";
+            settings.Show();
         }
 
         private void pageRoot_Loaded(object sender, RoutedEventArgs e)

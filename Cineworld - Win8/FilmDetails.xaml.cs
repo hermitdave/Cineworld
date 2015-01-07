@@ -23,7 +23,6 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Networking.Connectivity;
 using Windows.Media.PlayTo;
 using Windows.System.Display;
-using Callisto.Controls;
 using Windows.UI.ApplicationSettings;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -35,7 +34,7 @@ namespace Cineworld
     /// </summary>
     public sealed partial class FilmDetails : Cineworld.Common.LayoutAwarePage
     {
-        YouTube.YouTubeUri trailerUrl = null;
+        YouTubeUri trailerUrl = null;
         bool bLoaded = false;
         List<GroupInfoList<object>> dataLetter = null;
         public static FilmInfo SelectedFilm { get; set; }
@@ -191,7 +190,7 @@ namespace Cineworld
 
             ConnectionCost InternetConnectionCost = (InternetConnectionProfile == null ? null : InternetConnectionProfile.GetConnectionCost());
 
-            Task<YouTube.YouTubeUri> tYouTube = null;
+            Task<YouTubeUri> tYouTube = null;
 
             if (InternetConnectionProfile != null && 
                 InternetConnectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess)
@@ -227,7 +226,7 @@ namespace Cineworld
                 catch { }
             }
 
-            this.btnTrailer.Visibility = btnPlay.Visibility = ((trailerUrl != null && trailerUrl.IsValid) ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
+            this.btnTrailer.Visibility = btnPlay.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
             this.mpTrailer.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
             //if(taskFilmReviews != null)
@@ -365,11 +364,8 @@ namespace Cineworld
             Review.ReviewTarget = Review.ReviewTargetDef.Film;
             Review.SelectedFilm = SelectedFilm;
 
-            flyOut.Background = new SolidColorBrush(Colors.White);
-
-            flyOut.PlacementTarget = sender as UIElement;
-            flyOut.Placement = PlacementMode.Top;
-            flyOut.IsOpen = true;
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void btnReviews_Click(object sender, RoutedEventArgs e)
@@ -380,11 +376,8 @@ namespace Cineworld
             ViewReviews.ReviewTarget = Review.ReviewTargetDef.Film;
             ViewReviews.SelectedFilm = SelectedFilm;
 
-            flyOut.Background = new SolidColorBrush(Colors.White);
-
-            flyOut.PlacementTarget = sender as UIElement;
-            flyOut.Placement = PlacementMode.Top;
-            flyOut.IsOpen = true;
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)

@@ -23,7 +23,6 @@ using Windows.Networking.Connectivity;
 using Windows.Media.PlayTo;
 using Windows.UI.Popups;
 using Windows.System.Display;
-using Callisto.Controls;
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace Cineworld
@@ -36,7 +35,7 @@ namespace Cineworld
         //CineWorldService cws = new CineWorldService();
         
         //static Dates SelectedDates { get; set; }
-        YouTube.YouTubeUri trailerUrl = null;
+        YouTubeUri trailerUrl = null;
         
         public static CinemaInfo SelectedCinema { get; set; }
         public static FilmInfo SelectedFilm { get; set; }
@@ -229,7 +228,7 @@ namespace Cineworld
 
             ConnectionCost InternetConnectionCost = (InternetConnectionProfile == null ? null : InternetConnectionProfile.GetConnectionCost());
 
-            Task<YouTube.YouTubeUri> tYouTube = null;
+            Task<YouTubeUri> tYouTube = null;
             if (!String.IsNullOrEmpty(SelectedFilm.YoutubeTrailer) &&
                 InternetConnectionProfile != null &&
                 InternetConnectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess &&
@@ -246,7 +245,7 @@ namespace Cineworld
                 }
                 catch { }
             
-            this.spFilmButtons.Visibility = this.btnTrailer.Visibility = btnPlay.Visibility = ((trailerUrl != null && trailerUrl.IsValid) ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
+            this.spFilmButtons.Visibility = this.btnTrailer.Visibility = btnPlay.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
             this.mpTrailer.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
 
@@ -503,67 +502,57 @@ namespace Cineworld
         {
             Flyout flyOut = new Flyout();
             flyOut.Content = new Review();
-            flyOut.Background = new SolidColorBrush(Colors.White);
             
             Review.ReviewTarget = Review.ReviewTargetDef.Film;
             Review.SelectedFilm = SelectedFilm;
 
-            flyOut.PlacementTarget = sender as UIElement;
-            flyOut.Placement = PlacementMode.Top;
-            flyOut.IsOpen = true;
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void btnRateCinema_Click(object sender, RoutedEventArgs e)
         {
             Flyout flyOut = new Flyout();
             flyOut.Content = new Review();
-            flyOut.Background = new SolidColorBrush(Colors.White);
-
+            
             Review.ReviewTarget = Review.ReviewTargetDef.Cinema;
             Review.SelectedCinema = SelectedCinema;
             
-            flyOut.PlacementTarget = sender as UIElement;
-            flyOut.Placement = PlacementMode.Top;
-            flyOut.IsOpen = true;
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void btnFilmReviews_Click(object sender, RoutedEventArgs e)
         {
             Flyout flyOut = new Flyout();
             flyOut.Content = new ViewReviews();
-            flyOut.Background = new SolidColorBrush(Colors.White);
             
             ViewReviews.ReviewTarget = Review.ReviewTargetDef.Film;
             ViewReviews.SelectedFilm = SelectedFilm;
 
-            flyOut.PlacementTarget = sender as UIElement;
-            flyOut.Placement = PlacementMode.Top;
-            flyOut.IsOpen = true;
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void btnCinemaReviews_Click(object sender, RoutedEventArgs e)
         {
             Flyout flyOut = new Flyout();
             flyOut.Content = new ViewReviews();
-            flyOut.Background = new SolidColorBrush(Colors.White);
-
+            
             ViewReviews.ReviewTarget = Review.ReviewTargetDef.Cinema;
             ViewReviews.SelectedCinema = SelectedCinema;
             
-            flyOut.PlacementTarget = sender as UIElement;
-            flyOut.Placement = PlacementMode.Top;
-            flyOut.IsOpen = true;
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void btnReviews_Click(object sender, RoutedEventArgs e)
         {
             Flyout flyOut = new Flyout();
             flyOut.Content = new ViewReviews();
-            flyOut.Background = new SolidColorBrush(Colors.White);
-
-            flyOut.PlacementTarget = sender as UIElement;
-            flyOut.Placement = PlacementMode.Top;
-            flyOut.IsOpen = true;
+            
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)

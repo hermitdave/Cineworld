@@ -1,5 +1,4 @@
-﻿using Callisto.Controls;
-using Microsoft.WindowsAzure.MobileServices;
+﻿using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -66,7 +65,7 @@ namespace Cineworld
             if (!String.IsNullOrWhiteSpace(this.UserReview.Reviewer))
                 this.tbName.Text = this.UserReview.Reviewer.Trim();
 
-            this.rating.Value = this.UserReview.Rating;
+            //this.rating.Value = this.UserReview.Rating;
 
             if (!String.IsNullOrWhiteSpace(this.UserReview.Review))
                 this.tbReview.Text = this.UserReview.Review.Trim();
@@ -83,17 +82,17 @@ namespace Cineworld
 
         private async void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            if (this.rating.Value == 0)
-            {
-                await new MessageDialog(String.Format("please rate this {0}", ReviewTarget.ToString())).ShowAsync();
-                return;
-            }
+            //if (this.rating.Value == 0)
+            //{
+            //    await new MessageDialog(String.Format("please rate this {0}", ReviewTarget.ToString())).ShowAsync();
+            //    return;
+            //}
 
             this.SpinAndWait(true);
 
             this.UserReview.Reviewer = String.IsNullOrWhiteSpace(this.tbName.Text) ? "anonymous" : this.tbName.Text;
             this.UserReview.Review = this.tbReview.Text.Trim();
-            this.UserReview.Rating = Convert.ToInt16(this.rating.Value);
+            //this.UserReview.Rating = Convert.ToInt16(this.rating.Value);
             this.UserReview.ReviewTS = DateTime.Now;
             this.UserReview.UserId = ExtendedPropertyHelper.GetUserIdentifier();
 
@@ -130,14 +129,14 @@ namespace Cineworld
 
             this.SpinAndWait(false);
 
-            (this.Parent as Flyout).IsOpen = false;
+            (this.Parent as Flyout).Hide();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.SpinAndWait(false);
 
-            (this.Parent as Flyout).IsOpen = false;
+            (this.Parent as Flyout).Hide();
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)

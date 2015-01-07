@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:UI="using:Microsoft.Advertising.WinRT.UI" 
+﻿<UserControl 
     x:Class="Cineworld.Controls.AdDisplayControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <UI:AdControl 
+        <!--UI:AdControl 
             x:Name="ad160x600"
             Width="160"
             Height="600"
@@ -31,7 +31,7 @@
             AdUnitId="188418"
             IsAutoRefreshEnabled="True"
             Visibility="Collapsed"
-            />
+            /-->
 
         <Button Grid.Row="1" Margin="0" VerticalAlignment="Top" x:Name="btnRemoveAds" Tapped="btnRemoveAds_Tapped" Visibility="Collapsed" BorderThickness="3">
             <Button.Content>

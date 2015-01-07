@@ -1,25 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="InvokeITLimited.Cineworld" Publisher="CN=67FED6AA-5491-4F37-B955-D890A9B33074" Version="3.0.0.15" />
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="InvokeITLimited.Cineworld" Publisher="CN=67FED6AA-5491-4F37-B955-D890A9B33074" Version="3.1.0.15" />
   <Properties>
     <DisplayName>Cineworld Unofficial</DisplayName>
     <PublisherDisplayName>Invoke IT Limited</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
-    <OSMinVersion>6.2.0</OSMinVersion>
-    <OSMaxVersionTested>6.2.0</OSMaxVersionTested>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
   </Prerequisites>
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Cineworld.App">
-      <VisualElements DisplayName="Cineworld Unofficial" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Cineworld" ForegroundText="light" BackgroundColor="#19171C">
-        <LockScreen Notification="badge" BadgeLogo="Assets\Badge.png" />
-        <DefaultTile ShowName="logoOnly" ShortName="Cineworld" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
-      </VisualElements>
       <Extensions>
         <Extension Category="windows.backgroundTasks" EntryPoint="Win8CineBackgroundTask.CineBackground">
           <BackgroundTasks>
@@ -28,6 +23,15 @@
         </Extension>
         <Extension Category="windows.search" />
       </Extensions>
+      <m2:VisualElements DisplayName="Cineworld Unofficial" Description="Cineworld" BackgroundColor="#19171C" ForegroundText="light" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png">
+        <m2:DefaultTile ShortName="Cineworld">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:LockScreen Notification="badge" BadgeLogo="Assets\Badge.png" />
+        <m2:SplashScreen Image="Assets\SplashScreen.png" />
+      </m2:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
