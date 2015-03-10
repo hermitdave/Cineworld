@@ -179,6 +179,10 @@
     </Compile>
     <Compile Include="DataSources\FilmCastTableSource.cs" />
     <Compile Include="DataSources\ReviewsTableSource.cs" />
+    <Compile Include="FilmCastTableCell.cs" />
+    <Compile Include="FilmCastTableCell.designer.cs">
+      <DependentUpon>FilmCastTableCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

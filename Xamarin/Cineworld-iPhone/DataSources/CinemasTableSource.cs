@@ -6,16 +6,17 @@ namespace CineworldiPhone
 {
 	public class CinemasTableSource : UITableViewSource {
 		string cellIdentifier = "TableCell";
-		List<CinemaInfo> cinemas = null;
+		List<CinemaInfo> Cinemas = new List<CinemaInfo>();
 
-		public CinemasTableSource ()
+		public CinemasTableSource (ICollection<CinemaInfo> cinemas)
 		{
-			cinemas = new List<CinemaInfo> (Application.Cinemas.Values);
+			Cinemas.Clear ();
+			Cinemas.AddRange(cinemas);
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return cinemas.Count;
+			return Cinemas.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
@@ -26,7 +27,7 @@ namespace CineworldiPhone
 				cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
 
 			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-			cell.TextLabel.Text = cinemas[indexPath.Row].Name;
+			cell.TextLabel.Text = Cinemas[indexPath.Row].Name;
 			return cell;
 		}
 	}

@@ -25,8 +25,8 @@ namespace CineworldiPhone
 
 			var bounds = this.View.Bounds;
 
-			var currentFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Current);
-			var upcomingFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Upcoming);
+			var currentFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Current, Application.Films.Values);
+			var upcomingFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Upcoming, Application.Films.Values);
 
 			this.AllFilmsTable.Source = currentFilms;
 

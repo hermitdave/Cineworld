@@ -9,7 +9,7 @@ namespace CineworldiPhone
 {
 	public class AllFilmsTableSource : UITableViewSource {
 		string cellIdentifier = "FilmTableCell";
-		List<FilmInfo> films = null;
+		List<FilmInfo> Films = null;
 
 		Dictionary<string, object> cellDictionary = new Dictionary<string, object> ();
 
@@ -19,16 +19,16 @@ namespace CineworldiPhone
 			Upcoming,
 		}
 
-		public AllFilmsTableSource (FilmListingType type)
+		public AllFilmsTableSource (FilmListingType type, ICollection<FilmInfo> films)
 		{
-			films = new List<FilmInfo> ();
+			Films = new List<FilmInfo> ();
 
-			foreach (var film in Application.Films.Values)
+			foreach (var film in films)
 			{
 				if ((type == FilmListingType.Current && film.Release <= DateTime.UtcNow) ||
 				    (type == FilmListingType.Upcoming && film.Release > DateTime.UtcNow)) 
 				{
-					films.Add (film);
+					Films.Add (film);
 				}
 			}
 
@@ -44,17 +44,47 @@ namespace CineworldiPhone
 					return;
 				this.cellDictionary.Remove (id);
 
-				if (placeholder is List<FilmTableCell>) {
-					this.InvokeOnMainThread (delegate {
-						foreach (FilmTableCell c in (placeholder as List<FilmTableCell>))
-							c.UpdateCell(image);
-					});
-				} else {
-					this.InvokeOnMainThread (delegate {
-						var c = placeholder as FilmTableCell;
-						c.UpdateCell(image);
-					});
-				}
+				ProcessCell (placeholder, image);
+			}
+		}
+
+		
+
+		private void ProcessCell(List<FilmTableCell> cells, UIImage image)
+		{
+			if (cells == null)
+				return;
+
+			foreach (var cell in cells) 
+			{
+				ProcessCell (cell, image);
+			}
+		}
+
+		private void ProcessCell(FilmTableCell cell, UIImage image)
+		{
+			if (cell == null)
+				return;
+
+			this.InvokeOnMainThread (delegate {
+				cell.UpdateCell (image);
+			});
+		}
+
+		private void ProcessCell(object obj, UIImage image)
+		{
+			if (obj == null)
+				return;
+
+			var c = obj as FilmTableCell;
+
+			if (c == null) 
+			{
+				ProcessCell (obj as List<FilmTableCell>, image);
+			} 
+			else
+			{
+				ProcessCell (c, image);
 			}
 		}
 
@@ -65,22 +95,14 @@ namespace CineworldiPhone
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return films.Count;
+			return Films.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell (cellIdentifier);
 
-			// if there are no cells to reuse, create a new one
-			//if (cell == null)
-			//	cell = new FilmTableCell (cellIdentifier);
-
-			//cell.ContentView.Bounds = new RectangleF (0, 0, 300, 300);
-
-			//cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-
-			string url = films [indexPath.Row].PosterUrl == null ? null : films [indexPath.Row].PosterUrl.OriginalString;
+			string url = Films [indexPath.Row].PosterUrl == null ? null : Films [indexPath.Row].PosterUrl.OriginalString;
 			var image = ImageManager.Instance.GetImage (url);
 			if (image == null) 
 			{
@@ -101,19 +123,9 @@ namespace CineworldiPhone
 				image = UIImage.FromFile ("Images/PlaceHolder.png");
 			} 
 
-			//cell.ImageView.Image = image;
-
-			//cell.TextLabel.Lines = 0;
-			//cell.TextLabel.LineBreakMode = UILineBreakMode.WordWrap;
-			//cell.TextLabel.Text = films[indexPath.Row].TitleWithClassification;
-
-			//cell.DetailTextLabel.Lines = 0;
-			//cell.DetailTextLabel.LineBreakMode = UILineBreakMode.WordWrap;
-			//cell.DetailTextLabel.Text = films [indexPath.Row].ShortDesc;
-
 			if (cell != null) 
 			{
-				(cell as FilmTableCell).UpdateCell (films [indexPath.Row], image);
+				(cell as FilmTableCell).UpdateCell (Films [indexPath.Row], image);
 			}
 			return cell;
 		}

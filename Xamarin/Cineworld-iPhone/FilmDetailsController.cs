@@ -73,38 +73,44 @@ namespace CineworldiPhone
 				this.OverviewData.Hidden = this.OverviewLabel.Hidden = true;
 			}
 
-
 			var bounds = this.View.Bounds;
-			UITableView casttable = new UITableView(new RectangleF(0, 95, (float)bounds.Width, (float)bounds.Height-95));
-			casttable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
-			casttable.Source = new CinemasTableSource ();
-			casttable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-			this.View.AddSubview (casttable);
+			this.FilmCastTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+			this.FilmCastTable.Source = new FilmCastTableSource (this.Film.FilmCast);
+			this.FilmCastTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+			this.FilmCastTable.Hidden = true;
 
-			casttable.Source = new FilmCastTableSource (this.Film.FilmCast);
-			casttable.Hidden = true;
+
+			UITableView cinemasTable = new UITableView(new RectangleF(0, 95, (float)bounds.Width, (float)bounds.Height-95));
+			cinemasTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+			cinemasTable.Source = new CinemasTableSource (Application.FilmCinemas[this.Film.EDI]);
+			cinemasTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+			cinemasTable.Hidden = true;
+			this.View.AddSubview (cinemasTable);
+
 
 			UIButton rateReview = new UIButton (UIButtonType.RoundedRect);
 			rateReview.Frame = new RectangleF (0, 95, (float)bounds.Width, 30);
 			rateReview.SetTitle ("Rate & Review", UIControlState.Normal);
 			rateReview.Hidden = true;
+			this.View.AddSubview (rateReview);
 
 			UITableView reviewstable = new UITableView(new RectangleF(0, 125, (float)bounds.Width, (float)bounds.Height-125));
 			reviewstable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
-			reviewstable.Source = new CinemasTableSource ();
+			reviewstable.Source = new ReviewsTableSource (this.Film.Reviews);
 			reviewstable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+			reviewstable.Hidden = true;
 			this.View.AddSubview (reviewstable);
 
-			reviewstable.Source = new ReviewsTableSource (this.Film.Reviews);
-			reviewstable.Hidden = true;
 
 			this.FilmDetailSegments.ValueChanged += (sender, e) => 
 			{
 				this.Poster.Hidden = this.Misc.Hidden = this.OverviewLabel.Hidden = this.OverviewData.Hidden = true;
 
-				casttable.Hidden = true;
+				this.FilmCastTable.Hidden = true;
 
 				rateReview.Hidden = reviewstable.Hidden = true;
+
+				cinemasTable.Hidden = true;
 
 				switch(this.FilmDetailSegments.SelectedSegment)
 				{
@@ -115,11 +121,15 @@ namespace CineworldiPhone
 					break;
 
 					case 1:
-					casttable.Hidden = false;
+					this.FilmCastTable.Hidden = false;
 					break;
 
 					case 2:
 					rateReview.Hidden = reviewstable.Hidden = false;
+					break;
+
+					case 3:
+					cinemasTable.Hidden = false;
 					break;
 				}
 			};

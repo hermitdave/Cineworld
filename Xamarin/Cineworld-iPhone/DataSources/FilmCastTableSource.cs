@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Drawing;
 using Foundation;
+using CoreGraphics;
 
 namespace CineworldiPhone
 {
 	public class FilmCastTableSource : UITableViewSource {
-		string cellIdentifier = "TableCell";
-		List<CastInfo> cast = null;
+		string cellIdentifier = "CastTableCell";
+		List<CastInfo> _cast = null;
 
-		Dictionary<string, UITableViewCell> cellDictionary = new Dictionary<string, UITableViewCell> ();
+		Dictionary<string, FilmCastTableCell> cellDictionary = new Dictionary<string, FilmCastTableCell> ();
+
 
 		public FilmCastTableSource (List<CastInfo> filmCast)
 		{
-			cast = filmCast;
+			_cast = filmCast;
 
 			ImageManager.Instance.ImageLoaded += HandleImageLoaded;
 		}
@@ -28,56 +30,44 @@ namespace CineworldiPhone
 				this.cellDictionary.Remove (id);
 
 				this.InvokeOnMainThread (delegate {
-					tablecell.ImageView.Image = image;
+					var castCell = tablecell as FilmCastTableCell;
+					if(castCell == null)
+						return;
+
+					castCell.UpdateCell(image);
 					});
 			}
 		}
 
 		public override nfloat GetHeightForRow (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			return 175;
+			return 150;
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return cast.Count;
+			return _cast.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			var cell = tableView.DequeueReusableCell (cellIdentifier);
+			var cell = tableView.DequeueReusableCell (cellIdentifier) as FilmCastTableCell;
 
-			// if there are no cells to reuse, create a new one
-			if (cell == null)
-				cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
-
-			//cell.ContentView.Bounds = new RectangleF (0, 0, 300, 300);
-
-			//cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-
-			string url = cast [indexPath.Row].ProfilePicture == null ? null : cast [indexPath.Row].ProfilePicture.OriginalString;
+			string url = _cast [indexPath.Row].ProfilePicture == null ? null : _cast [indexPath.Row].ProfilePicture.OriginalString;
 			var image = ImageManager.Instance.GetImage (url);
 			if (image == null) 
 			{
 				if (url != null) 
 				{
-					this.cellDictionary.Add (url, cell);
+					this.cellDictionary[url] = cell;
 				}
 				image = UIImage.FromFile ("Images/PlaceHolder.png");
 			} 
 
-			cell.ImageView.Frame = new RectangleF (10, 10, 92, 139);
-			cell.ImageView.ContentMode = UIViewContentMode.ScaleAspectFill;
-			cell.ImageView.Image = image;
-
-			cell.TextLabel.Lines = 0;
-			cell.TextLabel.LineBreakMode = UILineBreakMode.WordWrap;
-			cell.TextLabel.Text = String.Format("{0} as {1}", cast[indexPath.Row].Name, cast[indexPath.Row].Character);
-
-			//cell.DetailTextLabel.Lines = 0;
-			//cell.DetailTextLabel.LineBreakMode = UILineBreakMode.WordWrap;
-			//cell.DetailTextLabel.Text = films [indexPath.Row].ShortDesc;
-
+			if (cell != null) 
+			{
+				(cell as FilmCastTableCell).UpdateCell (_cast [indexPath.Row], image);
+			}
 			return cell;
 		}
 	}

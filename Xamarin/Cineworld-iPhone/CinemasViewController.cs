@@ -22,7 +22,7 @@ namespace CineworldiPhone
 
 			UITableView table = new UITableView(new RectangleF(0, 95, (float)bounds.Width, (float)bounds.Height-95));
 			table.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
-			table.Source = new CinemasTableSource ();
+			table.Source = new CinemasTableSource (Application.Cinemas.Values);
 			table.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 			this.View.AddSubview (table);
 
