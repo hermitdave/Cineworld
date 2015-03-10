@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="Cineworld-iPhone/Cineworld-iPhone.csproj">
+﻿<Properties StartupItem="Cineworld-iPhone/Cineworld-iPhone.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5s.8.0" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/DataSources/FilmCastTableSource.cs">
     <Files>
