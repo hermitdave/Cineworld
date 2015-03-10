@@ -1,0 +1,22 @@
+﻿<Properties StartupItem="Cineworld-iPhone/Cineworld-iPhone.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5s.8.0" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/DataSources/FilmCastTableSource.cs">
+    <Files>
+      <File FileName="Cineworld-iPhone/FilmTableCell.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/DataSources/AllFilmsTableSource.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/FilmsViewController.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/DataSources/CinemasTableSource.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/DataSources/FilmCastTableSource.cs" Line="25" Column="25" />
+      <File FileName="Cineworld-iPhone/CinemasViewController.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/FilmDetailsController.cs" Line="66" Column="66" />
+      <File FileName="Cineworld-iPhone/DataSources/ReviewsTableSource.cs" Line="71" Column="71" />
+      <File FileName="Cineworld-iPhone/Shared/Review.cs" Line="28" Column="28" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Cineworld-iPhone/AllCinemasViewController.cs" line="14" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

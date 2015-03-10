@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="40">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <scenes>
+        <!--Cineworld-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="Cineworld_iPhoneViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3"/>
+                        <viewControllerLayoutGuide type="bottom" id="4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                                <rect key="frame" x="142" y="266" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                                <rect key="frame" x="20" y="100" width="135" height="135"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                <state key="normal" title="All Films" backgroundImage="Background.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="410" kind="push" id="465"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33">
+                                <rect key="frame" x="165" y="100" width="135" height="135"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <state key="normal" title="All Cinemas" backgroundImage="Background.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="300" kind="push" id="346"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cineworld" id="74"/>
+                    <connections>
+                        <outlet property="AllCinemasButton" destination="33" id="name-outlet-33"/>
+                        <outlet property="AllFilmsButton" destination="5" id="name-outlet-5"/>
+                        <outlet property="BusyIndicator" destination="6" id="name-outlet-6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="39">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="40" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="43">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="75"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="44" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-444" y="0.0"/>
+        </scene>
+        <!--Cinemas-->
+        <scene sceneID="299">
+            <objects>
+                <viewController storyboardIdentifier="CinemasViewController" id="300" customClass="CinemasViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="297"/>
+                        <viewControllerLayoutGuide type="bottom" id="298"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="301">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="351">
+                                <rect key="frame" x="0.0" y="65" width="320" height="29"/>
+                                <segments>
+                                    <segment title="List"/>
+                                    <segment title="Map"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cinemas" id="348"/>
+                    <connections>
+                        <outlet property="CinemasSegments" destination="351" id="name-outlet-351"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="302" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="474" y="-236"/>
+        </scene>
+        <!--Films-->
+        <scene sceneID="409">
+            <objects>
+                <viewController storyboardIdentifier="FilmsViewController" id="410" customClass="FilmsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="407"/>
+                        <viewControllerLayoutGuide type="bottom" id="408"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="411">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="477">
+                                <rect key="frame" x="0.0" y="65" width="320" height="29"/>
+                                <segments>
+                                    <segment title="Current"/>
+                                    <segment title="Upcoming"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="520">
+                                <rect key="frame" x="0.0" y="95" width="320" height="473"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilmTableCell" rowHeight="178" id="521" customClass="FilmTableCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="178"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="521" id="PoG-6k-cUh">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="178"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="530">
+                                                    <rect key="frame" x="8" y="25" width="92" height="139"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Desc" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="531">
+                                                    <rect key="frame" x="108" y="68" width="162" height="107"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Film title which could be very lo" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="565">
+                                                    <rect key="frame" x="8" y="0.0" width="263" height="28"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="568">
+                                                    <rect key="frame" x="108" y="40" width="162" height="20"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="580">
+                                                    <rect key="frame" x="108" y="20" width="162" height="20"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="Description" destination="531" id="name-outlet-531"/>
+                                            <outlet property="Duration" destination="568" id="name-outlet-568"/>
+                                            <outlet property="Header" destination="565" id="name-outlet-565"/>
+                                            <outlet property="Poster" destination="530" id="name-outlet-530"/>
+                                            <outlet property="Rating" destination="580" id="name-outlet-580"/>
+                                            <segue destination="594" kind="push" id="783"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Films" id="469"/>
+                    <connections>
+                        <outlet property="AllFilmsTable" destination="520" id="name-outlet-520"/>
+                        <outlet property="FilmSegments" destination="477" id="name-outlet-477"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="412" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="477" y="635"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="593">
+            <objects>
+                <viewController storyboardIdentifier="FilmDetailsController" id="594" customClass="FilmDetailsController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="591"/>
+                        <viewControllerLayoutGuide type="bottom" id="592"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="710">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="790" misplaced="YES">
+                                <rect key="frame" x="0.0" y="65" width="320" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="851" ibExternalInspectedSegment="4"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Gist"/>
+                                    <segment title="Cast"/>
+                                    <segment title="Reviews"/>
+                                    <segment title="Cinemas"/>
+                                </segments>
+                            </segmentedControl>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="802">
+                                <rect key="frame" x="10" y="104" width="146" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="146" id="893"/>
+                                    <constraint firstAttribute="height" constant="240" id="894"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="803" misplaced="YES">
+                                <rect key="frame" x="164" y="104" width="145" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="871"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Overview" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="913" misplaced="YES">
+                                <rect key="frame" x="10" y="354" width="53" height="15"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="clip" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="914" misplaced="YES">
+                                <rect key="frame" x="10" y="369" width="300" height="15"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="790" secondAttribute="trailing" id="849"/>
+                            <constraint firstItem="790" firstAttribute="top" secondItem="710" secondAttribute="top" constant="65" id="850"/>
+                            <constraint firstAttribute="trailing" secondItem="803" secondAttribute="trailing" constant="11" id="868"/>
+                            <constraint firstItem="802" firstAttribute="leading" secondItem="710" secondAttribute="leading" constant="10" id="895"/>
+                            <constraint firstItem="913" firstAttribute="leading" secondItem="710" secondAttribute="leading" constant="10" id="915"/>
+                            <constraint firstItem="914" firstAttribute="leading" secondItem="710" secondAttribute="leading" constant="10" id="940"/>
+                            <constraint firstItem="914" firstAttribute="top" secondItem="913" secondAttribute="bottom" id="941"/>
+                            <constraint firstAttribute="trailing" secondItem="914" secondAttribute="trailing" constant="10" id="942"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="914" secondAttribute="bottom" constant="10" id="946"/>
+                            <constraint firstItem="802" firstAttribute="top" secondItem="790" secondAttribute="top" constant="39" id="949"/>
+                            <constraint firstItem="803" firstAttribute="top" secondItem="790" secondAttribute="top" constant="39" id="951"/>
+                            <constraint firstItem="913" firstAttribute="top" secondItem="802" secondAttribute="bottom" constant="10" id="954"/>
+                            <constraint firstItem="803" firstAttribute="leading" secondItem="802" secondAttribute="trailing" constant="8" id="957"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="787"/>
+                    <connections>
+                        <outlet property="FilmTitle" destination="787" id="name-outlet-787"/>
+                        <outlet property="Misc" destination="803" id="name-outlet-803"/>
+                        <outlet property="OverviewData" destination="914" id="name-outlet-914"/>
+                        <outlet property="OverviewLabel" destination="913" id="name-outlet-913"/>
+                        <outlet property="Poster" destination="802" id="name-outlet-802"/>
+                        <outlet property="FilmDetailSegments" destination="790" id="name-outlet-790"/>
+                        <outlet property="GistView" destination="710" id="name-outlet-710"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="596" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886" y="640"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Background.png" width="222" height="222"/>
+        <image name="Images/PlaceHolder.png" width="185" height="278"/>
+        <image name="Images/Stars/chosen.png" width="200" height="190"/>
+        <image name="Images/Stars/empty.png" width="200" height="190"/>
+        <image name="Images/Stars/filled.png" width="200" height="190"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
