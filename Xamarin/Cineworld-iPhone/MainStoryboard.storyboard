@@ -81,8 +81,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="351">
-                                <rect key="frame" x="0.0" y="65" width="320" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1006">
+                                <rect key="frame" x="98" y="84" width="123" height="29"/>
                                 <segments>
                                     <segment title="List"/>
                                     <segment title="Map"/>
@@ -93,7 +93,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cinemas" id="348"/>
                     <connections>
-                        <outlet property="CinemasSegments" destination="351" id="name-outlet-351"/>
+                        <outlet property="CinemasSegments" destination="1006" id="name-outlet-1006"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="302" userLabel="First Responder" sceneMemberID="firstResponder"/>
