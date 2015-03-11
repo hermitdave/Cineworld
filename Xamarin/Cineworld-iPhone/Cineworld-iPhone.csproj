@@ -183,9 +183,15 @@
     <Compile Include="FilmCastTableCell.designer.cs">
       <DependentUpon>FilmCastTableCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\MapDelegate.cs" />
+    <Compile Include="CinemaTableCell.cs" />
+    <Compile Include="CinemaTableCell.designer.cs">
+      <DependentUpon>CinemaTableCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReviewTableCell.cs" />
-    <Compile Include="ReviewTableCell.designer.cs">
-      <DependentUpon>ReviewTableCell.cs</DependentUpon>
+    <Compile Include="CinemaDetailsController.cs" />
+    <Compile Include="CinemaDetailsController.designer.cs">
+      <DependentUpon>CinemaDetailsController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -213,6 +219,7 @@
     <Content Include="Images\Stars\filled.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\SmallLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="pdreview">

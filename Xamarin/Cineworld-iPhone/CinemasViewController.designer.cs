@@ -16,10 +16,18 @@ namespace CineworldiPhone
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UITableView CinemaListView { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UISegmentedControl CinemasSegments { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (CinemaListView != null) {
+				CinemaListView.Dispose ();
+				CinemaListView = null;
+			}
 			if (CinemasSegments != null) {
 				CinemasSegments.Dispose ();
 				CinemasSegments = null;

@@ -19,6 +19,7 @@ namespace CineworldiPhone
 
 			(segue.DestinationViewController as FilmDetailsController).Film = (sender as FilmTableCell).Film;
 		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

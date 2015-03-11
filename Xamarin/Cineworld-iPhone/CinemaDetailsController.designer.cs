@@ -11,8 +11,8 @@ using UIKit;
 
 namespace CineworldiPhone
 {
-	[Register ("ReviewTableCell")]
-	partial class ReviewTableCell
+	[Register ("CinemaDetailsController")]
+	partial class CinemaDetailsController
 	{
 		void ReleaseDesignerOutlets ()
 		{

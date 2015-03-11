@@ -1,6 +1,7 @@
 ﻿using System;
 using CoreLocation;
 using MapKit;
+using UIKit;
 
 namespace CineworldiPhone
 {
@@ -8,11 +9,18 @@ namespace CineworldiPhone
 	{
 		CLLocationCoordinate2D coordinate;
 		public override CLLocationCoordinate2D Coordinate { get { return coordinate; } }
-		string title;
-		public override string Title { get{ return title; }}
-		public CinemaAnnotation (CLLocationCoordinate2D coordinate, string title) {
+
+		public CinemaInfo Cinema{ get; private set;}
+		public UIStoryboard Storyboard { get; private set; }
+		public  UINavigationController NavigationController { get; private set; }
+
+
+		public override string Title { get{ return this.Cinema.Name; }}
+		public CinemaAnnotation (CLLocationCoordinate2D coordinate, CinemaInfo cinema, UIStoryboard storyboard, UINavigationController navigationController) {
 			this.coordinate = coordinate;
-			this.title = title;
+			this.Cinema = cinema;
+			this.Storyboard = storyboard;
+			this.NavigationController = navigationController;
 		}
 	}
 }
