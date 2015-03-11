@@ -19,6 +19,8 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			this.FilmTitle.Title = this.Film.TitleWithClassification;
+
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
 			var image = ImageManager.Instance.GetImage (url);
 			if (image == null) 
@@ -74,18 +76,18 @@ namespace CineworldiPhone
 			}
 
 			var bounds = this.View.Bounds;
-			this.FilmCastTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+			//this.FilmCastTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			this.FilmCastTable.Source = new FilmCastTableSource (this.Film.FilmCast);
-			this.FilmCastTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+			//this.FilmCastTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 			this.FilmCastTable.Hidden = true;
 
 
-			UITableView cinemasTable = new UITableView(new RectangleF(10, 123, (float)bounds.Width-10, (float)bounds.Height-123));
-			cinemasTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
-			cinemasTable.Source = new CinemasTableSource (Application.FilmCinemas[this.Film.EDI]);
-			cinemasTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-			cinemasTable.Hidden = true;
-			this.View.AddSubview (cinemasTable);
+			//UITableView cinemasTable = new UITableView(new RectangleF(10, 123, (float)bounds.Width-10, (float)bounds.Height-123));
+			//cinemasTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+			this.CinemasView.Source = new CinemasTableSource (Application.FilmCinemas[this.Film.EDI]);
+			//cinemasTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+			this.CinemasView.Hidden = true;
+			//this.View.AddSubview (cinemasTable);
 
 
 			this.ReviewTable.Source = new ReviewsTableSource (this.Film.Reviews);
@@ -99,7 +101,7 @@ namespace CineworldiPhone
 
 				this.ReviewsView.Hidden = true;
 
-				cinemasTable.Hidden = true;
+				this.CinemasView.Hidden = true;
 
 				switch(this.FilmDetailSegments.SelectedSegment)
 				{
@@ -116,7 +118,7 @@ namespace CineworldiPhone
 					break;
 
 					case 3:
-					cinemasTable.Hidden = false;
+					this.CinemasView.Hidden = false;
 					break;
 				}
 			};

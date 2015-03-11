@@ -16,6 +16,10 @@ namespace CineworldiPhone
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UITableView CinemasView { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView FilmCastTable { get; set; }
 
 		[Outlet]
@@ -60,6 +64,10 @@ namespace CineworldiPhone
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (CinemasView != null) {
+				CinemasView.Dispose ();
+				CinemasView = null;
+			}
 			if (FilmCastTable != null) {
 				FilmCastTable.Dispose ();
 				FilmCastTable = null;
