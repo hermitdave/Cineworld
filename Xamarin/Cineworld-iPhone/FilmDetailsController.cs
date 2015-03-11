@@ -80,7 +80,7 @@ namespace CineworldiPhone
 			this.FilmCastTable.Hidden = true;
 
 
-			UITableView cinemasTable = new UITableView(new RectangleF(0, 95, (float)bounds.Width, (float)bounds.Height-95));
+			UITableView cinemasTable = new UITableView(new RectangleF(0, 123, (float)bounds.Width, (float)bounds.Height-123));
 			cinemasTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			cinemasTable.Source = new CinemasTableSource (Application.FilmCinemas[this.Film.EDI]);
 			cinemasTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
@@ -89,12 +89,12 @@ namespace CineworldiPhone
 
 
 			UIButton rateReview = new UIButton (UIButtonType.RoundedRect);
-			rateReview.Frame = new RectangleF (0, 95, (float)bounds.Width, 30);
+			rateReview.Frame = new RectangleF (0, 123, (float)bounds.Width, 30);
 			rateReview.SetTitle ("Rate & Review", UIControlState.Normal);
 			rateReview.Hidden = true;
 			this.View.AddSubview (rateReview);
 
-			UITableView reviewstable = new UITableView(new RectangleF(0, 125, (float)bounds.Width, (float)bounds.Height-125));
+			UITableView reviewstable = new UITableView(new RectangleF(0, 153, (float)bounds.Width, (float)bounds.Height-153));
 			reviewstable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			reviewstable.Source = new ReviewsTableSource (this.Film.Reviews);
 			reviewstable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
