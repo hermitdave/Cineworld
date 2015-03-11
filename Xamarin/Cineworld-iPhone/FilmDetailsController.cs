@@ -80,7 +80,7 @@ namespace CineworldiPhone
 			this.FilmCastTable.Hidden = true;
 
 
-			UITableView cinemasTable = new UITableView(new RectangleF(0, 123, (float)bounds.Width, (float)bounds.Height-123));
+			UITableView cinemasTable = new UITableView(new RectangleF(10, 123, (float)bounds.Width-10, (float)bounds.Height-123));
 			cinemasTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			cinemasTable.Source = new CinemasTableSource (Application.FilmCinemas[this.Film.EDI]);
 			cinemasTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
@@ -88,36 +88,23 @@ namespace CineworldiPhone
 			this.View.AddSubview (cinemasTable);
 
 
-			UIButton rateReview = new UIButton (UIButtonType.RoundedRect);
-			rateReview.Frame = new RectangleF (0, 123, (float)bounds.Width, 30);
-			rateReview.SetTitle ("Rate & Review", UIControlState.Normal);
-			rateReview.Hidden = true;
-			this.View.AddSubview (rateReview);
-
-			UITableView reviewstable = new UITableView(new RectangleF(0, 153, (float)bounds.Width, (float)bounds.Height-153));
-			reviewstable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
-			reviewstable.Source = new ReviewsTableSource (this.Film.Reviews);
-			reviewstable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-			reviewstable.Hidden = true;
-			this.View.AddSubview (reviewstable);
+			this.ReviewTable.Source = new ReviewsTableSource (this.Film.Reviews);
 
 
 			this.FilmDetailSegments.ValueChanged += (sender, e) => 
 			{
-				this.Poster.Hidden = this.Misc.Hidden = this.OverviewLabel.Hidden = this.OverviewData.Hidden = true;
+				this.GistView.Hidden = true;
 
 				this.FilmCastTable.Hidden = true;
 
-				rateReview.Hidden = reviewstable.Hidden = true;
+				this.ReviewsView.Hidden = true;
 
 				cinemasTable.Hidden = true;
 
 				switch(this.FilmDetailSegments.SelectedSegment)
 				{
 					case 0:
-					this.Poster.Hidden = false;
-					this.Misc.Hidden = false;
-					this.OverviewLabel.Hidden = this.OverviewData.Hidden = false;
+					this.GistView.Hidden = false;
 					break;
 
 					case 1:
@@ -125,7 +112,7 @@ namespace CineworldiPhone
 					break;
 
 					case 2:
-					rateReview.Hidden = reviewstable.Hidden = false;
+					this.ReviewsView.Hidden = false;
 					break;
 
 					case 3:

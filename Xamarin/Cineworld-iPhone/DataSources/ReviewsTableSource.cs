@@ -7,8 +7,11 @@ using System.Collections;
 namespace CineworldiPhone
 {
 	public class ReviewsTableSource : UITableViewSource {
-		string cellIdentifier = "TableCell";
+		string cellIdentifier = "ReviewTableCell";
 		IList reviews = null;
+
+		//Dictionary<int, nfloat> cellHeightDictionary = new Dictionary<int, nfloat> ();
+
 		public ReviewsTableSource (IList reviews)
 		{
 			this.reviews = reviews;
@@ -19,19 +22,26 @@ namespace CineworldiPhone
 			return reviews.Count;
 		}
 
+		public override nfloat GetHeightForRow (UITableView tableView, Foundation.NSIndexPath indexPath)
+		{
+			var review = (reviews[indexPath.Row] as ReviewBase);
+			int len = String.IsNullOrWhiteSpace (review.Review) ? 0 : review.Review.Length;
+			if (len == 0) {
+				return 30;
+			} else if (len < 70) {
+				return 50;
+			}
+
+			return 70;
+			//return cellHeightDictionary.ContainsKey(indexPath.Row) ? cellHeightDictionary [indexPath.Row] : 75;
+		}
+
 		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
-			// if there are no cells to reuse, create a new one
-			if (cell == null)
-				cell = new UITableViewCell (UITableViewCellStyle.Subtitle, cellIdentifier);
+			var cell = tableView.DequeueReusableCell (cellIdentifier) as ReviewTableCell;
 
-			cell.Accessory = UITableViewCellAccessory.None;
-			var review = (reviews[indexPath.Row] as ReviewBase);
-			cell.TextLabel.Text = review.Reviewer;
-			cell.DetailTextLabel.Lines = 0;
-			cell.DetailTextLabel.LineBreakMode = UILineBreakMode.CharacterWrap;
-			cell.DetailTextLabel.Text = review.Review;
+			cell.UpdateCell (reviews [indexPath.Row] as ReviewBase);
+
 			return cell;
 		}
 	}

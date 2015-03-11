@@ -183,6 +183,10 @@
     <Compile Include="FilmCastTableCell.designer.cs">
       <DependentUpon>FilmCastTableCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReviewTableCell.cs" />
+    <Compile Include="ReviewTableCell.designer.cs">
+      <DependentUpon>ReviewTableCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

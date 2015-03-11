@@ -46,6 +46,18 @@ namespace CineworldiPhone
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView Poster { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton RateReviewButton { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIView ReviewsView { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UITableView ReviewTable { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (FilmCastTable != null) {
@@ -79,6 +91,18 @@ namespace CineworldiPhone
 			if (Poster != null) {
 				Poster.Dispose ();
 				Poster = null;
+			}
+			if (RateReviewButton != null) {
+				RateReviewButton.Dispose ();
+				RateReviewButton = null;
+			}
+			if (ReviewsView != null) {
+				ReviewsView.Dispose ();
+				ReviewsView = null;
+			}
+			if (ReviewTable != null) {
+				ReviewTable.Dispose ();
+				ReviewTable = null;
 			}
 		}
 	}
