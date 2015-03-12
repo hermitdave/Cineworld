@@ -20,6 +20,10 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UITableView AllFilmsTable { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIView CinemaGist { get; set; }
 
 		[Outlet]
@@ -47,6 +51,10 @@ namespace CineworldiPhone
 			if (Address != null) {
 				Address.Dispose ();
 				Address = null;
+			}
+			if (AllFilmsTable != null) {
+				AllFilmsTable.Dispose ();
+				AllFilmsTable = null;
 			}
 			if (CinemaGist != null) {
 				CinemaGist.Dispose ();

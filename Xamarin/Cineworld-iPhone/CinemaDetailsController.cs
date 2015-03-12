@@ -4,6 +4,7 @@ using System.CodeDom.Compiler;
 using UIKit;
 using PDRatingSample;
 using System.Drawing;
+using Cineworld;
 
 namespace CineworldiPhone
 {
@@ -15,11 +16,13 @@ namespace CineworldiPhone
 
 		public CinemaInfo Cinema { get; set; }
 
-		public override void ViewDidLoad ()
+		public override async void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
 			this.CinemaTitle.Title = this.Cinema.Name;
+
+			await new LocalStorageHelper ().GetCinemaFilmListings (this.Cinema.ID, false);
 
 			// Gather up the images to be used.
 			RatingConfig ratingConfig = new RatingConfig(UIImage.FromFile("Images/Stars/empty.png"), UIImage.FromFile("Images/Stars/filled.png"), UIImage.FromFile("Images/Stars/chosen.png"));
@@ -40,6 +43,40 @@ namespace CineworldiPhone
 			this.Telephone.Text = this.Cinema.Telephone;
 
 			this.ReviewsTable.Source = new ReviewsTableSource (this.Cinema.Reviews);
+			this.ReviewsTable.ReloadData ();
+
+			var allFilms = Application.CinemaFilms[this.Cinema.ID];
+
+			var currentFilms = new AllFilmsTableSource(AllFilmsTableSource.FilmListingType.Current, allFilms);
+			var upcomingFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Upcoming, allFilms);
+
+			this.CinemaSegments.ValueChanged += (sender, e) => 
+			{
+				this.CinemaGist.Hidden = true;
+				this.AllFilmsTable.Hidden = true;
+
+				switch(this.CinemaSegments.SelectedSegment)
+				{
+					case 0:
+					break;
+
+					case 1:
+					this.AllFilmsTable.Source = currentFilms;
+					this.AllFilmsTable.ReloadData();
+					this.AllFilmsTable.Hidden = false;
+					break;
+
+					case 2:
+					this.AllFilmsTable.Source = upcomingFilms;
+					this.AllFilmsTable.ReloadData();
+					this.AllFilmsTable.Hidden = false;
+					break;
+
+					case 3:
+					this.CinemaGist.Hidden = false;
+					break;
+				}
+			};
 		}
 	}
 }
