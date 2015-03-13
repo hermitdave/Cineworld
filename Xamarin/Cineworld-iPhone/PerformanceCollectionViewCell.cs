@@ -14,6 +14,14 @@ namespace CineworldiPhone
 
 		public void UpdateCell(PerformanceInfo performance)
 		{
+			ContentView.Layer.BorderColor = UIColor.DarkGray.CGColor;
+			ContentView.Layer.BorderWidth = 1.0f;
+			ContentView.BackgroundColor = UIColor.White;
+			ContentView.Layer.CornerRadius = 5f;
+			ContentView.Layer.MasksToBounds = true;
+			ContentView.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			ContentView.Layer.Opaque = true;
+
 			this.Performance = performance;
 
 			this.Time.Text = performance.TimeString;

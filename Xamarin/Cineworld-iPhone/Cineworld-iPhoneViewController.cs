@@ -200,6 +200,16 @@ namespace CineworldiPhone
 			this.BusyIndicator.StartAnimating ();
 			this.BusyIndicator.Hidden = false;
 
+			this.AllFilmsButton.Layer.CornerRadius = 10f;
+			this.AllFilmsButton.Layer.MasksToBounds = true;
+			this.AllFilmsButton.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			this.AllFilmsButton.Layer.Opaque = true;
+
+			this.AllCinemasButton.Layer.CornerRadius = 10f;
+			this.AllCinemasButton.Layer.MasksToBounds = true;
+			this.AllCinemasButton.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			this.AllCinemasButton.Layer.Opaque = true;
+
 			await Initialise (false);
 			await LoadFilmData ();
 

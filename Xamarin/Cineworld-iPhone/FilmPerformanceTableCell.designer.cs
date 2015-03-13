@@ -26,6 +26,10 @@ namespace CineworldiPhone
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView Poster { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel ShortDesc { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (Header != null) {
@@ -39,6 +43,10 @@ namespace CineworldiPhone
 			if (Poster != null) {
 				Poster.Dispose ();
 				Poster = null;
+			}
+			if (ShortDesc != null) {
+				ShortDesc.Dispose ();
+				ShortDesc = null;
 			}
 		}
 	}
