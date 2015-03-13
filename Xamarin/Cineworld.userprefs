@@ -1,8 +1,15 @@
 ﻿<Properties StartupItem="Cineworld-iPhone/Cineworld-iPhone.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5s.8.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/FilmDetailsController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5s.8.2" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/CinemaDetailsController.cs">
     <Files>
-      <File FileName="Cineworld-iPhone/FilmDetailsController.cs" Line="115" Column="115" />
+      <File FileName="Cineworld-iPhone/CinemaDetailsController.cs" Line="36" Column="36" />
+      <File FileName="Cineworld-iPhone/FilmDetailsController.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/Shared/CinemaInfo.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/FilmTableCell.cs" Line="1" Column="1" />
+      <File FileName="../CineWorld - WP8/CinemaDetails.xaml.cs" Line="1" Column="1" />
+      <File FileName="../CineWorld - WP8/ViewModels/CinemaDetailsViewModel.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/Shared/AzureDeserialiser.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/FilmsViewController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

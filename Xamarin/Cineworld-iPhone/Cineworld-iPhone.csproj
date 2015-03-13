@@ -123,6 +123,9 @@
     <Reference Include="PDRating">
       <HintPath>..\Components\pdreview-2.0.1\lib\ios-unified\PDRating.dll</HintPath>
     </Reference>
+    <Reference Include="Factorymind.Components-Unified">
+      <HintPath>..\Components\fmcalendar-1.5.1\lib\ios-unified\Factorymind.Components-Unified.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -196,6 +199,16 @@
     <Compile Include="ReviewTableCell.designer.cs">
       <DependentUpon>ReviewTableCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="PerformanceCollectionViewCell.cs" />
+    <Compile Include="PerformanceCollectionViewCell.designer.cs">
+      <DependentUpon>PerformanceCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\PerformanceCollectionSource.cs" />
+    <Compile Include="DataSources\FilmPerformancesTableSource.cs" />
+    <Compile Include="FilmPerformanceTableCell.cs" />
+    <Compile Include="FilmPerformanceTableCell.designer.cs">
+      <DependentUpon>FilmPerformanceTableCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -227,6 +240,10 @@
   <ItemGroup>
     <XamarinComponentReference Include="pdreview">
       <Version>2.0.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="fmcalendar">
+      <Version>1.5.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

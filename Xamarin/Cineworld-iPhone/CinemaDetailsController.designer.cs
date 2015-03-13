@@ -24,6 +24,10 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIActivityIndicatorView BusyIndicator { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIView CinemaGist { get; set; }
 
 		[Outlet]
@@ -46,6 +50,10 @@ namespace CineworldiPhone
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel Telephone { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UITableView ViewByDate { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (Address != null) {
@@ -55,6 +63,10 @@ namespace CineworldiPhone
 			if (AllFilmsTable != null) {
 				AllFilmsTable.Dispose ();
 				AllFilmsTable = null;
+			}
+			if (BusyIndicator != null) {
+				BusyIndicator.Dispose ();
+				BusyIndicator = null;
 			}
 			if (CinemaGist != null) {
 				CinemaGist.Dispose ();
@@ -79,6 +91,10 @@ namespace CineworldiPhone
 			if (Telephone != null) {
 				Telephone.Dispose ();
 				Telephone = null;
+			}
+			if (ViewByDate != null) {
+				ViewByDate.Dispose ();
+				ViewByDate = null;
 			}
 		}
 	}
