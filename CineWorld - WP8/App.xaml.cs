@@ -242,9 +242,9 @@ namespace CineWorld
             {
                 string countryCode = RegionInfo.CurrentRegion.TwoLetterISORegionName.ToLower();
                 CountryResolver resolver = new CountryResolver("1b41d6ef68154ed1a6f13814244c4134");
-                Response<bool> resp = await resolver.CheckAvailabilityAsync(countryCode);
+                bool resp = await resolver.CheckAvailabilityAsync(countryCode);
 
-                Config.AllowNokiaMusicSearch = resp.Result;
+                Config.AllowNokiaMusicSearch = resp;
             }
         }
 

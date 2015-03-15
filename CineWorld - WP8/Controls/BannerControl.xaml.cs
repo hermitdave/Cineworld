@@ -26,19 +26,11 @@ namespace Cineworld
                 this.btnHub.Tap += btnHub_Tap;
 
                 this.adControl.Visibility = System.Windows.Visibility.Visible;
-
-                //if(App.ListingInfo != null && App.ListingInfo.ProductListings != null && App.ListingInfo.ProductListings.ContainsKey(App.AdFreeIAP))
-                //{
-                //    this.btnRemoveAds.Content = String.Format("{0} - {1}", this.btnRemoveAds.Content, App.ListingInfo.ProductListings[App.AdFreeIAP].FormattedPrice);
-                //}
-
-                //this.btnRemoveAds.Visibility = System.Windows.Visibility.Visible;
             }
             else
             {
                 this.adControl.IsEnabled = false;
                 this.adControl.Visibility = System.Windows.Visibility.Collapsed;
-                //this.btnRemoveAds.Visibility = System.Windows.Visibility.Collapsed;
             }
         }   
 

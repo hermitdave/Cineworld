@@ -322,7 +322,8 @@ namespace CineWorld
                 Margin = new Thickness(12, 12, 0, 0), 
                 Height = 144, 
                 Width = 144, 
-                FrontContent =  gFront
+                FrontContent =  gFront,
+                IsFrozen = true
             };
 
             t.Tap += t_Tap;

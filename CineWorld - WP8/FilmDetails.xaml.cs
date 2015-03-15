@@ -220,14 +220,14 @@ namespace CineWorld
             }
         }
 
-        private void btnPlay_Click(object sender, RoutedEventArgs e)
+        private async void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            YouTube.Play(SelectedFilm.YoutubeTrailer);
+            await YouTube.PlayAsync(SelectedFilm.YoutubeTrailer, YouTubeQuality.Quality720P);
         }
 
-        private void btnViewTrailer_Click(object sender, EventArgs e)
+        private async void btnViewTrailer_Click(object sender, EventArgs e)
         {
-            YouTube.Play(SelectedFilm.YoutubeTrailer);
+            await YouTube.PlayAsync(SelectedFilm.YoutubeTrailer, YouTubeQuality.Quality720P);
         }
         
         private void lbCast_SelectionChanged(object sender, SelectionChangedEventArgs e)

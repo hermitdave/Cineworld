@@ -30,10 +30,10 @@ namespace Cineworld
             Ireland,
         }
 
-#if !WIN8
-        private static Version TargetedVersion = new Version(7, 10, 8858);
-        public static bool IsTargetedVersion { get { return Environment.OSVersion.Version >= TargetedVersion; } }
-#endif
+//#if !WINDOWS_APP
+//        private static Version TargetedVersion = new Version(7, 10, 8858);
+//        public static bool IsTargetedVersion { get { return Environment.OSVersion.Version >= TargetedVersion; } }
+//#endif
         public static bool ShowSettings = false;
         public const string UseMobileWebTag = "usemobileweb";
         public const string RegionTag = "region";
@@ -54,7 +54,7 @@ namespace Cineworld
         public const string CleanBackgroundTag = "cleanbackground";
         public const string AllowNokiaMusicTag = "nokiamusicsearch";
         
-#if WIN8
+#if WINDOWS_APP
         public static event Action RegionChanged = delegate { };
 #endif
 
@@ -577,7 +577,7 @@ namespace Cineworld
             set
             {
                 settings.Values[RegionTag] = (int)value;
-#if WIN8
+#if WINDOWS_APP
                 if (RegionChanged != null)
                     RegionChanged();
 #endif

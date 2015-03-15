@@ -67,6 +67,11 @@
     </Item>
     <Item Title="history"
           Type="text">
+      3.2.2.7
+      Updated package to enabler YouTube trailer playback
+      Modified the flow in CinemaDetails > View By Date
+      Set tiles on landing page to be frozen to prevent animation
+      
       3.2.2.6
       Use high quality poster when available otherwise fallback to cineworld supplied poster
       

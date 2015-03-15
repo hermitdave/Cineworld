@@ -8,9 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 //using Win8CineBackgroundTask;
 #if WINDOWS_PHONE
-using Ionic.Zlib;
+//using Ionic.Zlib;
 using System.IO.IsolatedStorage;
 using CineWorld;
+using System.IO.Compression;
 #else
 using System.IO.Compression;
 using Windows.ApplicationModel.Background;

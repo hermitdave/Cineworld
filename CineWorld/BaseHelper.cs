@@ -15,9 +15,9 @@ using Windows.Storage;
 using System.IO.Compression;
 using Windows.Storage.FileProperties;
 #endif
-#if WINDOWS_PHONE && !WP8
-using WP7Helpers.Common;
-#endif
+//#if WINDOWS_PHONE && !WP8
+//using WP7Helpers.Common;
+//#endif
 
 namespace Cineworld
 {
