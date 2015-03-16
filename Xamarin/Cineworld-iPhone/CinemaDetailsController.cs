@@ -7,6 +7,8 @@ using PDRatingSample;
 using System.Drawing;
 using Cineworld;
 using System.Collections.Generic;
+using Factorymind.Components;
+using ObjCRuntime;
 
 namespace CineworldiPhone
 {
@@ -52,6 +54,22 @@ namespace CineworldiPhone
 			return dateFilms[userSelected].Values;
 		}
 
+		FilmPerformancesTableSource LoadFilmData (DateTime date)
+		{
+			var filmsToday = GetFilmsPerformingForDate (date);
+			var ViewByDateSource = new FilmPerformancesTableSource (this.Cinema, filmsToday);
+
+			this.SelectedDate.Text = date.ToString ("ddd, dd MMM yyyy");
+			if (date == DateTime.Today) {
+				this.SelectedDate.Text = String.Format ("{0} - Today", this.SelectedDate.Text);
+			}
+			else
+				if (date == DateTime.Today.AddDays (1)) {
+					this.SelectedDate.Text = String.Format ("{0} - Tomorrow", this.SelectedDate.Text);
+				}
+			return ViewByDateSource;
+		}
+
 		public override async void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -89,11 +107,68 @@ namespace CineworldiPhone
 
 			this.Films = Application.CinemaFilms[this.Cinema.ID];
 
-			var filmsToday = GetFilmsPerformingForDate (DateTime.Today);
+			var date = DateTime.Today;
 
-			var ViewByDateSource = new FilmPerformancesTableSource (filmsToday);
-			this.ViewByDate.Source = ViewByDateSource;
-			this.ViewByDate.ReloadData ();
+			this.FilmsByDateTable.Source = LoadFilmData (date);
+			this.FilmsByDateTable.ReloadData ();
+
+			var fmCalendar = new FMCalendar (this.FilmsByDateView.Bounds);
+
+			View.BackgroundColor = UIColor.White;
+
+			// Specify selection color
+			fmCalendar.SelectionColor = UIColor.Red;
+
+			// Specify today circle Color
+			fmCalendar.TodayCircleColor = UIColor.Blue;
+
+			// Customizing appearance
+			fmCalendar.LeftArrow = UIImage.FromFile ("leftArrow.png");
+			fmCalendar.RightArrow = UIImage.FromFile ("rightArrow.png");
+
+			fmCalendar.MonthFormatString = "MMMM yyyy";
+
+			// Shows Sunday as last day of the week
+			fmCalendar.SundayFirst = false;
+
+			// Mark with a dot dates that fulfill the predicate
+			fmCalendar.IsDayMarkedDelegate = (d) => 
+			{
+				return this.dateFilms.ContainsKey(d.Date);
+			};
+
+			// Turn gray dates that fulfill the predicate
+			fmCalendar.IsDateAvailable = (d) =>
+			{
+				return (d >= DateTime.Today);
+			};
+
+			fmCalendar.MonthChanged = (d) => 
+			{
+				Console.WriteLine ("Month changed {0}", d.Date);
+			};
+
+			fmCalendar.DateSelected += (d) => 
+			{
+				Console.WriteLine ("Date selected: {0}", d);
+
+				this.FilmsByDateTable.Source = LoadFilmData (d.Date);
+				this.FilmsByDateTable.ReloadData ();
+
+				this.FilmsByDateTable.Hidden = this.SelectedDate.Hidden = DateSelectionButton.Hidden = false;
+				fmCalendar.Hidden = true;
+			};
+
+			// Add FMCalendar to SuperView
+			fmCalendar.Center = this.View.Center;
+			this.FilmsByDateView.AddSubview (fmCalendar);
+			fmCalendar.Hidden = true;
+
+			this.DateSelectionButton.TouchUpInside += (sender, e) => 
+			{
+				this.FilmsByDateTable.Hidden = this.SelectedDate.Hidden = DateSelectionButton.Hidden = true;
+				fmCalendar.Hidden = false;
+			};
 
 			var currentFilms = new AllFilmsTableSource(AllFilmsTableSource.FilmListingType.Current, this.Films);
 			var upcomingFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Upcoming, this.Films);
@@ -102,14 +177,14 @@ namespace CineworldiPhone
 			{
 				this.CinemaGist.Hidden = true;
 				this.AllFilmsTable.Hidden = true;
-				this.ViewByDate.Hidden = true;
+				this.FilmsByDateView.Hidden = true;
 
 				switch(this.CinemaSegments.SelectedSegment)
 				{
 					case 0:
-					this.ViewByDate.Source = ViewByDateSource;
-					this.ViewByDate.ReloadData();
-					this.ViewByDate.Hidden = false;
+					this.FilmsByDateTable.Source = LoadFilmData(fmCalendar.CurrentSelectedDate.Date);
+					this.FilmsByDateTable.ReloadData();
+					this.FilmsByDateView.Hidden = false;
 					break;
 
 					case 1:
@@ -130,5 +205,36 @@ namespace CineworldiPhone
 				}
 			};
 		}
+
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			base.PrepareForSegue (segue, sender);
+
+			(segue.DestinationViewController as TicketPurchaseController).Performance = (sender as PerformanceCollectionViewCell).Performance;
+		}
+
+//		public override bool CanBecomeFirstResponder
+//		{
+//			get
+//			{
+//				return true;
+//			}
+//		}
+//
+//		public override bool CanPerform(Selector action, NSObject withSender)
+//		{
+//			bool canPerform = false;
+//
+//			switch(action.Name)
+//			{
+//				case "BuyTickets":
+//				case "SendMessage":
+//				case "SendEmail":
+//					canPerform = true;
+//					break;
+//			}
+//
+//			return canPerform;
+//		}
 	}
 }

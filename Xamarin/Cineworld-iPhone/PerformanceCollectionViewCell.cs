@@ -25,7 +25,14 @@ namespace CineworldiPhone
 			this.Performance = performance;
 
 			this.Time.Text = performance.TimeString;
-			this.Type.Text = performance.Type;
+			this.Type.Text = performance.Type;  
+
+//			var tapGestureRecognizer = new UITapGestureRecognizer(() =>
+//				{
+//					UIMenuController uim = UIMenuController.SharedMenuController; 
+//					uim.SetMenuVisible (true, true);
+//				});
+//			this.AddGestureRecognizer (tapGestureRecognizer);
 		} 
 	}
 }

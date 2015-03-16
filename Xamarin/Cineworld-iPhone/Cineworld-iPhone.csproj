@@ -209,6 +209,11 @@
     <Compile Include="FilmPerformanceTableCell.designer.cs">
       <DependentUpon>FilmPerformanceTableCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shared\DateTimeToStringConverter.cs" />
+    <Compile Include="TicketPurchaseController.cs" />
+    <Compile Include="TicketPurchaseController.designer.cs">
+      <DependentUpon>TicketPurchaseController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -236,6 +241,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\SmallLogo.png" />
+    <Content Include="Images\Date.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="pdreview">

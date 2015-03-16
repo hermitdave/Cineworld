@@ -40,6 +40,18 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton DateSelectionButton { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UITableView FilmsByDateTable { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIView FilmsByDateView { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIButton RateReview { get; set; }
 
 		[Outlet]
@@ -48,11 +60,11 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UILabel Telephone { get; set; }
+		UILabel SelectedDate { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableView ViewByDate { get; set; }
+		UILabel Telephone { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
@@ -80,6 +92,18 @@ namespace CineworldiPhone
 				CinemaTitle.Dispose ();
 				CinemaTitle = null;
 			}
+			if (DateSelectionButton != null) {
+				DateSelectionButton.Dispose ();
+				DateSelectionButton = null;
+			}
+			if (FilmsByDateTable != null) {
+				FilmsByDateTable.Dispose ();
+				FilmsByDateTable = null;
+			}
+			if (FilmsByDateView != null) {
+				FilmsByDateView.Dispose ();
+				FilmsByDateView = null;
+			}
 			if (RateReview != null) {
 				RateReview.Dispose ();
 				RateReview = null;
@@ -88,13 +112,13 @@ namespace CineworldiPhone
 				ReviewsTable.Dispose ();
 				ReviewsTable = null;
 			}
+			if (SelectedDate != null) {
+				SelectedDate.Dispose ();
+				SelectedDate = null;
+			}
 			if (Telephone != null) {
 				Telephone.Dispose ();
 				Telephone = null;
-			}
-			if (ViewByDate != null) {
-				ViewByDate.Dispose ();
-				ViewByDate = null;
 			}
 		}
 	}

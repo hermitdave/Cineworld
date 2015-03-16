@@ -10,11 +10,13 @@ namespace CineworldiPhone
 	public class FilmPerformancesTableSource : UITableViewSource {
 		string cellIdentifier = "FilmPerformanceTableCell";
 		List<FilmInfo> Films = null;
+		CinemaInfo Cinema = null;
 
 		Dictionary<string, object> cellDictionary = new Dictionary<string, object> ();
 
-		public FilmPerformancesTableSource (IEnumerable<FilmInfo> films)
+		public FilmPerformancesTableSource (CinemaInfo cinema, IEnumerable<FilmInfo> films)
 		{
+			this.Cinema = cinema;
 			Films = new List<FilmInfo> (films);
 
 			ImageManager.Instance.ImageLoaded += HandleImageLoaded;
@@ -122,7 +124,7 @@ namespace CineworldiPhone
 
 			if (cell != null) 
 			{
-				(cell as FilmPerformanceTableCell).UpdateCell (Films [indexPath.Row], image);
+				(cell as FilmPerformanceTableCell).UpdateCell (Cinema, Films [indexPath.Row], image);
 			}
 			return cell;
 		}
