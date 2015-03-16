@@ -32,7 +32,7 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView GistView { get; set; }
+		UIScrollView GistScrollViewer { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -80,9 +80,9 @@ namespace CineworldiPhone
 				FilmTitle.Dispose ();
 				FilmTitle = null;
 			}
-			if (GistView != null) {
-				GistView.Dispose ();
-				GistView = null;
+			if (GistScrollViewer != null) {
+				GistScrollViewer.Dispose ();
+				GistScrollViewer = null;
 			}
 			if (Misc != null) {
 				Misc.Dispose ();

@@ -28,7 +28,7 @@ namespace CineworldiPhone
 				image = UIImage.FromFile ("Images/PlaceHolder.png");
 			} 
 
-			this.Poster.Image = image;
+			this.Poster.Image = image.Scale( new CoreGraphics.CGSize(130, 196));
 
 			// Gather up the images to be used.
 			RatingConfig ratingConfig = new RatingConfig(UIImage.FromFile("Images/Stars/empty.png"), UIImage.FromFile("Images/Stars/filled.png"), UIImage.FromFile("Images/Stars/chosen.png"));
@@ -69,6 +69,8 @@ namespace CineworldiPhone
 			if (!String.IsNullOrWhiteSpace (this.Film.Overview)) 
 			{
 				this.OverviewData.Text = this.Film.Overview;
+				this.OverviewData.Lines = 0;
+				this.OverviewData.SizeToFit ();
 			}
 			else
 			{
@@ -95,7 +97,7 @@ namespace CineworldiPhone
 
 			this.FilmDetailSegments.ValueChanged += (sender, e) => 
 			{
-				this.GistView.Hidden = true;
+				this.GistScrollViewer.Hidden = true;
 
 				this.FilmCastTable.Hidden = true;
 
@@ -106,7 +108,7 @@ namespace CineworldiPhone
 				switch(this.FilmDetailSegments.SelectedSegment)
 				{
 					case 0:
-					this.GistView.Hidden = false;
+					this.GistScrollViewer.Hidden = false;
 					break;
 
 					case 1:

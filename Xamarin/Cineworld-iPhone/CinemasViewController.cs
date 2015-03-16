@@ -35,7 +35,7 @@ namespace CineworldiPhone
 
 			this.CinemaListView.Source = new CinemasTableSource (Application.Cinemas.Values);
 
-			var mapView = new MKMapView (new RectangleF(0, 133, (float)bounds.Width, (float)bounds.Height-133));
+			var mapView = new MKMapView (new RectangleF(0, 128, (float)bounds.Width, (float)bounds.Height-128));
 			mapView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			mapView.ShowsUserLocation = true;
 			mapView.Delegate = new MapDelegate();
