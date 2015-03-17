@@ -206,11 +206,35 @@ namespace CineworldiPhone
 			};
 		}
 
+		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
+		{
+			if (segueIdentifier != null && segueIdentifier.Equals ("PerfSegue")) 
+			{
+				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
+				return perf.AvailableFuture;
+			}
+
+			return base.ShouldPerformSegue (segueIdentifier, sender);
+		}
+
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			base.PrepareForSegue (segue, sender);
 
-			(segue.DestinationViewController as TicketPurchaseController).Performance = (sender as PerformanceCollectionViewCell).Performance;
+			TicketPurchaseController ticketPurchaseController = (segue.DestinationViewController as TicketPurchaseController);
+
+			if (ticketPurchaseController != null) 
+			{
+				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
+				ticketPurchaseController.Performance = perf;
+			} 
+			else 
+			{
+				PerformancesController performancesController = (segue.DestinationViewController as PerformancesController);
+				performancesController.Showing = PerformancesController.ViewType.FilmDetails;
+				performancesController.Cinema = this.Cinema;
+				performancesController.Film = (sender as FilmTableCell).Film;
+			}
 		}
 
 //		public override bool CanBecomeFirstResponder

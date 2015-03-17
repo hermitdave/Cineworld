@@ -214,6 +214,15 @@
     <Compile Include="TicketPurchaseController.designer.cs">
       <DependentUpon>TicketPurchaseController.cs</DependentUpon>
     </Compile>
+    <Compile Include="PerformancesController.cs" />
+    <Compile Include="PerformancesController.designer.cs">
+      <DependentUpon>PerformancesController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceTableCell.cs" />
+    <Compile Include="PerformanceTableCell.designer.cs">
+      <DependentUpon>PerformanceTableCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\PerformancesTableSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

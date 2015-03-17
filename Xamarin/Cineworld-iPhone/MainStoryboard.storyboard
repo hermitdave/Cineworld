@@ -325,6 +325,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="2229" destination="1787" kind="push"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -347,8 +350,8 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="914" fixedFrame="YES">
-                                                <rect key="frame" x="15" y="236" width="290" height="20"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Desc" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1904">
+                                                <rect key="frame" x="15" y="231" width="290" height="96"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -374,8 +377,8 @@
                         <outlet property="GistScrollViewer" destination="1877" id="name-outlet-1877"/>
                         <outlet property="Poster" destination="802" id="name-outlet-802"/>
                         <outlet property="Misc" destination="803" id="name-outlet-803"/>
-                        <outlet property="OverviewData" destination="914" id="name-outlet-914"/>
                         <outlet property="OverviewLabel" destination="913" id="name-outlet-913"/>
+                        <outlet property="OverviewData" destination="1904" id="name-outlet-1904"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="596" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -525,7 +528,7 @@
                                             <outlet property="Header" destination="1480" id="1479"/>
                                             <outlet property="Poster" destination="1482" id="1481"/>
                                             <outlet property="Rating" destination="1484" id="1483"/>
-                                            <segue id="1875" destination="1787" kind="push"/>
+                                            <segue id="1875" destination="1787" kind="push" identifier="PerfViewSegue"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -594,7 +597,7 @@
                                                                     <connections>
                                                                         <outlet property="Time" destination="1528" id="name-outlet-1528"/>
                                                                         <outlet property="Type" destination="1529" id="name-outlet-1529"/>
-                                                                        <segue id="1735" destination="1707" kind="push"/>
+                                                                        <segue id="2125" destination="1707" kind="push" identifier="PerfSegue"/>
                                                                     </connections>
                                                                     <size key="referenceSize" width="60" height="40"/>
                                                                     <size key="customSize" width="60" height="40"/>
@@ -689,7 +692,7 @@
         </scene>
         <scene sceneID="1786">
             <objects>
-                <viewController id="1787" sceneMemberID="viewController">
+                <viewController id="1787" sceneMemberID="viewController" customClass="PerformancesController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1784"/>
                         <viewControllerLayoutGuide type="bottom" id="1785"/>
@@ -698,7 +701,94 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2129">
+                                <rect key="frame" x="15" y="79" width="290" height="29"/>
+                                <segments>
+                                    <segment title="Gist"/>
+                                    <segment title="Cast"/>
+                                    <segment title="Reviews"/>
+                                    <segment title="Cinema"/>
+                                    <segment title="Showtimes"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="2257" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="118" width="320" height="450"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2258" customClass="PerformanceTableCell" rowHeight="80" reuseIdentifier="PerformanceTableCell">
+                                        <rect key="frame" x="0.0" y="22" width="198" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2259" tableViewCell="2258">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" id="2264" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" adjustsFontSizeToFit="NO">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="21"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="2265" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                                    <rect key="frame" x="15" y="21" width="270" height="140"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2267">
+                                                        <size key="itemSize" width="60" height="40"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2266" reuseIdentifier="PerformanceCollectionViewCell" customClass="PerformanceCollectionViewCell">
+                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" lineBreakMode="tailTruncation" minimumFontSize="10" id="2268" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" fixedFrame="YES">
+                                                                        <rect key="frame" x="5" y="3" width="50" height="20"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Type" lineBreakMode="tailTruncation" id="2269" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" adjustsFontSizeToFit="NO" fixedFrame="YES">
+                                                                        <rect key="frame" x="5" y="18" width="50" height="20"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </view>
+                                                            <size key="customSize" width="60" height="40"/>
+                                                            <size key="referenceSize" width="60" height="40"/>
+                                                            <connections>
+                                                                <outlet property="Time" destination="2268" id="name-outlet-2268"/>
+                                                                <outlet property="Type" destination="2269" id="name-outlet-2269"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                </collectionView>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="PerformanceDate" destination="2264" id="name-outlet-2264"/>
+                                            <outlet property="Performances" destination="2265" id="name-outlet-2265"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                     </view>
+                    <connections>
+                        <outlet property="PerformancesSegment" destination="2129" id="name-outlet-2129"/>
+                        <outlet property="PerformanceView" destination="2257" id="name-outlet-2257"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1789" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

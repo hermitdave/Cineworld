@@ -15,6 +15,16 @@ namespace CineworldiPhone
 
 		public FilmInfo Film { get; set; }
 
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			base.PrepareForSegue (segue, sender);
+
+			PerformancesController performancesController = (segue.DestinationViewController as PerformancesController);
+			performancesController.Showing = PerformancesController.ViewType.CinemaDetails;
+			performancesController.Cinema = (sender as CinemaTableCell).Cinema;
+			performancesController.Film = this.Film;
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -69,7 +79,6 @@ namespace CineworldiPhone
 			if (!String.IsNullOrWhiteSpace (this.Film.Overview)) 
 			{
 				this.OverviewData.Text = this.Film.Overview;
-				this.OverviewData.Lines = 0;
 				this.OverviewData.SizeToFit ();
 			}
 			else

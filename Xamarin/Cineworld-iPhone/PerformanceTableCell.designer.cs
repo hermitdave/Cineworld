@@ -11,26 +11,26 @@ using UIKit;
 
 namespace CineworldiPhone
 {
-	[Register ("PerformancesController")]
-	partial class PerformancesController
+	[Register ("PerformanceTableCell")]
+	partial class PerformanceTableCell
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UISegmentedControl PerformancesSegment { get; set; }
+		UILabel PerformanceDate { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableView PerformanceView { get; set; }
+		UICollectionView Performances { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (PerformancesSegment != null) {
-				PerformancesSegment.Dispose ();
-				PerformancesSegment = null;
+			if (PerformanceDate != null) {
+				PerformanceDate.Dispose ();
+				PerformanceDate = null;
 			}
-			if (PerformanceView != null) {
-				PerformanceView.Dispose ();
-				PerformanceView = null;
+			if (Performances != null) {
+				Performances.Dispose ();
+				Performances = null;
 			}
 		}
 	}

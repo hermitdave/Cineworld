@@ -14,7 +14,7 @@ namespace CineworldiPhone
 
 		public void UpdateCell(PerformanceInfo performance)
 		{
-			ContentView.Layer.BorderColor = UIColor.DarkGray.CGColor;
+			ContentView.Layer.BorderColor = UIColor.Black.CGColor;
 			ContentView.Layer.BorderWidth = 1.0f;
 			ContentView.BackgroundColor = UIColor.White;
 			ContentView.Layer.CornerRadius = 5f;
@@ -26,6 +26,13 @@ namespace CineworldiPhone
 
 			this.Time.Text = performance.TimeString;
 			this.Type.Text = performance.Type;  
+
+			if (!performance.AvailableFuture) 
+			{
+				ContentView.Layer.BorderColor = UIColor.LightGray.CGColor;
+				this.Time.TextColor = UIColor.LightGray;
+				this.Type.TextColor = UIColor.LightGray;
+			}
 
 //			var tapGestureRecognizer = new UITapGestureRecognizer(() =>
 //				{

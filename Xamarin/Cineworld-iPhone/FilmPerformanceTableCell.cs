@@ -53,7 +53,7 @@ namespace CineworldiPhone
 			var b = this.Performances.Bounds;
 			this.Performances.Bounds = new RectangleF ((float)b.Left, (float)b.Top, (float)b.Width, height);
 
-			//this.Performances.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGesture));
+//			this.Performances.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGesture));
 		}
 
 //		void HandleTapGesture (UITapGestureRecognizer sender)
@@ -92,7 +92,7 @@ namespace CineworldiPhone
 //		}
 //
 //		[Export("BuyTickets")]
-//		void BuyTickets ()
+//		void BuyTickets (UIMenuController controller)
 //		{
 //			// navigate to webview
 //		}
@@ -137,7 +137,7 @@ namespace CineworldiPhone
 //				messageController.ShowViewController(messageController, null);
 //			}
 //		}
-
+//
 
 		public void UpdateCell(UIImage image)
 		{

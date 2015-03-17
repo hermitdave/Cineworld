@@ -1,6 +1,12 @@
 ﻿<Properties StartupItem="Cineworld-iPhone/Cineworld-iPhone.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5s.8.2" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/CinemaDetailsController.cs">
+    <Files>
+      <File FileName="Cineworld-iPhone/CinemasViewController.cs" Line="51" Column="49" />
+      <File FileName="Cineworld-iPhone/FilmDetailsController.cs" Line="72" Column="5" />
+      <File FileName="Cineworld-iPhone/CinemaDetailsController.cs" Line="238" Column="4" />
+      <File FileName="Cineworld-iPhone/FilmPerformanceTableCell.cs" Line="95" Column="36" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
@@ -18,7 +24,6 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Cineworld-iPhone/AllCinemasViewController.cs" line="14" column="1" />
-      <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Xamarin/Cineworld-iPhone/FilmPerformanceTableCell.cs" line="124" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
