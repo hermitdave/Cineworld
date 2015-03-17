@@ -48,6 +48,10 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton PlayTrailer { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView Poster { get; set; }
 
 		[Outlet]
@@ -95,6 +99,10 @@ namespace CineworldiPhone
 			if (OverviewLabel != null) {
 				OverviewLabel.Dispose ();
 				OverviewLabel = null;
+			}
+			if (PlayTrailer != null) {
+				PlayTrailer.Dispose ();
+				PlayTrailer = null;
 			}
 			if (Poster != null) {
 				Poster.Dispose ();

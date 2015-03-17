@@ -357,6 +357,14 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2372" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" alpha="0.7">
+                                                <rect key="frame" x="60" y="142" width="40" height="40"/>
+                                                <color key="backgroundColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                                                <state key="normal" backgroundImage="Images/Play.png">
+                                                    <color key="titleShadowColor" colorSpace="calibratedRGB" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1"/>
+                                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.19215686274509805" green="0.30588235294117649" blue="0.52156862745098043" alpha="1"/>
+                                                </state>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -379,6 +387,7 @@
                         <outlet property="Misc" destination="803" id="name-outlet-803"/>
                         <outlet property="OverviewLabel" destination="913" id="name-outlet-913"/>
                         <outlet property="OverviewData" destination="1904" id="name-outlet-1904"/>
+                        <outlet property="PlayTrailer" destination="2372" id="name-outlet-2372"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="596" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -996,6 +1005,8 @@
         <image name="Images/Stars/filled.png" width="200" height="190"/>
         <image name="Images/SmallLogo.png" width="30" height="30"/>
         <image name="Images/Date.png" width="30" height="30"/>
+        <image name="Images/appbar.transport.play.rest.png" width="48" height="48"/>
+        <image name="Images/Play.png" width="48" height="48"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

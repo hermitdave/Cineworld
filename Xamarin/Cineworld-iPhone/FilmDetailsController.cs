@@ -25,11 +25,22 @@ namespace CineworldiPhone
 			performancesController.Film = this.Film;
 		}
 
-		public override void ViewDidLoad ()
+		public override async void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
 			this.FilmTitle.Title = this.Film.TitleWithClassification;
+
+			if (String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
+			{
+				this.PlayTrailer.Hidden = true;
+			}
+
+			this.PlayTrailer.TouchUpInside += async (s, e) => 
+			{
+				var ytController = this.Storyboard.InstantiateViewController("YouTubeController") as YouTubeController;
+				await this.PresentViewControllerAsync(ytController, true);
+			};
 
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
 			var image = ImageManager.Instance.GetImage (url);

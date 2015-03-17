@@ -223,6 +223,10 @@
       <DependentUpon>PerformanceTableCell.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSources\PerformancesTableSource.cs" />
+    <Compile Include="YouTubeController.cs" />
+    <Compile Include="YouTubeController.designer.cs">
+      <DependentUpon>YouTubeController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -251,6 +255,9 @@
     </Content>
     <Content Include="Images\SmallLogo.png" />
     <Content Include="Images\Date.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Play.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
