@@ -1,12 +1,6 @@
 ﻿<Properties StartupItem="Cineworld-iPhone/Cineworld-iPhone.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5s.8.2" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/CinemaDetailsController.cs">
-    <Files>
-      <File FileName="Cineworld-iPhone/CinemasViewController.cs" Line="51" Column="49" />
-      <File FileName="Cineworld-iPhone/FilmDetailsController.cs" Line="72" Column="5" />
-      <File FileName="Cineworld-iPhone/CinemaDetailsController.cs" Line="238" Column="4" />
-      <File FileName="Cineworld-iPhone/FilmPerformanceTableCell.cs" Line="95" Column="36" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
@@ -15,7 +9,7 @@
             <Node name="DataSources" expanded="True" />
             <Node name="Images" expanded="True" />
             <Node name="Shared" expanded="True" />
-            <Node name="CinemaDetailsController.cs" selected="True" />
+            <Node name="PerformanceCollectionViewCell.cs" selected="True" />
           </Node>
         </State>
       </Pad>
