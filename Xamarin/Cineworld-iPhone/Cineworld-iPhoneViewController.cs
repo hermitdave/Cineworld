@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Drawing;
 
 using Foundation;
@@ -171,17 +172,11 @@ namespace CineworldiPhone
 
 			ImageManager.Instance.ImageLoaded -= HandleImageLoaded;
 
-			// set the View Controller that’s powering the screen we’re
-			// transitioning to
-
-			//var callHistoryContoller = segue.DestinationViewController as CinemasViewController;
-
-			//set the Table View Controller’s list of phone numbers to the
-			// list of dialed phone numbers
-
-			//if (callHistoryContoller != null) {
-			//	callHistoryContoller.PhoneNumbers = PhoneNumbers;
-			//}
+			var cinemaDetailsController = segue.DestinationViewController as CinemaDetailsController;
+			if (cinemaDetailsController != null) 
+			{
+				cinemaDetailsController.Cinema = (sender as CinemaCollectionViewCell).Cinema;
+			}
 		}
 
 		#region View lifecycle
@@ -218,10 +213,34 @@ namespace CineworldiPhone
 			await Initialise (false);
 			await LoadFilmData ();
 
+			LoadNearestCinemas ();
+
 			this.BusyIndicator.StopAnimating ();
 			this.BusyIndicator.Hidden = true;
 
 			this.AllFilmsButton.Enabled = this.AllCinemasButton.Enabled = true;
+		}
+
+		void LoadNearestCinemas ()
+		{
+			if (Application.UserLocation == null)
+				return;
+			
+			IEnumerable<CinemaInfo> filteredCinemas = Application.Cinemas.Values.Where(c => c.Longitute != 0 && c.Longitute != 0); //&& !PinnedCinemas.Contains(c.ID));
+
+			if (!filteredCinemas.Any())
+				return;
+
+			int MaxCinemaCount = 6;
+
+			int CountRequest = MaxCinemaCount; // - PinnedCinemas.Count;
+
+			IEnumerable<CinemaInfo> cinemasByLocation = filteredCinemas.OrderBy(c => GeoMath.Distance(Application.UserLocation.Coordinate.Latitude, Application.UserLocation.Coordinate.Longitude, c.Latitude, c.Longitute, GeoMath.MeasureUnits.Miles)).Take(CountRequest);
+
+			CinemaCollectionSource cinemaSource = new CinemaCollectionSource (cinemasByLocation.ToList());
+
+			this.NearestCinemas.Source = cinemaSource;
+			this.NearestCinemas.ReloadData ();
 		}
 
 		public override void ViewWillAppear (bool animated)

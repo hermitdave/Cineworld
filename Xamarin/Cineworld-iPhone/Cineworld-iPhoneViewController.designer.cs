@@ -26,6 +26,10 @@ namespace CineworldiPhone
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIActivityIndicatorView BusyIndicator { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UICollectionView NearestCinemas { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (AllCinemasButton != null) {
@@ -39,6 +43,10 @@ namespace CineworldiPhone
 			if (BusyIndicator != null) {
 				BusyIndicator.Dispose ();
 				BusyIndicator = null;
+			}
+			if (NearestCinemas != null) {
+				NearestCinemas.Dispose ();
+				NearestCinemas = null;
 			}
 		}
 	}

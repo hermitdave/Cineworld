@@ -53,17 +53,18 @@ namespace CineworldiPhone
 
 			if (Application.UserLocation == null) {
 				coords = new CLLocationCoordinate2D (51.507222, -0.1275);
+
+				span = new MKCoordinateSpan(MapHelper.MilesToLatitudeDegrees(100), MapHelper.MilesToLongitudeDegrees(100, coords.Latitude));
 			}
 			else
 			{
 				coords = Application.UserLocation.Coordinate;
 
 				span = new MKCoordinateSpan(MapHelper.MilesToLatitudeDegrees(10), MapHelper.MilesToLongitudeDegrees(10, coords.Latitude));
-				mapView.Region = new MKCoordinateRegion(coords, span);
 			}
 
 			mapView.CenterCoordinate = coords;
-
+			mapView.Region = new MKCoordinateRegion(coords, span);
 			
 			this.CinemasSegments.ValueChanged += (sender, e) => 
 			{

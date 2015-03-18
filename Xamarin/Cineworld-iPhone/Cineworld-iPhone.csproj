@@ -223,6 +223,12 @@
       <DependentUpon>PerformanceTableCell.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSources\PerformancesTableSource.cs" />
+    <Compile Include="CinemaCollectionViewCell.cs" />
+    <Compile Include="CinemaCollectionViewCell.designer.cs">
+      <DependentUpon>CinemaCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\GeoMath.cs" />
+    <Compile Include="DataSources\CinemaCollectionSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
