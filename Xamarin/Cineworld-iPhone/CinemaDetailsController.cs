@@ -257,7 +257,15 @@ namespace CineworldiPhone
 				PerformancesController performancesController = (segue.DestinationViewController as PerformancesController);
 				performancesController.Showing = PerformancesController.ViewType.FilmDetails;
 				performancesController.Cinema = this.Cinema;
-				performancesController.Film = (sender as FilmTableCell).Film;
+				var filmTableCell = (sender as FilmTableCell);
+				if (filmTableCell != null) 
+				{
+					performancesController.Film = filmTableCell.Film;
+				} 
+				else 
+				{
+					performancesController.Film = (sender as FilmPerformanceTableCell).Film;
+				}
 			}
 		}
 

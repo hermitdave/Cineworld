@@ -404,7 +404,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <webView contentMode="scaleToFill" id="2421" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="15" y="5" width="130" height="196"/>
+                                                <rect key="frame" x="10" y="0.0" width="130" height="196"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </webView>
                                         </subviews>
@@ -682,6 +682,7 @@
                                                     <outlet property="Poster" destination="1517" id="1516"/>
                                                     <outlet property="Performances" destination="1523" id="name-outlet-1523"/>
                                                     <outlet property="ShortDesc" destination="1618" id="name-outlet-1618"/>
+                                                    <segue id="2867" destination="1787" kind="push" identifier="PerfView2"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -1024,7 +1025,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <webView contentMode="scaleToFill" id="2452" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="15" y="5" width="130" height="196"/>
+                                                <rect key="frame" x="10" y="0.0" width="130" height="196"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </webView>
                                         </subviews>
