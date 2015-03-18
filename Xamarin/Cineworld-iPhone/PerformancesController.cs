@@ -32,6 +32,8 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			this.NavigationItem.Title = String.Format ("{0} at Cineworld {1}", this.Film.Title, this.Cinema.Name);
+
 			this.FilmGist.Hidden = this.FilmCast.Hidden = 
 				this.FilmReviews.Hidden = this.CinemaGist.Hidden =
 					this.PerformanceView.Hidden = true;
@@ -103,6 +105,20 @@ namespace CineworldiPhone
 
 		void LoadFilmDetails ()
 		{
+			if (String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
+			{
+				this.Poster.Hidden = false;
+				this.YouTubeView.Hidden = true;
+			} 
+			else 
+			{
+				this.Poster.Hidden = true;
+				this.YouTubeView.Hidden = false;
+
+				string trailerurl = String.Format (FilmDetailsController.YouTubeEmbedUrl, this.Film.YoutubeTrailer);
+				this.YouTubeView.LoadHtmlString (String.Format (FilmDetailsController.YouTubeEmbedString, trailerurl), new NSUrl (trailerurl));
+			}
+
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
 			var image = ImageManager.Instance.GetImage (url);
 			if (image == null) 
@@ -195,6 +211,30 @@ namespace CineworldiPhone
 			}
 			this.PerformanceView.Source = new PerformancesTableSource (this.Film.Performances);
 			this.PerformanceView.ReloadData ();
+		}
+
+		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
+		{
+			if (segueIdentifier != null && segueIdentifier.Equals ("PerfSegue")) 
+			{
+				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
+				return perf.AvailableFuture;
+			}
+
+			return base.ShouldPerformSegue (segueIdentifier, sender);
+		}
+
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			base.PrepareForSegue (segue, sender);
+
+			TicketPurchaseController ticketPurchaseController = (segue.DestinationViewController as TicketPurchaseController);
+
+			if (ticketPurchaseController != null) 
+			{
+				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
+				ticketPurchaseController.Performance = perf;
+			}
 		}
 	}
 }

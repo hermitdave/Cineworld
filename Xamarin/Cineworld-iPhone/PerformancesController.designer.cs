@@ -74,6 +74,10 @@ namespace CineworldiPhone
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel Telephone { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIWebView YouTubeView { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (Address != null) {
@@ -135,6 +139,10 @@ namespace CineworldiPhone
 			if (Telephone != null) {
 				Telephone.Dispose ();
 				Telephone = null;
+			}
+			if (YouTubeView != null) {
+				YouTubeView.Dispose ();
+				YouTubeView = null;
 			}
 		}
 	}

@@ -13,6 +13,9 @@ namespace CineworldiPhone
 		{
 		}
 
+		public const string YouTubeEmbedUrl = "https://www.youtube.com/embed/{0}";
+		public const string YouTubeEmbedString = "<html><body><iframe width=\"130\" height=\"196\" src=\"{0}\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
+
 		public FilmInfo Film { get; set; }
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -33,14 +36,17 @@ namespace CineworldiPhone
 
 			if (String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
 			{
-				this.PlayTrailer.Hidden = true;
-			}
-
-			this.PlayTrailer.TouchUpInside += async (s, e) => 
+				this.Poster.Hidden = false;
+				this.YouTubeView.Hidden = true;
+			} 
+			else 
 			{
-				var ytController = this.Storyboard.InstantiateViewController("YouTubeController") as YouTubeController;
-				await this.PresentViewControllerAsync(ytController, true);
-			};
+				this.Poster.Hidden = true;
+				this.YouTubeView.Hidden = false;
+
+				string trailerurl = String.Format (YouTubeEmbedUrl, this.Film.YoutubeTrailer);
+				this.YouTubeView.LoadHtmlString (String.Format (YouTubeEmbedString, trailerurl), new NSUrl (trailerurl));
+			}
 
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
 			var image = ImageManager.Instance.GetImage (url);

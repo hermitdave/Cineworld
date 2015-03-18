@@ -223,10 +223,6 @@
       <DependentUpon>PerformanceTableCell.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSources\PerformancesTableSource.cs" />
-    <Compile Include="YouTubeController.cs" />
-    <Compile Include="YouTubeController.designer.cs">
-      <DependentUpon>YouTubeController.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
