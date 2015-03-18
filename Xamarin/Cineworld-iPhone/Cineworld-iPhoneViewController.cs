@@ -189,6 +189,11 @@ namespace CineworldiPhone
 		public async override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
+			var locationManager = new CoreLocation.CLLocationManager ();
+			locationManager.RequestWhenInUseAuthorization ();
+
+			Application.UserLocation = locationManager.Location;
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 

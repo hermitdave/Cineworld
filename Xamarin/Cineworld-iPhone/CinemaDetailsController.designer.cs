@@ -44,6 +44,10 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton DrivingDirections { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView FilmsByDateTable { get; set; }
 
 		[Outlet]
@@ -65,6 +69,10 @@ namespace CineworldiPhone
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel Telephone { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton WalkingDirections { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
@@ -96,6 +104,10 @@ namespace CineworldiPhone
 				DateSelectionButton.Dispose ();
 				DateSelectionButton = null;
 			}
+			if (DrivingDirections != null) {
+				DrivingDirections.Dispose ();
+				DrivingDirections = null;
+			}
 			if (FilmsByDateTable != null) {
 				FilmsByDateTable.Dispose ();
 				FilmsByDateTable = null;
@@ -119,6 +131,10 @@ namespace CineworldiPhone
 			if (Telephone != null) {
 				Telephone.Dispose ();
 				Telephone = null;
+			}
+			if (WalkingDirections != null) {
+				WalkingDirections.Dispose ();
+				WalkingDirections = null;
 			}
 		}
 	}

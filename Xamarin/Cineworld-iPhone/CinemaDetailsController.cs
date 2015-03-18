@@ -9,6 +9,8 @@ using Cineworld;
 using System.Collections.Generic;
 using Factorymind.Components;
 using ObjCRuntime;
+using MapKit;
+using CoreLocation;
 
 namespace CineworldiPhone
 {
@@ -102,6 +104,9 @@ namespace CineworldiPhone
 
 			this.Telephone.Text = this.Cinema.Telephone;
 
+			this.WalkingDirections.TouchUpInside += Directions_TouchUpInside;
+			this.DrivingDirections.TouchUpInside += Directions_TouchUpInside;
+
 			this.ReviewsTable.Source = new ReviewsTableSource (this.Cinema.Reviews);
 			this.ReviewsTable.ReloadData ();
 
@@ -170,6 +175,8 @@ namespace CineworldiPhone
 				fmCalendar.Hidden = false;
 			};
 
+			this.FilmsByDateView.Hidden = false;
+
 			var currentFilms = new AllFilmsTableSource(AllFilmsTableSource.FilmListingType.Current, this.Films);
 			var upcomingFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Upcoming, this.Films);
 
@@ -204,6 +211,23 @@ namespace CineworldiPhone
 					break;
 				}
 			};
+		}
+
+		void Directions_TouchUpInside (object sender, EventArgs e)
+		{
+			var location = new CLLocationCoordinate2D(this.Cinema.Latitude, this.Cinema.Longitute);
+			MKPlacemarkAddress address = null;
+			var placemark = new MKPlacemark (location, address);
+
+			var mapItem = new MKMapItem (placemark);
+			mapItem.Name = String.Format ("Cineworld {0}", this.Cinema.Name);
+
+			var launchOptions = new MKLaunchOptions ();
+			launchOptions.DirectionsMode = (sender == this.WalkingDirections) ? MKDirectionsMode.Walking : MKDirectionsMode.Driving;
+			launchOptions.ShowTraffic = (sender == this.DrivingDirections);
+			launchOptions.MapType = MKMapType.Standard;
+
+			mapItem.OpenInMaps (launchOptions);
 		}
 
 		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)

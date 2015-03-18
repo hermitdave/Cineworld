@@ -35,7 +35,7 @@ namespace CineworldiPhone
 
 			this.CinemaListView.Source = new CinemasTableSource (Application.Cinemas.Values);
 
-			var mapView = new MKMapView (new RectangleF(0, 128, (float)bounds.Width, (float)bounds.Height-128));
+			var mapView = new MKMapView (new RectangleF(0, 118, (float)bounds.Width, (float)bounds.Height-118));
 			mapView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			mapView.ShowsUserLocation = true;
 			mapView.Delegate = new MapDelegate();
@@ -48,13 +48,23 @@ namespace CineworldiPhone
 				mapView.AddAnnotation(cinemaLoc);
 			}
 
-			var coords = new CLLocationCoordinate2D(51.507222, -0.1275);
+			CLLocationCoordinate2D coords;
+			MKCoordinateSpan span;
+
+			if (Application.UserLocation == null) {
+				coords = new CLLocationCoordinate2D (51.507222, -0.1275);
+			}
+			else
+			{
+				coords = Application.UserLocation.Coordinate;
+
+				span = new MKCoordinateSpan(MapHelper.MilesToLatitudeDegrees(10), MapHelper.MilesToLongitudeDegrees(10, coords.Latitude));
+				mapView.Region = new MKCoordinateRegion(coords, span);
+			}
 
 			mapView.CenterCoordinate = coords;
 
-			var span = new MKCoordinateSpan(MapHelper.MilesToLatitudeDegrees(10), MapHelper.MilesToLongitudeDegrees(10, coords.Latitude));
-			mapView.Region = new MKCoordinateRegion(coords, span);
-
+			
 			this.CinemasSegments.ValueChanged += (sender, e) => 
 			{
 				if(this.CinemasSegments.SelectedSegment == 0)

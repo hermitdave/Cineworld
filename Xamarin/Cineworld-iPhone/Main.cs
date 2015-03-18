@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using Cineworld;
 using Microsoft.WindowsAzure.MobileServices;
+using CoreLocation;
 
 namespace CineworldiPhone
 {
@@ -24,6 +25,8 @@ namespace CineworldiPhone
 		public static Dictionary<int, List<CinemaInfo>> FilmCinemas { get; set; }
 
 		public static MobileServiceClient MobileService { get; set; }
+
+		public static CLLocation UserLocation { get; set; }
 
 		// This is the main entry point of the application.
 		static void Main (string[] args)
