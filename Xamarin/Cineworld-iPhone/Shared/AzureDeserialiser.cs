@@ -26,19 +26,20 @@ namespace Cineworld
 			}
             Dictionary<int, List<CinemaInfo>> FilmCinemas = null;
 
-			Application.Cinemas = await DeserialiseObject<Dictionary<int, CinemaInfo>>(CinemasUKFileName);
+			if (Config.Region == Config.RegionDef.UK)
+			{
+				Application.Cinemas = await DeserialiseObject<Dictionary<int, CinemaInfo>>(CinemasUKFileName);
+				Application.Films = await DeserialiseObject<Dictionary<int, FilmInfo>>(FilmsUKFileName);
 
-			Application.Films = await DeserialiseObject<Dictionary<int, FilmInfo>>(FilmsUKFileName);
+				FilmCinemas = await DeserialiseObject<Dictionary<int, List<CinemaInfo>>>(FilmCinemasUKFileName);
+			}
+			else
+			{
+				Application.Cinemas = await DeserialiseObject<Dictionary<int, CinemaInfo>>(CinemasIEFileName);
+				Application.Films = await DeserialiseObject<Dictionary<int, FilmInfo>>(FilmsIEFileName);
 
-            FilmCinemas = await DeserialiseObject<Dictionary<int, List<CinemaInfo>>>(FilmCinemasUKFileName);
-            
-			//foreach (var film in Application.Films.Values)
-            //{
-                //if (film.PosterUrl == null)
-                //{
-                //    film.PosterUrl = new Uri("PlaceHolder.png");
-                //}
-            //}
+				FilmCinemas = await DeserialiseObject<Dictionary<int, List<CinemaInfo>>>(FilmCinemasIEFileName);
+			}
 
             foreach (var filmID in FilmCinemas.Keys)
             {

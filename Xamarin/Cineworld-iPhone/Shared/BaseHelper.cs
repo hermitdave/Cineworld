@@ -28,9 +28,9 @@ namespace Cineworld
         public async Task DownloadFiles(bool bForce = false)
         {
             List<Task> tasks = new List<Task>();
-            tasks.Add(DownloadFile(CinemasUKFileName, bForce));
-            tasks.Add(DownloadFile(FilmsUKFileName, bForce));
-            tasks.Add(DownloadFile(FilmCinemasUKFileName, bForce));
+			tasks.Add(DownloadFile(Config.Region == Config.RegionDef.UK ? CinemasUKFileName : CinemasIEFileName, bForce));
+			tasks.Add(DownloadFile(Config.Region == Config.RegionDef.UK ? FilmsUKFileName : FilmsIEFileName, bForce));
+			tasks.Add(DownloadFile(Config.Region == Config.RegionDef.UK ? FilmCinemasUKFileName : FilmCinemasIEFileName, bForce));
             
             await Task.WhenAll(tasks);
         }

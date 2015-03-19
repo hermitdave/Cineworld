@@ -22,6 +22,11 @@ namespace CineworldiPhone
 			this.Header.Text = film.TitleWithClassification;
 			this.Description.Text = film.ShortDesc;
 			this.Poster.Image = image;
+			this.Poster.Layer.CornerRadius = 10f;
+			this.Poster.Layer.MasksToBounds = true;
+			this.Poster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			this.Poster.Layer.Opaque = true;
+
 			this.Duration.Text = String.Format ("Duration: {0} mins", film.Runtime);
 
 			// Gather up the images to be used.

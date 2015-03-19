@@ -255,18 +255,32 @@ namespace CineworldiPhone
 			else 
 			{
 				PerformancesController performancesController = (segue.DestinationViewController as PerformancesController);
-				performancesController.Showing = PerformancesController.ViewType.FilmDetails;
-				performancesController.Cinema = this.Cinema;
-				var filmTableCell = (sender as FilmTableCell);
-				if (filmTableCell != null) 
+
+				if (performancesController != null) 
 				{
-					performancesController.Film = filmTableCell.Film;
+					performancesController.Showing = PerformancesController.ViewType.FilmDetails;
+					performancesController.Cinema = this.Cinema;
+					var filmTableCell = (sender as FilmTableCell);
+					if (filmTableCell != null) {
+						performancesController.Film = filmTableCell.Film;
+					} 
+					else 
+					{
+						performancesController.Film = (sender as FilmPerformanceTableCell).Film;
+					}
 				} 
 				else 
 				{
-					performancesController.Film = (sender as FilmPerformanceTableCell).Film;
+					ReviewController reviewController = (segue.DestinationViewController as ReviewController);
+					reviewController.CinemaDetailsController = this;
+					reviewController.Cinema = this.Cinema;
 				}
 			}
+		}
+
+		public void ReviewSubmitted()
+		{
+			this.DismissViewController (true, null);
 		}
 
 //		public override bool CanBecomeFirstResponder

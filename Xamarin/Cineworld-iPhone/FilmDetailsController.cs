@@ -23,9 +23,24 @@ namespace CineworldiPhone
 			base.PrepareForSegue (segue, sender);
 
 			PerformancesController performancesController = (segue.DestinationViewController as PerformancesController);
-			performancesController.Showing = PerformancesController.ViewType.CinemaDetails;
-			performancesController.Cinema = (sender as CinemaTableCell).Cinema;
-			performancesController.Film = this.Film;
+
+			if (performancesController != null) 
+			{
+				performancesController.Showing = PerformancesController.ViewType.CinemaDetails;
+				performancesController.Cinema = (sender as CinemaTableCell).Cinema;
+				performancesController.Film = this.Film;
+			} 
+			else 
+			{
+				ReviewController reviewController = (segue.DestinationViewController as ReviewController);
+				reviewController.FilmDetailsController = this;
+				reviewController.Film = this.Film;
+			}
+		}
+
+		public void ReviewSubmitted()
+		{
+			this.DismissViewController (true, null);
 		}
 
 		public override async void ViewDidLoad ()
@@ -38,11 +53,21 @@ namespace CineworldiPhone
 			{
 				this.Poster.Hidden = false;
 				this.YouTubeView.Hidden = true;
+
+				this.Poster.Layer.CornerRadius = 10f;
+				this.Poster.Layer.MasksToBounds = true;
+				this.Poster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+				this.Poster.Layer.Opaque = true;
 			} 
 			else 
 			{
 				this.Poster.Hidden = true;
 				this.YouTubeView.Hidden = false;
+
+				this.YouTubeView.Layer.CornerRadius = 10f;
+				this.YouTubeView.Layer.MasksToBounds = true;
+				this.YouTubeView.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+				this.YouTubeView.Layer.Opaque = true;
 
 				string trailerurl = String.Format (YouTubeEmbedUrl, this.Film.YoutubeTrailer);
 				this.YouTubeView.LoadHtmlString (String.Format (YouTubeEmbedString, trailerurl), new NSUrl (trailerurl));
