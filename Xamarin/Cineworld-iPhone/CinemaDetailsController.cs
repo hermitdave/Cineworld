@@ -280,7 +280,7 @@ namespace CineworldiPhone
 
 		public void ReviewSubmitted()
 		{
-			this.DismissViewController (true, null);
+			this.NavigationController.PopViewController(true);
 		}
 
 //		public override bool CanBecomeFirstResponder

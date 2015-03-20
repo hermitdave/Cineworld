@@ -22,6 +22,8 @@ namespace CineworldiPhone
 		public CinemaInfo Cinema { get; set; }
 		public CinemaDetailsController CinemaDetailsController { get; set; }
 
+		public PerformancesController PerformancesController { get; set; }
+
 		ReviewBase UserReview;
 
 		public ReviewController (IntPtr handle) : base (handle)
@@ -37,6 +39,10 @@ namespace CineworldiPhone
 
 			// Create the view.
 			this.RatingView = new PDRatingView(new RectangleF(90f, 120f, 215f, 35f), ratingConfig, Convert.ToDecimal(0));
+
+			this.RatingView.RatingChosen += (sender, e) => {
+				this.UserReview.Rating = Convert.ToInt16(e.Rating);
+			};
 
 			// [Required] Add the view to the 
 			this.View.AddSubview(this.RatingView);
@@ -55,7 +61,11 @@ namespace CineworldiPhone
 			this.Review.ShouldBeginEditing = t => {
 				if (this.Review.Text == UserReviewDefault) {
 					this.Review.Text = string.Empty;
+					this.Review.TextColor = UIColor.Black;
 				}	
+				//else{
+				//	this.Review.TextColor = UIColor.Black;
+				//}
 				return true;
 			};
 
@@ -84,57 +94,7 @@ namespace CineworldiPhone
 				Application.MobileService = new MobileServiceClient ("https://cineworld.azure-mobile.net/", "kpNUhnZFTNayzvLPaWxszNbpuBJnNQ87");
 			}
 
-			this.Submit.TouchUpInside += async (sender, e) => 
-			{
-				this.UserReview.Reviewer = String.IsNullOrWhiteSpace(this.User.Text) ? "anonymous" : this.User.Text;
-				this.UserReview.Review = this.Review.Text.Trim();
-				this.UserReview.Rating = Convert.ToInt16(this.RatingView.AverageRating);
-				this.UserReview.ReviewTS = DateTime.Now;
-				this.UserReview.UserId = Config.UserGuid;
-
-				Config.UserName = this.UserReview.Reviewer;
-
-				try
-				{
-					if (this.Film != null)
-					{
-						FilmReview fr = (FilmReview)this.UserReview;
-						fr.Movie = this.Film.EDI;
-						fr.TmdbId = this.Film.TmdbId;
-
-						if (this.UserReview.Id != 0)
-						{
-							await Application.MobileService.GetTable<FilmReview>().UpdateAsync(fr);
-						}
-						else
-						{
-							await Application.MobileService.GetTable<FilmReview>().InsertAsync(fr);
-						}
-
-						this.FilmDetailsController.ReviewSubmitted();
-					}
-					else
-					{
-						CinemaReview cr = (CinemaReview)this.UserReview;
-						cr.Cinema = this.Cinema.ID;
-
-						if (this.UserReview.Id != 0)
-						{
-							await Application.MobileService.GetTable<CinemaReview>().UpdateAsync(cr);
-						}
-						else
-						{
-							await Application.MobileService.GetTable<CinemaReview>().InsertAsync(cr);
-						}
-
-						this.CinemaDetailsController.ReviewSubmitted();
-					}
-				}
-				catch 
-				{
-					//MessageBox.Show("error saving review. please try again later");
-				}
-			};
+			this.Submit.TouchUpInside += Submit_TouchUpInside;
 
 			if (this.Film != null) 
 			{
@@ -177,8 +137,72 @@ namespace CineworldiPhone
 
 			this.RatingView.AverageRating = this.UserReview.Rating;
 
-			if (!String.IsNullOrWhiteSpace(this.UserReview.Review))
-				this.Review.Text = this.UserReview.Review.Trim();
+			if (!String.IsNullOrWhiteSpace (this.UserReview.Review)) 
+			{
+				this.Review.Text = this.UserReview.Review.Trim ();
+				this.Review.TextColor = UIColor.Black;
+			}
+		}
+
+		async void Submit_TouchUpInside (object sender, EventArgs e)
+		{
+			this.UserReview.Reviewer = String.IsNullOrWhiteSpace(this.User.Text) ? "anonymous" : this.User.Text;
+			this.UserReview.Review = this.Review.Text.Trim();
+			this.UserReview.ReviewTS = DateTime.Now;
+			this.UserReview.UserId = Config.UserGuid;
+
+			Config.UserName = this.UserReview.Reviewer;
+
+			try
+			{
+				if (this.Film != null)
+				{
+					FilmReview fr = (FilmReview)this.UserReview;
+					fr.Movie = this.Film.EDI;
+					fr.TmdbId = this.Film.TmdbId;
+
+					if (this.UserReview.Id != 0)
+					{
+						await Application.MobileService.GetTable<FilmReview>().UpdateAsync(fr);
+					}
+					else
+					{
+						await Application.MobileService.GetTable<FilmReview>().InsertAsync(fr);
+					}
+				}
+				else
+				{
+					CinemaReview cr = (CinemaReview)this.UserReview;
+					cr.Cinema = this.Cinema.ID;
+
+					if (this.UserReview.Id != 0)
+					{
+						await Application.MobileService.GetTable<CinemaReview>().UpdateAsync(cr);
+					}
+					else
+					{
+						await Application.MobileService.GetTable<CinemaReview>().InsertAsync(cr);
+					}
+				}
+
+				if(this.FilmDetailsController != null)
+				{
+					this.FilmDetailsController.ReviewSubmitted();
+				}
+				else if(this.CinemaDetailsController != null)
+				{
+					this.CinemaDetailsController.ReviewSubmitted();
+				}
+				else if(this.PerformancesController != null)
+				{
+					this.PerformancesController.ReviewSubmitted();
+				}
+			}
+			catch 
+			{
+				UIAlertView alert = new UIAlertView ("Cineworld", "Error saving review. Please try again later", null, "OK", null);
+				alert.Show();
+			}
 		}
 	}
 }
