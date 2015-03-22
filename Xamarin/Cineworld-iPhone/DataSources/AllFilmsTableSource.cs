@@ -11,7 +11,7 @@ namespace CineworldiPhone
 		string cellIdentifier = "FilmTableCell";
 		List<FilmInfo> Films = null;
 
-		Dictionary<string, object> cellDictionary = new Dictionary<string, object> ();
+		Dictionary<string, List<FilmTableCell>> cellDictionary = new Dictionary<string, List<FilmTableCell>> ();
 
 		public enum FilmListingType
 		{
@@ -39,31 +39,31 @@ namespace CineworldiPhone
 		{
 			if (image != null && this.cellDictionary.ContainsKey(id)) 
 			{
-				object placeholder = this.cellDictionary [id];
-				if (placeholder == null)
+				var list = this.cellDictionary [id];
+				if (list == null)
 					return;
 				this.cellDictionary.Remove (id);
 
-				ProcessCell (placeholder, image);
+				ProcessCell (id, list, image);
 			}
 		}
 
 		
 
-		private void ProcessCell(List<FilmTableCell> cells, UIImage image)
+		private void ProcessCell(string id, List<FilmTableCell> cells, UIImage image)
 		{
 			if (cells == null)
 				return;
 
 			foreach (var cell in cells) 
 			{
-				ProcessCell (cell, image);
+				ProcessCell (id, cell, image);
 			}
 		}
 
-		private void ProcessCell(FilmTableCell cell, UIImage image)
+		private void ProcessCell(string id, FilmTableCell cell, UIImage image)
 		{
-			if (cell == null)
+			if (cell == null || !cell.Film.PosterUrl.OriginalString.Equals(id))
 				return;
 
 			this.InvokeOnMainThread (delegate {
@@ -71,22 +71,22 @@ namespace CineworldiPhone
 			});
 		}
 
-		private void ProcessCell(object obj, UIImage image)
-		{
-			if (obj == null)
-				return;
-
-			var c = obj as FilmTableCell;
-
-			if (c == null) 
-			{
-				ProcessCell (obj as List<FilmTableCell>, image);
-			} 
-			else
-			{
-				ProcessCell (c, image);
-			}
-		}
+//		private void ProcessCell(object obj, UIImage image)
+//		{
+//			if (obj == null)
+//				return;
+//
+//			var c = obj as FilmTableCell;
+//
+//			if (c == null) 
+//			{
+//				ProcessCell (obj as List<FilmTableCell>, image);
+//			} 
+//			else
+//			{
+//				ProcessCell (c, image);
+//			}
+//		}
 
 		public override nfloat GetHeightForRow (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
@@ -100,7 +100,7 @@ namespace CineworldiPhone
 
 		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			var cell = tableView.DequeueReusableCell (cellIdentifier);
+			var cell = tableView.DequeueReusableCell (cellIdentifier) as FilmTableCell;
 
 			string url = Films [indexPath.Row].PosterUrl == null ? null : Films [indexPath.Row].PosterUrl.OriginalString;
 			var image = ImageManager.Instance.GetImage (url);
@@ -108,17 +108,14 @@ namespace CineworldiPhone
 			{
 				if (url != null) 
 				{
-					if (this.cellDictionary.ContainsKey (url)) 
+					List<FilmTableCell> list = null;
+					if (!this.cellDictionary.TryGetValue (url, out list)) 
 					{
-						var list = new List<UITableViewCell> ();
-						list.Add (this.cellDictionary [url] as UITableViewCell);
-						list.Add (cell);
+						list = new List<FilmTableCell> ();
 						this.cellDictionary [url] = list;
-					} 
-					else 
-					{
-						this.cellDictionary.Add (url, cell);
 					}
+
+					list.Add (cell);
 				}
 				image = UIImage.FromFile ("Images/PlaceHolder.png");
 			} 

@@ -35,11 +35,15 @@ namespace CineworldiPhone
 			//await LoadCinemasByLocation();
 		}
 
+
 		private static async Task Initialise(bool bForce = false)
 		{
 			LocalStorageHelper lsh = new LocalStorageHelper();
+
+			Console.WriteLine ("Start data download " + DateTime.Now.ToLongTimeString ());
 			await lsh.DownloadFiles(bForce);
 
+			Console.WriteLine ("Start data deserialisation " + DateTime.Now.ToLongTimeString ());
 			await lsh.DeserialiseObjects();
 		}
 
@@ -54,62 +58,64 @@ namespace CineworldiPhone
 			}
 		}
 
-		public static UIImage RounderCorners (UIImage image, float width, float radius)
-		{
-			UIGraphics.BeginImageContext (new SizeF (width, width));
-			var c = UIGraphics.GetCurrentContext ();
-
-			//Note: You need to write the Device.IsRetina code yourself 
-			//radius = Device.IsRetina ? radius * 2 : radius;
-
-			c.BeginPath ();
-			c.MoveTo (width, width / 2);
-			c.AddArcToPoint (width, width, width / 2, width, radius);
-			c.AddArcToPoint (0, width, 0, width / 2, radius);
-			c.AddArcToPoint (0, 0, width / 2, 0, radius);
-			c.AddArcToPoint (width, 0, width, width / 2, radius);
-			c.ClosePath ();
-			c.Clip ();
-
-			image.Draw (new PointF (0, 0));
-			var converted = UIGraphics.GetImageFromCurrentImageContext ();
-			UIGraphics.EndImageContext ();
-			return converted;
-		}
-
-
-		private async Task LoadFilmData2()
-		{
-			List<Uri> posterUrls = await new BaseStorageHelper().GetImageList();
-
-			var imageview = this.AllFilmsButton.ImageView;
-			imageview.ContentMode = UIViewContentMode.ScaleAspectFill;
-			var bounds = this.AllFilmsButton.Bounds;
-
-			imageview.Frame = new RectangleF((float)bounds.Left, (float)bounds.Top, (float)bounds.Width, (float)bounds.Height);
-			imageview.AnimationRepeatCount = 0;
-			imageview.AnimationDuration = 10f;
+//		public static UIImage RounderCorners (UIImage image, float width, float radius)
+//		{
+//			UIGraphics.BeginImageContext (new SizeF (width, width));
+//			var c = UIGraphics.GetCurrentContext ();
+//
+//			//Note: You need to write the Device.IsRetina code yourself 
+//			//radius = Device.IsRetina ? radius * 2 : radius;
+//
+//			c.BeginPath ();
+//			c.MoveTo (width, width / 2);
+//			c.AddArcToPoint (width, width, width / 2, width, radius);
+//			c.AddArcToPoint (0, width, 0, width / 2, radius);
+//			c.AddArcToPoint (0, 0, width / 2, 0, radius);
+//			c.AddArcToPoint (width, 0, width, width / 2, radius);
+//			c.ClosePath ();
+//			c.Clip ();
+//
+//			image.Draw (new PointF (0, 0));
+//			var converted = UIGraphics.GetImageFromCurrentImageContext ();
+//			UIGraphics.EndImageContext ();
+//			return converted;
+//		}
 
 
-			//foreach (var poster in posterUrls) 
-			for (int i = 0; i < 5; i++) 
-			{
-				var img = ImageFromUrl (posterUrls [i].OriginalString);
-				images.Add (img);
+//		private async Task LoadFilmData2()
+//		{
+//			List<Uri> posterUrls = await new BaseStorageHelper().GetImageList();
+//
+//			var imageview = this.AllFilmsButton.ImageView;
+//			imageview.ContentMode = UIViewContentMode.ScaleAspectFill;
+//			var bounds = this.AllFilmsButton.Bounds;
+//
+//			imageview.Frame = new RectangleF((float)bounds.Left, (float)bounds.Top, (float)bounds.Width, (float)bounds.Height);
+//			imageview.AnimationRepeatCount = 0;
+//			imageview.AnimationDuration = 10f;
+//
+//
+//			//foreach (var poster in posterUrls) 
+//			for (int i = 0; i < 5; i++) 
+//			{
+//				var img = ImageFromUrl (posterUrls [i].OriginalString);
+//				images.Add (img);
+//
+//				imageview.AnimationImages = images.ToArray ();
+//			}
+//
+//			this.AllFilmsButton.SetImage(images[0], UIControlState.Normal);
+//			imageview.StartAnimating ();
+//
+//
+//			//this.AllFilmsButton.SendSubviewToBack (imageview);
+//		}
 
-				imageview.AnimationImages = images.ToArray ();
-			}
-
-			this.AllFilmsButton.SetImage(images[0], UIControlState.Normal);
-			imageview.StartAnimating ();
-
-
-			//this.AllFilmsButton.SendSubviewToBack (imageview);
-		}
+		int totalImageCount = 0;
 
 		private async Task LoadFilmData()
 		{
-			List<Uri> posterUrls = await new BaseStorageHelper().GetImageList();
+			totalImageCount = Application.Films.Count;
 
 			var imageview = this.AllFilmsButton.ImageView;
 			imageview.ContentMode = UIViewContentMode.ScaleAspectFill;
@@ -122,10 +128,15 @@ namespace CineworldiPhone
 
 			ImageManager.Instance.ImageLoaded += HandleImageLoaded;
 
-			//foreach (var poster in posterUrls) 
-			for(int i = 0; i < posterUrls.Count; i++)
+			foreach (var film in Application.Films.Values) 
 			{
-				UIImage img = ImageManager.Instance.GetImage (posterUrls [i].OriginalString);
+				var posterUri = film.PosterUrl;
+				if (posterUri == null) 
+				{
+					totalImageCount--;
+					continue;
+				}
+				UIImage img = ImageManager.Instance.GetImage (posterUri.OriginalString);
 
 				if(img != null)
 					images.Add (img);
@@ -149,6 +160,9 @@ namespace CineworldiPhone
 			{
 				images.Add (image);
 
+				if (images.Count != totalImageCount)
+					return;
+				
 				this.InvokeOnMainThread (delegate {
 
 					var imageview = this.AllFilmsButton.ImageView;
@@ -185,11 +199,12 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			//Threadpool
+
 			var locationManager = new CoreLocation.CLLocationManager ();
 			locationManager.RequestWhenInUseAuthorization ();
 
-			Application.UserLocation = locationManager.Location;
-			
+
 			// Perform any additional setup after loading the view, typically from a nib.
 
 			//nuint cacheSizeMemory = 4*1024*1024; // 4MB
@@ -211,14 +226,23 @@ namespace CineworldiPhone
 			this.AllCinemasButton.Layer.Opaque = true;
 
 			await Initialise (false);
-			await LoadFilmData ();
+
+			Task tFilmData = LoadFilmData ();
+
+			Console.WriteLine ("Initialisation complete " + DateTime.Now.ToLongTimeString ());
+
+			Application.UserLocation = locationManager.Location;
 
 			LoadNearestCinemas ();
+
+			Console.WriteLine ("Nearest cinemas loaded " + DateTime.Now.ToLongTimeString ());
 
 			this.BusyIndicator.StopAnimating ();
 			this.BusyIndicator.Hidden = true;
 
 			this.AllFilmsButton.Enabled = this.AllCinemasButton.Enabled = true;
+
+			await tFilmData;
 		}
 
 		void LoadNearestCinemas ()

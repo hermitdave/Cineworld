@@ -28,6 +28,8 @@ namespace CineworldiPhone
 
 		public static CLLocation UserLocation { get; set; }
 
+		public static string DataDownloadsDir { get; set; }
+
 		// This is the main entry point of the application.
 		static void Main (string[] args)
 		{

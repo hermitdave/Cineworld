@@ -42,6 +42,7 @@ namespace CineworldiPhone
 					this.AllFilmsTable.Source = upcomingFilms;
 				}
 				this.AllFilmsTable.ReloadData();
+				this.AllFilmsTable.ScrollRectToVisible(new CoreGraphics.CGRect(0, 0, 1, 1), false);
 			};
 		}
 	}

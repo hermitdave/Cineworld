@@ -41,7 +41,7 @@ namespace Cineworld
             {
                 using (Stream s = await httpClient.GetStreamAsync(url))
                 {
-					using(Stream slocal = new FileStream(filename, FileMode.Create))
+					using(Stream slocal = new FileStream(Path.Combine(folder, filename), FileMode.Create))
                     {
                         await s.CopyToAsync(slocal);
                     }

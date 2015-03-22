@@ -51,11 +51,21 @@ namespace Cineworld
             }
         }
 
+		public async Task<List<String>> GetPosterImages()
+		{
+			await DownloadFile(MovieFilmPostersFileName, false);
+
+			var posters = await DeserialiseObject<List<String>> (MovieFilmPostersFileName);
+			return posters;
+		}
+
         public async Task<T> DeserialiseObject<T>(string file)
         {
+			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+
             try
             {
-				using (Stream s = new FileStream(file, FileMode.Open))
+				using (Stream s = new FileStream(Path.Combine(documentsPath, file), FileMode.Open))
                 {
                     using (var gzipStream = new GZipStream(s, CompressionMode.Decompress))
                     {

@@ -23,7 +23,7 @@ namespace Cineworld
         public const string FilmCinemasIEFileName = "filmcinemas.ie.gz";
         public const string FilmsPerCinemaFileName = "{0}.films.gz";
 
-        public const string MovieFilmPostersFileName = "movieposters.txt.gz";
+        public const string MovieFilmPostersFileName = "posters.txt.gz";
 
         public async Task DownloadFiles(bool bForce = false)
         {
@@ -32,6 +32,11 @@ namespace Cineworld
 			tasks.Add(DownloadFile(Config.Region == Config.RegionDef.UK ? FilmsUKFileName : FilmsIEFileName, bForce));
 			tasks.Add(DownloadFile(Config.Region == Config.RegionDef.UK ? FilmCinemasUKFileName : FilmCinemasIEFileName, bForce));
             
+//			tasks.Add(DownloadFile(CinemasUKFileName, bForce));
+//			tasks.Add(DownloadFile(FilmsUKFileName, bForce));
+//			tasks.Add(DownloadFile(FilmCinemasUKFileName, bForce));
+
+
             await Task.WhenAll(tasks);
         }
 
@@ -165,12 +170,14 @@ namespace Cineworld
 
         public async Task<object> ReadMoviePosters()
         {
+			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+
             await DownloadFile(MovieFilmPostersFileName, false);
 
             object o = null;
             try
             {
-				using (Stream s = new FileStream(BaseStorageHelper.MovieFilmPostersFileName, FileMode.Open))
+				using (Stream s = new FileStream(Path.Combine(documentsPath, BaseStorageHelper.MovieFilmPostersFileName), FileMode.Open))
                 {
                     using (var gzipStream = new GZipStream(s, CompressionMode.Decompress))
                     {
@@ -210,8 +217,10 @@ namespace Cineworld
 
         public async Task DownloadFile(string file, bool bForce, bool bCinemaPerformaceData = false)
         {
+			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+
 			if (bForce || !File.Exists(file) || DateTime.Now.Subtract(File.GetLastWriteTime(file)).TotalHours > 24)
-                await (new AsyncWebClient()).DownloadFileAsync(String.Format("{0}{1}", blobStorage, file), file);
+				await (new AsyncWebClient()).DownloadFileAsync(String.Format("{0}{1}", blobStorage, file), file, documentsPath);
         }
 
 

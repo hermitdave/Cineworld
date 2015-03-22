@@ -49,29 +49,21 @@ namespace CineworldiPhone
 
 			this.FilmTitle.Title = this.Film.TitleWithClassification;
 
-			if (String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
-			{
-				this.Poster.Hidden = false;
-				this.YouTubeView.Hidden = true;
+			this.Poster.Hidden = false;
 
-				this.Poster.Layer.CornerRadius = 10f;
-				this.Poster.Layer.MasksToBounds = true;
-				this.Poster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
-				this.Poster.Layer.Opaque = true;
+			this.Poster.Layer.CornerRadius = 10f;
+			this.Poster.Layer.MasksToBounds = true;
+			this.Poster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			this.Poster.Layer.Opaque = true;
+
+			if (!String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
+			{
+				this.PlayTrailer.Hidden = false;
+				this.PlayTrailer.TouchUpInside += (sender, e) => 
+				{
+					// open youtube url
+				};
 			} 
-			else 
-			{
-				this.Poster.Hidden = true;
-				this.YouTubeView.Hidden = false;
-
-				this.YouTubeView.Layer.CornerRadius = 10f;
-				this.YouTubeView.Layer.MasksToBounds = true;
-				this.YouTubeView.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
-				this.YouTubeView.Layer.Opaque = true;
-
-				string trailerurl = String.Format (YouTubeEmbedUrl, this.Film.YoutubeTrailer);
-				this.YouTubeView.LoadHtmlString (String.Format (YouTubeEmbedString, trailerurl), new NSUrl (trailerurl));
-			}
 
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
 			var image = ImageManager.Instance.GetImage (url);
@@ -80,7 +72,7 @@ namespace CineworldiPhone
 				image = UIImage.FromFile ("Images/PlaceHolder.png");
 			} 
 
-			this.Poster.Image = image.Scale( new CoreGraphics.CGSize(109, 163));
+			this.Poster.Image = ImageHelper.ResizeImage(image, 109, 163);
 
 			// Gather up the images to be used.
 			RatingConfig ratingConfig = new RatingConfig(UIImage.FromFile("Images/Stars/empty.png"), UIImage.FromFile("Images/Stars/filled.png"), UIImage.FromFile("Images/Stars/chosen.png"));
@@ -123,14 +115,10 @@ namespace CineworldiPhone
 				this.OverviewData.Text = this.Film.Overview;
 				this.OverviewData.SizeToFit ();
 
-				if (!String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
-				{
-					var overlabelBounds = this.OverviewLabel.Bounds;
-					this.OverviewData.Frame = new RectangleF ((float)overlabelBounds.Left, (float)overlabelBounds.Top-69, (float)overlabelBounds.Width, (float)overlabelBounds.Height);
-
-					var overDataBounds = this.OverviewData.Bounds;
-					this.OverviewData.Frame = new RectangleF ((float)overDataBounds.Left, (float)overDataBounds.Top-69, (float)overDataBounds.Width, (float)overDataBounds.Height);
-				}
+				this.FilmGistView.SizeToFit ();
+				//var height = OverviewData.Bounds.Top + OverviewData.Bounds.Height + 15;
+				//this.GistScrollViewer.ContentSize = new CoreGraphics.CGSize (320, height);
+				//this.GistScrollViewer.
 			}
 			else
 			{
