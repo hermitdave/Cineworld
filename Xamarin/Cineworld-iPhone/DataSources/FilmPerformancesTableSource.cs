@@ -77,19 +77,32 @@ namespace CineworldiPhone
 
 		public override nfloat GetHeightForRow (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			var film = this.Films [indexPath.Row];
+//			var film = this.Films [indexPath.Row];
+//
+//			if (film == null || film.Performances.Count == 0)
+//				return 90;
+//
+//			var rows = (film.Performances.Count / 4);
+//
+//			if (film.Performances.Count % 4 > 0)
+//				rows++;
+//
+//			var height = 135;
+//
+//			if (rows > 1) 
+//			{
+//				rows--;
+//
+//				height = 135 + (rows * 45);
+//			}
+//
+//			return height;
+//			
+//			return 90 + (rows * 50);
+//
+//			//return 225;
 
-			if (film == null || film.Performances.Count == 0)
-				return 85;
-
-			var rows = (film.Performances.Count / 4);
-
-			if (film.Performances.Count % 4 > 0)
-				rows++;
-			
-			return 85 + (rows * 50);
-
-			//return 225;
+			return 135;
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)

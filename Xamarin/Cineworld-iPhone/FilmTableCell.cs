@@ -28,7 +28,7 @@ namespace CineworldiPhone
 
 			this.Header.Text = film.TitleWithClassification;
 			this.Description.Text = film.ShortDesc;
-			this.Poster.Image = ImageHelper.ResizeImage(image, 92, 139);
+			this.Poster.Image = image; //ImageHelper.ResizeImage(image, 92, 139);
 			this.Poster.Layer.CornerRadius = 10f;
 			this.Poster.Layer.MasksToBounds = true;
 			this.Poster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
@@ -74,7 +74,7 @@ namespace CineworldiPhone
 
 		public void UpdateCell(UIImage image)
 		{
-			this.Poster.Image = ImageHelper.ResizeImage(image, 92, 139);
+			this.Poster.Image = image; //ImageHelper.ResizeImage(image, 92, 139);
 		}
 	}
 }

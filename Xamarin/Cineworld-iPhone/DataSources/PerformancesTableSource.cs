@@ -33,22 +33,10 @@ namespace CineworldiPhone
 			PerformanceGroupedList = new List<List<PerformanceInfo>> (perfsByDate.Values);
 		}
 
-		public override nfloat GetHeightForRow (UITableView tableView, Foundation.NSIndexPath indexPath)
-		{
-			var perfList = this.PerformanceGroupedList [indexPath.Row];
-
-			if (perfList == null || perfList.Count == 0)
-				return 36;
-
-			var rows = (perfList.Count / 4);
-
-			if (perfList.Count % 4 > 0)
-				rows++;
-			
-			return 36 + (rows * 50);
-
-			//return 225;
-		}
+//		public override nfloat GetHeightForRow (UITableView tableView, Foundation.NSIndexPath indexPath)
+//		{
+//			return 135;
+//		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{

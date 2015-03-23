@@ -7,6 +7,7 @@ using CoreGraphics;
 using ObjCRuntime;
 using MessageUI;
 using System.Collections.Generic;
+using System.Linq;
 using Cineworld;
 
 namespace CineworldiPhone
@@ -30,30 +31,40 @@ namespace CineworldiPhone
 
 			this.Header.Text = film.TitleWithClassification;
 			this.ShortDesc.Text = film.ShortDesc;
-			this.Poster.Image = image;
+			this.Poster.Image = ImageHelper.ResizeImage(image, 66, 100);
 
 			this.Poster.Layer.CornerRadius = 5f;
 			this.Poster.Layer.MasksToBounds = true;
 			this.Poster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
 			this.Poster.Layer.Opaque = true;
 
-			PerformanceCollectionSource performanceSource = new PerformanceCollectionSource (film.Performances);
-			this.Performances.Source = performanceSource;
-			this.Performances.ReloadData ();
+			List<PerformanceInfo> selected4Perfs = new List<PerformanceInfo> ();
+			var availablePerfs = film.Performances.FindAll (p => p.AvailableFuture).Take (4);
+			if (availablePerfs.Any ()) 
+			{
+				selected4Perfs.AddRange (availablePerfs);
+			} 
+			else 
+			{
+				selected4Perfs.AddRange(film.Performances.OrderByDescending(p => p.PerformanceTS).Take(4).OrderBy(p => p.PerformanceTS));
+			}
 
-			cellCount = film.Performances.Count;
+			var rows = (film.Performances.Count / 4);
 
-			var rows = (cellCount / 4);
-
-			if (cellCount % 4 > 0)
+			if (film.Performances.Count % 4 > 0)
 				rows++;
 
-			var height = rows * 50;
+			float height = rows * 50;
 
-			var b = this.Performances.Bounds;
-			this.Performances.Bounds = new RectangleF ((float)b.Left, (float)b.Top, (float)b.Width, height);
+			var bounds = this.Performances.Bounds;
+			this.Performances.Frame = new RectangleF (15f, 90f, 271f, height);
 
-//			this.Performances.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGesture));
+			PerformanceCollectionSource performanceSource = new PerformanceCollectionSource (selected4Perfs);
+			this.Performances.Source = performanceSource;
+			this.Performances.ReloadData ();
+			//this.Performances.SizeToFit ();
+
+			//this.SizeToFit ();
 		}
 
 //		void HandleTapGesture (UITapGestureRecognizer sender)
@@ -141,7 +152,7 @@ namespace CineworldiPhone
 
 		public void UpdateCell(UIImage image)
 		{
-			this.Poster.Image = image;
+			this.Poster.Image = ImageHelper.ResizeImage(image, 66, 100);
 		}
 	}
 }
