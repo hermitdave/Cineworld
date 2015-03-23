@@ -30,8 +30,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>XSAppIconAssets</key>
-	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -47,5 +45,16 @@
 	<string>You are about to use location!</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This will be called if location is used behind the scenes</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon</string>
+		<string>Icon@2x</string>
+		<string>Icon-60@2x</string>
+		<string>Icon-Small</string>
+		<string>Icon-Small@2x</string>
+		<string>Icon-Small-40@2x</string>
+	</array>
 </dict>
 </plist>
