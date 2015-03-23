@@ -159,6 +159,7 @@ namespace CineworldiPhone
 
 				this.FilmsByDateTable.Source = LoadFilmData (d.Date);
 				this.FilmsByDateTable.ReloadData ();
+				this.FilmsByDateTable.ScrollRectToVisible(new CoreGraphics.CGRect(0, 0, 1, 1), false);
 
 				this.FilmsByDateTable.Hidden = this.SelectedDate.Hidden = DateSelectionButton.Hidden = false;
 				fmCalendar.Hidden = true;
@@ -192,12 +193,14 @@ namespace CineworldiPhone
 					this.FilmsByDateTable.Source = LoadFilmData(fmCalendar.CurrentSelectedDate.Date);
 					this.FilmsByDateTable.ReloadData();
 					this.FilmsByDateView.Hidden = false;
+					this.FilmsByDateTable.ScrollRectToVisible(new CoreGraphics.CGRect(0, 0, 1, 1), false);
 					break;
 
 					case 1:
 					this.AllFilmsTable.Source = currentFilms;
 					this.AllFilmsTable.ReloadData();
 					this.AllFilmsTable.Hidden = false;
+					this.AllFilmsTable.ScrollRectToVisible(new CoreGraphics.CGRect(0, 0, 1, 1), false);
 					break;
 
 					case 2:
@@ -205,6 +208,7 @@ namespace CineworldiPhone
 					this.AllFilmsTable.ReloadData();
 					this.AllFilmsTable.Hidden = false;
 					break;
+					this.AllFilmsTable.ScrollRectToVisible(new CoreGraphics.CGRect(0, 0, 1, 1), false);
 
 					case 3:
 					this.CinemaGist.Hidden = false;

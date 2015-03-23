@@ -32,6 +32,10 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton DrivingDirections { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView FilmCast { get; set; }
 
 		[Outlet]
@@ -68,6 +72,10 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton PlayTrailer { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView Poster { get; set; }
 
 		[Outlet]
@@ -76,7 +84,7 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIWebView YouTubeView { get; set; }
+		UIButton WalkingDirections { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
@@ -95,6 +103,10 @@ namespace CineworldiPhone
 			if (CinemaReviewsTable != null) {
 				CinemaReviewsTable.Dispose ();
 				CinemaReviewsTable = null;
+			}
+			if (DrivingDirections != null) {
+				DrivingDirections.Dispose ();
+				DrivingDirections = null;
 			}
 			if (FilmCast != null) {
 				FilmCast.Dispose ();
@@ -132,6 +144,10 @@ namespace CineworldiPhone
 				PerformanceView.Dispose ();
 				PerformanceView = null;
 			}
+			if (PlayTrailer != null) {
+				PlayTrailer.Dispose ();
+				PlayTrailer = null;
+			}
 			if (Poster != null) {
 				Poster.Dispose ();
 				Poster = null;
@@ -140,9 +156,9 @@ namespace CineworldiPhone
 				Telephone.Dispose ();
 				Telephone = null;
 			}
-			if (YouTubeView != null) {
-				YouTubeView.Dispose ();
-				YouTubeView = null;
+			if (WalkingDirections != null) {
+				WalkingDirections.Dispose ();
+				WalkingDirections = null;
 			}
 		}
 	}

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Cineworld;
 using PDRatingSample;
 using System.Drawing;
+using CoreLocation;
+using MapKit;
 
 namespace CineworldiPhone
 {
@@ -110,18 +112,9 @@ namespace CineworldiPhone
 
 		void LoadFilmDetails ()
 		{
-			if (String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
+			if (!String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
 			{
-				this.Poster.Hidden = false;
-				this.YouTubeView.Hidden = true;
-			} 
-			else 
-			{
-				this.Poster.Hidden = true;
-				this.YouTubeView.Hidden = false;
-
-				string trailerurl = String.Format (FilmDetailsController.YouTubeEmbedUrl, this.Film.YoutubeTrailer);
-				this.YouTubeView.LoadHtmlString (String.Format (FilmDetailsController.YouTubeEmbedString, trailerurl), new NSUrl (trailerurl));
+				this.PlayTrailer.Hidden = false;
 			}
 
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
@@ -198,6 +191,26 @@ namespace CineworldiPhone
 
 			this.CinemaReviewsTable.Source = new ReviewsTableSource (this.Cinema.Reviews);
 			this.CinemaReviewsTable.ReloadData ();
+
+			this.WalkingDirections.TouchUpInside += Directions_TouchUpInside;
+			this.DrivingDirections.TouchUpInside += Directions_TouchUpInside;
+		}
+
+		void Directions_TouchUpInside (object sender, EventArgs e)
+		{
+			var location = new CLLocationCoordinate2D(this.Cinema.Latitude, this.Cinema.Longitute);
+			MKPlacemarkAddress address = null;
+			var placemark = new MKPlacemark (location, address);
+
+			var mapItem = new MKMapItem (placemark);
+			mapItem.Name = String.Format ("Cineworld {0}", this.Cinema.Name);
+
+			var launchOptions = new MKLaunchOptions ();
+			launchOptions.DirectionsMode = (sender == this.WalkingDirections) ? MKDirectionsMode.Walking : MKDirectionsMode.Driving;
+			launchOptions.ShowTraffic = (sender == this.DrivingDirections);
+			launchOptions.MapType = MKMapType.Standard;
+
+			mapItem.OpenInMaps (launchOptions);
 		}
 
 		async Task LoadPerformances ()
@@ -245,16 +258,18 @@ namespace CineworldiPhone
 				ReviewController reviewController = segue.DestinationViewController as ReviewController;
 				if (reviewController != null) 
 				{
-					if (segue.Identifier.Equals ("ReviewSegue1")) 
-					{
+					if (segue.Identifier.Equals ("ReviewSegue1")) {
 						reviewController.Film = this.Film;
-					} 
-					else 
-					{
+					} else {
 						reviewController.Cinema = this.Cinema;
 					}
 
 					reviewController.PerformancesController = this;
+				} 
+				else 
+				{
+					YouTubeController youtubeController = segue.DestinationViewController as YouTubeController;
+					youtubeController.YouTubeId = this.Film.YoutubeTrailer;
 				}
 			}
 		}

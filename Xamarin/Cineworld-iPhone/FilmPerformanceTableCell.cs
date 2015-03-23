@@ -49,15 +49,15 @@ namespace CineworldiPhone
 				selected4Perfs.AddRange(film.Performances.OrderByDescending(p => p.PerformanceTS).Take(4).OrderBy(p => p.PerformanceTS));
 			}
 
-			var rows = (film.Performances.Count / 4);
-
-			if (film.Performances.Count % 4 > 0)
-				rows++;
-
-			float height = rows * 50;
-
-			var bounds = this.Performances.Bounds;
-			this.Performances.Frame = new RectangleF (15f, 90f, 271f, height);
+//			var rows = (film.Performances.Count / 4);
+//
+//			if (film.Performances.Count % 4 > 0)
+//				rows++;
+//
+//			float height = rows * 50;
+//
+//			var bounds = this.Performances.Bounds;
+//			this.Performances.Frame = new RectangleF (15f, 90f, 271f, height);
 
 			PerformanceCollectionSource performanceSource = new PerformanceCollectionSource (selected4Perfs);
 			this.Performances.Source = performanceSource;

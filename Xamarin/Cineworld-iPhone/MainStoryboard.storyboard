@@ -408,12 +408,15 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3159" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" alpha="0.4" hidden="YES">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3159" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" alpha="0.7" hidden="YES">
                                                 <rect key="frame" x="54" y="72" width="30" height="30"/>
                                                 <color key="backgroundColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
                                                 <state key="normal" image="Images/Play.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <segue id="3272" destination="3223" kind="push" identifier="YouTubeSegue2"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -459,7 +462,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1428">
-                                <rect key="frame" x="20" y="79" width="280" height="29"/>
+                                <rect key="frame" x="15" y="79" width="290" height="29"/>
                                 <segments>
                                     <segment title="Date"/>
                                     <segment title="Current"/>
@@ -545,13 +548,13 @@
                                         </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2552" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
-                                        <rect key="frame" x="270" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="275" y="0.0" width="30" height="30"/>
                                         <state key="normal" image="Images/Car.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2553" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
-                                        <rect key="frame" x="235" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="240" y="0.0" width="30" height="30"/>
                                         <state key="normal" image="Images/Man.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -702,14 +705,14 @@
                                         </prototypes>
                                     </tableView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="1682" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
-                                        <rect key="frame" x="20" y="5" width="242" height="21"/>
+                                        <rect key="frame" x="15" y="5" width="245" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1683" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
-                                        <rect key="frame" x="270" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="275" y="0.0" width="30" height="30"/>
                                         <state key="normal" image="Images/Date.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -943,6 +946,18 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3355" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="275" y="0.0" width="30" height="30"/>
+                                        <state key="normal" image="Images/Date.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3356" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="240" y="0.0" width="30" height="30"/>
+                                        <state key="normal" image="Images/Man.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2317">
@@ -1048,10 +1063,16 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <webView contentMode="scaleToFill" id="2452" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
-                                                <rect key="frame" x="15" y="5" width="290" height="163"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </webView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3285" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" alpha="0.7" hidden="YES">
+                                                <rect key="frame" x="54" y="72" width="30" height="30"/>
+                                                <color key="backgroundColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                                                <state key="normal" image="Images/Play.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue id="3345" destination="3223" kind="push" identifier="YouTubeSegue1"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -1075,7 +1096,9 @@
                         <outlet property="Poster" destination="2333" id="name-outlet-2333"/>
                         <outlet property="Misc" destination="2334" id="name-outlet-2334"/>
                         <outlet property="FilmReviewTable" destination="2326" id="name-outlet-2326"/>
-                        <outlet property="YouTubeView" destination="2452" id="name-outlet-2452"/>
+                        <outlet property="PlayTrailer" destination="3285" id="name-outlet-3285"/>
+                        <outlet property="DrivingDirections" destination="3355" id="name-outlet-3355"/>
+                        <outlet property="WalkingDirections" destination="3356" id="name-outlet-3356"/>
                     </connections>
                     <navigationItem title="Title" id="2453" translatesAutoresizingMaskIntoConstraints="NO" key="navigationItem"/>
                 </viewController>
@@ -1148,6 +1171,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2900" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1335" y="246"/>
+        </scene>
+        <scene sceneID="3222">
+            <objects>
+                <viewController id="3223" sceneMemberID="viewController" customClass="YouTubeController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3220"/>
+                        <viewControllerLayoutGuide type="bottom" id="3221"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3224">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="3274" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="65" width="320" height="505"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="YouTubeView" destination="3274" id="name-outlet-3274"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3225" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2242" y="886"/>
         </scene>
     </scenes>
     <resources>

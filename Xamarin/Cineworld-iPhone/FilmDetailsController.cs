@@ -33,8 +33,17 @@ namespace CineworldiPhone
 			else 
 			{
 				ReviewController reviewController = (segue.DestinationViewController as ReviewController);
-				reviewController.FilmDetailsController = this;
-				reviewController.Film = this.Film;
+
+				if (reviewController != null) 
+				{
+					reviewController.FilmDetailsController = this;
+					reviewController.Film = this.Film;
+				} 
+				else
+				{
+					YouTubeController youtubeController = segue.DestinationViewController as YouTubeController;
+					youtubeController.YouTubeId = this.Film.YoutubeTrailer;
+				}
 			}
 		}
 
@@ -59,10 +68,11 @@ namespace CineworldiPhone
 			if (!String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
 			{
 				this.PlayTrailer.Hidden = false;
-				this.PlayTrailer.TouchUpInside += (sender, e) => 
-				{
+				//this.PlayTrailer.TouchUpInside += (sender, e) => 
+				//{
 					// open youtube url
-				};
+					//UIApplication.SharedApplication.OpenUrl(new NSUrl(String.Format(@"http://www.youtube.com/watch?v={0}", this.Film.YoutubeTrailer)));
+				//};
 			} 
 
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
