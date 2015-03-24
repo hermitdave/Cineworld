@@ -81,56 +81,50 @@ namespace CineworldiPhone
 			await tFilmData;
 		}
 
-		static UIImage ImageFromUrl(string uri)
-		{
-			using(var url = new NSUrl(uri))
-			{
-				using(var data = NSData.FromUrl(url))
-				{
-					return UIImage.LoadFromData (data);
-				}
-			}
-		}
-
 		int totalImageCount = 0;
 
 		private async Task LoadFilmData()
 		{
-			totalImageCount = Application.Films.Count;
-
-			var imageview = this.AllFilmsButton.ImageView;
-			imageview.ContentMode = UIViewContentMode.ScaleAspectFill;
-			var bounds = this.AllFilmsButton.Bounds;
-
-			imageview.Frame = new RectangleF((float)bounds.Left, (float)bounds.Top, (float)bounds.Width, (float)bounds.Height);
-			imageview.AnimationRepeatCount = 0;
-
-			images.Clear ();
-
-			ImageManager.Instance.ImageLoaded += HandleImageLoaded;
-
-			foreach (var film in Application.Films.Values) 
-			{
-				var posterUri = film.PosterUrl;
-				if (posterUri == null) 
+			await Task.Run (() => 
 				{
-					totalImageCount--;
-					continue;
+				totalImageCount = Application.Films.Count;
+
+				//var imageview = this.AllFilmsButton.ImageView;
+				//imageview.ContentMode = UIViewContentMode.ScaleAspectFill;
+				//var bounds = this.AllFilmsButton.Bounds;
+
+				//imageview.Frame = new RectangleF ((float)bounds.Left, (float)bounds.Top, (float)bounds.Width, (float)bounds.Height);
+				//imageview.AnimationRepeatCount = 0;
+
+				images.Clear ();
+
+				ImageManager.Instance.ImageLoaded += HandleImageLoaded;
+
+				foreach (var film in Application.Films.Values) {
+					var posterUri = film.PosterUrl;
+					if (posterUri == null) {
+						totalImageCount--;
+						continue;
+					}
+					UIImage img = ImageManager.Instance.GetImage (posterUri.OriginalString);
+
+					if (img != null)
+						images.Add (img);
 				}
-				UIImage img = ImageManager.Instance.GetImage (posterUri.OriginalString);
 
-				if(img != null)
-					images.Add (img);
-			}
-
-			if (images.Count > 0) 
-			{
-				imageview.AnimationImages = images.ToArray ();
-				this.AllFilmsButton.SetImage (images[0], UIControlState.Normal);
-				imageview.AnimationDuration = images.Count*2;
-
-				imageview.StartAnimating ();
-			}
+				if (images.Count > 0) {
+						InvokeOnMainThread ( () => {
+							// manipulate UI controls
+							this.AllFilmsButton.ImageView.ContentMode = UIViewContentMode.ScaleAspectFill;
+							this.AllFilmsButton.SetImage (images [0], UIControlState.Normal);
+							this.AllFilmsButton.ImageView.AnimationImages = images.ToArray ();
+							this.AllFilmsButton.ImageView.AnimationDuration = images.Count * 2;
+							this.AllFilmsButton.ImageView.AnimationRepeatCount = 0;
+							this.AllFilmsButton.ImageView.StartAnimating ();
+						});
+					
+				}
+			});
 		}
 
 		void HandleImageLoaded (string id, UIImage image)

@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="Cineworld-iPhone/Cineworld-iPhone.csproj" GitUserInfo="UsingGIT">
+﻿<Properties StartupItem="Cineworld-iPhone/Cineworld.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Olivia’s iPod" />
   <MonoDevelop.Ide.Workbench>
     <Files>
