@@ -82,11 +82,14 @@ namespace Cineworld
             }
         }
 
-        public override async Task GetCinemaFilmListings(int cinemaID, bool bForce = false)
+		public override async Task<bool> GetCinemaFilmListings(int cinemaID, bool bForce = false)
         {
-            string FileName = String.Format(FilmsPerCinemaFileName, cinemaID);
+			string FileName = String.Format(FilmsPerCinemaFileName, cinemaID);
             
-            await base.GetCinemaFilmListings(cinemaID, bForce);
+			bool downloaded = await base.GetCinemaFilmListings(cinemaID, bForce);
+
+			if (!downloaded)
+				return downloaded;
 
             List<FilmHeader> filmheaders = await DeserialiseObject<List<FilmHeader>>(FileName);
             List<FilmInfo> films = new List<FilmInfo>();
@@ -108,6 +111,8 @@ namespace Cineworld
                 }
             }
 			Application.CinemaFilms[cinemaID] = films;
+
+			return true;
         }
     }
 }

@@ -215,22 +215,27 @@ namespace Cineworld
 #endif
         }
 
-        public async Task DownloadFile(string file, bool bForce, bool bCinemaPerformaceData = false)
+		public async Task<bool> DownloadFile(string file, bool bForce, bool bCinemaPerformaceData = false)
         {
 			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
 			if (bForce || !File.Exists(file) || DateTime.Now.Subtract(File.GetLastWriteTime(file)).TotalHours > 24)
+			{
 				await (new AsyncWebClient()).DownloadFileAsync(String.Format("{0}{1}", blobStorage, file), file, documentsPath);
-        }
+				return true;
+        	}
+
+			return false;
+		}
 
 
-        public virtual async Task GetCinemaFilmListings(int cinemaID, bool bForce = false)
+		public virtual async Task<bool> GetCinemaFilmListings(int cinemaID, bool bForce = false)
         {
             string FileName = String.Format(FilmsPerCinemaFileName, cinemaID);
             
             bool bCinemaListing = true;
             
-            await DownloadFile(FileName, bForce, bCinemaListing);
+			return (await DownloadFile(FileName, bForce, bCinemaListing));
        }
     }
 }
