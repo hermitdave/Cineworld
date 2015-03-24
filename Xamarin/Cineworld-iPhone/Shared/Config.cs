@@ -20,7 +20,7 @@ namespace Cineworld
 		public const string UseBrowserTag = "usebrowser";
         public const string RegionTag = "region";
         public const string FavCinemasTag = "favcinemas";
-        public const string UserNameTag = "user";
+        public const string UserNameTag	 = "user";
   
 		public static RegionDef Region
 		{

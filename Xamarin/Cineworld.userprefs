@@ -1,12 +1,29 @@
 ﻿<Properties StartupItem="Cineworld-iPhone/Cineworld-iPhone.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Olivia’s iPod" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/FilmDetailsController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5.8.2" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/Main.cs">
     <Files>
-      <File FileName="Cineworld-iPhone/FilmDetailsController.cs" Line="126" Column="36" />
-      <File FileName="Cineworld-iPhone/ReviewController.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/CinemaDetailsController.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/PerformancesController.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/Info.plist" />
+      <File FileName="Cineworld-iPhone/Shared/Config.cs" Line="74" Column="6" />
+      <File FileName="Cineworld-iPhone/Cineworld-iPhoneViewController.cs" Line="153" Column="1" />
+      <File FileName="Cineworld-iPhone/SettingsController.cs" Line="28" Column="45" />
+      <File FileName="Cineworld-iPhone/DataSources/ListPickerViewModel.cs" Line="15" Column="25" />
+      <File FileName="Cineworld-iPhone/DataSources/RegionPickerViewModel.cs" Line="13" Column="1" />
+      <File FileName="Cineworld-iPhone/CinemaDetailsController.cs" Line="287" Column="54" />
+      <File FileName="Cineworld-iPhone/Main.cs" Line="39" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Cineworld-iPhone" expanded="True">
+            <Node name="ComponentReferenceFolder" expanded="True" />
+            <Node name="DataSources" expanded="True" />
+            <Node name="Shared" expanded="True" />
+            <Node name="CinemaCollectionViewCell.cs" expanded="True" />
+            <Node name="Main.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

@@ -244,6 +244,12 @@
     <Compile Include="YouTubeController.designer.cs">
       <DependentUpon>YouTubeController.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsController.cs" />
+    <Compile Include="SettingsController.designer.cs">
+      <DependentUpon>SettingsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\ListPickerViewModel.cs" />
+    <Compile Include="DataSources\RegionPickerViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -285,6 +291,9 @@
     </Content>
     <Content Include="Images\Car.png" />
     <Content Include="Images\Man.png" />
+    <Content Include="Images\Gear.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="pdreview">

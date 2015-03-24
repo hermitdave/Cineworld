@@ -13,6 +13,7 @@ namespace CineworldiPhone
 	public partial class Cineworld_iPhoneViewController : UIViewController
 	{
 		List<UIImage> images = new List<UIImage> ();
+		CoreLocation.CLLocationManager locationManager = new CoreLocation.CLLocationManager ();
 
 		public Cineworld_iPhoneViewController (IntPtr handle) : base (handle)
 		{
@@ -26,18 +27,34 @@ namespace CineworldiPhone
 			// Release any cached data, images, etc that aren't in use.
 		}
 
-		private async Task InstantiateTiles(bool bForce = false)
+		void SetButtonStyles ()
 		{
-			//await this.LoadFilmData();
+			this.AllFilmsButton.Layer.CornerRadius = 10f;
+			this.AllFilmsButton.Layer.MasksToBounds = true;
+			this.AllFilmsButton.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			this.AllFilmsButton.Layer.Opaque = true;
 
-			//await this.LoadPinnedAndFavouriteCinemas(bForce);
+			this.AllCinemasButton.Layer.CornerRadius = 10f;
+			this.AllCinemasButton.Layer.MasksToBounds = true;
+			this.AllCinemasButton.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			this.AllCinemasButton.Layer.Opaque = true;
 
-			//await LoadCinemasByLocation();
+			UITableViewCell cell = new UITableViewCell (this.SettingsButton.Frame);
+			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+			cell.UserInteractionEnabled = false;
+
+			this.SettingsButton.AddSubview (cell);
 		}
 
-
-		private static async Task Initialise(bool bForce = false)
+		private async Task Initialise(bool bForce = false)
 		{
+			this.SettingsButton.SetTitle(Config.Region == Config.RegionDef.UK ? "United Kingdom" : "Ireland", UIControlState.Normal);
+
+			//this.AllFilmsButton.Enabled = this.AllCinemasButton.Enabled = false;
+
+			this.BusyIndicator.StartAnimating ();
+			this.BusyIndicator.Hidden = false;
+
 			LocalStorageHelper lsh = new LocalStorageHelper();
 
 			Console.WriteLine ("Start data download " + DateTime.Now.ToLongTimeString ());
@@ -45,6 +62,23 @@ namespace CineworldiPhone
 
 			Console.WriteLine ("Start data deserialisation " + DateTime.Now.ToLongTimeString ());
 			await lsh.DeserialiseObjects();
+
+			Task tFilmData = LoadFilmData ();
+
+			Console.WriteLine ("Initialisation complete " + DateTime.Now.ToLongTimeString ());
+
+			Application.UserLocation = locationManager.Location;
+
+			LoadNearestCinemas ();
+
+			Console.WriteLine ("Nearest cinemas loaded " + DateTime.Now.ToLongTimeString ());
+
+			this.BusyIndicator.StopAnimating ();
+			this.BusyIndicator.Hidden = true;
+
+			this.AllFilmsButton.Enabled = this.AllCinemasButton.Enabled = true;
+
+			await tFilmData;
 		}
 
 		static UIImage ImageFromUrl(string uri)
@@ -57,59 +91,6 @@ namespace CineworldiPhone
 				}
 			}
 		}
-
-//		public static UIImage RounderCorners (UIImage image, float width, float radius)
-//		{
-//			UIGraphics.BeginImageContext (new SizeF (width, width));
-//			var c = UIGraphics.GetCurrentContext ();
-//
-//			//Note: You need to write the Device.IsRetina code yourself 
-//			//radius = Device.IsRetina ? radius * 2 : radius;
-//
-//			c.BeginPath ();
-//			c.MoveTo (width, width / 2);
-//			c.AddArcToPoint (width, width, width / 2, width, radius);
-//			c.AddArcToPoint (0, width, 0, width / 2, radius);
-//			c.AddArcToPoint (0, 0, width / 2, 0, radius);
-//			c.AddArcToPoint (width, 0, width, width / 2, radius);
-//			c.ClosePath ();
-//			c.Clip ();
-//
-//			image.Draw (new PointF (0, 0));
-//			var converted = UIGraphics.GetImageFromCurrentImageContext ();
-//			UIGraphics.EndImageContext ();
-//			return converted;
-//		}
-
-
-//		private async Task LoadFilmData2()
-//		{
-//			List<Uri> posterUrls = await new BaseStorageHelper().GetImageList();
-//
-//			var imageview = this.AllFilmsButton.ImageView;
-//			imageview.ContentMode = UIViewContentMode.ScaleAspectFill;
-//			var bounds = this.AllFilmsButton.Bounds;
-//
-//			imageview.Frame = new RectangleF((float)bounds.Left, (float)bounds.Top, (float)bounds.Width, (float)bounds.Height);
-//			imageview.AnimationRepeatCount = 0;
-//			imageview.AnimationDuration = 10f;
-//
-//
-//			//foreach (var poster in posterUrls) 
-//			for (int i = 0; i < 5; i++) 
-//			{
-//				var img = ImageFromUrl (posterUrls [i].OriginalString);
-//				images.Add (img);
-//
-//				imageview.AnimationImages = images.ToArray ();
-//			}
-//
-//			this.AllFilmsButton.SetImage(images[0], UIControlState.Normal);
-//			imageview.StartAnimating ();
-//
-//
-//			//this.AllFilmsButton.SendSubviewToBack (imageview);
-//		}
 
 		int totalImageCount = 0;
 
@@ -150,8 +131,6 @@ namespace CineworldiPhone
 
 				imageview.StartAnimating ();
 			}
-
-			//this.AllFilmsButton.SendSubviewToBack (imageview);
 		}
 
 		void HandleImageLoaded (string id, UIImage image)
@@ -182,15 +161,23 @@ namespace CineworldiPhone
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
-			base.PrepareForSegue (segue, sender);
-
 			ImageManager.Instance.ImageLoaded -= HandleImageLoaded;
 
 			var cinemaDetailsController = segue.DestinationViewController as CinemaDetailsController;
 			if (cinemaDetailsController != null) 
 			{
 				cinemaDetailsController.Cinema = (sender as CinemaCollectionViewCell).Cinema;
+			} 
+			else 
+			{
+				SettingsController settingsController = (segue.DestinationViewController as SettingsController);
+				if (settingsController != null) 
+				{
+					settingsController.MainViewController = this;
+				}
 			}
+
+			base.PrepareForSegue (segue, sender);
 		}
 
 		#region View lifecycle
@@ -199,50 +186,23 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
-			//Threadpool
+			this.SetButtonStyles ();
 
-			var locationManager = new CoreLocation.CLLocationManager ();
 			locationManager.RequestWhenInUseAuthorization ();
 
-
-			// Perform any additional setup after loading the view, typically from a nib.
-
-			//nuint cacheSizeMemory = 4*1024*1024; // 4MB
-			//nuint cacheSizeDisk = 32*1024*1024; // 32MB
-
-			//NSUrlCache.SharedCache = new NSUrlCache (cacheSizeMemory, cacheSizeDisk, "nsurlcache");
-
-			this.BusyIndicator.StartAnimating ();
-			this.BusyIndicator.Hidden = false;
-
-			this.AllFilmsButton.Layer.CornerRadius = 10f;
-			this.AllFilmsButton.Layer.MasksToBounds = true;
-			this.AllFilmsButton.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
-			this.AllFilmsButton.Layer.Opaque = true;
-
-			this.AllCinemasButton.Layer.CornerRadius = 10f;
-			this.AllCinemasButton.Layer.MasksToBounds = true;
-			this.AllCinemasButton.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
-			this.AllCinemasButton.Layer.Opaque = true;
-
 			await Initialise (false);
+		}
 
-			Task tFilmData = LoadFilmData ();
+		public async void RegionSelectionComplete(bool regionChanged)
+		{
+			this.NavigationController.PopViewController(true);
 
-			Console.WriteLine ("Initialisation complete " + DateTime.Now.ToLongTimeString ());
+			if (regionChanged) 
+			{
+				this.NearestCinemas.Source = null;
 
-			Application.UserLocation = locationManager.Location;
-
-			LoadNearestCinemas ();
-
-			Console.WriteLine ("Nearest cinemas loaded " + DateTime.Now.ToLongTimeString ());
-
-			this.BusyIndicator.StopAnimating ();
-			this.BusyIndicator.Hidden = true;
-
-			this.AllFilmsButton.Enabled = this.AllCinemasButton.Enabled = true;
-
-			await tFilmData;
+				await Initialise ();
+			}
 		}
 
 		void LoadNearestCinemas ()
