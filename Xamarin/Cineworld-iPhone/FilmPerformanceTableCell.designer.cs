@@ -20,10 +20,6 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UICollectionView Performances { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView Poster { get; set; }
 
 		[Outlet]
@@ -35,10 +31,6 @@ namespace CineworldiPhone
 			if (Header != null) {
 				Header.Dispose ();
 				Header = null;
-			}
-			if (Performances != null) {
-				Performances.Dispose ();
-				Performances = null;
 			}
 			if (Poster != null) {
 				Poster.Dispose ();

@@ -180,6 +180,9 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			Application.Storyboard = this.Storyboard;
+			Application.NavigationController = this.NavigationController;
+
 			this.SetButtonStyles ();
 
 			locationManager.RequestWhenInUseAuthorization ();

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="40">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Cineworld-->
@@ -19,7 +18,7 @@
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6">
                                 <rect key="frame" x="150" y="274" width="20" height="20"/>
-                                <color key="color" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5">
                                 <rect key="frame" x="15" y="109" width="135" height="135"/>
@@ -43,8 +42,9 @@
                                     <segue destination="300" kind="push" id="346"/>
                                 </connections>
                             </button>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="2582" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2582">
                                 <rect key="frame" x="15" y="264" width="285" height="290"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="2584">
                                     <size key="itemSize" width="135" height="135"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -52,58 +52,54 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2583" reuseIdentifier="CinemaCollectionViewCell" customClass="CinemaCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CinemaCollectionViewCell" id="2583" customClass="CinemaCollectionViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="2659" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" image="Background.png">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="Background.png" translatesAutoresizingMaskIntoConstraints="NO" id="2659">
                                                     <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" id="2660" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" numberOfLines="0" adjustsFontSizeToFit="NO" alpha="0.7" text="Name" adjustsLetterSpacingToFitWidth="YES">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2660">
                                                     <rect key="frame" x="0.0" y="0.0" width="135" height="42"/>
-                                                    <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distance" lineBreakMode="wordWrap" id="2679" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" adjustsFontSizeToFit="NO" textAlignment="center" alpha="0.7">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" fixedFrame="YES" text="Distance" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2679">
                                                     <rect key="frame" x="0.0" y="114" width="135" height="21"/>
-                                                    <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue id="2649" destination="1221" kind="push"/>
                                             <outlet property="CinemaTitle" destination="2660" id="name-outlet-2660"/>
                                             <outlet property="Distance" destination="2679" id="name-outlet-2679"/>
+                                            <segue destination="1221" kind="push" id="2649"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3424" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3424">
                                 <rect key="frame" x="0.0" y="65" width="320" height="44"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue id="3460" destination="3420" kind="popover" popoverAnchorView="3424">
-                                        <popoverArrowDirection key="popoverArrowDirection" down="YES" left="YES" right="YES" up="YES"/>
-                                    </segue>
+                                    <segue destination="3420" kind="push" id="3460"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Cineworld" id="74">
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Cineworld" id="74"/>
                     <connections>
                         <outlet property="AllCinemasButton" destination="33" id="name-outlet-33"/>
                         <outlet property="AllFilmsButton" destination="5" id="name-outlet-5"/>
@@ -154,7 +150,7 @@
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CinemaTableCell" textLabel="1213" style="IBUITableViewCellStyleDefault" id="1201" customClass="CinemaTableCell" rowHeight="44">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CinemaTableCell" textLabel="1213" rowHeight="44" style="IBUITableViewCellStyleDefault" id="1201" customClass="CinemaTableCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1201" id="8ig-pm-XMb">
@@ -332,16 +328,14 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue id="2938" destination="2898" kind="popover" identifier="ReviewSegue" popoverAnchorView="1167">
-                                                <popoverArrowDirection key="popoverArrowDirection" down="YES" left="YES" right="YES" up="YES"/>
-                                            </segue>
+                                            <segue destination="2898" kind="push" identifier="ReviewSegue" id="2938"/>
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1168">
                                         <rect key="frame" x="0.0" y="30" width="320" height="415"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReviewTableCell" textLabel="1183" detailTextLabel="1184" style="IBUITableViewCellStyleSubtitle" id="1169" customClass="ReviewTableCell" rowHeight="44">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReviewTableCell" textLabel="1183" detailTextLabel="1184" rowHeight="44" style="IBUITableViewCellStyleSubtitle" id="1169" customClass="ReviewTableCell">
                                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1169" id="s8C-K3-i84">
@@ -370,11 +364,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1404" fixedFrame="YES">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1404">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CinemaTableCell" textLabel="1406" style="IBUITableViewCellStyleDefault" id="1405" customClass="CinemaTableCell" rowHeight="44">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CinemaTableCell" textLabel="1406" rowHeight="44" style="IBUITableViewCellStyleDefault" id="1405" customClass="CinemaTableCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1405" id="abl-BK-ZLV">
@@ -391,24 +385,24 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue id="2229" destination="1787" kind="push"/>
+                                            <segue destination="1787" kind="push" id="2229"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="1877" key="tableHeaderView" fixedFrame="YES">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="1877">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="1042" fixedFrame="YES">
+                                    <view contentMode="scaleToFill" id="1042">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="802" fixedFrame="YES">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="802">
                                                 <rect key="frame" x="15" y="5" width="109" height="163"/>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="803" fixedFrame="YES">
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="803">
                                                 <rect key="frame" x="139" y="5" width="164" height="75"/>
                                             </view>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Overview" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="913" fixedFrame="YES">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Overview" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="913">
                                                 <rect key="frame" x="15" y="183" width="53" height="15"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -422,14 +416,14 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3159" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" alpha="0.7" hidden="YES">
+                                            <button hidden="YES" opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3159">
                                                 <rect key="frame" x="54" y="72" width="30" height="30"/>
-                                                <color key="backgroundColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" image="Images/Play.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue id="3272" destination="3223" kind="push" identifier="YouTubeSegue2"/>
+                                                    <segue destination="3223" kind="push" identifier="YouTubeSegue2" id="3272"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -445,24 +439,24 @@
                         <outlet property="CinemasView" destination="1404" id="name-outlet-1404"/>
                         <outlet property="FilmCastTable" destination="973" id="name-outlet-973"/>
                         <outlet property="FilmDetailSegments" destination="790" id="name-outlet-790"/>
+                        <outlet property="FilmGistView" destination="1042" id="name-outlet-1042"/>
                         <outlet property="FilmTitle" destination="787" id="name-outlet-787"/>
+                        <outlet property="GistScrollViewer" destination="1877" id="name-outlet-1877"/>
+                        <outlet property="Misc" destination="803" id="name-outlet-803"/>
+                        <outlet property="OverviewData" destination="1904" id="name-outlet-1904"/>
+                        <outlet property="OverviewLabel" destination="913" id="name-outlet-913"/>
+                        <outlet property="PlayTrailer" destination="3159" id="name-outlet-3159"/>
+                        <outlet property="Poster" destination="802" id="name-outlet-802"/>
                         <outlet property="RateReviewButton" destination="1167" id="name-outlet-1167"/>
                         <outlet property="ReviewTable" destination="1168" id="name-outlet-1168"/>
                         <outlet property="ReviewsView" destination="1166" id="name-outlet-1166"/>
-                        <outlet property="GistScrollViewer" destination="1877" id="name-outlet-1877"/>
-                        <outlet property="Poster" destination="802" id="name-outlet-802"/>
-                        <outlet property="Misc" destination="803" id="name-outlet-803"/>
-                        <outlet property="OverviewLabel" destination="913" id="name-outlet-913"/>
-                        <outlet property="OverviewData" destination="1904" id="name-outlet-1904"/>
-                        <outlet property="FilmGistView" destination="1042" id="name-outlet-1042"/>
-                        <outlet property="PlayTrailer" destination="3159" id="name-outlet-3159"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="596" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="886" y="640"/>
         </scene>
-        <!--Cinema Details Controller-->
+        <!--Title-->
         <scene sceneID="1220">
             <objects>
                 <viewController storyboardIdentifier="CinemaDetailsController" id="1221" customClass="CinemaDetailsController" sceneMemberID="viewController">
@@ -473,7 +467,6 @@
                     <view key="view" contentMode="scaleToFill" id="1222">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1428">
                                 <rect key="frame" x="15" y="79" width="290" height="29"/>
@@ -484,98 +477,92 @@
                                     <segment title="Cinema"/>
                                 </segments>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" id="1433" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1433">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" minimumFontSize="10" id="1434" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Address" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1434">
                                         <rect key="frame" x="20" y="30" width="72" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" minimumFontSize="10" id="1435" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1435">
                                         <rect key="frame" x="20" y="46" width="280" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="1437" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1437">
                                         <rect key="frame" x="20" y="93" width="280" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Telephone" lineBreakMode="tailTruncation" minimumFontSize="10" id="1438" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Telephone" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1438">
                                         <rect key="frame" x="20" y="77" width="72" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1439" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1439">
                                         <rect key="frame" x="20" y="114" width="280" height="30"/>
                                         <state key="normal" title="Rate &amp; Review">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted"/>
-                                        <state key="selected"/>
-                                        <state key="disabled"/>
                                         <connections>
-                                            <segue id="2982" destination="2898" kind="popover" identifier="ReviewSegue" popoverAnchorView="1439">
-                                                <popoverArrowDirection key="popoverArrowDirection" down="YES" left="YES" right="YES" up="YES"/>
-                                            </segue>
+                                            <segue destination="2898" kind="push" identifier="ReviewSegue" id="2982"/>
                                         </connections>
                                     </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1440" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1440">
                                         <rect key="frame" x="0.0" y="144" width="320" height="285"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="1441" style="IBUITableViewCellStyleSubtitle" textLabel="1447" detailTextLabel="1448" customClass="ReviewTableCell" reuseIdentifier="ReviewTableCell" rowHeight="44">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReviewTableCell" textLabel="1447" detailTextLabel="1448" rowHeight="44" style="IBUITableViewCellStyleSubtitle" id="1441" customClass="ReviewTableCell">
                                                 <rect key="frame" x="0.0" y="22" width="310" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1442" tableViewCell="1441">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1441" id="AM2-HS-csx">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1447">
                                                             <rect key="frame" x="15" y="4" width="34" height="21.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1448">
                                                             <rect key="frame" x="15" y="25.5" width="43" height="14.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                </view>
+                                                </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2552" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2552">
                                         <rect key="frame" x="261" y="0.0" width="44" height="44"/>
                                         <state key="normal" image="Images/Car.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2553" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2553">
                                         <rect key="frame" x="261" y="54" width="44" height="44"/>
                                         <state key="normal" image="Images/Man.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1473" hidden="YES">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1473">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -622,7 +609,7 @@
                                             <outlet property="Header" destination="1480" id="1479"/>
                                             <outlet property="Poster" destination="1482" id="1481"/>
                                             <outlet property="Rating" destination="1484" id="1483"/>
-                                            <segue id="1875" destination="1787" kind="push" identifier="PerfViewSegue"/>
+                                            <segue destination="1787" kind="push" identifier="PerfViewSegue" id="1875"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -630,15 +617,14 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1551">
                                 <rect key="frame" x="150" y="274" width="37" height="37"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" id="1680" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1680">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="135" sectionHeaderHeight="30" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1508">
                                         <rect key="frame" x="0.0" y="44" width="320" height="406"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilmPerformanceTableCell" id="1509" customClass="FilmPerformanceTableCell" accessoryType="disclosureIndicator" rowHeight="135">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilmPerformanceTableCell" rowHeight="135" id="1509" customClass="FilmPerformanceTableCell">
                                                 <rect key="frame" x="0.0" y="22" width="320" height="178"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1509" id="1522">
@@ -655,50 +641,6 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="1523" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
-                                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="1526">
-                                                                <size key="itemSize" width="60" height="40"/>
-                                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                            </collectionViewFlowLayout>
-                                                            <rect key="frame" x="15" y="85" width="258" height="50"/>
-                                                            <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1524" reuseIdentifier="PerformanceCollectionViewCell" customClass="PerformanceCollectionViewCell">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" lineBreakMode="tailTruncation" minimumFontSize="10" id="1528" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" fixedFrame="YES">
-                                                                                <rect key="frame" x="5" y="3" width="50" height="20"/>
-                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                                                <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Type" lineBreakMode="tailTruncation" id="1529" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" adjustsFontSizeToFit="NO" fixedFrame="YES">
-                                                                                <rect key="frame" x="5" y="18" width="50" height="20"/>
-                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                                                <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                    </view>
-                                                                    <connections>
-                                                                        <outlet property="Time" destination="1528" id="name-outlet-1528"/>
-                                                                        <outlet property="Type" destination="1529" id="name-outlet-1529"/>
-                                                                        <segue id="2125" destination="1707" kind="push" identifier="PerfSegue"/>
-                                                                    </connections>
-                                                                    <size key="referenceSize" width="60" height="40"/>
-                                                                    <size key="customSize" width="60" height="40"/>
-                                                                </collectionViewCell>
-                                                            </cells>
-                                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                                        </collectionView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Desc" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1618">
                                                             <rect key="frame" x="58" y="25" width="225" height="50"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -711,56 +653,58 @@
                                                 <connections>
                                                     <outlet property="Header" destination="1515" id="1514"/>
                                                     <outlet property="Poster" destination="1517" id="1516"/>
-                                                    <outlet property="Performances" destination="1523" id="name-outlet-1523"/>
                                                     <outlet property="ShortDesc" destination="1618" id="name-outlet-1618"/>
-                                                    <segue id="2867" destination="1787" kind="push" identifier="PerfView2"/>
+                                                    <segue destination="1787" kind="push" identifier="PerfView2" id="2867"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="1682" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1682">
                                         <rect key="frame" x="15" y="5" width="236" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1683" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1683">
                                         <rect key="frame" x="261" y="0.0" width="44" height="44"/>
                                         <state key="normal" image="Images/Date.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem title="Title" id="1425" translatesAutoresizingMaskIntoConstraints="NO" key="navigationItem"/>
+                    <navigationItem key="navigationItem" title="Title" id="1425"/>
                     <connections>
-                        <outlet property="CinemaTitle" destination="1425" id="name-outlet-1425"/>
-                        <outlet property="CinemaSegments" destination="1428" id="name-outlet-1428"/>
                         <outlet property="Address" destination="1435" id="name-outlet-1435"/>
-                        <outlet property="Telephone" destination="1437" id="name-outlet-1437"/>
-                        <outlet property="RateReview" destination="1439" id="name-outlet-1439"/>
-                        <outlet property="ReviewsTable" destination="1440" id="name-outlet-1440"/>
-                        <outlet property="CinemaGist" destination="1433" id="name-outlet-1433"/>
                         <outlet property="AllFilmsTable" destination="1473" id="name-outlet-1473"/>
                         <outlet property="BusyIndicator" destination="1551" id="name-outlet-1551"/>
-                        <outlet property="FilmsByDateView" destination="1680" id="name-outlet-1680"/>
+                        <outlet property="CinemaGist" destination="1433" id="name-outlet-1433"/>
+                        <outlet property="CinemaSegments" destination="1428" id="name-outlet-1428"/>
+                        <outlet property="CinemaTitle" destination="1425" id="name-outlet-1425"/>
                         <outlet property="DateSelectionButton" destination="1683" id="name-outlet-1683"/>
-                        <outlet property="SelectedDate" destination="1682" id="name-outlet-1682"/>
-                        <outlet property="FilmsByDateTable" destination="1508" id="name-outlet-1508"/>
-                        <outlet property="WalkingDirections" destination="2553" id="name-outlet-2553"/>
                         <outlet property="DrivingDirections" destination="2552" id="name-outlet-2552"/>
+                        <outlet property="FilmsByDateTable" destination="1508" id="name-outlet-1508"/>
+                        <outlet property="FilmsByDateView" destination="1680" id="name-outlet-1680"/>
+                        <outlet property="RateReview" destination="1439" id="name-outlet-1439"/>
+                        <outlet property="ReviewsTable" destination="1440" id="name-outlet-1440"/>
+                        <outlet property="SelectedDate" destination="1682" id="name-outlet-1682"/>
+                        <outlet property="Telephone" destination="1437" id="name-outlet-1437"/>
+                        <outlet property="WalkingDirections" destination="2553" id="name-outlet-2553"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1223" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="908" y="-234"/>
         </scene>
+        <!--Ticket Purchase-->
         <scene sceneID="1706">
             <objects>
-                <viewController id="1707" sceneMemberID="viewController" customClass="TicketPurchaseController" explicitStoryboardIdentifier="TicketPurchaseController">
+                <viewController storyboardIdentifier="TicketPurchaseController" id="1707" customClass="TicketPurchaseController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1704"/>
                         <viewControllerLayoutGuide type="bottom" id="1705"/>
@@ -768,16 +712,15 @@
                     <view key="view" contentMode="scaleToFill" id="1708">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" id="1739" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1739">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="569"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem title="Ticket Purchase" id="1737" translatesAutoresizingMaskIntoConstraints="NO" key="navigationItem">
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Ticket Purchase" id="1737"/>
                     <connections>
                         <outlet property="WebBrowser" destination="1739" id="name-outlet-1739"/>
                     </connections>
@@ -786,9 +729,10 @@
             </objects>
             <point key="canvasLocation" x="2536" y="201"/>
         </scene>
+        <!--Title-->
         <scene sceneID="1786">
             <objects>
-                <viewController id="1787" sceneMemberID="viewController" customClass="PerformancesController">
+                <viewController id="1787" customClass="PerformancesController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1784"/>
                         <viewControllerLayoutGuide type="bottom" id="1785"/>
@@ -796,7 +740,6 @@
                     <view key="view" contentMode="scaleToFill" id="1788">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2129">
                                 <rect key="frame" x="15" y="79" width="290" height="29"/>
@@ -808,27 +751,27 @@
                                     <segment title="Showtimes"/>
                                 </segments>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="2257" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2257">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2258" customClass="PerformanceTableCell" rowHeight="80" reuseIdentifier="PerformanceTableCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PerformanceTableCell" rowHeight="80" id="2258" customClass="PerformanceTableCell">
                                         <rect key="frame" x="0.0" y="22" width="198" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2259" tableViewCell="2258">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2258" id="6d6-fV-Sil">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" id="2264" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" adjustsFontSizeToFit="NO">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2264">
                                                     <rect key="frame" x="15" y="0.0" width="290" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="2265" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2265">
                                                     <rect key="frame" x="15" y="26" width="270" height="140"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2267">
                                                         <size key="itemSize" width="60" height="40"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -836,43 +779,41 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2266" reuseIdentifier="PerformanceCollectionViewCell" customClass="PerformanceCollectionViewCell">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PerformanceCollectionViewCell" id="2266" customClass="PerformanceCollectionViewCell">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" lineBreakMode="tailTruncation" minimumFontSize="10" id="2268" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" fixedFrame="YES">
+                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2268">
                                                                         <rect key="frame" x="5" y="3" width="50" height="20"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Type" lineBreakMode="tailTruncation" id="2269" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" adjustsFontSizeToFit="NO" fixedFrame="YES">
+                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Type" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2269">
                                                                         <rect key="frame" x="5" y="18" width="50" height="20"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                                        <color key="textColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
                                                             <size key="customSize" width="60" height="40"/>
-                                                            <size key="referenceSize" width="60" height="40"/>
                                                             <connections>
                                                                 <outlet property="Time" destination="2268" id="name-outlet-2268"/>
                                                                 <outlet property="Type" destination="2269" id="name-outlet-2269"/>
-                                                                <segue id="2523" destination="1707" kind="push" identifier="PerfSegue"/>
+                                                                <segue destination="1707" kind="push" identifier="PerfSegue" id="2523"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                                 </collectionView>
                                             </subviews>
-                                        </view>
+                                        </tableViewCellContentView>
                                         <connections>
                                             <outlet property="PerformanceDate" destination="2264" id="name-outlet-2264"/>
                                             <outlet property="Performances" destination="2265" id="name-outlet-2265"/>
@@ -880,100 +821,94 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2298" hidden="YES">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2298">
                                 <rect key="frame" x="150" y="274" width="37" height="37"/>
-                                <color key="color" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" id="2299" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" hidden="YES">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2299">
                                 <rect key="frame" x="0.0" y="128" width="320" height="440"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Address" lineBreakMode="tailTruncation" minimumFontSize="10" id="2300" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Address" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2300">
                                         <rect key="frame" x="20" y="30" width="72" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" minimumFontSize="10" id="2301" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2301">
                                         <rect key="frame" x="20" y="46" width="280" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="2302" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2302">
                                         <rect key="frame" x="20" y="93" width="280" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Telephone" lineBreakMode="tailTruncation" minimumFontSize="10" id="2303" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Telephone" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2303">
                                         <rect key="frame" x="20" y="77" width="72" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2304" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2304">
                                         <rect key="frame" x="10" y="119" width="280" height="30"/>
                                         <state key="normal" title="Rate &amp; Review">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted"/>
-                                        <state key="selected"/>
-                                        <state key="disabled"/>
                                         <connections>
-                                            <segue id="3130" destination="2898" kind="popover" popoverAnchorView="2304" identifier="ReviewSegue2">
-                                                <popoverArrowDirection key="popoverArrowDirection" down="YES" left="YES" right="YES" up="YES"/>
-                                            </segue>
+                                            <segue destination="2898" kind="push" identifier="ReviewSegue2" id="3130"/>
                                         </connections>
                                     </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2305" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2305">
                                         <rect key="frame" x="0.0" y="144" width="320" height="285"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2306" style="IBUITableViewCellStyleSubtitle" textLabel="2307" detailTextLabel="2308" customClass="ReviewTableCell" reuseIdentifier="ReviewTableCell" rowHeight="44">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReviewTableCell" textLabel="2307" detailTextLabel="2308" rowHeight="44" style="IBUITableViewCellStyleSubtitle" id="2306" customClass="ReviewTableCell">
                                                 <rect key="frame" x="0.0" y="22" width="310" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2309" tableViewCell="2306">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2306" id="VTF-H7-zXV">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2307">
                                                             <rect key="frame" x="15" y="4" width="34" height="21.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2308">
                                                             <rect key="frame" x="15" y="25.5" width="43" height="14.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                </view>
+                                                </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3355" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3355">
                                         <rect key="frame" x="261" y="0.0" width="44" height="44"/>
                                         <state key="normal" image="Images/Car.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3356" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3356">
                                         <rect key="frame" x="261" y="54" width="44" height="44"/>
                                         <state key="normal" image="Images/Man.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2317">
                                 <rect key="frame" x="0.0" y="128" width="320" height="440"/>
@@ -1014,16 +949,14 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue id="3095" destination="2898" kind="popover" popoverAnchorView="2325" identifier="ReviewSegue1">
-                                                <popoverArrowDirection key="popoverArrowDirection" down="YES" left="YES" right="YES" up="YES"/>
-                                            </segue>
+                                            <segue destination="2898" kind="push" identifier="ReviewSegue1" id="3095"/>
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2326">
                                         <rect key="frame" x="0.0" y="30" width="320" height="420"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReviewTableCell" textLabel="2328" detailTextLabel="2329" style="IBUITableViewCellStyleSubtitle" id="2327" customClass="ReviewTableCell" rowHeight="44">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReviewTableCell" textLabel="2328" detailTextLabel="2329" rowHeight="44" style="IBUITableViewCellStyleSubtitle" id="2327" customClass="ReviewTableCell">
                                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2327" id="2330">
@@ -1052,19 +985,19 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="2331" key="tableHeaderView" fixedFrame="YES" hidden="YES">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="2331">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="2332" fixedFrame="YES">
+                                    <view contentMode="scaleToFill" id="2332">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2333" fixedFrame="YES">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2333">
                                                 <rect key="frame" x="15" y="5" width="109" height="163"/>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2334" fixedFrame="YES">
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2334">
                                                 <rect key="frame" x="15" y="178" width="290" height="75"/>
                                             </view>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="Overview" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2335" fixedFrame="YES">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Overview" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2335">
                                                 <rect key="frame" x="15" y="260" width="53" height="15"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -1078,14 +1011,14 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3285" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" alpha="0.7" hidden="YES">
+                                            <button hidden="YES" opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3285">
                                                 <rect key="frame" x="54" y="72" width="30" height="30"/>
-                                                <color key="backgroundColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" image="Images/Play.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue id="3345" destination="3223" kind="push" identifier="YouTubeSegue1"/>
+                                                    <segue destination="3223" kind="push" identifier="YouTubeSegue1" id="3345"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1094,36 +1027,38 @@
                                 </subviews>
                             </scrollView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="2453"/>
                     <connections>
-                        <outlet property="PerformancesSegment" destination="2129" id="name-outlet-2129"/>
-                        <outlet property="PerformanceView" destination="2257" id="name-outlet-2257"/>
+                        <outlet property="Address" destination="2301" id="name-outlet-2301"/>
                         <outlet property="BusyIndicator" destination="2298" id="name-outlet-2298"/>
                         <outlet property="CinemaGist" destination="2299" id="name-outlet-2299"/>
-                        <outlet property="Address" destination="2301" id="name-outlet-2301"/>
-                        <outlet property="Telephone" destination="2302" id="name-outlet-2302"/>
                         <outlet property="CinemaReviewsTable" destination="2305" id="name-outlet-2305"/>
+                        <outlet property="DrivingDirections" destination="3355" id="name-outlet-3355"/>
                         <outlet property="FilmCast" destination="2317" id="name-outlet-2317"/>
-                        <outlet property="FilmReviews" destination="2324" id="name-outlet-2324"/>
                         <outlet property="FilmGist" destination="2331" id="name-outlet-2331"/>
+                        <outlet property="FilmReviewTable" destination="2326" id="name-outlet-2326"/>
+                        <outlet property="FilmReviews" destination="2324" id="name-outlet-2324"/>
+                        <outlet property="Misc" destination="2334" id="name-outlet-2334"/>
                         <outlet property="OverviewData" destination="2336" id="name-outlet-2336"/>
                         <outlet property="OverviewLabel" destination="2335" id="name-outlet-2335"/>
-                        <outlet property="Poster" destination="2333" id="name-outlet-2333"/>
-                        <outlet property="Misc" destination="2334" id="name-outlet-2334"/>
-                        <outlet property="FilmReviewTable" destination="2326" id="name-outlet-2326"/>
+                        <outlet property="PerformanceView" destination="2257" id="name-outlet-2257"/>
+                        <outlet property="PerformancesSegment" destination="2129" id="name-outlet-2129"/>
                         <outlet property="PlayTrailer" destination="3285" id="name-outlet-3285"/>
-                        <outlet property="DrivingDirections" destination="3355" id="name-outlet-3355"/>
+                        <outlet property="Poster" destination="2333" id="name-outlet-2333"/>
+                        <outlet property="Telephone" destination="2302" id="name-outlet-2302"/>
                         <outlet property="WalkingDirections" destination="3356" id="name-outlet-3356"/>
                     </connections>
-                    <navigationItem title="Title" id="2453" translatesAutoresizingMaskIntoConstraints="NO" key="navigationItem"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1789" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1907" y="139"/>
         </scene>
+        <!--Review-->
         <scene sceneID="2897">
             <objects>
-                <viewController id="2898" sceneMemberID="viewController" customClass="ReviewController" explicitStoryboardIdentifier="ReviewController">
+                <viewController id="2898" customClass="ReviewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2895"/>
                         <viewControllerLayoutGuide type="bottom" id="2896"/>
@@ -1131,45 +1066,45 @@
                     <view key="view" contentMode="scaleToFill" id="2899">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" minimumFontSize="10" id="3014" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3014">
                                 <rect key="frame" x="15" y="79" width="60" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="3015" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Your Name">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3015">
                                 <rect key="frame" x="90" y="74" width="215" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rate" lineBreakMode="tailTruncation" minimumFontSize="10" id="3016" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Rate" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3016">
                                 <rect key="frame" x="15" y="125" width="60" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Review" lineBreakMode="tailTruncation" minimumFontSize="10" id="3017" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Review" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3017">
                                 <rect key="frame" x="15" y="171" width="60" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3018" translatesAutoresizingMaskIntoConstraints="NO" editable="YES" selectable="YES" text="Your review in 140 characters!" fixedFrame="YES">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Your review in 140 characters!" translatesAutoresizingMaskIntoConstraints="NO" id="3018">
                                 <rect key="frame" x="90" y="166" width="215" height="150"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem id="3011" translatesAutoresizingMaskIntoConstraints="NO" key="navigationItem" title="Review">
-                        <barButtonItem style="plain" id="3013" key="rightBarButtonItem">
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3012" translatesAutoresizingMaskIntoConstraints="NO" key="customView">
+                    <navigationItem key="navigationItem" title="Review" id="3011">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="3013">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3012">
                                 <rect key="frame" x="0.0" y="0.0" width="56" height="30"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1178,18 +1113,19 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="Review" destination="3018" id="name-outlet-3018"/>
                         <outlet property="Submit" destination="3012" id="name-outlet-3012"/>
                         <outlet property="User" destination="3015" id="name-outlet-3015"/>
-                        <outlet property="Review" destination="3018" id="name-outlet-3018"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2900" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1335" y="246"/>
         </scene>
+        <!--You Tube Controller-->
         <scene sceneID="3222">
             <objects>
-                <viewController id="3223" sceneMemberID="viewController" customClass="YouTubeController">
+                <viewController id="3223" customClass="YouTubeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3220"/>
                         <viewControllerLayoutGuide type="bottom" id="3221"/>
@@ -1197,13 +1133,13 @@
                     <view key="view" contentMode="scaleToFill" id="3224">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" id="3274" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3274">
                                 <rect key="frame" x="0.0" y="65" width="320" height="505"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="YouTubeView" destination="3274" id="name-outlet-3274"/>
@@ -1213,9 +1149,10 @@
             </objects>
             <point key="canvasLocation" x="2242" y="886"/>
         </scene>
+        <!--Region-->
         <scene sceneID="3419">
             <objects>
-                <viewController id="3420" sceneMemberID="viewController" customClass="SettingsController" explicitStoryboardIdentifier="SettingsController">
+                <viewController id="3420" customClass="SettingsController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3417"/>
                         <viewControllerLayoutGuide type="bottom" id="3418"/>
@@ -1223,17 +1160,17 @@
                     <view key="view" contentMode="scaleToFill" id="3421">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" id="3463" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3463">
                                 <rect key="frame" x="0.0" y="203" width="320" height="162"/>
                             </pickerView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Region" id="3483"/>
                     <connections>
                         <outlet property="RegionPicker" destination="3463" id="name-outlet-3463"/>
                     </connections>
-                    <navigationItem title="Region" id="3483" translatesAutoresizingMaskIntoConstraints="NO" key="navigationItem"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3422" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1242,25 +1179,20 @@
     </scenes>
     <resources>
         <image name="Background.png" width="222" height="222"/>
-        <image name="Images/PlaceHolder.png" width="185" height="278"/>
-        <image name="Images/Stars/chosen.png" width="200" height="190"/>
-        <image name="Images/Stars/empty.png" width="200" height="190"/>
-        <image name="Images/Stars/filled.png" width="200" height="190"/>
-        <image name="Images/SmallLogo.png" width="30" height="30"/>
-        <image name="Images/Date.png" width="60" height="60"/>
-        <image name="Images/appbar.transport.play.rest.png" width="48" height="48"/>
-        <image name="Images/Play.png" width="48" height="48"/>
         <image name="Images/Car.png" width="60" height="60"/>
+        <image name="Images/Date.png" width="60" height="60"/>
         <image name="Images/Man.png" width="60" height="60"/>
-        <image name="Icon.png" width="57" height="57"/>
-        <image name="Icon-60.png" width="120" height="120"/>
-        <image name="Icon-Small.png" width="29" height="29"/>
-        <image name="Icon-Small-40.png" width="80" height="80"/>
-        <image name="Images/Gear.png" width="60" height="60"/>
+        <image name="Images/Play.png" width="48" height="48"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="3130"/>
+        <segue reference="2867"/>
+        <segue reference="2649"/>
+        <segue reference="3345"/>
+    </inferredMetricsTieBreakers>
 </document>

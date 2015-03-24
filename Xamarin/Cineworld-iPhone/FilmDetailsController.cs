@@ -68,11 +68,6 @@ namespace CineworldiPhone
 			if (!String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
 			{
 				this.PlayTrailer.Hidden = false;
-				//this.PlayTrailer.TouchUpInside += (sender, e) => 
-				//{
-					// open youtube url
-					//UIApplication.SharedApplication.OpenUrl(new NSUrl(String.Format(@"http://www.youtube.com/watch?v={0}", this.Film.YoutubeTrailer)));
-				//};
 			} 
 
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
@@ -110,45 +105,24 @@ namespace CineworldiPhone
 			releaseLabel.Text = String.Format ("Release {0}", this.Film.ReleaseDate);
 			this.Misc.AddSubview (releaseLabel);
 
-			/*
-			float height = 0;
-			if (!String.IsNullOrWhiteSpace (this.Film.Tagline)) 
-			{
-				this.TaglineData.Text = this.Film.Tagline;
-			} else 
-			{
-				this.TaglineData.Hidden = this.TaglineLabel.Hidden = true;
-			}
-*/
 			if (!String.IsNullOrWhiteSpace (this.Film.Overview)) 
 			{
 				this.OverviewData.Text = this.Film.Overview;
 				this.OverviewData.SizeToFit ();
 
 				this.FilmGistView.SizeToFit ();
-				//var height = OverviewData.Bounds.Top + OverviewData.Bounds.Height + 15;
-				//this.GistScrollViewer.ContentSize = new CoreGraphics.CGSize (320, height);
-				//this.GistScrollViewer.
 			}
 			else
 			{
 				this.OverviewData.Hidden = this.OverviewLabel.Hidden = true;
 			}
 
-			var bounds = this.View.Bounds;
-			//this.FilmCastTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			this.FilmCastTable.Source = new FilmCastTableSource (this.Film.FilmCast);
-			//this.FilmCastTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 			this.FilmCastTable.Hidden = true;
 
 
-			//UITableView cinemasTable = new UITableView(new RectangleF(10, 123, (float)bounds.Width-10, (float)bounds.Height-123));
-			//cinemasTable.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			this.CinemasView.Source = new CinemasTableSource (Application.FilmCinemas[this.Film.EDI]);
-			//cinemasTable.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 			this.CinemasView.Hidden = true;
-			//this.View.AddSubview (cinemasTable);
-
 
 			this.ReviewTable.Source = new ReviewsTableSource (this.Film.Reviews);
 

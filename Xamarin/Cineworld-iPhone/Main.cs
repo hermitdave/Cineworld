@@ -30,6 +30,10 @@ namespace CineworldiPhone
 
 		public static string DataDownloadsDir { get; set; }
 
+		public static UIStoryboard Storyboard { get; set; }
+
+		public static UINavigationController NavigationController { get; set; }
+
 		// This is the main entry point of the application.
 		static void Main (string[] args)
 		{
