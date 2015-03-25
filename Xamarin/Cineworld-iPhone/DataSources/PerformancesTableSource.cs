@@ -38,14 +38,14 @@ namespace CineworldiPhone
 			var perfList = this.PerformanceGroupedList [indexPath.Row];
 
 			if (perfList == null || perfList.Count == 0)
-				return 36;
+				return 25;
 
 			var rows = (perfList.Count / 4);
 
 			if (perfList.Count % 4 > 0)
 				rows++;
 
-			return 36 + (rows * 50);
+			return 25 + (rows * 50);
 
 			//return 225;
 		}

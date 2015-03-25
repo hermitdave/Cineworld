@@ -390,10 +390,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="1877">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="1877" fixedFrame="YES">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="1042">
+                                    <view contentMode="scaleToFill" id="1042" fixedFrame="YES">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="802">
@@ -748,7 +748,7 @@
                                     <segment title="Cast"/>
                                     <segment title="Reviews"/>
                                     <segment title="Cinema"/>
-                                    <segment title="Showtimes"/>
+                                    <segment title="Time"/>
                                 </segments>
                             </segmentedControl>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2257">
@@ -769,54 +769,10 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2265">
-                                                    <rect key="frame" x="15" y="26" width="270" height="140"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2267">
-                                                        <size key="itemSize" width="60" height="40"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PerformanceCollectionViewCell" id="2266" customClass="PerformanceCollectionViewCell">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="2268">
-                                                                        <rect key="frame" x="5" y="3" width="50" height="20"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Type" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2269">
-                                                                        <rect key="frame" x="5" y="18" width="50" height="20"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </view>
-                                                            <size key="customSize" width="60" height="40"/>
-                                                            <connections>
-                                                                <outlet property="Time" destination="2268" id="name-outlet-2268"/>
-                                                                <outlet property="Type" destination="2269" id="name-outlet-2269"/>
-                                                                <segue destination="1707" kind="push" identifier="PerfSegue" id="2523"/>
-                                                            </connections>
-                                                        </collectionViewCell>
-                                                    </cells>
-                                                </collectionView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="PerformanceDate" destination="2264" id="name-outlet-2264"/>
-                                            <outlet property="Performances" destination="2265" id="name-outlet-2265"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -985,10 +941,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="2331">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="2331" fixedFrame="YES">
                                 <rect key="frame" x="0.0" y="118" width="320" height="450"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="2332">
+                                    <view contentMode="scaleToFill" id="2332" fixedFrame="YES">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2333">
@@ -1183,6 +1139,16 @@
         <image name="Images/Date.png" width="60" height="60"/>
         <image name="Images/Man.png" width="60" height="60"/>
         <image name="Images/Play.png" width="48" height="48"/>
+        <image name="Icon.png" width="57" height="57"/>
+        <image name="Icon-60.png" width="120" height="120"/>
+        <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="Icon-Small-40.png" width="80" height="80"/>
+        <image name="Images/PlaceHolder.png" width="185" height="278"/>
+        <image name="Images/Stars/chosen.png" width="200" height="190"/>
+        <image name="Images/Stars/empty.png" width="200" height="190"/>
+        <image name="Images/Stars/filled.png" width="200" height="190"/>
+        <image name="Images/SmallLogo.png" width="30" height="30"/>
+        <image name="Images/Gear.png" width="60" height="60"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

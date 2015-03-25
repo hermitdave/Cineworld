@@ -18,19 +18,11 @@ namespace CineworldiPhone
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UILabel PerformanceDate { get; set; }
 
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UICollectionView Performances { get; set; }
-
 		void ReleaseDesignerOutlets ()
 		{
 			if (PerformanceDate != null) {
 				PerformanceDate.Dispose ();
 				PerformanceDate = null;
-			}
-			if (Performances != null) {
-				Performances.Dispose ();
-				Performances = null;
 			}
 		}
 	}
