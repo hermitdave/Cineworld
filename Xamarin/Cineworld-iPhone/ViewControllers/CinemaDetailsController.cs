@@ -76,6 +76,8 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			this.CinemaSegments.Enabled = false;
+
 			this.CinemaTitle.Title = this.Cinema.Name;
 
 			this.BusyIndicator.StartAnimating ();
@@ -220,6 +222,8 @@ namespace CineworldiPhone
 					break;
 				}
 			};
+
+			this.CinemaSegments.Enabled = true;
 		}
 
 		void Directions_TouchUpInside (object sender, EventArgs e)
@@ -243,12 +247,7 @@ namespace CineworldiPhone
 		{
 			base.PrepareForSegue (segue, sender);
 
-			if(segue.DestinationViewController is TicketPurchaseController)
-			{
-				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
-				(segue.DestinationViewController as TicketPurchaseController).Performance = perf;
-			} 
-			else if(segue.DestinationViewController is PerformancesController) 
+			if(segue.DestinationViewController is PerformancesController) 
 			{
 				PerformancesController performancesController = (segue.DestinationViewController as PerformancesController);
 

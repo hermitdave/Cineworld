@@ -56,6 +56,8 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			this.FilmDetailSegments.Enabled = false;
+
 			this.FilmTitle.Title = this.Film.TitleWithClassification;
 
 			this.Poster.Hidden = false;
@@ -166,6 +168,8 @@ namespace CineworldiPhone
 					break;
 				}
 			};
+
+			this.FilmDetailSegments.Enabled = true;
 		}
 	}
 }

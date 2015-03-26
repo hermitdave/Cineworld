@@ -32,16 +32,5 @@ namespace CineworldiPhone
 
 			regionPickerVM.InitialSelected = true;
 		}
-
-//		public override void ViewDidAppear (bool animated)
-//		{
-//			var vm = this.RegionPicker.Model as RegionPickerViewModel;
-//
-//			vm.Selected (null, Config.Region == Config.RegionDef.UK ? 0 : 1, 0);
-//
-//			vm.InitialSelected = true;
-//
-//			this.RegionPicker.ReloadAllComponents ();
-//		}
 	}
 }

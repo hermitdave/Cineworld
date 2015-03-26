@@ -39,6 +39,8 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			this.PerformancesSegment.Enabled = false;
+
 			this.NavigationItem.Title = String.Format ("{0} at Cineworld {1}", this.Film.Title, this.Cinema.Name);
 
 			this.FilmGist.Hidden = this.FilmCast.Hidden = 
@@ -108,6 +110,8 @@ namespace CineworldiPhone
 					}
 				}
 			};
+
+			this.PerformancesSegment.Enabled = true;
 		}
 
 		void LoadFilmDetails ()
@@ -235,32 +239,19 @@ namespace CineworldiPhone
 
 		async Task LoadPerformances ()
 		{
-//			if (this.Film.Performances == null || this.Film.Performances.Count == 0) 
-//			{
-				this.BusyIndicator.StartAnimating ();
-				this.BusyIndicator.Hidden = false;
+			this.BusyIndicator.StartAnimating ();
+			this.BusyIndicator.Hidden = false;
 
-				await new LocalStorageHelper ().GetCinemaFilmListings (this.Cinema.ID, false);
+			await new LocalStorageHelper ().GetCinemaFilmListings (this.Cinema.ID, false);
 
-				this.Film = Application.CinemaFilms[this.Cinema.ID].First(f => f.EDI == this.Film.EDI);
+			this.Film = Application.CinemaFilms[this.Cinema.ID].First(f => f.EDI == this.Film.EDI);
 
-				this.BusyIndicator.StopAnimating ();
-				this.BusyIndicator.Hidden = true;
-			//}
+			this.BusyIndicator.StopAnimating ();
+			this.BusyIndicator.Hidden = true;
+
 			this.PerformanceView.Source = new PerformancesTableSource (this.Film.Performances);
 			this.PerformanceView.ReloadData ();
 		}
-
-//		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
-//		{
-//			if (segueIdentifier != null && segueIdentifier.Equals ("PerfSegue")) 
-//			{
-//				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
-//				return perf.AvailableFuture;
-//			}
-//
-//			return base.ShouldPerformSegue (segueIdentifier, sender);
-//		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{

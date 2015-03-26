@@ -25,6 +25,8 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			this.CinemasSegments.Enabled = false;
+
 			var bounds = this.View.Bounds;
 
 			this.CinemaListView.Source = new CinemasTableSource (Application.Cinemas.Values);
@@ -73,6 +75,8 @@ namespace CineworldiPhone
 					mapView.Hidden = false;
 				}
 			};
+
+			this.CinemasSegments.Enabled = true;
 		}
 	}
 }

@@ -198,11 +198,6 @@
     <Compile Include="ReviewTableCell.designer.cs">
       <DependentUpon>ReviewTableCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="PerformanceCollectionViewCell.cs" />
-    <Compile Include="PerformanceCollectionViewCell.designer.cs">
-      <DependentUpon>PerformanceCollectionViewCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DataSources\PerformanceCollectionSource.cs" />
     <Compile Include="DataSources\FilmPerformancesTableSource.cs" />
     <Compile Include="FilmPerformanceTableCell.cs" />
     <Compile Include="FilmPerformanceTableCell.designer.cs">

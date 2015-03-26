@@ -62,16 +62,16 @@ namespace CineworldiPhone
 				if (this.Review.Text == UserReviewDefault) {
 					this.Review.Text = string.Empty;
 					this.Review.TextColor = UIColor.Black;
-				}	
-				//else{
-				//	this.Review.TextColor = UIColor.Black;
-				//}
+				}
+
 				return true;
 			};
 
 			this.Review.ShouldEndEditing = t => {
-				if (string.IsNullOrEmpty (this.Review.Text)) {
+				if (string.IsNullOrEmpty (this.Review.Text)) 
+				{
 					this.Review.Text = UserReviewDefault;
+					this.Review.TextColor = UIColor.LightGray;
 				}
 				return true;
 			};

@@ -18,8 +18,6 @@ namespace CineworldiPhone
 			base.ViewDidLoad ();
 
 			this.WebBrowser.LoadRequest(new NSUrlRequest(new NSUrl(this.Performance.MobileBookingUrl.OriginalString)));
-
-			//this.WebBrowser.ScrollView.ScrollRectToVisible (new CoreGraphics.CGRect(0, 0, 320, 64), true);
 		}
 	}
 }

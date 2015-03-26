@@ -24,6 +24,8 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			this.FilmSegments.Enabled = false;
+
 			var bounds = this.View.Bounds;
 
 			var currentFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Current, Application.Films.Values);
@@ -44,6 +46,8 @@ namespace CineworldiPhone
 				this.AllFilmsTable.ReloadData();
 				this.AllFilmsTable.ScrollRectToVisible(new CoreGraphics.CGRect(0, 0, 1, 1), false);
 			};
+
+			this.FilmSegments.Enabled = false;
 		}
 	}
 }
