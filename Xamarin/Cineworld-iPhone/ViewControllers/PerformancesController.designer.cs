@@ -40,7 +40,7 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView FilmGist { get; set; }
+		UIView FilmGist { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -52,7 +52,7 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIView Misc { get; set; }
+		UIView MiscView { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -77,6 +77,14 @@ namespace CineworldiPhone
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIImageView Poster { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton RateReviewCinema { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton RateReviewFilm { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -124,9 +132,9 @@ namespace CineworldiPhone
 				FilmReviewTable.Dispose ();
 				FilmReviewTable = null;
 			}
-			if (Misc != null) {
-				Misc.Dispose ();
-				Misc = null;
+			if (MiscView != null) {
+				MiscView.Dispose ();
+				MiscView = null;
 			}
 			if (OverviewData != null) {
 				OverviewData.Dispose ();
@@ -151,6 +159,14 @@ namespace CineworldiPhone
 			if (Poster != null) {
 				Poster.Dispose ();
 				Poster = null;
+			}
+			if (RateReviewCinema != null) {
+				RateReviewCinema.Dispose ();
+				RateReviewCinema = null;
+			}
+			if (RateReviewFilm != null) {
+				RateReviewFilm.Dispose ();
+				RateReviewFilm = null;
 			}
 			if (Telephone != null) {
 				Telephone.Dispose ();

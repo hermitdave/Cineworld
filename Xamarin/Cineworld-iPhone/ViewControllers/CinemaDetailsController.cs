@@ -107,6 +107,11 @@ namespace CineworldiPhone
 			this.WalkingDirections.TouchUpInside += Directions_TouchUpInside;
 			this.DrivingDirections.TouchUpInside += Directions_TouchUpInside;
 
+			UITableViewCell cell = new UITableViewCell (this.RateReview.Frame);
+			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+			cell.UserInteractionEnabled = false;
+			this.RateReview.AddSubview (cell);
+
 			this.ReviewsTable.Source = new ReviewsTableSource (this.Cinema.Reviews);
 			this.ReviewsTable.ReloadData ();
 
@@ -233,17 +238,6 @@ namespace CineworldiPhone
 
 			mapItem.OpenInMaps (launchOptions);
 		}
-
-//		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
-//		{
-//			if (segueIdentifier != null && segueIdentifier.Equals ("PerfSegue")) 
-//			{
-//				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
-//				return perf.AvailableFuture;
-//			}
-//
-//			return base.ShouldPerformSegue (segueIdentifier, sender);
-//		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{

@@ -112,10 +112,20 @@ namespace CineworldiPhone
 
 		void LoadFilmDetails ()
 		{
+			this.Poster.Layer.CornerRadius = 10f;
+			this.Poster.Layer.MasksToBounds = true;
+			this.Poster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			this.Poster.Layer.Opaque = true;
+
 			if (!String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
 			{
 				this.PlayTrailer.Hidden = false;
-			}
+
+				this.PlayTrailer.Layer.CornerRadius = 10f;
+				this.PlayTrailer.Layer.MasksToBounds = true;
+				this.PlayTrailer.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+				this.PlayTrailer.Layer.Opaque = true;
+			} 
 
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
 			var image = ImageManager.Instance.GetImage (url);
@@ -132,25 +142,25 @@ namespace CineworldiPhone
 			// Create the view.
 			var ratingView = new PDRatingView(new RectangleF(0f, 0f, 60f , 25f), ratingConfig, Convert.ToDecimal(this.Film.AverageRating));
 
-			this.Misc.AddSubview (ratingView);
+			this.MiscView.AddSubview (ratingView);
 
-			var reviewCount = new UILabel (new RectangleF (70f, 0f, (float)(this.Misc.Bounds.Width-60), 25f));
+			var reviewCount = new UILabel (new RectangleF (70f, 0f, (float)(this.MiscView.Bounds.Width-60), 25f));
 			reviewCount.Font = UIFont.FromName ("HelveticaNeue", 12f);
 			reviewCount.Lines = 1;
 			reviewCount.Text = String.Format ("{0} ratings", this.Film.Reviews.Count);
-			this.Misc.AddSubview (reviewCount);
+			this.MiscView.AddSubview (reviewCount);
 
-			var durationLabel = new UILabel (new RectangleF (0f, 25f, (float)this.Misc.Bounds.Width, 25f));
+			var durationLabel = new UILabel (new RectangleF (0f, 25f, (float)this.MiscView.Bounds.Width, 25f));
 			durationLabel.Font = UIFont.FromName ("HelveticaNeue", 12f);
 			durationLabel.Lines = 0;
 			durationLabel.Text = String.Format ("Duration {0} mins", this.Film.Runtime);
-			this.Misc.AddSubview (durationLabel);
+			this.MiscView.AddSubview (durationLabel);
 
-			var releaseLabel = new UILabel (new RectangleF (0f, 50f, (float)this.Misc.Bounds.Width, 25f));
+			var releaseLabel = new UILabel (new RectangleF (0f, 50f, (float)this.MiscView.Bounds.Width, 25f));
 			releaseLabel.Font = UIFont.FromName ("HelveticaNeue", 12f);
 			releaseLabel.Lines = 0;
 			releaseLabel.Text = String.Format ("Release {0}", this.Film.ReleaseDate);
-			this.Misc.AddSubview (releaseLabel);
+			this.MiscView.AddSubview (releaseLabel);
 
 			if (!String.IsNullOrWhiteSpace (this.Film.Overview)) 
 			{
@@ -163,6 +173,11 @@ namespace CineworldiPhone
 			}
 
 			this.FilmCast.Source = new FilmCastTableSource (this.Film.FilmCast);
+
+			UITableViewCell cell = new UITableViewCell (this.RateReviewFilm.Frame);
+			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+			cell.UserInteractionEnabled = false;
+			this.RateReviewFilm.AddSubview (cell);
 
 			this.FilmReviewTable.Source = new ReviewsTableSource (this.Film.Reviews);
 
@@ -188,6 +203,11 @@ namespace CineworldiPhone
 			this.Address.Text = this.Cinema.FullAddress;
 
 			this.Telephone.Text = this.Cinema.Telephone;
+
+			UITableViewCell cell = new UITableViewCell (this.RateReviewCinema.Frame);
+			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+			cell.UserInteractionEnabled = false;
+			this.RateReviewCinema.AddSubview (cell);
 
 			this.CinemaReviewsTable.Source = new ReviewsTableSource (this.Cinema.Reviews);
 			this.CinemaReviewsTable.ReloadData ();
@@ -246,31 +266,24 @@ namespace CineworldiPhone
 		{
 			base.PrepareForSegue (segue, sender);
 
-			TicketPurchaseController ticketPurchaseController = (segue.DestinationViewController as TicketPurchaseController);
-
-			if (ticketPurchaseController != null) 
-			{
-				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
-				ticketPurchaseController.Performance = perf;
-			} 
-			else 
+			if(segue.DestinationViewController is ReviewController) 
 			{
 				ReviewController reviewController = segue.DestinationViewController as ReviewController;
-				if (reviewController != null) 
-				{
-					if (segue.Identifier.Equals ("ReviewSegue1")) {
-						reviewController.Film = this.Film;
-					} else {
-						reviewController.Cinema = this.Cinema;
-					}
-
-					reviewController.PerformancesController = this;
-				} 
-				else 
-				{
-					YouTubeController youtubeController = segue.DestinationViewController as YouTubeController;
-					youtubeController.YouTubeId = this.Film.YoutubeTrailer;
+				if (segue.Identifier.Equals ("ReviewSegue1")) {
+					reviewController.Film = this.Film;
+				} else {
+					reviewController.Cinema = this.Cinema;
 				}
+
+				reviewController.PerformancesController = this;
+			} 
+			else if(segue.DestinationViewController is YouTubeController)
+			{
+				(segue.DestinationViewController as YouTubeController).YouTubeId = this.Film.YoutubeTrailer;
+			}
+			else if(segue.DestinationViewController is PersonDetailsController)
+			{
+				(segue.DestinationViewController as PersonDetailsController).Cast = (sender as FilmCastTableCell).Cast;	
 			}
 		}
 	}

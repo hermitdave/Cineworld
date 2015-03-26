@@ -24,12 +24,12 @@ namespace CineworldiPhone
 			this.Performances = perfGroup;
 			this.PerformanceDate.Text = perfGroup [0].PerformanceTS.Date.ToLongDateString();
 
-			var rows = (perfGroup.Count / 4);
+			var rows = (perfGroup.Count / 5);
 
-			if (perfGroup.Count % 4 > 0)
+			if (perfGroup.Count % 5 > 0)
 				rows++;
 
-			float height = rows * 50;
+			float height = rows * 46;
 
 			if (performanceView == null) 
 			{

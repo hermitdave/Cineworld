@@ -40,9 +40,9 @@ namespace CineworldiPhone
 			if (perfList == null || perfList.Count == 0)
 				return 25;
 
-			var rows = (perfList.Count / 4);
+			var rows = (perfList.Count / 5);
 
-			if (perfList.Count % 4 > 0)
+			if (perfList.Count % 5 > 0)
 				rows++;
 
 			return 30 + (rows * 46);

@@ -161,10 +161,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Cineworld-iPhoneViewController.cs" />
-    <Compile Include="Cineworld-iPhoneViewController.designer.cs">
-      <DependentUpon>Cineworld-iPhoneViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Shared\AsyncWebClient.cs" />
     <Compile Include="Shared\BaseHelper.cs" />
     <Compile Include="Shared\AzureDeserialiser.cs" />
@@ -176,17 +172,9 @@
     <Compile Include="Shared\CastInfo.cs" />
     <Compile Include="Shared\PerformanceInfo.cs" />
     <Compile Include="Shared\FilmHeader.cs" />
-    <Compile Include="CinemasViewController.cs" />
-    <Compile Include="CinemasViewController.designer.cs">
-      <DependentUpon>CinemasViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataSources\CinemasTableSource.cs" />
     <Compile Include="Helpers\MapHelper.cs" />
     <Compile Include="Helpers\BasicMapAnnotation.cs" />
-    <Compile Include="FilmsViewController.cs" />
-    <Compile Include="FilmsViewController.designer.cs">
-      <DependentUpon>FilmsViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\UrlImageStore.cs" />
     <Compile Include="Helpers\ImageManager.cs" />
@@ -195,10 +183,6 @@
       <DependentUpon>FilmTableCell.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSources\AllFilmsTableSource.cs" />
-    <Compile Include="FilmDetailsController.cs" />
-    <Compile Include="FilmDetailsController.designer.cs">
-      <DependentUpon>FilmDetailsController.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataSources\FilmCastTableSource.cs" />
     <Compile Include="DataSources\ReviewsTableSource.cs" />
     <Compile Include="FilmCastTableCell.cs" />
@@ -209,10 +193,6 @@
     <Compile Include="CinemaTableCell.cs" />
     <Compile Include="CinemaTableCell.designer.cs">
       <DependentUpon>CinemaTableCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CinemaDetailsController.cs" />
-    <Compile Include="CinemaDetailsController.designer.cs">
-      <DependentUpon>CinemaDetailsController.cs</DependentUpon>
     </Compile>
     <Compile Include="ReviewTableCell.cs" />
     <Compile Include="ReviewTableCell.designer.cs">
@@ -229,14 +209,6 @@
       <DependentUpon>FilmPerformanceTableCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Shared\DateTimeToStringConverter.cs" />
-    <Compile Include="TicketPurchaseController.cs" />
-    <Compile Include="TicketPurchaseController.designer.cs">
-      <DependentUpon>TicketPurchaseController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PerformancesController.cs" />
-    <Compile Include="PerformancesController.designer.cs">
-      <DependentUpon>PerformancesController.cs</DependentUpon>
-    </Compile>
     <Compile Include="PerformanceTableCell.cs" />
     <Compile Include="PerformanceTableCell.designer.cs">
       <DependentUpon>PerformanceTableCell.cs</DependentUpon>
@@ -248,25 +220,9 @@
     </Compile>
     <Compile Include="Shared\GeoMath.cs" />
     <Compile Include="DataSources\CinemaCollectionSource.cs" />
-    <Compile Include="ReviewController.cs" />
-    <Compile Include="ReviewController.designer.cs">
-      <DependentUpon>ReviewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Shared\Config.cs" />
-    <Compile Include="YouTubeController.cs" />
-    <Compile Include="YouTubeController.designer.cs">
-      <DependentUpon>YouTubeController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsController.cs" />
-    <Compile Include="SettingsController.designer.cs">
-      <DependentUpon>SettingsController.cs</DependentUpon>
-    </Compile>
     <Compile Include="DataSources\ListPickerViewModel.cs" />
     <Compile Include="DataSources\RegionPickerViewModel.cs" />
-    <Compile Include="PersonDetailsController.cs" />
-    <Compile Include="PersonDetailsController.designer.cs">
-      <DependentUpon>PersonDetailsController.cs</DependentUpon>
-    </Compile>
     <Compile Include="CastMoviesTableCell.cs" />
     <Compile Include="CastMoviesTableCell.designer.cs">
       <DependentUpon>CastMoviesTableCell.cs</DependentUpon>
@@ -279,6 +235,50 @@
     <Compile Include="Shared\Person.cs" />
     <Compile Include="DataSources\CastFilmTableSource.cs" />
     <Compile Include="CustomControls\PerformanceButton.cs" />
+    <Compile Include="ViewControllers\Cineworld-iPhoneViewController.cs" />
+    <Compile Include="ViewControllers\Cineworld-iPhoneViewController.designer.cs">
+      <DependentUpon>Cineworld-iPhoneViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\CinemaDetailsController.cs" />
+    <Compile Include="ViewControllers\CinemaDetailsController.designer.cs">
+      <DependentUpon>CinemaDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\CinemasViewController.cs" />
+    <Compile Include="ViewControllers\CinemasViewController.designer.cs">
+      <DependentUpon>CinemasViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\FilmDetailsController.cs" />
+    <Compile Include="ViewControllers\FilmDetailsController.designer.cs">
+      <DependentUpon>FilmDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\FilmsViewController.cs" />
+    <Compile Include="ViewControllers\FilmsViewController.designer.cs">
+      <DependentUpon>FilmsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\PerformancesController.cs" />
+    <Compile Include="ViewControllers\PerformancesController.designer.cs">
+      <DependentUpon>PerformancesController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\PersonDetailsController.cs" />
+    <Compile Include="ViewControllers\PersonDetailsController.designer.cs">
+      <DependentUpon>PersonDetailsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\YouTubeController.cs" />
+    <Compile Include="ViewControllers\YouTubeController.designer.cs">
+      <DependentUpon>YouTubeController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\TicketPurchaseController.cs" />
+    <Compile Include="ViewControllers\TicketPurchaseController.designer.cs">
+      <DependentUpon>TicketPurchaseController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\SettingsController.cs" />
+    <Compile Include="ViewControllers\SettingsController.designer.cs">
+      <DependentUpon>SettingsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\ReviewController.cs" />
+    <Compile Include="ViewControllers\ReviewController.designer.cs">
+      <DependentUpon>ReviewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -287,6 +287,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Images\" />
     <Folder Include="CustomControls\" />
+    <Folder Include="ViewControllers\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Background.png">
