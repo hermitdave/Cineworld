@@ -69,6 +69,8 @@ namespace CineworldiPhone
 
 			await this.LoadPerformances();
 
+			this.PerformancesSegment.SelectedSegment = 0;
+
 			this.PerformancesSegment.ValueChanged += (sender, e) => 
 			{
 				this.FilmGist.Hidden = this.FilmCast.Hidden = 
