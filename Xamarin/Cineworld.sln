@@ -26,4 +26,7 @@ Global
 		{B22286F1-A8D2-4252-9365-501681A07732}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{B22286F1-A8D2-4252-9365-501681A07732}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		version = 1.0
+	EndGlobalSection
 EndGlobal

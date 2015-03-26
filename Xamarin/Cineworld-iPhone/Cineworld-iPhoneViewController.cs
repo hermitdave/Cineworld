@@ -7,6 +7,8 @@ using Foundation;
 using UIKit;
 using Cineworld;
 using System.Threading.Tasks;
+using iAd;
+using CoreGraphics;
 
 namespace CineworldiPhone
 {
@@ -29,10 +31,28 @@ namespace CineworldiPhone
 
 		void SetButtonStyles ()
 		{
+			UILabel filmsLabel = new UILabel (new CGRect (0, 0, 135, 42));
+			filmsLabel.Font = UIFont.FromName ("HelveticaNeue", 15f);
+			filmsLabel.Text = "All Films";
+			filmsLabel.TextColor = UIColor.White;
+			filmsLabel.TextAlignment = UITextAlignment.Center;
+			filmsLabel.Alpha = 0.7f;
+			filmsLabel.BackgroundColor = UIColor.DarkGray;
+			this.AllFilmsButton.AddSubview (filmsLabel);
+
 			this.AllFilmsButton.Layer.CornerRadius = 10f;
 			this.AllFilmsButton.Layer.MasksToBounds = true;
 			this.AllFilmsButton.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
 			this.AllFilmsButton.Layer.Opaque = true;
+
+			UILabel cinemasLabel = new UILabel (new CGRect (0, 0, 135, 42));
+			cinemasLabel.Font = UIFont.FromName ("HelveticaNeue", 15f);
+			cinemasLabel.Text = "All Cinemas";
+			cinemasLabel.TextColor = UIColor.White;
+			cinemasLabel.TextAlignment = UITextAlignment.Center;
+			cinemasLabel.Alpha = 0.7f;
+			cinemasLabel.BackgroundColor = UIColor.DarkGray;
+			this.AllCinemasButton.AddSubview (cinemasLabel);
 
 			this.AllCinemasButton.Layer.CornerRadius = 10f;
 			this.AllCinemasButton.Layer.MasksToBounds = true;
@@ -88,13 +108,6 @@ namespace CineworldiPhone
 			await Task.Run (() => 
 				{
 				totalImageCount = Application.Films.Count;
-
-				//var imageview = this.AllFilmsButton.ImageView;
-				//imageview.ContentMode = UIViewContentMode.ScaleAspectFill;
-				//var bounds = this.AllFilmsButton.Bounds;
-
-				//imageview.Frame = new RectangleF ((float)bounds.Left, (float)bounds.Top, (float)bounds.Width, (float)bounds.Height);
-				//imageview.AnimationRepeatCount = 0;
 
 				images.Clear ();
 
@@ -153,43 +166,6 @@ namespace CineworldiPhone
 			}
 		}
 
-		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
-		{
-			ImageManager.Instance.ImageLoaded -= HandleImageLoaded;
-
-			var cinemaDetailsController = segue.DestinationViewController as CinemaDetailsController;
-			if (cinemaDetailsController != null) 
-			{
-				cinemaDetailsController.Cinema = (sender as CinemaCollectionViewCell).Cinema;
-			} 
-			else 
-			{
-				SettingsController settingsController = (segue.DestinationViewController as SettingsController);
-				if (settingsController != null) 
-				{
-					settingsController.MainViewController = this;
-				}
-			}
-
-			base.PrepareForSegue (segue, sender);
-		}
-
-		#region View lifecycle
-
-		public async override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
-
-			Application.Storyboard = this.Storyboard;
-			Application.NavigationController = this.NavigationController;
-
-			this.SetButtonStyles ();
-
-			locationManager.RequestWhenInUseAuthorization ();
-
-			await Initialise (false);
-		}
-
 		public async void RegionSelectionComplete(bool regionChanged)
 		{
 			this.NavigationController.PopViewController(true);
@@ -206,7 +182,7 @@ namespace CineworldiPhone
 		{
 			if (Application.UserLocation == null)
 				return;
-			
+
 			IEnumerable<CinemaInfo> filteredCinemas = Application.Cinemas.Values.Where(c => c.Longitute != 0 && c.Longitute != 0); //&& !PinnedCinemas.Contains(c.ID));
 
 			if (!filteredCinemas.Any())
@@ -222,6 +198,41 @@ namespace CineworldiPhone
 
 			this.NearestCinemas.Source = cinemaSource;
 			this.NearestCinemas.ReloadData ();
+		}
+
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			ImageManager.Instance.ImageLoaded -= HandleImageLoaded;
+
+			if(segue.DestinationViewController is CinemaDetailsController)
+			{
+				(segue.DestinationViewController as CinemaDetailsController).Cinema = (sender as CinemaCollectionViewCell).Cinema;
+			} 
+			else if(segue.DestinationViewController is SettingsController)
+			{
+				(segue.DestinationViewController as SettingsController).MainViewController = this;
+			}
+
+			base.PrepareForSegue (segue, sender);
+		}
+
+		#region View lifecycle
+
+		public async override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+
+			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+			appDelegate.Window.RootViewController.View.AddSubview (new ADBannerView (new CGRect (0, 518, 320, 50)) );
+
+			Application.Storyboard = this.Storyboard;
+			Application.NavigationController = this.NavigationController;
+
+			this.SetButtonStyles ();
+
+			locationManager.RequestWhenInUseAuthorization ();
+
+			await Initialise (false);
 		}
 
 		public override void ViewWillAppear (bool animated)

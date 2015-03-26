@@ -68,34 +68,13 @@ namespace CineworldiPhone
 			for (int i = 0; i < film.Performances.Count; i++) 
 			{
 				var perf = film.Performances [i];
-				UIButton btn = new UIButton (UIButtonType.RoundedRect);
-				btn.Frame = new CGRect (currentCell * 70, currentRow * 50, 60, 40);
 
-				btn.Layer.CornerRadius = 5f;
-				btn.Layer.MasksToBounds = true;
-				btn.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
-				btn.Layer.Opaque = true;
+				var btnRect = new CGRect (currentCell * 60, currentRow * 46, 50, 36);
 
-				btn.BackgroundColor = UIColor.White;
-				btn.Layer.BorderWidth = 0.5f;
-				btn.Layer.BorderColor = perf.AvailableFuture ? UIColor.DarkGray.CGColor : UIColor.LightGray.CGColor;
+				var btn = new PerformanceButton (btnRect, perf, this.ContentView.TintColor);
 
-				UILabel time = new UILabel (new CGRect (5, 3, 50, 20));
-				time.Font = UIFont.FromName ("HelveticaNeue-Bold", 12f);
-				time.Text = perf.TimeString;
-				time.TextAlignment = UITextAlignment.Center;
-				time.TextColor = perf.AvailableFuture ? UIColor.DarkGray : UIColor.LightGray;
-				btn.AddSubview (time);
-
-				UILabel type = new UILabel (new CGRect (5, 18, 50, 20));
-				type.Font = UIFont.FromName ("HelveticaNeue", 12f);
-				type.Text = perf.Type;
-				type.TextAlignment = UITextAlignment.Center;
-				type.TextColor = perf.AvailableFuture ? UIColor.DarkGray : UIColor.LightGray;
-				btn.AddSubview (type);
-
-				currentRow = (i + 1) / 4;
-				if ((i + 1) % 4 == 0) 
+				currentRow = (i + 1) / 5;
+				if ((i + 1) % 5 == 0) 
 				{
 					currentCell = 0;
 				} 
@@ -104,10 +83,11 @@ namespace CineworldiPhone
 					currentCell++;
 				}
 
-				btn.Tag = i;
-
-				btn.TouchUpInside += Performance_TouchUpInside;
-				//this.Performances.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGesture));
+				if (perf.AvailableFuture) 
+				{
+					btn.TouchUpInside += Performance_TouchUpInside;
+					//this.Performances.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGesture));
+				}
 
 				performanceView.AddSubview (btn);
 			}
@@ -117,10 +97,9 @@ namespace CineworldiPhone
 
 		void Performance_TouchUpInside (object sender, EventArgs e)
 		{
-			UIButton btn = (sender as UIButton);
-			int item = (int)btn.Tag;
+			PerformanceButton btn = (sender as PerformanceButton);
 
-			PerformanceInfo perf = this.Film.Performances [(int)item];
+			PerformanceInfo perf = btn.Performance;
 
 			var ticketPurchaseController = Application.Storyboard.InstantiateViewController ("TicketPurchaseController") as TicketPurchaseController;
 			ticketPurchaseController.Performance = perf;

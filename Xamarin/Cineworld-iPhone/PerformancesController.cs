@@ -217,11 +217,11 @@ namespace CineworldiPhone
 		{
 //			if (this.Film.Performances == null || this.Film.Performances.Count == 0) 
 //			{
-//				this.BusyIndicator.StartAnimating ();
-//				this.BusyIndicator.Hidden = false;
-//
-//				await new LocalStorageHelper ().GetCinemaFilmListings (this.Cinema.ID, false);
-//
+				this.BusyIndicator.StartAnimating ();
+				this.BusyIndicator.Hidden = false;
+
+				await new LocalStorageHelper ().GetCinemaFilmListings (this.Cinema.ID, false);
+
 				this.Film = Application.CinemaFilms[this.Cinema.ID].First(f => f.EDI == this.Film.EDI);
 
 				this.BusyIndicator.StopAnimating ();
@@ -231,16 +231,16 @@ namespace CineworldiPhone
 			this.PerformanceView.ReloadData ();
 		}
 
-		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
-		{
-			if (segueIdentifier != null && segueIdentifier.Equals ("PerfSegue")) 
-			{
-				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
-				return perf.AvailableFuture;
-			}
-
-			return base.ShouldPerformSegue (segueIdentifier, sender);
-		}
+//		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
+//		{
+//			if (segueIdentifier != null && segueIdentifier.Equals ("PerfSegue")) 
+//			{
+//				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
+//				return perf.AvailableFuture;
+//			}
+//
+//			return base.ShouldPerformSegue (segueIdentifier, sender);
+//		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{

@@ -27,15 +27,9 @@ namespace CineworldiPhone
 
 			var bounds = this.View.Bounds;
 
-//			UITableView table = new UITableView(new RectangleF(10, 123, (float)bounds.Width-10, (float)bounds.Height-123));
-//			table.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
-//			table.Source = new CinemasTableSource (Application.Cinemas.Values);
-//			table.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-//			this.View.AddSubview (table);
-
 			this.CinemaListView.Source = new CinemasTableSource (Application.Cinemas.Values);
 
-			var mapView = new MKMapView (new RectangleF(0, 118, (float)bounds.Width, (float)bounds.Height-118));
+			var mapView = new MKMapView (new RectangleF(0, 118, (float)bounds.Width, (float)bounds.Height-118-50));
 			mapView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			mapView.ShowsUserLocation = true;
 			mapView.Delegate = new MapDelegate();

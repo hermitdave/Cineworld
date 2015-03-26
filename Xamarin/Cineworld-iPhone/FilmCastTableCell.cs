@@ -7,7 +7,7 @@ namespace CineworldiPhone
 {
 	partial class FilmCastTableCell : UITableViewCell
 	{
-		private CastInfo Cast;
+		public CastInfo Cast { get; set; }
 
 		public FilmCastTableCell (IntPtr handle) : base (handle)
 		{

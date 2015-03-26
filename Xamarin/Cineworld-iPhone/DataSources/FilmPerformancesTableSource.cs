@@ -80,21 +80,14 @@ namespace CineworldiPhone
 			var film = this.Films [indexPath.Row];
 
 			if (film == null || film.Performances.Count == 0)
-				return 90;
+				return 80;
 
 			var rows = (film.Performances.Count / 4);
 
 			if (film.Performances.Count % 4 > 0)
 				rows++;
 
-			var height = 135;
-
-			if (rows > 1) 
-			{
-				rows--;
-
-				height = 135 + (rows * 50);
-			}
+			var	height = 80 + (rows * 46);
 
 			return height;
 //			

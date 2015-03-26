@@ -14,6 +14,8 @@ namespace CineworldiPhone
 	{
 		public static Configuration TMDBConfig { get; set; }
 
+		public static bool AdFree { get; set; }
+
 		public static List<string> Posters { get; set; }
 
 		public static Dictionary<int, FilmInfo> Films { get; set; }

@@ -207,8 +207,8 @@ namespace CineworldiPhone
 					this.AllFilmsTable.Source = upcomingFilms;
 					this.AllFilmsTable.ReloadData();
 					this.AllFilmsTable.Hidden = false;
-					break;
 					this.AllFilmsTable.ScrollRectToVisible(new CoreGraphics.CGRect(0, 0, 1, 1), false);
+					break;
 
 					case 3:
 					this.CinemaGist.Hidden = false;
@@ -234,51 +234,46 @@ namespace CineworldiPhone
 			mapItem.OpenInMaps (launchOptions);
 		}
 
-		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
-		{
-			if (segueIdentifier != null && segueIdentifier.Equals ("PerfSegue")) 
-			{
-				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
-				return perf.AvailableFuture;
-			}
-
-			return base.ShouldPerformSegue (segueIdentifier, sender);
-		}
+//		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
+//		{
+//			if (segueIdentifier != null && segueIdentifier.Equals ("PerfSegue")) 
+//			{
+//				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
+//				return perf.AvailableFuture;
+//			}
+//
+//			return base.ShouldPerformSegue (segueIdentifier, sender);
+//		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			base.PrepareForSegue (segue, sender);
 
-			TicketPurchaseController ticketPurchaseController = (segue.DestinationViewController as TicketPurchaseController);
-
-			if (ticketPurchaseController != null) 
+			if(segue.DestinationViewController is TicketPurchaseController)
 			{
 				PerformanceInfo perf = (sender as PerformanceCollectionViewCell).Performance;
-				ticketPurchaseController.Performance = perf;
+				(segue.DestinationViewController as TicketPurchaseController).Performance = perf;
 			} 
-			else 
+			else if(segue.DestinationViewController is PerformancesController) 
 			{
 				PerformancesController performancesController = (segue.DestinationViewController as PerformancesController);
 
-				if (performancesController != null) 
-				{
-					performancesController.Showing = PerformancesController.ViewType.FilmDetails;
-					performancesController.Cinema = this.Cinema;
-					var filmTableCell = (sender as FilmTableCell);
-					if (filmTableCell != null) {
-						performancesController.Film = filmTableCell.Film;
-					} 
-					else 
-					{
-						performancesController.Film = (sender as FilmPerformanceTableCell).Film;
-					}
+				performancesController.Showing = PerformancesController.ViewType.FilmDetails;
+				performancesController.Cinema = this.Cinema;
+				var filmTableCell = (sender as FilmTableCell);
+				if (filmTableCell != null) {
+					performancesController.Film = filmTableCell.Film;
 				} 
 				else 
 				{
-					ReviewController reviewController = (segue.DestinationViewController as ReviewController);
-					reviewController.CinemaDetailsController = this;
-					reviewController.Cinema = this.Cinema;
+					performancesController.Film = (sender as FilmPerformanceTableCell).Film;
 				}
+			} 
+			else if(segue.DestinationViewController is ReviewController)
+			{
+				ReviewController reviewController = (segue.DestinationViewController as ReviewController);
+				reviewController.CinemaDetailsController = this;
+				reviewController.Cinema = this.Cinema;
 			}
 		}
 

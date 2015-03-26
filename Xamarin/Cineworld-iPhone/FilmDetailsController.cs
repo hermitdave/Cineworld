@@ -39,10 +39,18 @@ namespace CineworldiPhone
 					reviewController.FilmDetailsController = this;
 					reviewController.Film = this.Film;
 				} 
-				else
+				else 
 				{
-					YouTubeController youtubeController = segue.DestinationViewController as YouTubeController;
-					youtubeController.YouTubeId = this.Film.YoutubeTrailer;
+					PersonDetailsController personDetailsController = (segue.DestinationViewController as PersonDetailsController);
+					if (personDetailsController != null) 
+					{
+						personDetailsController.Cast = (sender as FilmCastTableCell).Cast;
+					} 
+					else 
+					{
+						YouTubeController youtubeController = segue.DestinationViewController as YouTubeController;
+						youtubeController.YouTubeId = this.Film.YoutubeTrailer;
+					}
 				}
 			}
 		}
