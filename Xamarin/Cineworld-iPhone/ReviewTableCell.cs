@@ -27,7 +27,7 @@ namespace CineworldiPhone
 
 			var bounds = this.ContentView.Bounds;
 			// Create the view.
-			var ratingView = new PDRatingView(new RectangleF((float)bounds.Width-70, 4f, 50f, 30f), ratingConfig, Convert.ToDecimal(review.Rating));
+			var ratingView = new PDRatingView(new RectangleF((float)bounds.Width-70, 2f, 50f, 30f), ratingConfig, Convert.ToDecimal(review.Rating));
 
 			foreach(var sub in this.Subviews)
 			{

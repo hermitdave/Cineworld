@@ -20,6 +20,10 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIActivityIndicatorView BusyIndicator { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView FilmsView { get; set; }
 
 		[Outlet]
@@ -39,6 +43,10 @@ namespace CineworldiPhone
 			if (BioView != null) {
 				BioView.Dispose ();
 				BioView = null;
+			}
+			if (BusyIndicator != null) {
+				BusyIndicator.Dispose ();
+				BusyIndicator = null;
 			}
 			if (FilmsView != null) {
 				FilmsView.Dispose ();

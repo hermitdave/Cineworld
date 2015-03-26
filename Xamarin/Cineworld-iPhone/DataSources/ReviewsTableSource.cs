@@ -28,11 +28,16 @@ namespace CineworldiPhone
 			int len = String.IsNullOrWhiteSpace (review.Review) ? 0 : review.Review.Length;
 			if (len == 0) {
 				return 30;
-			} else if (len < 70) {
-				return 50;
+			}
+			else if(len < 47)
+			{
+				return 45;
+			} 
+			else if (len < 94) {
+				return 60;
 			}
 
-			return 70;
+			return 75;
 			//return cellHeightDictionary.ContainsKey(indexPath.Row) ? cellHeightDictionary [indexPath.Row] : 75;
 		}
 

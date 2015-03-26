@@ -45,7 +45,7 @@ namespace CineworldiPhone
 			if (perfList.Count % 4 > 0)
 				rows++;
 
-			return 25 + (rows * 50);
+			return 30 + (rows * 46);
 
 			//return 225;
 		}

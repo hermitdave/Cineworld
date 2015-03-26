@@ -28,7 +28,7 @@ namespace CineworldiPhone
 
 			this.Header.Text = film.TitleWithClassification;
 			this.Description.Text = film.ShortDesc;
-			this.Poster.Image = image; //ImageHelper.ResizeImage(image, 92, 139);
+			this.Poster.Image = image; 
 			this.Poster.Layer.CornerRadius = 10f;
 			this.Poster.Layer.MasksToBounds = true;
 			this.Poster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
@@ -39,8 +39,13 @@ namespace CineworldiPhone
 			PDRatingView ratingView;
 			UILabel reviewCount;
 
-			if(this.Rating.Subviews.Length == 0)
+			foreach(var sub in this.Rating.Subviews)
 			{
+				sub.RemoveFromSuperview ();
+			}
+
+			//if(this.Rating.Subviews.Length == 0)
+			//{
 				// Create the view.
 				ratingView = new PDRatingView(new RectangleF(0f, 0f, 50f, 30f), ratingConfig, Convert.ToDecimal(film.AverageRating));
 
@@ -51,25 +56,25 @@ namespace CineworldiPhone
 				reviewCount.Font = this.Duration.Font;
 				reviewCount.Text = String.Format ("{0} ratings", film.Reviews.Count);
 				this.Rating.AddSubview (reviewCount);
-			}
-			else
-			{
-				foreach(var sub in this.Rating.Subviews)
-				{
-					ratingView = sub as PDRatingView;
-					if(ratingView != null)
-					{
-						ratingView.AverageRating = Convert.ToDecimal (film.AverageRating);
-						break;
-					}
-
-					reviewCount = sub as UILabel;
-					if (reviewCount != null) 
-					{
-						reviewCount.Text = String.Format ("{0} ratings", film.Reviews.Count);
-					}
-				}
-			}
+			//}
+			//else
+			//{
+			//	foreach(var sub in this.Rating.Subviews)
+			//	{
+			//		ratingView = sub as PDRatingView;
+			//		if(ratingView != null)
+			//		{
+			//			ratingView.AverageRating = Convert.ToDecimal (film.AverageRating);
+			//			break;
+			//		}
+			//
+			//		reviewCount = sub as UILabel;
+			//		if (reviewCount != null) 
+			//		{
+			//			reviewCount.Text = String.Format ("{0} ratings", film.Reviews.Count);
+			//		}
+			//	}
+			//}
 		}
 
 		public void UpdateCell(UIImage image)

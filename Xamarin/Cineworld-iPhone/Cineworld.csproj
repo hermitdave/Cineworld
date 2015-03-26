@@ -315,9 +315,6 @@
     </Content>
     <Content Include="Images\Car.png" />
     <Content Include="Images\Man.png" />
-    <Content Include="Images\Gear.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="pdreview">

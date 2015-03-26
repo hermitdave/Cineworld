@@ -17,7 +17,12 @@ namespace CineworldiPhone
 		{
 			this.Cast = cast;
 
-			this.CastPoster.Image = image;
+			this.CastPoster.Image = image; 
+			this.CastPoster.Layer.CornerRadius = 10f;
+			this.CastPoster.Layer.MasksToBounds = true;
+			this.CastPoster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			this.CastPoster.Layer.Opaque = true;
+
 			this.CastDetail.Text = cast.Title;
 		}
 

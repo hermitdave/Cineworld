@@ -33,7 +33,7 @@ namespace CineworldiPhone
 
 			if (performanceView == null) 
 			{
-				performanceView = new UIView (new CGRect (15, 25, 290, height));
+				performanceView = new UIView (new CGRect (15, 30, 290, height));
 				this.ContentView.AddSubview (performanceView);
 			} 
 			else 
@@ -47,17 +47,15 @@ namespace CineworldiPhone
 
 			nfloat currentCell = 0;
 
-			//nfloat current = 0;
-
 			for (int i = 0; i < perfGroup.Count; i++) 
 			{
 				var perf = perfGroup [i];
 
-				var btnRect = new CGRect (currentCell * 70, currentRow * 50, 60, 40);
+				var btnRect = new CGRect (currentCell * 60, currentRow * 46, 50, 36);
 
 				var btn = new PerformanceButton (btnRect, perf, this.ContentView.TintColor);
-				currentRow = (i + 1) / 4;
-				if ((i + 1) % 4 == 0) 
+				currentRow = (i + 1) / 5;
+				if ((i + 1) % 5 == 0) 
 				{
 					currentCell = 0;
 				} 

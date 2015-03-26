@@ -22,36 +22,28 @@ namespace CineworldiPhone
 		{
 			base.PrepareForSegue (segue, sender);
 
-			PerformancesController performancesController = (segue.DestinationViewController as PerformancesController);
-
-			if (performancesController != null) 
+			if(segue.DestinationViewController is PerformancesController)
 			{
+				PerformancesController performancesController = (segue.DestinationViewController as PerformancesController);
+
 				performancesController.Showing = PerformancesController.ViewType.CinemaDetails;
 				performancesController.Cinema = (sender as CinemaTableCell).Cinema;
 				performancesController.Film = this.Film;
 			} 
-			else 
+			else if(segue.DestinationViewController is ReviewController) 
 			{
 				ReviewController reviewController = (segue.DestinationViewController as ReviewController);
 
-				if (reviewController != null) 
-				{
-					reviewController.FilmDetailsController = this;
-					reviewController.Film = this.Film;
-				} 
-				else 
-				{
-					PersonDetailsController personDetailsController = (segue.DestinationViewController as PersonDetailsController);
-					if (personDetailsController != null) 
-					{
-						personDetailsController.Cast = (sender as FilmCastTableCell).Cast;
-					} 
-					else 
-					{
-						YouTubeController youtubeController = segue.DestinationViewController as YouTubeController;
-						youtubeController.YouTubeId = this.Film.YoutubeTrailer;
-					}
-				}
+				reviewController.FilmDetailsController = this;
+				reviewController.Film = this.Film;
+			} 
+			else if(segue.DestinationViewController is PersonDetailsController)
+			{
+				(segue.DestinationViewController as PersonDetailsController).Cast = (sender as FilmCastTableCell).Cast;
+			} 
+			else if(segue.DestinationViewController is YouTubeController)
+			{
+				(segue.DestinationViewController as YouTubeController).YouTubeId = this.Film.YoutubeTrailer;
 			}
 		}
 
@@ -76,6 +68,11 @@ namespace CineworldiPhone
 			if (!String.IsNullOrWhiteSpace (this.Film.YoutubeTrailer)) 
 			{
 				this.PlayTrailer.Hidden = false;
+
+				this.PlayTrailer.Layer.CornerRadius = 10f;
+				this.PlayTrailer.Layer.MasksToBounds = true;
+				this.PlayTrailer.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+				this.PlayTrailer.Layer.Opaque = true;
 			} 
 
 			string url = this.Film.PosterUrl == null ? null : this.Film.PosterUrl.OriginalString;
@@ -131,6 +128,11 @@ namespace CineworldiPhone
 
 			this.CinemasView.Source = new CinemasTableSource (Application.FilmCinemas[this.Film.EDI]);
 			this.CinemasView.Hidden = true;
+
+			UITableViewCell cell = new UITableViewCell (this.RateReviewButton.Frame);
+			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+			cell.UserInteractionEnabled = false;
+			this.RateReviewButton.AddSubview (cell);
 
 			this.ReviewTable.Source = new ReviewsTableSource (this.Film.Reviews);
 

@@ -87,15 +87,9 @@ namespace CineworldiPhone
 			if (film.Performances.Count % 4 > 0)
 				rows++;
 
-			var	height = 80 + (rows * 46);
+			var	height = 85 + (rows * 46);
 
 			return height;
-//			
-//			return 90 + (rows * 50);
-//
-//			//return 225;
-
-//			return 135;
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)

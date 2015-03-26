@@ -24,6 +24,8 @@ namespace CineworldiPhone
 
 			this.PersonDetailsSegment.Enabled = false;
 
+			this.BusyIndicator.StartAnimating ();
+
 			this.NavigationItem.Title = this.Cast.Name;
 
 			TMDBService tmdbService = new TMDBService ();
@@ -45,6 +47,11 @@ namespace CineworldiPhone
 			} 
 
 			this.Poster.Image = image;
+			this.Poster.Image = image; 
+			this.Poster.Layer.CornerRadius = 10f;
+			this.Poster.Layer.MasksToBounds = true;
+			this.Poster.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
+			this.Poster.Layer.Opaque = true;
 
 			DateTime dtBirthDay;
 			if (DateTime.TryParseExact(person.Birthday, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dtBirthDay))
@@ -86,13 +93,15 @@ namespace CineworldiPhone
 				biography.Text = person.Biography;
 				biography.SizeToFit ();
 
-				UIScrollView scrollviewer = new UIScrollView (new CGRect (0, 183, 320, 202));
+				UIScrollView scrollviewer = new UIScrollView (new CGRect (0, 183, 320, 207));
 				scrollviewer.ContentSize = biography.Bounds.Size;
 				scrollviewer.AddSubview (biography);
 
 				this.BioView.AddSubview (scrollviewer);
 			}
 
+			this.BioView.Hidden = false;
+			this.BusyIndicator.StopAnimating ();
 
 			if (person.Credits != null && person.Credits.Cast != null && person.Credits.Cast.Length > 0)
 			{

@@ -7,7 +7,7 @@ namespace CineworldiPhone
 {
 	partial class YouTubeController : UIViewController
 	{
-		public const string YouTubeEmbedUrl = "https://www.youtube.com/embed/{0}";
+		public const string YouTubeEmbedUrl = "https://www.youtube.com/embed/{0}?autoplay=1";
 		public const string YouTubeEmbedString = "<html><body><iframe width=\"300\" height=\"169\" src=\"{0}\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
 
 		public string YouTubeId { get; set; }

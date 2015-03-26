@@ -117,7 +117,7 @@ namespace CineworldiPhone
 			this.FilmsByDateTable.Source = LoadFilmData (date);
 			this.FilmsByDateTable.ReloadData ();
 
-			var fmCalendar = new FMCalendar (this.FilmsByDateView.Bounds);
+			var fmCalendar = new FMCalendar (new CoreGraphics.CGRect(0, 44, 320, 356));
 
 			View.BackgroundColor = UIColor.White;
 
@@ -166,7 +166,7 @@ namespace CineworldiPhone
 			};
 
 			// Add FMCalendar to SuperView
-			fmCalendar.Center = this.View.Center;
+			//fmCalendar.Center = this.View.Center;
 			this.FilmsByDateView.AddSubview (fmCalendar);
 			fmCalendar.Hidden = true;
 
