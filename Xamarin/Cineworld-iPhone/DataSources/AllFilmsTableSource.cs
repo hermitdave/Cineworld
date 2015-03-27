@@ -35,6 +35,13 @@ namespace CineworldiPhone
 			ImageManager.Instance.ImageLoaded += HandleImageLoaded;
 		}
 
+		protected override void Dispose (bool disposing)
+		{
+			base.Dispose (disposing);
+
+			ImageManager.Instance.ImageLoaded -= HandleImageLoaded;
+		}
+
 		void HandleImageLoaded (string id, UIImage image)
 		{
 			if (image != null && this.cellDictionary.ContainsKey(id)) 

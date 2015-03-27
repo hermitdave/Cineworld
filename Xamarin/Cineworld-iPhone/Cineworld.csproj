@@ -275,6 +275,16 @@
       <DependentUpon>ReviewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Reachability.cs" />
+    <Compile Include="SearchController.cs" />
+    <Compile Include="SearchController.designer.cs">
+      <DependentUpon>SearchController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\SearchResult.cs" />
+    <Compile Include="SearchTableCell.cs" />
+    <Compile Include="SearchTableCell.designer.cs">
+      <DependentUpon>SearchTableCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\SearchResultsTableSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -284,11 +294,6 @@
     <Folder Include="Images\" />
     <Folder Include="CustomControls\" />
     <Folder Include="ViewControllers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Background.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\PlaceHolder.png">
@@ -312,6 +317,15 @@
     </Content>
     <Content Include="Images\Car.png" />
     <Content Include="Images\Man.png" />
+    <Content Include="Images\Search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SearchNoBorder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="pdreview">

@@ -32,6 +32,10 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton SearchButton { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIButton SettingsButton { get; set; }
 
 		void ReleaseDesignerOutlets ()
@@ -51,6 +55,10 @@ namespace CineworldiPhone
 			if (NearestCinemas != null) {
 				NearestCinemas.Dispose ();
 				NearestCinemas = null;
+			}
+			if (SearchButton != null) {
+				SearchButton.Dispose ();
+				SearchButton = null;
 			}
 			if (SettingsButton != null) {
 				SettingsButton.Dispose ();

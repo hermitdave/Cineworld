@@ -23,7 +23,7 @@
                             <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5">
                                 <rect key="frame" x="15" y="109" width="135" height="135"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                <state key="normal" backgroundImage="Background.png">
+                                <state key="normal" backgroundImage="Images/Background.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -34,7 +34,7 @@
                             <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33">
                                 <rect key="frame" x="165" y="109" width="135" height="135"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                                <state key="normal" backgroundImage="Background.png">
+                                <state key="normal" backgroundImage="Images/Background.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -59,7 +59,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="Background.png" translatesAutoresizingMaskIntoConstraints="NO" id="2659">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="Images/Background.png" translatesAutoresizingMaskIntoConstraints="NO" id="2659">
                                                     <rect key="frame" x="0.0" y="0.0" width="135" height="135"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2660">
@@ -99,13 +99,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Cineworld" id="74"/>
+                    <navigationItem key="navigationItem" title="Cineworld" id="74">
+                        <barButtonItem style="plain" id="3846" key="rightBarButtonItem">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3845" translatesAutoresizingMaskIntoConstraints="NO" key="customView">
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                <state key="normal" image="Images/SearchNoBorder.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue id="3890" destination="3850" kind="push"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="AllCinemasButton" destination="33" id="name-outlet-33"/>
                         <outlet property="AllFilmsButton" destination="5" id="name-outlet-5"/>
                         <outlet property="BusyIndicator" destination="6" id="name-outlet-6"/>
                         <outlet property="NearestCinemas" destination="2582" id="name-outlet-2582"/>
                         <outlet property="SettingsButton" destination="3424" id="name-outlet-3424"/>
+                        <outlet property="SearchButton" destination="3845" id="name-outlet-3845"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -160,7 +173,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1213">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -455,7 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="596" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886" y="640"/>
+            <point key="canvasLocation" x="986" y="550"/>
         </scene>
         <!--Title-->
         <scene sceneID="1220">
@@ -701,7 +714,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1223" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="-234"/>
+            <point key="canvasLocation" x="978" y="-259"/>
         </scene>
         <!--Ticket Purchase-->
         <scene sceneID="1706">
@@ -729,7 +742,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1709" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2541" y="144"/>
+            <point key="canvasLocation" x="2621" y="-171"/>
         </scene>
         <!--Title-->
         <scene sceneID="1786">
@@ -1009,7 +1022,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1789" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1907" y="139"/>
+            <point key="canvasLocation" x="1942" y="-236"/>
         </scene>
         <!--Review-->
         <scene sceneID="2897">
@@ -1076,7 +1089,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2900" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1335" y="246"/>
+            <point key="canvasLocation" x="1660" y="601"/>
         </scene>
         <!--You Tube Controller-->
         <scene sceneID="3222">
@@ -1103,7 +1116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3225" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2542" y="831"/>
+            <point key="canvasLocation" x="2622" y="521"/>
         </scene>
         <!--Region-->
         <scene sceneID="3419">
@@ -1130,7 +1143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3422" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1" y="648"/>
+            <point key="canvasLocation" x="-24" y="878"/>
         </scene>
         <scene sceneID="3535">
             <objects>
@@ -1228,7 +1241,92 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3538" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1902" y="1009"/>
+            <point key="canvasLocation" x="2217" y="1094"/>
+        </scene>
+        <scene sceneID="3849">
+            <objects>
+                <viewController id="3850" sceneMemberID="viewController" customClass="SearchController" explicitStoryboardIdentifier="SearchController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3847"/>
+                        <viewControllerLayoutGuide type="bottom" id="3848"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3851">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="3854" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="80" y="1125" width="320" height="44"/>
+                                <items>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="3856" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Enter search text">
+                                <rect key="frame" x="15" y="79" width="236" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3893" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="261" y="72" width="44" height="44"/>
+                                <state key="normal" image="Images/Search.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="149" sectionHeaderHeight="22" sectionFooterHeight="22" id="3894" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="125" width="320" height="392"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3895" rowHeight="149" customClass="SearchTableCell" reuseIdentifier="SearchTableCell" accessoryType="disclosureIndicator">
+                                        <rect key="frame" x="0.0" y="22" width="198" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3896" tableViewCell="3895">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="148.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3901" hidden="YES">
+                                                    <rect key="frame" x="15" y="5" width="92" height="139"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" id="3902" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" adjustsFontSizeToFit="NO" numberOfLines="0">
+                                                    <rect key="frame" x="117" y="5" width="170" height="21"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" id="3903" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0" adjustsFontSizeToFit="NO">
+                                                    <rect key="frame" x="117" y="35" width="170" height="21"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3928" image="Images/Background.png" hidden="YES">
+                                                    <rect key="frame" x="15" y="5" width="92" height="92"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="Title" destination="3902" id="name-outlet-3902"/>
+                                            <outlet property="Subtitle" destination="3903" id="name-outlet-3903"/>
+                                            <outlet property="Poster" destination="3901" id="name-outlet-3901"/>
+                                            <outlet property="CinemaImage" destination="3928" id="name-outlet-3928"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="SearchBar" destination="3854" id="name-outlet-3854"/>
+                        <outlet property="SearchButton" destination="3893" id="name-outlet-3893"/>
+                        <outlet property="SearchResults" destination="3894" id="name-outlet-3894"/>
+                        <outlet property="SearchText" destination="3856" id="name-outlet-3856"/>
+                    </connections>
+                    <navigationItem title="Search" id="3892" translatesAutoresizingMaskIntoConstraints="NO" key="navigationItem"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3852" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-520" y="884"/>
         </scene>
     </scenes>
     <resources>
@@ -1249,6 +1347,9 @@
         <image name="Images/Gear.png" width="60" height="60"/>
         <image name="Default.png" width="320" height="480"/>
         <image name="Default-568h.png" width="640" height="1136"/>
+        <image name="Images/Search.png" width="88" height="88"/>
+        <image name="Images/SearchNoBorder.png" width="88" height="88"/>
+        <image name="Images/Background.png" width="222" height="222"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
