@@ -10,6 +10,9 @@ namespace Cineworld
     {
         public async Task<string> GetStringAsync(string url)
         {
+			if (Reachability.InternetConnectionStatus () == NetworkStatus.NotReachable)
+				throw new Exception ("Internet access not possible at this moment");
+			
             string data = null;
             while (true)
             {
@@ -27,7 +30,12 @@ namespace Cineworld
                 }
                 catch
                 {
+#if !AZURE
+					throw;
+#endif
                 }
+
+
             }
 
             return data;
@@ -35,6 +43,9 @@ namespace Cineworld
 
         public async Task DownloadFileAsync(string url, string filename, string folder = null)
         {
+			if (Reachability.InternetConnectionStatus () == NetworkStatus.NotReachable)
+				throw new Exception ("Internet access not possible at this moment");
+			
             var httpClient = new HttpClient();
             
             try
@@ -58,6 +69,9 @@ namespace Cineworld
 
         public async Task<byte[]> SavePictureLocally(string url, Stream ms)
         {
+			if (Reachability.InternetConnectionStatus () == NetworkStatus.NotReachable)
+				throw new Exception ("Internet access not possible at this moment");
+			
             var httpClient = new HttpClient();
 
             try

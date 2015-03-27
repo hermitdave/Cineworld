@@ -232,7 +232,15 @@ namespace CineworldiPhone
 
 			locationManager.RequestWhenInUseAuthorization ();
 
-			await Initialise (false);
+			try
+			{
+				await Initialise (false);
+			}
+			catch
+			{
+				UIAlertView alert = new UIAlertView ("Cineworld", "Error downloading data. Please try again later", null, "OK", null);
+				alert.Show();
+			}
 		}
 
 		public override void ViewWillAppear (bool animated)

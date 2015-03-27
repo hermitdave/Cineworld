@@ -244,12 +244,26 @@ namespace CineworldiPhone
 			this.BusyIndicator.StartAnimating ();
 			this.BusyIndicator.Hidden = false;
 
-			await new LocalStorageHelper ().GetCinemaFilmListings (this.Cinema.ID, false);
+			try
+			{
+				await new LocalStorageHelper ().GetCinemaFilmListings (this.Cinema.ID, false);
+			}
+			catch
+			{
+				UIAlertView alert = new UIAlertView ("Cineworld", "Error downloading data. Please try again later", null, "OK", null);
+				alert.Show();
+
+				return;
+			}
+			finally 
+			{
+				this.BusyIndicator.StopAnimating ();
+				this.BusyIndicator.Hidden = true;
+			}
 
 			this.Film = Application.CinemaFilms[this.Cinema.ID].First(f => f.EDI == this.Film.EDI);
 
-			this.BusyIndicator.StopAnimating ();
-			this.BusyIndicator.Hidden = true;
+
 
 			this.PerformanceView.Source = new PerformancesTableSource (this.Film.Performances);
 			this.PerformanceView.ReloadData ();

@@ -83,11 +83,22 @@ namespace CineworldiPhone
 			this.BusyIndicator.StartAnimating ();
 			this.BusyIndicator.Hidden = false;
 
-			await new LocalStorageHelper ().GetCinemaFilmListings (this.Cinema.ID, false);
+			try
+			{
+				await new LocalStorageHelper ().GetCinemaFilmListings (this.Cinema.ID, false);
+			}
+			catch
+			{
+				UIAlertView alert = new UIAlertView ("Cineworld", "Error downloading data. Please try again later", null, "OK", null);
+				alert.Show();
 
-			this.BusyIndicator.StopAnimating ();
-			this.BusyIndicator.Hidden = true;
-
+				return;
+			}
+			finally 
+			{
+				this.BusyIndicator.StopAnimating ();
+				this.BusyIndicator.Hidden = true;
+			}
 			// Gather up the images to be used.
 			RatingConfig ratingConfig = new RatingConfig(UIImage.FromFile("Images/Stars/empty.png"), UIImage.FromFile("Images/Stars/filled.png"), UIImage.FromFile("Images/Stars/chosen.png"));
 

@@ -28,14 +28,31 @@ namespace CineworldiPhone
 
 			this.NavigationItem.Title = this.Cast.Name;
 
-			TMDBService tmdbService = new TMDBService ();
+			Person person = null;
 
-			if (Application.TMDBConfig == null) 
+			try
 			{
-				Application.TMDBConfig = await tmdbService.GetConfig ();
-			}
+				TMDBService tmdbService = new TMDBService ();
 
-			var person = await tmdbService.GetPersonDetails (this.Cast.ID);
+				if (Application.TMDBConfig == null) 
+				{
+					Application.TMDBConfig = await tmdbService.GetConfig ();
+				}
+
+				person = await tmdbService.GetPersonDetails (this.Cast.ID);
+			}
+			catch 
+			{
+				UIAlertView alert = new UIAlertView ("Cineworld", "Error downloading data. Please try again later", null, "OK", null);
+				alert.Show();
+
+				return;
+			}
+			finally 
+			{
+				this.BioView.Hidden = false;
+				this.BusyIndicator.StopAnimating ();
+			}
 
 			var height = 0;
 
@@ -99,10 +116,7 @@ namespace CineworldiPhone
 
 				this.BioView.AddSubview (scrollviewer);
 			}
-
-			this.BioView.Hidden = false;
-			this.BusyIndicator.StopAnimating ();
-
+				
 			if (person.Credits != null && person.Credits.Cast != null && person.Credits.Cast.Length > 0)
 			{
 				List<MovieCastInfo> movieRoles = new List<MovieCastInfo>();
