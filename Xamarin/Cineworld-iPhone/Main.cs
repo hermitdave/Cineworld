@@ -36,6 +36,10 @@ namespace CineworldiPhone
 
 		public static UINavigationController NavigationController { get; set; }
 
+		public static UIImage AvailableImageDefault { get; set; }
+		public static UIImage AvailableImagePressed { get; set; }
+		public static UIImage UnavailableImage { get; set; }
+
 		// This is the main entry point of the application.
 		static void Main (string[] args)
 		{

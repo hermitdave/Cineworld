@@ -66,6 +66,20 @@ namespace CineworldiPhone
 			UIGraphics.EndImageContext();
 			return modifiedImage;
 		}
+
+		public static UIImage ImageFromColor(UIColor color, CoreGraphics.CGSize size)
+		{
+			CoreGraphics.CGRect frame = new CoreGraphics.CGRect (0, 0, size.Width, size.Height);
+			UIGraphics.BeginImageContext(size);
+			var context = UIGraphics.GetCurrentContext();
+
+			context.SetFillColor (color.CGColor);
+			context.FillRect (frame);
+
+			var image = UIGraphics.GetImageFromCurrentImageContext ();
+			UIGraphics.EndImageContext ();
+			return image;
+		}
 	}
 }
 

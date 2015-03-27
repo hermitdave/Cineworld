@@ -8,7 +8,7 @@ namespace CineworldiPhone
 	{
 		public PerformanceInfo Performance { get; set; }
 
-		public PerformanceButton (CGRect frame, PerformanceInfo perf, UIColor backgroundColor) : base(UIButtonType.Custom)
+		public PerformanceButton (CGRect frame, PerformanceInfo perf) : base(UIButtonType.System)
 		{
 			this.Frame = frame;
 
@@ -41,13 +41,23 @@ namespace CineworldiPhone
 			time.TextColor = UIColor.White;
 			type.TextColor = UIColor.White;
 
+//			if (perf.AvailableFuture) 
+//			{
+//				this.BackgroundColor = backgroundColor;
+//			} 
+//			else
+//			{
+//				this.BackgroundColor = UIColor.LightGray;
+//			}
+
 			if (perf.AvailableFuture) 
 			{
-				this.BackgroundColor = backgroundColor;
+				this.SetImage (Application.AvailableImageDefault, UIControlState.Normal);
+				this.SetImage (Application.AvailableImagePressed, UIControlState.Highlighted);
 			} 
-			else
+			else 
 			{
-				this.BackgroundColor = UIColor.LightGray;
+				this.SetImage (Application.UnavailableImage, UIControlState.Normal);
 			}
 
 			this.Performance = perf;

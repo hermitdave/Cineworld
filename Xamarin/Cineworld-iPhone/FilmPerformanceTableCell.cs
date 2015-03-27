@@ -71,7 +71,7 @@ namespace CineworldiPhone
 
 				var btnRect = new CGRect (currentCell * 60, currentRow * 46, 50, 36);
 
-				var btn = new PerformanceButton (btnRect, perf, this.ContentView.TintColor);
+				var btn = new PerformanceButton (btnRect, perf);
 
 				currentRow = (i + 1) / 5;
 				if ((i + 1) % 5 == 0) 

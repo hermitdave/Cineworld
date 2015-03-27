@@ -233,6 +233,12 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			var size = new CGSize (50, 36);
+
+			Application.AvailableImageDefault = ImageHelper.ImageFromColor (UIColor.FromRGB(0, 122, 255), size);
+			Application.AvailableImagePressed = ImageHelper.ImageFromColor (UIColor.FromRGB (0, 255, 255), size);
+			Application.UnavailableImage = ImageHelper.ImageFromColor (UIColor.FromRGB (160, 160, 160), size);
+
 			this.SearchButton.Enabled = false;
 
 			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
