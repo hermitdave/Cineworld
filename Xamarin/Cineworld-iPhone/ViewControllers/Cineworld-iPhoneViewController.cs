@@ -200,17 +200,6 @@ namespace CineworldiPhone
 			this.NearestCinemas.ReloadData ();
 		}
 
-		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
-		{
-			if (sender is UIButton) 
-			{
-				var btn = sender as UIButton;
-				return btn.Enabled;
-			}
-
-			return base.ShouldPerformSegue (segueIdentifier, sender);
-		}
-
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			ImageManager.Instance.ImageLoaded -= HandleImageLoaded;
