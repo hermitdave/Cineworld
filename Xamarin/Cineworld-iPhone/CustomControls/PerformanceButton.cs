@@ -50,15 +50,11 @@ namespace CineworldiPhone
 //				this.BackgroundColor = UIColor.LightGray;
 //			}
 
-			if (perf.AvailableFuture) 
-			{
-				this.SetImage (Application.AvailableImageDefault, UIControlState.Normal);
-				this.SetImage (Application.AvailableImagePressed, UIControlState.Highlighted);
-			} 
-			else 
-			{
-				this.SetImage (Application.UnavailableImage, UIControlState.Normal);
-			}
+			this.SetImage (Application.AvailableImageDefault, UIControlState.Normal);
+			this.SetImage (Application.AvailableImagePressed, UIControlState.Highlighted);
+			this.SetImage (Application.UnavailableImage, UIControlState.Disabled);
+
+			this.Enabled = perf.AvailableFuture;
 
 			this.Performance = perf;
 		}
