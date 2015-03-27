@@ -116,8 +116,6 @@ namespace CineworldiPhone
 			{
 				this.OverviewData.Text = this.Film.Overview;
 				this.OverviewData.SizeToFit ();
-
-				this.FilmGistView.SizeToFit ();
 			}
 			else
 			{
@@ -141,7 +139,7 @@ namespace CineworldiPhone
 
 			this.FilmDetailSegments.ValueChanged += (sender, e) => 
 			{
-				this.GistScrollViewer.Hidden = true;
+				this.FilmGist.Hidden = true;
 
 				this.FilmCastTable.Hidden = true;
 
@@ -152,7 +150,7 @@ namespace CineworldiPhone
 				switch(this.FilmDetailSegments.SelectedSegment)
 				{
 					case 0:
-					this.GistScrollViewer.Hidden = false;
+					this.FilmGist.Hidden = false;
 					break;
 
 					case 1:

@@ -16,6 +16,10 @@ namespace CineworldiPhone
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIActivityIndicatorView BusyIndicator { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITextView Review { get; set; }
 
 		[Outlet]
@@ -28,6 +32,10 @@ namespace CineworldiPhone
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (BusyIndicator != null) {
+				BusyIndicator.Dispose ();
+				BusyIndicator = null;
+			}
 			if (Review != null) {
 				Review.Dispose ();
 				Review = null;

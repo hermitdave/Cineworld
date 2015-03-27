@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6" hidesWhenStopped="YES" hidden="YES">
                                 <rect key="frame" x="150" y="274" width="20" height="20"/>
                                 <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -101,7 +101,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cineworld" id="74">
                         <barButtonItem style="plain" id="3846" key="rightBarButtonItem">
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3845" translatesAutoresizingMaskIntoConstraints="NO" key="customView">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3845" translatesAutoresizingMaskIntoConstraints="NO" key="customView" enabled="NO">
                                 <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                 <state key="normal" image="Images/SearchNoBorder.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -404,47 +404,42 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="1877" fixedFrame="YES">
+                            <view contentMode="scaleToFill" id="1042" fixedFrame="YES">
                                 <rect key="frame" x="0.0" y="118" width="320" height="400"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" id="1042" fixedFrame="YES">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="802">
-                                                <rect key="frame" x="15" y="5" width="109" height="163"/>
-                                            </imageView>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="803">
-                                                <rect key="frame" x="139" y="5" width="164" height="163"/>
-                                            </view>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Overview" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="913">
-                                                <rect key="frame" x="15" y="183" width="53" height="15"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Desc" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1904">
-                                                <rect key="frame" x="15" y="198" width="290" height="96"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button hidden="YES" opaque="NO" alpha="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3159">
-                                                <rect key="frame" x="48" y="64" width="44" height="44"/>
-                                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
-                                                <state key="normal" image="Images/Play.png">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="3223" kind="push" identifier="YouTubeSegue2" id="3272"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="802">
+                                        <rect key="frame" x="15" y="5" width="109" height="163"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="803">
+                                        <rect key="frame" x="139" y="5" width="164" height="163"/>
                                     </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Overview" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="913">
+                                        <rect key="frame" x="15" y="183" width="53" height="15"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Desc" lineBreakMode="wordWrap" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1904">
+                                        <rect key="frame" x="15" y="198" width="290" height="96"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" alpha="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3159">
+                                        <rect key="frame" x="48" y="64" width="44" height="44"/>
+                                        <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                        <state key="normal" image="Images/Play.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="3223" kind="push" identifier="YouTubeSegue2" id="3272"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                            </scrollView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -453,17 +448,16 @@
                         <outlet property="CinemasView" destination="1404" id="name-outlet-1404"/>
                         <outlet property="FilmCastTable" destination="973" id="name-outlet-973"/>
                         <outlet property="FilmDetailSegments" destination="790" id="name-outlet-790"/>
-                        <outlet property="FilmGistView" destination="1042" id="name-outlet-1042"/>
                         <outlet property="FilmTitle" destination="787" id="name-outlet-787"/>
-                        <outlet property="GistScrollViewer" destination="1877" id="name-outlet-1877"/>
-                        <outlet property="Misc" destination="803" id="name-outlet-803"/>
-                        <outlet property="OverviewData" destination="1904" id="name-outlet-1904"/>
-                        <outlet property="OverviewLabel" destination="913" id="name-outlet-913"/>
-                        <outlet property="PlayTrailer" destination="3159" id="name-outlet-3159"/>
-                        <outlet property="Poster" destination="802" id="name-outlet-802"/>
                         <outlet property="RateReviewButton" destination="1167" id="name-outlet-1167"/>
                         <outlet property="ReviewTable" destination="1168" id="name-outlet-1168"/>
                         <outlet property="ReviewsView" destination="1166" id="name-outlet-1166"/>
+                        <outlet property="FilmGist" destination="1042" id="name-outlet-1042"/>
+                        <outlet property="Poster" destination="802" id="name-outlet-802"/>
+                        <outlet property="Misc" destination="803" id="name-outlet-803"/>
+                        <outlet property="OverviewLabel" destination="913" id="name-outlet-913"/>
+                        <outlet property="OverviewData" destination="1904" id="name-outlet-1904"/>
+                        <outlet property="PlayTrailer" destination="3159" id="name-outlet-3159"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="596" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -628,7 +622,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1551">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1551" hidesWhenStopped="YES" hidden="YES">
                                 <rect key="frame" x="150" y="274" width="37" height="37"/>
                                 <color key="color" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
                             </activityIndicatorView>
@@ -792,7 +786,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2298">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2298" hidesWhenStopped="YES">
                                 <rect key="frame" x="150" y="274" width="37" height="37"/>
                                 <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -1068,6 +1062,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3947" hidesWhenStopped="YES" hidden="YES">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <color key="color" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1085,6 +1083,7 @@
                         <outlet property="Review" destination="3018" id="name-outlet-3018"/>
                         <outlet property="Submit" destination="3012" id="name-outlet-3012"/>
                         <outlet property="User" destination="3015" id="name-outlet-3015"/>
+                        <outlet property="BusyIndicator" destination="3947" id="name-outlet-3947"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2900" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1260,7 +1259,7 @@
                                 <items>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="3856" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Enter search text">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="3856" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Enter search text" clearsOnBeginEditing="YES">
                                 <rect key="frame" x="15" y="79" width="236" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>

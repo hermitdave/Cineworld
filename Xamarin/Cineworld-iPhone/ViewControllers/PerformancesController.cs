@@ -242,7 +242,6 @@ namespace CineworldiPhone
 		async Task LoadPerformances ()
 		{
 			this.BusyIndicator.StartAnimating ();
-			this.BusyIndicator.Hidden = false;
 
 			try
 			{
@@ -258,7 +257,6 @@ namespace CineworldiPhone
 			finally 
 			{
 				this.BusyIndicator.StopAnimating ();
-				this.BusyIndicator.Hidden = true;
 			}
 
 			this.Film = Application.CinemaFilms[this.Cinema.ID].First(f => f.EDI == this.Film.EDI);

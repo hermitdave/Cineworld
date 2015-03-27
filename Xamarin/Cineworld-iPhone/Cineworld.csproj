@@ -275,16 +275,16 @@
       <DependentUpon>ReviewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Reachability.cs" />
-    <Compile Include="SearchController.cs" />
-    <Compile Include="SearchController.designer.cs">
-      <DependentUpon>SearchController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\SearchResult.cs" />
     <Compile Include="SearchTableCell.cs" />
     <Compile Include="SearchTableCell.designer.cs">
       <DependentUpon>SearchTableCell.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSources\SearchResultsTableSource.cs" />
+    <Compile Include="ViewControllers\SearchController.cs" />
+    <Compile Include="ViewControllers\SearchController.designer.cs">
+      <DependentUpon>SearchController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

@@ -73,7 +73,6 @@ namespace CineworldiPhone
 			//this.AllFilmsButton.Enabled = this.AllCinemasButton.Enabled = false;
 
 			this.BusyIndicator.StartAnimating ();
-			this.BusyIndicator.Hidden = false;
 
 			LocalStorageHelper lsh = new LocalStorageHelper();
 
@@ -82,6 +81,8 @@ namespace CineworldiPhone
 
 			Console.WriteLine ("Start data deserialisation " + DateTime.Now.ToLongTimeString ());
 			await lsh.DeserialiseObjects();
+
+			this.SearchButton.Enabled = true;
 
 			Task tFilmData = LoadFilmData ();
 
@@ -94,7 +95,6 @@ namespace CineworldiPhone
 			Console.WriteLine ("Nearest cinemas loaded " + DateTime.Now.ToLongTimeString ());
 
 			this.BusyIndicator.StopAnimating ();
-			this.BusyIndicator.Hidden = true;
 
 			this.AllFilmsButton.Enabled = this.AllCinemasButton.Enabled = true;
 
@@ -200,6 +200,17 @@ namespace CineworldiPhone
 			this.NearestCinemas.ReloadData ();
 		}
 
+		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
+		{
+			if (sender is UIButton) 
+			{
+				var btn = sender as UIButton;
+				return btn.Enabled;
+			}
+
+			return base.ShouldPerformSegue (segueIdentifier, sender);
+		}
+
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			ImageManager.Instance.ImageLoaded -= HandleImageLoaded;
@@ -221,6 +232,8 @@ namespace CineworldiPhone
 		public async override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
+			this.SearchButton.Enabled = false;
 
 			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 			appDelegate.Window.RootViewController.View.AddSubview (new ADBannerView (new CGRect (0, 518, 320, 50)) );

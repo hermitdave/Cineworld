@@ -110,6 +110,26 @@ namespace CineworldiPhone
 			}
 			return cell;
 		}
+
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			UIViewController destinationController = null;
+			if (this.SearchResults [indexPath.Row].SearchObject is FilmInfo) 
+			{
+				var filmDetailsController = Application.Storyboard.InstantiateViewController ("FilmDetailsController") as FilmDetailsController;
+				filmDetailsController.Film = this.SearchResults [indexPath.Row].SearchObject as FilmInfo;
+
+				destinationController = filmDetailsController;
+			} 
+			else 
+			{
+				var cinemaDetailsController = Application.Storyboard.InstantiateViewController ("CinemaDetailsController") as CinemaDetailsController;
+				cinemaDetailsController.Cinema = this.SearchResults [indexPath.Row].SearchObject as CinemaInfo;
+
+				destinationController = cinemaDetailsController;
+			}
+			Application.NavigationController.PushViewController (destinationController, true);
+		}
 	}
 }
 

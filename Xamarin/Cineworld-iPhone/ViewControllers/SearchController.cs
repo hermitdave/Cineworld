@@ -17,6 +17,8 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			this.SearchText.BecomeFirstResponder ();
+
 			this.SearchText.ShouldReturn += (textField) => { 
 				this.SearchButton_TouchUpInside(this, new EventArgs());
 				return true; 

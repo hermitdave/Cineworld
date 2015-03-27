@@ -155,6 +155,8 @@ namespace CineworldiPhone
 
 			try
 			{
+				this.BusyIndicator.StartAnimating();
+
 				if (this.Film != null)
 				{
 					FilmReview fr = (FilmReview)this.UserReview;
@@ -202,6 +204,10 @@ namespace CineworldiPhone
 			{
 				UIAlertView alert = new UIAlertView ("Cineworld", "Error saving review. Please try again later", null, "OK", null);
 				alert.Show();
+			}
+			finally 
+			{
+				this.BusyIndicator.StopAnimating ();
 			}
 		}
 	}

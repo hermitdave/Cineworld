@@ -81,7 +81,6 @@ namespace CineworldiPhone
 			this.CinemaTitle.Title = this.Cinema.Name;
 
 			this.BusyIndicator.StartAnimating ();
-			this.BusyIndicator.Hidden = false;
 
 			try
 			{
@@ -97,7 +96,6 @@ namespace CineworldiPhone
 			finally 
 			{
 				this.BusyIndicator.StopAnimating ();
-				this.BusyIndicator.Hidden = true;
 			}
 			// Gather up the images to be used.
 			RatingConfig ratingConfig = new RatingConfig(UIImage.FromFile("Images/Stars/empty.png"), UIImage.FromFile("Images/Stars/filled.png"), UIImage.FromFile("Images/Stars/chosen.png"));
