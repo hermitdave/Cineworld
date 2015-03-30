@@ -231,7 +231,8 @@ namespace CineworldiPhone
 			this.SearchButton.Enabled = false;
 
 			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
-			appDelegate.Window.RootViewController.View.AddSubview (new ADBannerView (new CGRect (0, 518, 320, 50)) );
+
+			appDelegate.Window.RootViewController.View.AddSubview (new ADBannerView (new CGRect (0, this.View.Bounds.Height == 480 ? 430 : 518, 320, 50)) );
 
 			Application.Storyboard = this.Storyboard;
 			Application.NavigationController = this.NavigationController;
