@@ -289,6 +289,26 @@
     <Compile Include="ViewControllers\SearchController.designer.cs">
       <DependentUpon>SearchController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CinemaDetailsViewController.cs" />
+    <Compile Include="CinemaDetailsViewController.designer.cs">
+      <DependentUpon>CinemaDetailsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CinemaInfoViewController.cs" />
+    <Compile Include="CinemaInfoViewController.designer.cs">
+      <DependentUpon>CinemaInfoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Films.cs" />
+    <Compile Include="Films.designer.cs">
+      <DependentUpon>Films.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilmListViewController.cs" />
+    <Compile Include="FilmListViewController.designer.cs">
+      <DependentUpon>FilmListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilmsByDateViewController.cs" />
+    <Compile Include="FilmsByDateViewController.designer.cs">
+      <DependentUpon>FilmsByDateViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

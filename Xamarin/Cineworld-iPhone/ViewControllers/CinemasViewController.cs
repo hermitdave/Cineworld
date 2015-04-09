@@ -18,7 +18,15 @@ namespace CineworldiPhone
 		{
 			base.PrepareForSegue (segue, sender);
 
-			(segue.DestinationViewController as CinemaDetailsController).Cinema = (sender as CinemaTableCell).Cinema;
+			if (segue.DestinationViewController is CinemaDetailsViewController) 
+			{
+				(segue.DestinationViewController as CinemaDetailsViewController).Cinema = (sender as CinemaTableCell).Cinema;
+			} 
+			else 
+			{
+
+				(segue.DestinationViewController as CinemaDetailsController).Cinema = (sender as CinemaTableCell).Cinema;
+			}
 		}
 
 		public override void ViewDidLoad ()
