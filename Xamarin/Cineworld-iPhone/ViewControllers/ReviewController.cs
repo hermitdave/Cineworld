@@ -17,10 +17,10 @@ namespace CineworldiPhone
 		PDRatingView RatingView;
 
 		public FilmInfo Film { get; set; }
-		public FilmDetailsController FilmDetailsController { get; set; }
+		public FilmReviewsViewController FilmReviewsViewController { get; set; }
 
 		public CinemaInfo Cinema { get; set; }
-		public CinemaDetailsController CinemaDetailsController { get; set; }
+		public CinemaInfoViewController CinemaInfoViewController { get; set; }
 
 		public PerformancesController PerformancesController { get; set; }
 
@@ -187,13 +187,13 @@ namespace CineworldiPhone
 					}
 				}
 
-				if(this.FilmDetailsController != null)
+				if(this.FilmReviewsViewController != null)
 				{
-					this.FilmDetailsController.ReviewSubmitted();
+					this.FilmReviewsViewController.ReviewSubmitted();
 				}
-				else if(this.CinemaDetailsController != null)
+				else if(this.CinemaInfoViewController != null)
 				{
-					this.CinemaDetailsController.ReviewSubmitted();
+					this.CinemaInfoViewController.ReviewSubmitted();
 				}
 				else if(this.PerformancesController != null)
 				{

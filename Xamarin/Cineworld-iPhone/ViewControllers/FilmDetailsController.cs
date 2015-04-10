@@ -34,7 +34,7 @@ namespace CineworldiPhone
 			{
 				ReviewController reviewController = (segue.DestinationViewController as ReviewController);
 
-				reviewController.FilmDetailsController = this;
+				//reviewController.FilmDetailsController = this;
 				reviewController.Film = this.Film;
 			} 
 			else if(segue.DestinationViewController is PersonDetailsController)
@@ -169,5 +169,6 @@ namespace CineworldiPhone
 
 			this.FilmDetailSegments.Enabled = true;
 		}
+
 	}
 }

@@ -274,7 +274,7 @@ namespace CineworldiPhone
 			else if(segue.DestinationViewController is ReviewController)
 			{
 				ReviewController reviewController = (segue.DestinationViewController as ReviewController);
-				reviewController.CinemaDetailsController = this;
+				//reviewController.CinemaDetailsController = this;
 				reviewController.Cinema = this.Cinema;
 			}
 		}

@@ -1,35 +1,18 @@
 ﻿<Properties StartupItem="Cineworld-iPhone/Cineworld.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.2" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/Main.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.3" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Cineworld-iPhone/CinemaInfoViewController.cs" Line="14" Column="8" />
-      <File FileName="Cineworld-iPhone/CinemaDetailsViewController.cs" Line="146" Column="82" />
-      <File FileName="Cineworld-iPhone/FilmListViewController.cs" Line="15" Column="42" />
-      <File FileName="Cineworld-iPhone/ViewControllers/CinemaDetailsController.cs" Line="57" Column="4" />
-      <File FileName="Cineworld-iPhone/FilmsByDateViewController.cs" Line="117" Column="2" />
-      <File FileName="Cineworld-iPhone/DataSources/FilmPerformancesTableSource.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/Main.cs" Line="49" Column="1" />
+      <File FileName="Cineworld-iPhone/FilmInfoViewController.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/FilmDetailsViewController.cs" Line="85" Column="21" />
+      <File FileName="Cineworld-iPhone/FilmCastViewController.cs" Line="22" Column="3" />
+      <File FileName="Cineworld-iPhone/ViewControllers/FilmDetailsController.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Cineworld" expanded="True">
-            <Node name="ComponentReferenceFolder" expanded="True" />
-            <Node name="DataSources" expanded="True" />
-            <Node name="ViewControllers" expanded="True" />
-            <Node name="CinemaInfoViewController.cs" expanded="True" />
-            <Node name="Main.cs" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Cineworld-iPhone/AllCinemasViewController.cs" line="14" column="1" />
       <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Xamarin/Cineworld-iPhone/FilmTableCell.cs" line="64" column="1" />
       <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Xamarin/Cineworld-iPhone/ViewControllers/CinemaDetailsController.cs" line="200" column="1" />
-      <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Xamarin/Cineworld-iPhone/Main.cs" line="37" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

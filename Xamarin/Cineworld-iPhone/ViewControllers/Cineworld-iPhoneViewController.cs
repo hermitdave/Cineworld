@@ -204,9 +204,9 @@ namespace CineworldiPhone
 		{
 			ImageManager.Instance.ImageLoaded -= HandleImageLoaded;
 
-			if(segue.DestinationViewController is CinemaDetailsController)
+			if(segue.DestinationViewController is CinemaDetailsViewController)
 			{
-				(segue.DestinationViewController as CinemaDetailsController).Cinema = (sender as CinemaCollectionViewCell).Cinema;
+				(segue.DestinationViewController as CinemaDetailsViewController).Cinema = (sender as CinemaCollectionViewCell).Cinema;
 			} 
 			else if(segue.DestinationViewController is SettingsController)
 			{

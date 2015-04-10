@@ -51,6 +51,20 @@ namespace CineworldiPhone
 			this.CinemaReviewsTable.ReloadData ();
 		}
 
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			ReviewController reviewController = (segue.DestinationViewController as ReviewController);
+			reviewController.CinemaInfoViewController = this;
+			reviewController.Cinema = this.Cinema;
+
+			base.PrepareForSegue (segue, sender);
+		}
+
+		public void ReviewSubmitted()
+		{
+			this.NavigationController.PopViewController(true);
+		}
+
 		void Directions_TouchUpInside (object sender, EventArgs e)
 		{
 			var location = new CLLocationCoordinate2D(this.Cinema.Latitude, this.Cinema.Longitute);
