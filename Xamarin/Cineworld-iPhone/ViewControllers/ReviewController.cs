@@ -22,17 +22,21 @@ namespace CineworldiPhone
 		public CinemaInfo Cinema { get; set; }
 		public CinemaInfoViewController CinemaInfoViewController { get; set; }
 
-		public PerformancesController PerformancesController { get; set; }
-
 		ReviewBase UserReview;
 
 		public ReviewController (IntPtr handle) : base (handle)
 		{
 		}
 
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
+		}
+
 		public async override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
 
 			// Gather up the images to be used.
 			RatingConfig ratingConfig = new RatingConfig(UIImage.FromFile("Images/Stars/empty.png"), UIImage.FromFile("Images/Stars/filled.png"), UIImage.FromFile("Images/Stars/chosen.png"));
@@ -94,7 +98,7 @@ namespace CineworldiPhone
 				Application.MobileService = new MobileServiceClient ("https://cineworld.azure-mobile.net/", "kpNUhnZFTNayzvLPaWxszNbpuBJnNQ87");
 			}
 
-			this.Submit.TouchUpInside += Submit_TouchUpInside;
+			this.Submit.Clicked += Submit_TouchUpInside;
 
 			if (this.Film != null) 
 			{
@@ -194,10 +198,6 @@ namespace CineworldiPhone
 				else if(this.CinemaInfoViewController != null)
 				{
 					this.CinemaInfoViewController.ReviewSubmitted();
-				}
-				else if(this.PerformancesController != null)
-				{
-					this.PerformancesController.ReviewSubmitted();
 				}
 			}
 			catch 

@@ -11,8 +11,8 @@ using UIKit;
 
 namespace CineworldiPhone
 {
-	[Register ("ReviewController")]
-	partial class ReviewController
+	[Register ("ShowPerformancesViewController")]
+	partial class ShowPerformancesViewController
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
@@ -20,15 +20,11 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UITextView Review { get; set; }
+		UIView CinemaDetailsContainer { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIBarButtonItem Submit { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UITextField User { get; set; }
+		UISegmentedControl PerformancesSegment { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
@@ -36,17 +32,13 @@ namespace CineworldiPhone
 				BusyIndicator.Dispose ();
 				BusyIndicator = null;
 			}
-			if (Review != null) {
-				Review.Dispose ();
-				Review = null;
+			if (CinemaDetailsContainer != null) {
+				CinemaDetailsContainer.Dispose ();
+				CinemaDetailsContainer = null;
 			}
-			if (Submit != null) {
-				Submit.Dispose ();
-				Submit = null;
-			}
-			if (User != null) {
-				User.Dispose ();
-				User = null;
+			if (PerformancesSegment != null) {
+				PerformancesSegment.Dispose ();
+				PerformancesSegment = null;
 			}
 		}
 	}

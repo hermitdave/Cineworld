@@ -116,14 +116,14 @@ namespace CineworldiPhone
 			UIViewController destinationController = null;
 			if (this.SearchResults [indexPath.Row].SearchObject is FilmInfo) 
 			{
-				var filmDetailsController = Application.Storyboard.InstantiateViewController ("FilmDetailsController") as FilmDetailsController;
+				var filmDetailsController = Application.Storyboard.InstantiateViewController ("FilmDetailsViewController") as FilmDetailsViewController;
 				filmDetailsController.Film = this.SearchResults [indexPath.Row].SearchObject as FilmInfo;
 
 				destinationController = filmDetailsController;
 			} 
 			else 
 			{
-				var cinemaDetailsController = Application.Storyboard.InstantiateViewController ("CinemaDetailsController") as CinemaDetailsController;
+				var cinemaDetailsController = Application.Storyboard.InstantiateViewController ("CinemaDetailsViewController") as CinemaDetailsViewController;
 				cinemaDetailsController.Cinema = this.SearchResults [indexPath.Row].SearchObject as CinemaInfo;
 
 				destinationController = cinemaDetailsController;

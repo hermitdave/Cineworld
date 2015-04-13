@@ -163,6 +163,7 @@ namespace CineworldiPhone
 				var vc = this.Storyboard.InstantiateViewController ("FilmListViewController") as FilmListViewController;
 				var currentFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Current, this.Films);
 				vc.FilmSource = currentFilms;
+				vc.Cinema = this.Cinema;
 
 				vc.View.Frame = new CoreGraphics.CGRect(0, 0, CinemaDetailsContainer.Frame.Width, CinemaDetailsContainer.Frame.Height);
 
@@ -179,6 +180,7 @@ namespace CineworldiPhone
 				var vc = this.Storyboard.InstantiateViewController ("FilmListViewController") as FilmListViewController;
 				var upcomingFilms = new AllFilmsTableSource (AllFilmsTableSource.FilmListingType.Upcoming, this.Films);
 				vc.FilmSource = upcomingFilms;
+				vc.Cinema = this.Cinema;
 
 				vc.View.Frame = new CoreGraphics.CGRect(0, 0, CinemaDetailsContainer.Frame.Width, CinemaDetailsContainer.Frame.Height);
 

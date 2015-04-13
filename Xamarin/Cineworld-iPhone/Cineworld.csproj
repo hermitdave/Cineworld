@@ -243,25 +243,13 @@
     <Compile Include="ViewControllers\Cineworld-iPhoneViewController.designer.cs">
       <DependentUpon>Cineworld-iPhoneViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\CinemaDetailsController.cs" />
-    <Compile Include="ViewControllers\CinemaDetailsController.designer.cs">
-      <DependentUpon>CinemaDetailsController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\CinemasViewController.cs" />
     <Compile Include="ViewControllers\CinemasViewController.designer.cs">
       <DependentUpon>CinemasViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\FilmDetailsController.cs" />
-    <Compile Include="ViewControllers\FilmDetailsController.designer.cs">
-      <DependentUpon>FilmDetailsController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\FilmsViewController.cs" />
     <Compile Include="ViewControllers\FilmsViewController.designer.cs">
       <DependentUpon>FilmsViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewControllers\PerformancesController.cs" />
-    <Compile Include="ViewControllers\PerformancesController.designer.cs">
-      <DependentUpon>PerformancesController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewControllers\PersonDetailsController.cs" />
     <Compile Include="ViewControllers\PersonDetailsController.designer.cs">
@@ -294,10 +282,6 @@
     <Compile Include="ViewControllers\SearchController.designer.cs">
       <DependentUpon>SearchController.cs</DependentUpon>
     </Compile>
-    <Compile Include="CinemaDetailsViewController.cs" />
-    <Compile Include="CinemaDetailsViewController.designer.cs">
-      <DependentUpon>CinemaDetailsViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="CinemaInfoViewController.cs" />
     <Compile Include="CinemaInfoViewController.designer.cs">
       <DependentUpon>CinemaInfoViewController.cs</DependentUpon>
@@ -306,33 +290,45 @@
     <Compile Include="Films.designer.cs">
       <DependentUpon>Films.cs</DependentUpon>
     </Compile>
-    <Compile Include="FilmListViewController.cs" />
-    <Compile Include="FilmListViewController.designer.cs">
-      <DependentUpon>FilmListViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\CinemaDetailsViewController.cs" />
+    <Compile Include="ViewControllers\CinemaDetailsViewController.designer.cs">
+      <DependentUpon>CinemaDetailsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="FilmsByDateViewController.cs" />
-    <Compile Include="FilmsByDateViewController.designer.cs">
-      <DependentUpon>FilmsByDateViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FilmDetailsViewController.cs" />
-    <Compile Include="FilmDetailsViewController.designer.cs">
-      <DependentUpon>FilmDetailsViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FilmInfoViewController.cs" />
-    <Compile Include="FilmInfoViewController.designer.cs">
-      <DependentUpon>FilmInfoViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FilmCastViewController.cs" />
-    <Compile Include="FilmCastViewController.designer.cs">
+    <Compile Include="ViewControllers\FilmCastViewController.cs" />
+    <Compile Include="ViewControllers\FilmCastViewController.designer.cs">
       <DependentUpon>FilmCastViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="FilmReviewsViewController.cs" />
-    <Compile Include="FilmReviewsViewController.designer.cs">
+    <Compile Include="ViewControllers\FilmCinemasViewController.cs" />
+    <Compile Include="ViewControllers\FilmCinemasViewController.designer.cs">
+      <DependentUpon>FilmCinemasViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\FilmDetailsViewController.cs" />
+    <Compile Include="ViewControllers\FilmDetailsViewController.designer.cs">
+      <DependentUpon>FilmDetailsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\FilmInfoViewController.cs" />
+    <Compile Include="ViewControllers\FilmInfoViewController.designer.cs">
+      <DependentUpon>FilmInfoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\FilmListViewController.cs" />
+    <Compile Include="ViewControllers\FilmListViewController.designer.cs">
+      <DependentUpon>FilmListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\FilmReviewsViewController.cs" />
+    <Compile Include="ViewControllers\FilmReviewsViewController.designer.cs">
       <DependentUpon>FilmReviewsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="FilmCinemasViewController.cs" />
-    <Compile Include="FilmCinemasViewController.designer.cs">
-      <DependentUpon>FilmCinemasViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\FilmsByDateViewController.cs" />
+    <Compile Include="ViewControllers\FilmsByDateViewController.designer.cs">
+      <DependentUpon>FilmsByDateViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\PerformancesViewController.cs" />
+    <Compile Include="ViewControllers\PerformancesViewController.designer.cs">
+      <DependentUpon>PerformancesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\ShowPerformancesViewController.cs" />
+    <Compile Include="ViewControllers\ShowPerformancesViewController.designer.cs">
+      <DependentUpon>ShowPerformancesViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

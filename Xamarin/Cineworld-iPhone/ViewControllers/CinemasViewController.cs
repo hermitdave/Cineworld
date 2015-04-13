@@ -5,6 +5,7 @@ using UIKit;
 using System.Drawing;
 using MapKit;
 using CoreLocation;
+using Cineworld;
 
 namespace CineworldiPhone
 {
@@ -21,11 +22,6 @@ namespace CineworldiPhone
 			if (segue.DestinationViewController is CinemaDetailsViewController) 
 			{
 				(segue.DestinationViewController as CinemaDetailsViewController).Cinema = (sender as CinemaTableCell).Cinema;
-			} 
-			else 
-			{
-
-				(segue.DestinationViewController as CinemaDetailsController).Cinema = (sender as CinemaTableCell).Cinema;
 			}
 		}
 
@@ -33,30 +29,41 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
-			this.CinemasSegments.Enabled = false;
+			this.CinemasSegment.Enabled = false;
 
 			var bounds = this.View.Bounds;
 
-			this.CinemaListView.Source = new CinemasTableSource (Application.Cinemas.Values);
+			this.List.Source = new CinemasTableSource (Application.Cinemas.Values);
 
-			var mapView = new MKMapView (new RectangleF(0, 118, (float)bounds.Width, (float)bounds.Height-118-50));
-			mapView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
-			mapView.ShowsUserLocation = true;
-			mapView.Delegate = new MapDelegate();
-			mapView.Hidden = true;
-			View.AddSubview(mapView);
+//			var mapView = new MKMapView (new RectangleF(0, 118, (float)bounds.Width, (float)bounds.Height-118-50));
+//			mapView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+//			mapView.ShowsUserLocation = true;
+//			mapView.Delegate = new MapDelegate();
+//			mapView.Hidden = true;
+//			View.AddSubview(mapView);
+
+			this.Map.ShowsUserLocation = true;
+			this.Map.Delegate = new MapDelegate();
 
 			foreach (var cinema in Application.Cinemas) 
 			{
 				var cinemaLoc = new CinemaAnnotation (new CLLocationCoordinate2D (cinema.Value.Latitude, cinema.Value.Longitute), cinema.Value, this.Storyboard, this.NavigationController);
-				mapView.AddAnnotation(cinemaLoc);
+				this.Map.AddAnnotation(cinemaLoc);
 			}
 
 			CLLocationCoordinate2D coords;
 			MKCoordinateSpan span;
 
-			if (Application.UserLocation == null) {
-				coords = new CLLocationCoordinate2D (51.507222, -0.1275);
+			if (Application.UserLocation == null) 
+			{
+				if (Config.Region == Config.RegionDef.UK) 
+				{
+					coords = new CLLocationCoordinate2D (51.507222, -0.1275);
+				} 
+				else 
+				{
+					coords = new CLLocationCoordinate2D (53.347778, -6.259722);
+				}
 
 				span = new MKCoordinateSpan(MapHelper.MilesToLatitudeDegrees(100), MapHelper.MilesToLongitudeDegrees(100, coords.Latitude));
 			}
@@ -67,24 +74,34 @@ namespace CineworldiPhone
 				span = new MKCoordinateSpan(MapHelper.MilesToLatitudeDegrees(10), MapHelper.MilesToLongitudeDegrees(10, coords.Latitude));
 			}
 
-			mapView.CenterCoordinate = coords;
-			mapView.Region = new MKCoordinateRegion(coords, span);
+			this.Map.CenterCoordinate = coords;
+			this.Map.Region = new MKCoordinateRegion(coords, span);
 			
-			this.CinemasSegments.ValueChanged += (sender, e) => 
+			this.CinemasSegment.ValueChanged += (sender, e) => 
 			{
-				if(this.CinemasSegments.SelectedSegment == 0)
+				if(this.CinemasSegment.SelectedSegment == 0)
 				{
-					this.CinemaListView.Hidden = false;
-					mapView.Hidden = true;
+					this.List.Hidden = false;
+					this.Map.Hidden = true;
 				}
 				else
 				{
-					this.CinemaListView.Hidden = true;
-					mapView.Hidden = false;
+					this.List.Hidden = true;
+					this.Map.Hidden = false;
 				}
 			};
 
-			this.CinemasSegments.Enabled = true;
+			this.CinemasSegment.Enabled = true;
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+
+			if (this.List.IndexPathForSelectedRow != null) 
+			{
+				this.List.DeselectRow (this.List.IndexPathForSelectedRow, false);
+			}
 		}
 	}
 }

@@ -1,12 +1,23 @@
 ﻿<Properties StartupItem="Cineworld-iPhone/Cineworld.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.3" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="AppStore|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/CustomControls/PerformanceButton.cs">
     <Files>
-      <File FileName="Cineworld-iPhone/FilmInfoViewController.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/FilmDetailsViewController.cs" Line="85" Column="21" />
-      <File FileName="Cineworld-iPhone/FilmCastViewController.cs" Line="22" Column="3" />
-      <File FileName="Cineworld-iPhone/ViewControllers/FilmDetailsController.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/ViewControllers/ReviewController.designer.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/ViewControllers/Cineworld-iPhoneViewController.cs" Line="227" Column="37" />
+      <File FileName="Cineworld-iPhone/CustomControls/PerformanceButton.cs" Line="21" Column="14" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Cineworld" expanded="True" selected="True">
+            <Node name="CustomControls" expanded="True" />
+            <Node name="ViewControllers" expanded="True">
+              <Node name="ReviewController.cs" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

@@ -6,6 +6,12 @@ namespace CineworldiPhone
 {
 	public class PerformanceButton : UIButton
 	{
+		static UIColor tintColor;
+		static PerformanceButton()
+		{
+			tintColor = UIColor.FromRGB(0, 122, 255);
+		}
+
 		public PerformanceInfo Performance { get; set; }
 
 		public PerformanceButton (CGRect frame, PerformanceInfo perf) : base(UIButtonType.System)
@@ -17,7 +23,7 @@ namespace CineworldiPhone
 			this.Layer.RasterizationScale = UIScreen.MainScreen.Scale;
 			this.Layer.Opaque = true;
 
-			this.BackgroundColor = UIColor.White;
+			//this.BackgroundColor = UIColor.White;
 
 			var topLabelRect = new CGRect (0, 3, frame.Width, (frame.Height / 2));
 
@@ -38,23 +44,30 @@ namespace CineworldiPhone
 			type.TextAlignment = UITextAlignment.Center;
 			this.AddSubview (type);
 
-			time.TextColor = UIColor.White;
-			type.TextColor = UIColor.White;
+			if (perf.AvailableFuture) 
+			{
+				this.BackgroundColor = UIColor.White;
 
-//			if (perf.AvailableFuture) 
-//			{
-//				this.BackgroundColor = backgroundColor;
-//			} 
-//			else
-//			{
-//				this.BackgroundColor = UIColor.LightGray;
-//			}
+				time.TextColor = type.TextColor = tintColor;
 
-			this.SetImage (Application.AvailableImageDefault, UIControlState.Normal);
-			this.SetImage (Application.AvailableImagePressed, UIControlState.Highlighted);
-			this.SetImage (Application.UnavailableImage, UIControlState.Disabled);
+				this.Layer.BorderColor = tintColor.CGColor;
+				this.Layer.BorderWidth = 1f;
 
-			this.Enabled = perf.AvailableFuture;
+				this.SetImage (Application.AvailableImagePressed, UIControlState.Highlighted);
+			} 
+			else
+			{
+				this.BackgroundColor = UIColor.LightGray;
+
+				time.TextColor = UIColor.White;
+				type.TextColor = UIColor.White;
+			}
+
+
+			//this.SetImage (Application.AvailableImageDefault, UIControlState.Normal);
+			//this.SetImage (Application.UnavailableImage, UIControlState.Disabled);
+
+			//this.Enabled = perf.AvailableFuture;
 
 			this.Performance = perf;
 		}

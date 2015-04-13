@@ -16,21 +16,29 @@ namespace CineworldiPhone
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UITableView CinemaListView { get; set; }
+		UISegmentedControl CinemasSegment { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UISegmentedControl CinemasSegments { get; set; }
+		UITableView List { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		MapKit.MKMapView Map { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (CinemaListView != null) {
-				CinemaListView.Dispose ();
-				CinemaListView = null;
+			if (CinemasSegment != null) {
+				CinemasSegment.Dispose ();
+				CinemasSegment = null;
 			}
-			if (CinemasSegments != null) {
-				CinemasSegments.Dispose ();
-				CinemasSegments = null;
+			if (List != null) {
+				List.Dispose ();
+				List = null;
+			}
+			if (Map != null) {
+				Map.Dispose ();
+				Map = null;
 			}
 		}
 	}

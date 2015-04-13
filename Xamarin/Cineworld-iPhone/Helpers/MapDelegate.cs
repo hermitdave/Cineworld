@@ -32,7 +32,7 @@ namespace CineworldiPhone
 				if(cinemaAnnotation == null)
 					return;
 
-				CinemaDetailsController cinemaDetails = cinemaAnnotation.Storyboard.InstantiateViewController ("CinemaDetailsController") as CinemaDetailsController;
+				CinemaDetailsViewController cinemaDetails = cinemaAnnotation.Storyboard.InstantiateViewController ("CinemaDetailsViewController") as CinemaDetailsViewController;
 				if (cinemaDetails != null) 
 				{
 					cinemaDetails.Cinema = cinemaAnnotation.Cinema;

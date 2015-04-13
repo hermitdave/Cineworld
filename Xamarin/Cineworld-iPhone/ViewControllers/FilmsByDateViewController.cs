@@ -90,6 +90,16 @@ namespace CineworldiPhone
 			this.DateView.Hidden = false;
 		}
 
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+
+			if (this.FilmsByDateTable.IndexPathForSelectedRow != null) 
+			{
+				this.FilmsByDateTable.DeselectRow (this.FilmsByDateTable.IndexPathForSelectedRow, false);
+			}
+		}
+
 		internal IEnumerable<FilmInfo> GetFilmsPerformingForDate(DateTime userSelected)
 		{
 			if (!this.FilmPerformaceDictionary.ContainsKey(userSelected))
@@ -112,6 +122,15 @@ namespace CineworldiPhone
 					this.lblSelectedDate.Text = String.Format ("{0} - Tomorrow", this.lblSelectedDate.Text);
 				}
 			return ViewByDateSource;
+		}
+
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			base.PrepareForSegue (segue, sender);
+
+			var vc = (segue.DestinationViewController as ShowPerformancesViewController);
+			vc.Film = (sender as FilmPerformanceTableCell).Film;
+			vc.Cinema = this.Cinema;
 		}
 	}
 }

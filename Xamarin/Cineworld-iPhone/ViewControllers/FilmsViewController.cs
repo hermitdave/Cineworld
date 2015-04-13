@@ -49,5 +49,12 @@ namespace CineworldiPhone
 
 			this.FilmSegments.Enabled = true;
 		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+
+			this.AllFilmsTable.DeselectRow (this.AllFilmsTable.IndexPathForSelectedRow, false);
+		}
 	}
 }
