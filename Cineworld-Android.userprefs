@@ -1,0 +1,19 @@
+﻿<Properties StartupItem="Cineworld-Android/Cineworld-Android.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-Android/Resources/values/strings.xml">
+    <Files>
+      <File FileName="Cineworld-Android/MainActivity.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-Android/BaseActivity.cs" Line="15" Column="42" />
+      <File FileName="Cineworld-Android/Properties/AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="Cineworld-Android/Resources/values/strings.xml" Line="5" Column="56" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Cineworld-Android/MainActivity.cs" line="260" column="1" />
+      <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Cineworld-Android/Shared/BaseHelper.cs" line="40" column="1" />
+      <Breakpoint file="/Users/hermitdave/Projects/Cineworld/Cineworld-Android/MainActivity.cs" line="68" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
