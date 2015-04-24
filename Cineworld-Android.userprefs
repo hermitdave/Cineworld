@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="Cineworld-Android/Cineworld-Android.csproj">
+﻿<Properties StartupItem="Cineworld-Android/Cineworld-Android.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-Android/Resources/values/strings.xml">
     <Files>
@@ -16,4 +16,5 @@
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Cineworld-Android AndroidDesignerPreferredDevice="Nexus 4" />
 </Properties>

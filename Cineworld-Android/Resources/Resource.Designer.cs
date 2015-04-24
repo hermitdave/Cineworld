@@ -1350,154 +1350,157 @@ namespace Cineworld_Android
 			public const int abc_textfield_search_material = 2130837554;
 			
 			// aapt resource value: 0x7f020033
-			public const int common_full_open_on_phone = 2130837555;
+			public const int Background = 2130837555;
 			
 			// aapt resource value: 0x7f020034
-			public const int common_ic_googleplayservices = 2130837556;
+			public const int common_full_open_on_phone = 2130837556;
 			
 			// aapt resource value: 0x7f020035
-			public const int common_signin_btn_icon_dark = 2130837557;
+			public const int common_ic_googleplayservices = 2130837557;
 			
 			// aapt resource value: 0x7f020036
-			public const int common_signin_btn_icon_disabled_dark = 2130837558;
+			public const int common_signin_btn_icon_dark = 2130837558;
 			
 			// aapt resource value: 0x7f020037
-			public const int common_signin_btn_icon_disabled_focus_dark = 2130837559;
+			public const int common_signin_btn_icon_disabled_dark = 2130837559;
 			
 			// aapt resource value: 0x7f020038
-			public const int common_signin_btn_icon_disabled_focus_light = 2130837560;
+			public const int common_signin_btn_icon_disabled_focus_dark = 2130837560;
 			
 			// aapt resource value: 0x7f020039
-			public const int common_signin_btn_icon_disabled_light = 2130837561;
+			public const int common_signin_btn_icon_disabled_focus_light = 2130837561;
 			
 			// aapt resource value: 0x7f02003a
-			public const int common_signin_btn_icon_focus_dark = 2130837562;
+			public const int common_signin_btn_icon_disabled_light = 2130837562;
 			
 			// aapt resource value: 0x7f02003b
-			public const int common_signin_btn_icon_focus_light = 2130837563;
+			public const int common_signin_btn_icon_focus_dark = 2130837563;
 			
 			// aapt resource value: 0x7f02003c
-			public const int common_signin_btn_icon_light = 2130837564;
+			public const int common_signin_btn_icon_focus_light = 2130837564;
 			
 			// aapt resource value: 0x7f02003d
-			public const int common_signin_btn_icon_normal_dark = 2130837565;
+			public const int common_signin_btn_icon_light = 2130837565;
 			
 			// aapt resource value: 0x7f02003e
-			public const int common_signin_btn_icon_normal_light = 2130837566;
+			public const int common_signin_btn_icon_normal_dark = 2130837566;
 			
 			// aapt resource value: 0x7f02003f
-			public const int common_signin_btn_icon_pressed_dark = 2130837567;
+			public const int common_signin_btn_icon_normal_light = 2130837567;
 			
 			// aapt resource value: 0x7f020040
-			public const int common_signin_btn_icon_pressed_light = 2130837568;
+			public const int common_signin_btn_icon_pressed_dark = 2130837568;
 			
 			// aapt resource value: 0x7f020041
-			public const int common_signin_btn_text_dark = 2130837569;
+			public const int common_signin_btn_icon_pressed_light = 2130837569;
 			
 			// aapt resource value: 0x7f020042
-			public const int common_signin_btn_text_disabled_dark = 2130837570;
+			public const int common_signin_btn_text_dark = 2130837570;
 			
 			// aapt resource value: 0x7f020043
-			public const int common_signin_btn_text_disabled_focus_dark = 2130837571;
+			public const int common_signin_btn_text_disabled_dark = 2130837571;
 			
 			// aapt resource value: 0x7f020044
-			public const int common_signin_btn_text_disabled_focus_light = 2130837572;
+			public const int common_signin_btn_text_disabled_focus_dark = 2130837572;
 			
 			// aapt resource value: 0x7f020045
-			public const int common_signin_btn_text_disabled_light = 2130837573;
+			public const int common_signin_btn_text_disabled_focus_light = 2130837573;
 			
 			// aapt resource value: 0x7f020046
-			public const int common_signin_btn_text_focus_dark = 2130837574;
+			public const int common_signin_btn_text_disabled_light = 2130837574;
 			
 			// aapt resource value: 0x7f020047
-			public const int common_signin_btn_text_focus_light = 2130837575;
+			public const int common_signin_btn_text_focus_dark = 2130837575;
 			
 			// aapt resource value: 0x7f020048
-			public const int common_signin_btn_text_light = 2130837576;
+			public const int common_signin_btn_text_focus_light = 2130837576;
 			
 			// aapt resource value: 0x7f020049
-			public const int common_signin_btn_text_normal_dark = 2130837577;
+			public const int common_signin_btn_text_light = 2130837577;
 			
 			// aapt resource value: 0x7f02004a
-			public const int common_signin_btn_text_normal_light = 2130837578;
+			public const int common_signin_btn_text_normal_dark = 2130837578;
 			
 			// aapt resource value: 0x7f02004b
-			public const int common_signin_btn_text_pressed_dark = 2130837579;
+			public const int common_signin_btn_text_normal_light = 2130837579;
 			
 			// aapt resource value: 0x7f02004c
-			public const int common_signin_btn_text_pressed_light = 2130837580;
+			public const int common_signin_btn_text_pressed_dark = 2130837580;
 			
 			// aapt resource value: 0x7f02004d
-			public const int ic_plusone_medium_off_client = 2130837581;
+			public const int common_signin_btn_text_pressed_light = 2130837581;
 			
 			// aapt resource value: 0x7f02004e
-			public const int ic_plusone_small_off_client = 2130837582;
+			public const int ic_plusone_medium_off_client = 2130837582;
 			
 			// aapt resource value: 0x7f02004f
-			public const int ic_plusone_standard_off_client = 2130837583;
+			public const int ic_plusone_small_off_client = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int ic_plusone_tall_off_client = 2130837584;
+			public const int ic_plusone_standard_off_client = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int Icon = 2130837585;
+			public const int ic_plusone_tall_off_client = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int mr_ic_audio_vol = 2130837586;
+			public const int Icon = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int mr_ic_media_route_connecting_holo_dark = 2130837587;
+			public const int mr_ic_audio_vol = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int mr_ic_media_route_connecting_holo_light = 2130837588;
+			public const int mr_ic_media_route_connecting_holo_dark = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int mr_ic_media_route_disabled_holo_dark = 2130837589;
+			public const int mr_ic_media_route_connecting_holo_light = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int mr_ic_media_route_disabled_holo_light = 2130837590;
+			public const int mr_ic_media_route_disabled_holo_dark = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int mr_ic_media_route_holo_dark = 2130837591;
+			public const int mr_ic_media_route_disabled_holo_light = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int mr_ic_media_route_holo_light = 2130837592;
+			public const int mr_ic_media_route_holo_dark = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int mr_ic_media_route_off_holo_dark = 2130837593;
+			public const int mr_ic_media_route_holo_light = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int mr_ic_media_route_off_holo_light = 2130837594;
+			public const int mr_ic_media_route_off_holo_dark = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int mr_ic_media_route_on_0_holo_dark = 2130837595;
+			public const int mr_ic_media_route_off_holo_light = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int mr_ic_media_route_on_0_holo_light = 2130837596;
+			public const int mr_ic_media_route_on_0_holo_dark = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int mr_ic_media_route_on_1_holo_dark = 2130837597;
+			public const int mr_ic_media_route_on_0_holo_light = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int mr_ic_media_route_on_1_holo_light = 2130837598;
+			public const int mr_ic_media_route_on_1_holo_dark = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int mr_ic_media_route_on_2_holo_dark = 2130837599;
+			public const int mr_ic_media_route_on_1_holo_light = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int mr_ic_media_route_on_2_holo_light = 2130837600;
+			public const int mr_ic_media_route_on_2_holo_dark = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int mr_ic_media_route_on_holo_dark = 2130837601;
+			public const int mr_ic_media_route_on_2_holo_light = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int mr_ic_media_route_on_holo_light = 2130837602;
+			public const int mr_ic_media_route_on_holo_dark = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int powered_by_google_dark = 2130837603;
+			public const int mr_ic_media_route_on_holo_light = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int powered_by_google_light = 2130837604;
+			public const int powered_by_google_dark = 2130837604;
+			
+			// aapt resource value: 0x7f020065
+			public const int powered_by_google_light = 2130837605;
 			
 			static Drawable()
 			{
@@ -1511,6 +1514,24 @@ namespace Cineworld_Android
 		
 		public partial class Id
 		{
+			
+			// aapt resource value: 0x7f0b0058
+			public const int AllCinemasButton = 2131427416;
+			
+			// aapt resource value: 0x7f0b0057
+			public const int AllFilmsButton = 2131427415;
+			
+			// aapt resource value: 0x7f0b0053
+			public const int CinemaListView = 2131427411;
+			
+			// aapt resource value: 0x7f0b0054
+			public const int CinemaMapView = 2131427412;
+			
+			// aapt resource value: 0x7f0b0056
+			public const int FilmCinemasLayout = 2131427414;
+			
+			// aapt resource value: 0x7f0b0059
+			public const int NearestCinemasView = 2131427417;
 			
 			// aapt resource value: 0x7f0b0045
 			public const int action_bar = 2131427397;
@@ -1650,38 +1671,32 @@ namespace Cineworld_Android
 			// aapt resource value: 0x7f0b0039
 			public const int list_item = 2131427385;
 			
-			// aapt resource value: 0x7f0b0054
-			public const int main_content = 2131427412;
+			// aapt resource value: 0x7f0b005f
+			public const int main_content = 2131427423;
 			
 			// aapt resource value: 0x7f0b002a
 			public const int match_parent = 2131427370;
 			
+			// aapt resource value: 0x7f0b005d
+			public const int media_route_control_frame = 2131427421;
+			
+			// aapt resource value: 0x7f0b005e
+			public const int media_route_disconnect_button = 2131427422;
+			
 			// aapt resource value: 0x7f0b005a
-			public const int media_route_control_frame = 2131427418;
+			public const int media_route_list = 2131427418;
 			
 			// aapt resource value: 0x7f0b005b
-			public const int media_route_disconnect_button = 2131427419;
+			public const int media_route_volume_layout = 2131427419;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int media_route_list = 2131427415;
-			
-			// aapt resource value: 0x7f0b0058
-			public const int media_route_volume_layout = 2131427416;
-			
-			// aapt resource value: 0x7f0b0059
-			public const int media_route_volume_slider = 2131427417;
+			// aapt resource value: 0x7f0b005c
+			public const int media_route_volume_slider = 2131427420;
 			
 			// aapt resource value: 0x7f0b0015
 			public const int middle = 2131427349;
 			
 			// aapt resource value: 0x7f0b0031
 			public const int monochrome = 2131427377;
-			
-			// aapt resource value: 0x7f0b0055
-			public const int my_button = 2131427413;
-			
-			// aapt resource value: 0x7f0b0056
-			public const int nav_button = 2131427414;
 			
 			// aapt resource value: 0x7f0b0019
 			public const int never = 2131427353;
@@ -1770,14 +1785,14 @@ namespace Cineworld_Android
 			// aapt resource value: 0x7f0b0022
 			public const int terrain = 2131427362;
 			
-			// aapt resource value: 0x7f0b005c
-			public const int textView1 = 2131427420;
+			// aapt resource value: 0x7f0b0060
+			public const int textView1 = 2131427424;
 			
 			// aapt resource value: 0x7f0b003b
 			public const int title = 2131427387;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int toolbar = 2131427411;
+			// aapt resource value: 0x7f0b0055
+			public const int toolbar = 2131427413;
 			
 			// aapt resource value: 0x7f0b0008
 			public const int up = 2131427336;
@@ -1896,25 +1911,37 @@ namespace Cineworld_Android
 			public const int abc_simple_dropdown_hint = 2130903062;
 			
 			// aapt resource value: 0x7f030017
-			public const int main = 2130903063;
+			public const int CinemaListFragment = 2130903063;
 			
 			// aapt resource value: 0x7f030018
-			public const int mr_media_route_chooser_dialog = 2130903064;
+			public const int CinemaMapFragment = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int mr_media_route_controller_dialog = 2130903065;
+			public const int cinemas = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int mr_media_route_list_item = 2130903066;
+			public const int main = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int second = 2130903067;
+			public const int mr_media_route_chooser_dialog = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int support_simple_spinner_dropdown_item = 2130903068;
+			public const int mr_media_route_controller_dialog = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int toolbar = 2130903069;
+			public const int mr_media_route_list_item = 2130903069;
+			
+			// aapt resource value: 0x7f03001e
+			public const int NearestCinemaButton = 2130903070;
+			
+			// aapt resource value: 0x7f03001f
+			public const int second = 2130903071;
+			
+			// aapt resource value: 0x7f030020
+			public const int support_simple_spinner_dropdown_item = 2130903072;
+			
+			// aapt resource value: 0x7f030021
+			public const int toolbar = 2130903073;
 			
 			static Layout()
 			{

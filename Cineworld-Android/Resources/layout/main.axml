@@ -7,20 +7,45 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/FilmCinemasLayout"
         android:layout_below="@id/toolbar">
         <Button
-            android:id="@+id/my_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Hello" />
+            android:id="@+id/AllFilmsButton"
+            android:layout_margin="10dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:text="All Films"
+            android:scaleType="centerCrop"
+            android:padding="10dp"
+            android:gravity="left|top"
+            android:textColor="@color/accent"
+            android:background="@drawable/background" />
         <Button
-            android:id="@+id/nav_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Navigation" />
+            android:id="@+id/AllCinemasButton"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:text="All Cinemas"
+            android:padding="10dp"
+            android:gravity="left|top"
+            android:background="@drawable/background"
+            android:textColor="@color/accent"
+            android:layout_marginTop="10dp" />
     </LinearLayout>
+    <GridView
+        android:minWidth="160dp"
+        android:minHeight="160dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:numColumns="auto_fit"
+        android:columnWidth="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stretchMode="none"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:id="@+id/NearestCinemasView"
+        android:scrollbars="vertical"
+        android:layout_below="@id/FilmCinemasLayout" />
 </RelativeLayout>
