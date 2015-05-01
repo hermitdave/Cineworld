@@ -126,7 +126,7 @@
                             <constraint firstItem="2582" firstAttribute="top" secondItem="3982" secondAttribute="bottom" constant="15" id="4071"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Cineworld" id="74">
+                    <navigationItem key="navigationItem" title="CineFilms for Cineworld" id="74">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="3846">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3845">
                                 <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>

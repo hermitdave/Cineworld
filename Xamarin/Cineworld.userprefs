@@ -1,30 +1,9 @@
 ﻿<Properties StartupItem="Cineworld-iPhone/Cineworld.csproj" GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5.8.3" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/ViewControllers/CinemaDetailsViewController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="AppStore|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Cineworld-iPhone/ViewControllers/CinemasViewController.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/ViewControllers/CinemaDetailsViewController.cs" Line="128" Column="12" />
-      <File FileName="Cineworld-iPhone/Shared/FilmInfo.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/Shared/MovieCastInfo.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/Shared/Person.Cast2.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/Shared/Config.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/Shared/GeoMath.cs" Line="1" Column="1" />
-      <File FileName="Cineworld-iPhone/Shared/AzureDeserialiser.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/Info.plist" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Cineworld" expanded="True">
-            <Node name="Shared" expanded="True" />
-            <Node name="ViewControllers" expanded="True" />
-            <Node name="MainStoryboard.storyboard" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

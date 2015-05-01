@@ -17,6 +17,8 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
+			this.NavigationItem.Title = this.Film.TitleWithClassification;
+
 			var detailsVC = this.GetFilmInfoViewController();
 
 			this.FilmSegments.ValueChanged += (sender, e) => 

@@ -5,7 +5,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.hermitdave.cineworld</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.5</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -35,6 +35,6 @@
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>CFBundleDisplayName</key>
-	<string>Cineworld Unofficial</string>
+	<string>CineFilms for Cineworld</string>
 </dict>
 </plist>

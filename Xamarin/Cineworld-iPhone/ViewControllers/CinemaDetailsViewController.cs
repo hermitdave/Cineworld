@@ -78,6 +78,8 @@ namespace CineworldiPhone
 
 			this.CinemaSegments.Enabled = false;
 
+			this.NavigationItem.Title = this.Cinema.Name;
+
 			this.BusyIndicator.StartAnimating ();
 
 			try
