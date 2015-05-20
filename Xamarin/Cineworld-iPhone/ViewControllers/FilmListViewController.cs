@@ -36,6 +36,7 @@ namespace CineworldiPhone
 			var vc = (segue.DestinationViewController as ShowPerformancesViewController);
 			vc.Film = (sender as FilmTableCell).Film;
 			vc.Cinema = this.Cinema;
+			vc.Showing = ShowPerformancesViewController.ViewType.FilmDetails;
 		}
 	}
 }

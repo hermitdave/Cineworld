@@ -1,8 +1,17 @@
 ﻿<Properties StartupItem="Cineworld-iPhone/Cineworld.csproj" GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="AppStore|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cineworld-iPhone/Info.plist">
     <Files>
+      <File FileName="../../../../../Library/Frameworks/Xamarin.iOS.framework/Versions/8.10.0.267/lib/mono/2.1/Xamarin.iOS.Common.targets" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/Shared/AzureDeserialiser.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/Shared/AsyncWebClient.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/Shared/BaseHelper.cs" Line="1" Column="1" />
+      <File FileName="Cineworld-iPhone/ViewControllers/Cineworld-iPhoneViewController.cs" Line="240" Column="53" />
       <File FileName="Cineworld-iPhone/Info.plist" />
+      <File FileName="Cineworld-iPhone/ViewControllers/ShowPerformancesViewController.cs" Line="37" Column="4" />
+      <File FileName="Cineworld-iPhone/ViewControllers/FilmDetailsViewController.cs" Line="111" Column="114" />
+      <File FileName="Cineworld-iPhone/ViewControllers/FilmCinemasViewController.cs" Line="30" Column="22" />
+      <File FileName="Cineworld-iPhone/ViewControllers/FilmListViewController.cs" Line="39" Column="69" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

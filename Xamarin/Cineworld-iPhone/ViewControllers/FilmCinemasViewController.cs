@@ -27,6 +27,7 @@ namespace CineworldiPhone
 			var destVC = (segue.DestinationViewController as ShowPerformancesViewController);
 			destVC.Film = this.Film;
 			destVC.Cinema = (sender as CinemaTableCell).Cinema;
+			destVC.Showing = ShowPerformancesViewController.ViewType.CinemaDetails;
 		}
 
 		public override void ViewWillDisappear (bool animated)

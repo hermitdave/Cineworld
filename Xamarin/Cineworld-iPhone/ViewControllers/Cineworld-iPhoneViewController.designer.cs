@@ -24,6 +24,10 @@ namespace CineworldiPhone
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton btnRefresh { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UIActivityIndicatorView BusyIndicator { get; set; }
 
 		[Outlet]
@@ -47,6 +51,10 @@ namespace CineworldiPhone
 			if (AllFilmsButton != null) {
 				AllFilmsButton.Dispose ();
 				AllFilmsButton = null;
+			}
+			if (btnRefresh != null) {
+				btnRefresh.Dispose ();
+				btnRefresh = null;
 			}
 			if (BusyIndicator != null) {
 				BusyIndicator.Dispose ();

@@ -138,6 +138,14 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem style="plain" id="6860" key="leftBarButtonItem">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6859" translatesAutoresizingMaskIntoConstraints="NO" key="customView">
+                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                <state key="normal" image="Images/Refresh.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="AllCinemasButton" destination="33" id="name-outlet-33"/>
@@ -146,6 +154,7 @@
                         <outlet property="NearestCinemas" destination="2582" id="name-outlet-2582"/>
                         <outlet property="SearchButton" destination="3845" id="name-outlet-3845"/>
                         <outlet property="SettingsButton" destination="3424" id="name-outlet-3424"/>
+                        <outlet property="btnRefresh" destination="6859" id="name-outlet-6859"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -1456,6 +1465,8 @@
         <image name="Images/Stars/empty.png" width="200" height="190"/>
         <image name="Images/Stars/filled.png" width="200" height="190"/>
         <image name="Images/SmallLogo.png" width="30" height="30"/>
+        <image name="Images/Refresh.png" width="88" height="88"/>
+        <image name="Images/Command-Refresh.png" width="88" height="88"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
