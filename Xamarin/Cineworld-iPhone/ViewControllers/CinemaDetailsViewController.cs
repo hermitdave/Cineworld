@@ -76,9 +76,9 @@ namespace CineworldiPhone
 		{
 			base.ViewDidLoad ();
 
-			this.CinemaSegments.Enabled = false;
-
 			this.NavigationItem.Title = this.Cinema.Name;
+
+			this.CinemaSegments.Enabled = false;
 
 			this.BusyIndicator.StartAnimating ();
 

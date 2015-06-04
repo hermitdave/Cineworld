@@ -72,6 +72,8 @@ namespace CineworldiPhone
 
 			//this.AllFilmsButton.Enabled = this.AllCinemasButton.Enabled = false;
 
+			this.BusyIndicator.StartAnimating ();
+
 			LocalStorageHelper lsh = new LocalStorageHelper();
 
 			Console.WriteLine ("Start data download " + DateTime.Now.ToLongTimeString ());
@@ -79,8 +81,6 @@ namespace CineworldiPhone
 
 			Console.WriteLine ("Start data deserialisation " + DateTime.Now.ToLongTimeString ());
 			await lsh.DeserialiseObjects();
-
-			this.BusyIndicator.StopAnimating ();
 
 			this.SearchButton.Enabled = true;
 
@@ -93,6 +93,8 @@ namespace CineworldiPhone
 			LoadNearestCinemas ();
 
 			Console.WriteLine ("Nearest cinemas loaded " + DateTime.Now.ToLongTimeString ());
+
+			this.BusyIndicator.StopAnimating ();
 
 			this.AllFilmsButton.Enabled = this.AllCinemasButton.Enabled = true;
 
@@ -230,7 +232,7 @@ namespace CineworldiPhone
 
 			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 
-			appDelegate.Window.RootViewController.View.AddSubview (new ADBannerView (new CGRect (0, this.View.Bounds.Height == 480 ? 430 : 518, 320, 50)) );
+			appDelegate.Window.RootViewController.View.AddSubview (new ADBannerView (new CGRect (0, this.View.Bounds.Height-50, 320, 50)) );
 
 			Application.Storyboard = this.Storyboard;
 			Application.NavigationController = this.NavigationController;
@@ -239,43 +241,16 @@ namespace CineworldiPhone
 
 			locationManager.RequestWhenInUseAuthorization ();
 
-			this.btnRefresh.TouchUpInside -= BtnRefresh_TouchUpInside;
-			this.btnRefresh.TouchUpInside += BtnRefresh_TouchUpInside;
-
-			this.BusyIndicator.StartAnimating ();
-
 			try
 			{
 				await Initialise (false);
 			}
-			catch(Exception ex)
+			catch
 			{
-				UIAlertView alert = new UIAlertView ("Cineview", "Error downloading data - internet access required. Please try again later", null, "OK", null);
+				UIAlertView alert = new UIAlertView ("CineFilms for Cineworld", "Error downloading data. Please try again later", null, "OK", null);
 				alert.Show();
 			}
-			finally 
-			{
-				this.BusyIndicator.StopAnimating ();
-			}
-		}
-
-		async void BtnRefresh_TouchUpInside (object sender, EventArgs e)
-		{
-			this.BusyIndicator.StartAnimating ();
-
-			this.NearestCinemas.Source = null;
-			this.NearestCinemas.ReloadData ();
-
-			try
-			{
-				await Initialise (false);
-			}
-			catch(Exception ex)
-			{
-				UIAlertView alert = new UIAlertView ("Cineview", "Error downloading data - internet access required. Please try again later", null, "OK", null);
-				alert.Show();
-			}
-			finally 
+			finally
 			{
 				this.BusyIndicator.StopAnimating ();
 			}
