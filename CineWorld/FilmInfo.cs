@@ -140,7 +140,7 @@ public class FilmInfo
     [JsonIgnore]
     public Uri PosterImage
     {
-        get { return this.MediumPosterUrl == null ? this.PosterUrl : this.MediumPosterUrl; }
+        get { return this.MediumPosterUrl == null ? new Uri(this.PosterUrl.OriginalString.Replace(".co.uk", ".com")) : this.MediumPosterUrl; }
     }
 
     [JsonIgnore]
