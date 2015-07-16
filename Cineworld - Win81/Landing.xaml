@@ -15,15 +15,7 @@
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">My Application</x:String>
     </common:LayoutAwarePage.Resources>
-    <Page.BottomAppBar>
-        <AppBar x:Name="appBar" Background="Gray">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="btnInfo" Style="{StaticResource HelpAppBarButtonStyle}" AutomationProperties.Name="Info" Click="btnInfo_Click" />
-                <Button x:Name="btnSettings" Style="{StaticResource SettingsAppBarButtonStyle}" Click="btnSettings_Click" />
-                <Button x:Name="btnRefresh" Style="{StaticResource RefreshAppBarButtonStyle}" Click="btnRefresh_Click"/>
-            </StackPanel>
-        </AppBar>
-    </Page.BottomAppBar>
+    
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid  x:Name="LayoutRoot">
             <Grid.RowDefinitions>
@@ -35,10 +27,16 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Opacity="0" Style="{StaticResource BackButtonStyle}" VerticalAlignment="Bottom"/>
                 <local:BannerControl HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" ViewTitle="Unofficial Cineworld" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center">
+                    <AppBarButton x:Name="btnInfo" Height="70" Icon="Help" AutomationProperties.Name="Info" Click="btnInfo_Click" />
+                    <AppBarButton x:Name="btnSettings" Height="70" Icon="Setting" Click="btnSettings_Click" />
+                    <AppBarButton x:Name="btnRefresh" Height="70" Icon="Refresh" Click="btnRefresh_Click"/>
+                </StackPanel>
             </Grid>
 
             <Grid Grid.Row="1">

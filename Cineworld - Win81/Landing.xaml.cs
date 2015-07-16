@@ -28,75 +28,10 @@ namespace Cineworld
         public static bool bLoaded = false;
         HashSet<int> PinnedCinemas = new HashSet<int>();
 
-        //static SettingsCommand command = null;
-        //static SettingsCommand command2 = null;
-        //static SettingsCommand command3 = null;
-        //static SettingsCommand command4 = null;
-
-        DispatcherTimer dtHideAppBar = new DispatcherTimer();
-
-
         public Landing()
         {
             this.InitializeComponent();
         }
-
-        //public static void MainPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
-        //{
-        //    if (command == null)
-        //    {
-        //        command = new SettingsCommand("Support", "Support", (x) =>
-        //        {
-        //            SettingsFlyout settings = new SettingsFlyout();
-        //            settings.Content = new About();
-        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-        //            settings.Background = new SolidColorBrush(Colors.White);
-        //            settings.HeaderText =
-        //                "Support";
-        //            settings.IsOpen = true;
-        //        });
-        //    }
-
-        //    if(!args.Request.ApplicationCommands.Contains(command))
-        //        args.Request.ApplicationCommands.Add(command);
-
-        //    if (command2 == null)
-        //    {
-        //        command2 = new SettingsCommand("PrivacyPolicy", "Privacy Policy", (x) =>
-        //        {
-        //            SettingsFlyout settings = new SettingsFlyout();
-        //            settings.Content = new PrivacyPolicy();
-        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-        //            settings.Background = new SolidColorBrush(Colors.White);
-        //            settings.HeaderText =
-        //                "Privacy Policy";
-        //            settings.IsOpen = true;
-        //        });
-        //    }
-
-        //    if(!args.Request.ApplicationCommands.Contains(command2))
-        //        args.Request.ApplicationCommands.Add(command2);
-
-        //    if (command3 == null)
-        //    {
-        //        command3 = new SettingsCommand("Settings", "Options", (x) =>
-        //        {
-        //            SettingsFlyout settings = new SettingsFlyout();
-        //            settings.Content = new Settings();
-        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-        //            settings.Background = new SolidColorBrush(Colors.White);
-        //            settings.HeaderText =
-        //                "Options";
-        //            settings.IsOpen = true;
-        //        });
-        //    }
-
-        //    if(!args.Request.ApplicationCommands.Contains(command3))
-        //        args.Request.ApplicationCommands.Add(command3);
-
-            
-        //}
-
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -162,19 +97,6 @@ namespace Cineworld
             {
                 await LoadNearestCinema();
             }
-
-            this.dtHideAppBar.Interval = TimeSpan.FromSeconds(10);
-            this.dtHideAppBar.Tick += dtHideAppBar_Tick;
-            this.appBar.IsOpen = true;
-            this.dtHideAppBar.Start();
-        }
-
-        void dtHideAppBar_Tick(object sender, object e)
-        {
-            this.dtHideAppBar.Tick -= dtHideAppBar_Tick;
-            this.dtHideAppBar.Stop();
-
-            this.appBar.IsOpen = false;
         }
 
 
@@ -199,15 +121,9 @@ namespace Cineworld
                 if (bErrored)
                 {
                     await (new MessageDialog("Error fetching cinema / film listing").ShowAsync());
-                    this.BottomAppBar.IsSticky = true;
-                    this.BottomAppBar.IsOpen = true;
+                    return;
                 }
-                else
-                {
-                    this.BottomAppBar.IsSticky = false;
-                    this.BottomAppBar.IsOpen = false;
-                }
-
+       
                 bLoaded = true;
             }
 
@@ -235,7 +151,7 @@ namespace Cineworld
             Tile t = new Tile()
             {
                 CommandParameter = iCin,
-                Margin = new Thickness(10, 0, 0, 10),
+                Margin = new Thickness(0, 0, 10, 10),
                 Width = 200,
                 Height = 200,
                 Foreground = new SolidColorBrush(Colors.White),
@@ -449,7 +365,7 @@ namespace Cineworld
             BaseStorageHelper bsh = new BaseStorageHelper();
             List<Uri> posterUrls = await bsh.GetImageList();
 
-            ImageTile it = new ImageTile() { Width = 410, Height = 200, LargeTileColumns = 1, LargeTileRows = 1, Rows = 1, Columns = 3, Margin = new Thickness(10, 0, 0, 10), AnimationType = ImageTileAnimationTypes.Fade, ItemsSource = posterUrls };
+            ImageTile it = new ImageTile() { Width = 410, Height = 200, LargeTileColumns = 1, LargeTileRows = 1, Rows = 1, Columns = 3, Margin = new Thickness(0, 0, 10, 10), AnimationType = ImageTileAnimationTypes.Fade, ItemsSource = posterUrls };
             Grid g = new Grid()
             {
                 Width = 480,

@@ -17,7 +17,7 @@
         <CollectionViewSource x:Name="cvsCinemas" IsSourceGrouped="true" />
 
         <DataTemplate x:Key="GroupHeaderTemplate">
-            <Border Margin="10, 0, 0, 10" Width="50" Height="50" BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" BorderThickness="3" Tapped="Grid_Tapped">
+            <Border Margin="0, 0, 0, 10" Width="50" Height="50" BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" BorderThickness="3" Tapped="Grid_Tapped">
                 <TextBlock Text="{Binding Key}" Foreground="{StaticResource AppBarItemForegroundThemeBrush}" FontSize="32" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" />
             </Border>
         </DataTemplate>
@@ -79,7 +79,7 @@
                                 <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}">
                                     <GroupStyle.Panel>
                                         <ItemsPanelTemplate>
-                                            <VariableSizedWrapGrid Orientation="Vertical" Margin="50,-90,0,0"/>
+                                            <VariableSizedWrapGrid Orientation="Vertical" Margin="40,-90,0,0"/>
                                         </ItemsPanelTemplate>
                                     </GroupStyle.Panel>
                                 </GroupStyle>

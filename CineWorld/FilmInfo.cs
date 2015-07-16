@@ -7,7 +7,7 @@ using System.Linq;
 
 public class FilmInfo
 {
-    private static string[] arIdentifiers = { "2D", "3D", "IMAX", "Autism Friendly Screening", "Hindi Version", "Tamil", "Polish Language without subtitles", "with English Subtitles", "In Spanish with English subtitles", "Cineworld Unlimited Exclusive Show" };
+    private static string[] arIdentifiers = { "2D", "3D", "IMAX", "Autism Friendly Screening", "Hindi Version", "Hindi", "Marathi", "Bengali", "Tamil", "Polish Language without subtitles", "with English Subtitles", "In Spanish with English subtitles", "Cineworld Unlimited Exclusive Show", "Movies for Juniors", "Unlimited Screening" };
 
     [JsonIgnore]
     public string CleanTitle

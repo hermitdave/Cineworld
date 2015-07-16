@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.UI.Xaml.Controls.Input;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -44,14 +45,11 @@ namespace Cineworld
         CinemaInfo SelectedCinema { get; set; }
 
         System.Collections.ObjectModel.ObservableCollection<GroupInfoList<object>> FilmsForSelectedDate = new System.Collections.ObjectModel.ObservableCollection<GroupInfoList<object>>();
-        //CollectionViewSource cvsViewByDate = new CollectionViewSource() { IsSourceGrouped = true }; 
         
         static SettingsCommand command = null;
         static SettingsCommand command2 = null;
         static SettingsCommand command3 = null;
         static SettingsCommand command4 = null;
-
-        DispatcherTimer dtHideAppBar = new DispatcherTimer();
 
         public CinemaDetails() : base(false)
         {
@@ -178,10 +176,6 @@ namespace Cineworld
                         this.btnUnfavourite.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                     }
 
-                    this.dtHideAppBar.Interval = TimeSpan.FromSeconds(10);
-                    this.dtHideAppBar.Tick += dtHideAppBar_Tick;
-                    this.cinemaDetailsAppBar.IsOpen = true;
-                    this.dtHideAppBar.Start();
                 }
                 catch
                 {
@@ -195,14 +189,6 @@ namespace Cineworld
             }
 
             SpinAndWait(false);
-        }
-
-        void dtHideAppBar_Tick(object sender, object e)
-        {
-            this.dtHideAppBar.Tick -= dtHideAppBar_Tick;
-            this.dtHideAppBar.Stop();
-
-            this.cinemaDetailsAppBar.IsOpen = false;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -256,6 +242,8 @@ namespace Cineworld
 
         private void SetFilmsForSelectedDate(DateTime userSelection)
         {
+            if (fdViewViewByDate == null)
+                return;
             try
             {
                 var dataLetter = fdViewViewByDate.GetGroupForDate(userSelection.Date);
@@ -287,6 +275,10 @@ namespace Cineworld
             if(currentCinemaView == CinemaView.ShowByDate)
             {
                 this.SetFilmsForSelectedDate((DateTime)this.dpShowing.Value);
+
+                this.semanticZoomShowByDate.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                this.semanticZoomFilmList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
                 return;
             }
 
@@ -303,22 +295,24 @@ namespace Cineworld
                     break;
             }
 
+            this.semanticZoomShowByDate.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            this.semanticZoomFilmList.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
             if (filmDataSet != null)
             {
                 FilmsForSelectedDate.Clear();
 
                 foreach (var entry in filmDataSet)
                     FilmsForSelectedDate.Add(entry);
-
                 
-                (semanticZoomShowByDate.ZoomedOutView as ListViewBase).ItemsSource = fdViewViewByDate.GetFilmHeaders(filmDataSet);
+                (this.semanticZoomFilmList.ZoomedOutView as ListViewBase).ItemsSource = fdViewViewByDate.GetFilmHeaders(filmDataSet);
 
-                (semanticZoomShowByDate.ZoomedOutView as ListViewBase).UpdateLayout();
+                (this.semanticZoomFilmList.ZoomedOutView as ListViewBase).UpdateLayout();
 
                 GroupInfoList<object> group = filmDataSet.Find(g => g.Count > 0);
 
                 if (group != null)
-                    (this.semanticZoomShowByDate.ZoomedInView as ListViewBase).ScrollIntoView(group);
+                    (this.semanticZoomFilmList.ZoomedInView as ListViewBase).ScrollIntoView(group);
             }
         }
 
@@ -582,6 +576,19 @@ namespace Cineworld
             ShowPerformances.ShowCinemaDetails = false;
 
             this.Frame.Navigate(typeof(ShowPerformances));
+        }
+
+        private void SfRating_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            (sender as RadRating).Value = this.SelectedCinema.AverageRating;
+
+            Flyout flyOut = new Flyout();
+            flyOut.Content = new ViewReviews();
+            ViewReviews.ReviewTarget = Review.ReviewTargetDef.Cinema;
+            ViewReviews.SelectedCinema = SelectedCinema;
+
+            flyOut.Placement = FlyoutPlacementMode.Top;
+            flyOut.ShowAt(sender as FrameworkElement);
         }
     }
         
