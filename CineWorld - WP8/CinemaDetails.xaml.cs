@@ -41,6 +41,11 @@ namespace CineWorld
 
         static Dictionary<int, CinemaDetailsViewModel> vmCache = new Dictionary<int, CinemaDetailsViewModel>();
 
+        //public static void ResetVMCache()
+        //{
+        //    vmCache.Clear();
+        //}
+
         public CinemaDetails()
         {
             InitializeComponent();
@@ -76,6 +81,8 @@ namespace CineWorld
             base.OnNavigatedTo(e);
 
             SpinAndWait(true);
+
+            await Task.Delay(50);
 
             this.abibAddFav = new ApplicationBarIconButton() { Text = "favourite", IconUri = new Uri("/Images/appbar.favs.addto.rest.png", UriKind.Relative) };
             this.abibAddFav.Click += this.btnFavourite_Click;
@@ -138,7 +145,7 @@ namespace CineWorld
                     if (!this.viewModel.Initialised)
                     {
                         this.viewModel.Initialise(SelectedCinema, App.CinemaFilms[iCin]);
-
+                    }
                         this.lstShowByDate.IsGroupingEnabled = this.lstCurrent.IsGroupingEnabled = this.lstUpcoming.IsGroupingEnabled = Config.GroupData;
 
                         if (Config.GroupData)
@@ -155,7 +162,7 @@ namespace CineWorld
                             this.lstCurrent.SetBinding(LongListSelector.ItemsSourceProperty, new System.Windows.Data.Binding() { Source = this.viewModel.Current });
                             this.lstUpcoming.SetBinding(LongListSelector.ItemsSourceProperty, new System.Windows.Data.Binding() { Source = this.viewModel.Upcoming });
                         }
-                    }
+                    
                 }
                 catch(Exception ex)
                 {

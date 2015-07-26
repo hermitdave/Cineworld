@@ -428,7 +428,7 @@ namespace CineDataWorkerRole
 
         private void ProcessData()
         {
-            return;
+            //return;
 
             Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["CineStorageConStr"].ConnectionString);
 
@@ -736,7 +736,7 @@ namespace CineDataWorkerRole
                 }
             }
 
-            return;
+            //return;
 
             Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["CineStorageConStr"].ConnectionString);
 

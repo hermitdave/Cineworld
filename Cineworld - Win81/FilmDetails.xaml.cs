@@ -24,6 +24,7 @@ using Windows.Networking.Connectivity;
 using Windows.Media.PlayTo;
 using Windows.System.Display;
 using Windows.UI.ApplicationSettings;
+using Telerik.UI.Xaml.Controls.Input;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -38,8 +39,6 @@ namespace Cineworld
         bool bLoaded = false;
         List<GroupInfoList<object>> dataLetter = null;
         public static FilmInfo SelectedFilm { get; set; }
-
-        DispatcherTimer dtHideAppBar = new DispatcherTimer();
 
         public FilmDetails() : base(false)
         {
@@ -122,11 +121,6 @@ namespace Cineworld
                 try
                 {
                     await LoadFilmDetails();
-
-                    this.dtHideAppBar.Interval = TimeSpan.FromSeconds(10);
-                    this.dtHideAppBar.Tick += dtHideAppBar_Tick;
-                    this.filmDetailsAppBar.IsOpen = true;
-                    this.dtHideAppBar.Start();
                 }
                 catch
                 {
@@ -134,14 +128,6 @@ namespace Cineworld
 
                 bLoaded = true;
             }
-        }
-
-        void dtHideAppBar_Tick(object sender, object e)
-        {
-            this.dtHideAppBar.Tick -= dtHideAppBar_Tick;
-            this.dtHideAppBar.Stop();
-
-            this.filmDetailsAppBar.IsOpen = false;
         }
 
         private async void PlayToManagerOnSourceRequested(PlayToManager sender, PlayToSourceRequestedEventArgs args)
@@ -226,7 +212,7 @@ namespace Cineworld
                 catch { }
             }
 
-            this.btnTrailer.Visibility = btnPlay.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
+            //this.btnTrailer.Visibility = btnPlay.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
             this.mpTrailer.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
             //if(taskFilmReviews != null)
@@ -368,8 +354,17 @@ namespace Cineworld
             flyOut.ShowAt(sender as FrameworkElement);
         }
 
-        private void btnReviews_Click(object sender, RoutedEventArgs e)
+        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            PersonDetails.castinfo = (sender as Image).Tag as CastInfo;
+
+            this.Frame.Navigate(typeof(PersonDetails));
+        }
+
+        private void RadRating_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            (sender as RadRating).Value = SelectedFilm.AverageRating;
+
             Flyout flyOut = new Flyout();
             flyOut.Content = new ViewReviews();
 
@@ -378,13 +373,6 @@ namespace Cineworld
 
             flyOut.Placement = FlyoutPlacementMode.Top;
             flyOut.ShowAt(sender as FrameworkElement);
-        }
-
-        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            PersonDetails.castinfo = (sender as Image).Tag as CastInfo;
-
-            this.Frame.Navigate(typeof(PersonDetails));
         }
     }
 }

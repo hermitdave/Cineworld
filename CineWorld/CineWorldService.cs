@@ -105,10 +105,10 @@ namespace Cineworld
                 sb.Replace(")", "");
 
                 string res = sb.ToString().Trim();
-                if (res.IndexOf('/') > -1)
-                {
-                    res = res.Remove(res.Length - 10, 10).Trim();
-                }
+                //if (res.IndexOf('/') > -1)
+                //{
+                //    res = res.Remove(res.Length - 10, 10).Trim();
+                //}
                 
                 return res;
             }
@@ -141,10 +141,10 @@ namespace Cineworld
                     res = res.Remove(0, 1).Trim();
                 }
                 
-                if (res.IndexOf('/') > -1)
-                {
-                    res = res.Remove(res.Length - 10, 10).Trim();
-                }
+                //if (res.IndexOf('/') > -1 && res.Length >= 10)
+                //{
+                //    res = res.Remove(res.Length - 10, 10).Trim();
+                //}
 
                 return res;
             }

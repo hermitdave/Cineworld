@@ -6,14 +6,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO.Compression;
 //using Win8CineBackgroundTask;
 #if WINDOWS_PHONE
 //using Ionic.Zlib;
 using System.IO.IsolatedStorage;
 using CineWorld;
-using System.IO.Compression;
 #else
-using System.IO.Compression;
 using Windows.ApplicationModel.Background;
 using Windows.Storage;
 #endif
@@ -64,6 +63,37 @@ namespace Cineworld
 
                 App.FilmCinemas[filmID] = cinemas;
             }
+        }
+
+        public async Task DeleteDataFiles()
+        {
+            string searchParam = "*.gz";
+
+#if WINDOWS_PHONE
+            Task t = Task.Run(() =>
+                {
+                    IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
+                    string[] files = isf.GetFileNames(searchParam);
+
+                    if (files.Length > 0)
+                    {
+                        foreach (string file in files)
+                        {
+                            try
+                            {
+                                isf.DeleteFile(file);
+                            }
+                            catch { }
+                        }
+                    }
+                });
+
+            await t;
+#else
+           //StorageFile inputfile = await ApplicationData.Current.LocalFolder;
+
+                
+#endif
         }
 
         public async Task<T> DeserialiseObject<T>(string file)

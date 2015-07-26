@@ -67,6 +67,12 @@
     </Item>
     <Item Title="history"
           Type="text">
+      3.2.2.8
+      Added mechanism to delete local data files before requesting new set when refresh button is pressed on main page.
+      Fixed an issue where navigation to cinema immediately was resulting in blank screen
+      Added minor delay to make progress visible when navigating to cinema details
+      Changed text for No Ads to Don't Like Ads?
+      
       3.2.2.7
       Updated package to enabler YouTube trailer playback
       Modified the flow in CinemaDetails > View By Date

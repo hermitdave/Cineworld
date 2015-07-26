@@ -360,6 +360,10 @@ namespace CineWorld
             {
                 List<Task> tasks = new List<Task>();
 
+                await new LocalStorageHelper().DeleteDataFiles();
+
+                //CinemaDetails.ResetVMCache();
+
                 await Initialise(true);
 
                 foreach (var key in this.PinnedCinemas)

@@ -32,10 +32,10 @@ public class FilmInfo
             sb.Replace(")", "");
 
             string res = sb.ToString().Trim();
-            if (res.IndexOf('/') > -1)
-            {
-                res = res.Remove(res.Length - 10, 10).Trim();
-            }
+            //if (res.IndexOf('/') > -1)
+            //{
+            //    res = res.Remove(res.Length - 10, 10).Trim();
+            //}
 
             return res;
         }

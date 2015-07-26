@@ -43,8 +43,6 @@ namespace Cineworld
         public static bool ShowCinemaDetails { get; set; }
         public static bool ShowFilmDetails { get; set; }
         
-        DispatcherTimer dtHideAppBar = new DispatcherTimer();
-        
         public ShowPerformances()
         {
             this.InitializeComponent();
@@ -124,13 +122,13 @@ namespace Cineworld
                 if (ShowCinemaDetails)
                 {
                     await this.LoadCinemaDetails();
-                    this.spReviewCinemaButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    this.spCinemaButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 }
                 
                 if (ShowFilmDetails)
                 {
                     await this.LoadFilmDetails();
-                    this.spReviewFilmButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    //this.spReviewFilmButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 }
                 
                 PerformanceData perfData = new PerformanceData(SelectedFilm.Performances);
@@ -154,10 +152,6 @@ namespace Cineworld
 
             SpinAndWait(false);
 
-            this.dtHideAppBar.Interval = TimeSpan.FromSeconds(10);
-            this.dtHideAppBar.Tick += dtHideAppBar_Tick;
-            this.PerformanceAppBar.IsOpen = true;
-            this.dtHideAppBar.Start();
         }
 
         void semanticZoom_ViewChangeStarted(object sender, SemanticZoomViewChangedEventArgs e)
@@ -245,7 +239,7 @@ namespace Cineworld
                 }
                 catch { }
             
-            this.spFilmButtons.Visibility = this.btnTrailer.Visibility = btnPlay.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
+            btnPlay.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
             this.mpTrailer.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
 
@@ -286,24 +280,11 @@ namespace Cineworld
                 this.btnUnfavourite.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
 
-            this.dtHideAppBar.Interval = TimeSpan.FromSeconds(10);
-            this.dtHideAppBar.Tick += dtHideAppBar_Tick;
-            this.PerformanceAppBar.IsOpen = true;
-            this.dtHideAppBar.Start();
-
             if (t != null)
             {
                 await t;
                 SelectedFilm = App.CinemaFilms[SelectedCinema.ID].Find(f => f.EDI == SelectedFilm.EDI);
             }
-        }
-
-        void dtHideAppBar_Tick(object sender, object e)
-        {
-            this.dtHideAppBar.Tick -= dtHideAppBar_Tick;
-            this.dtHideAppBar.Stop();
-
-            this.PerformanceAppBar.IsOpen = false;
         }
 
         HexColour backgroundColor = new HexColour("#FF19171C");
