@@ -24,7 +24,7 @@
         <CollectionViewSource x:Name="cvsCinemas" IsSourceGrouped="true" />
         
         <DataTemplate x:Key="GroupHeaderTemplate">
-            <Border Margin="20, 20, 0, 0" Width="50" Height="50" BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" BorderThickness="3" Tapped="Grid_Tapped">
+            <Border Margin="0, 0, 0, 10" Width="50" Height="50" BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}" BorderThickness="3" Tapped="Grid_Tapped">
                 <TextBlock Text="{Binding Key}" Foreground="{StaticResource AppBarItemForegroundThemeBrush}" FontSize="32" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" />
             </Border>
         </DataTemplate>
@@ -45,14 +45,19 @@
             <Grid Grid.Row="0" Background="Transparent" x:Name="gHeader">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Back button and page title -->
                 <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}" />
 
                 <local:BannerControl x:Name="bcTitle" ViewTitle="{Binding SelectedFilm.TitleWithClassification}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1"/>
+
+                <StackPanel x:Name="spFilmButtons" Orientation="Horizontal" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">
+                    <AppBarButton x:Name="btnPlayTrailer" Visibility="Collapsed" Icon="Play" Height="70" Click="btnPlay_Click" />
+                </StackPanel>
+
             </Grid>
 
             <Grid Grid.Row="1">
@@ -72,7 +77,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Grid Margin="20, 0, 0, 0" Height="278" Width="185" Grid.Column="0" >
+                    <Grid Margin="20, 0, 0, 0" Height="278" Width="185" Grid.Column="0" VerticalAlignment="Top">
                         <Image x:Name="piPoster" HorizontalAlignment="Left" VerticalAlignment="Top" Height="278" Width="185"/>
                         <coding4fun:RoundButton x:Name="btnPlay" ButtonWidth="150" ButtonHeight="150" HorizontalAlignment="Center" VerticalAlignment="Center" Content="&#xE102;" FontFamily="Segoe UI Symbol" FontSize="72" Visibility="Collapsed" Click="btnPlay_Click" Foreground="{StaticResource AppBarItemForegroundThemeBrush}" Background="Transparent" BorderBrush="{StaticResource AppBarItemForegroundThemeBrush}"/>
                     </Grid>
@@ -91,11 +96,6 @@
                             <ColumnDefinition Width="10" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <!--<StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0, 0, 0, 0">
-                            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0, 0, 0, 0" Text="{Binding SelectedFilm.VoteCount}" Style="{StaticResource BodyTextStyle}"/>
-                            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="10, 0, 0, 0" Text="ratings" Style="{StaticResource BodyTextStyle}" />
-                            <Input:SfRating VerticalAlignment="Center" Background="Transparent" Margin="10, 0, 20, 0" ItemsCount="5" Value="{Binding SelectedFilm.AverageRating}" IsHitTestVisible="False" />
-                        </StackPanel>-->
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="0, 0, 0, 0">
                             <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="0, 0, 0, 0" Text="{Binding SelectedFilm.VoteCount}" Style="{StaticResource BodyTextStyle}"/>
                             <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" Margin="10, 0, 0, 0" Text="ratings" Style="{StaticResource BodyTextStyle}"/>
@@ -125,7 +125,7 @@
                         <TextBlock Visibility="{Binding SelectedFilm.Overview, Converter={StaticResource VisibilityConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" Margin="0, 10, 0, 0"  Style="{StaticResource BodyTextStyle}" FontWeight="Bold" Text="Overview" Grid.Column="0" Grid.Row="5"/>
                         <TextBlock Visibility="{Binding SelectedFilm.Overview, Converter={StaticResource VisibilityConverter}}" HorizontalAlignment="Left" TextWrapping="Wrap"  Style="{StaticResource BodyTextStyle}" Margin="0, 10, 0, 0" Grid.Column="2" Grid.Row="5" Text="{Binding SelectedFilm.Overview}"/>
 
-                        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Margin="-5, 30, 0, 10">
+                        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Margin="0, 30, 0, 10">
                             <RadioButton x:Name="radShowCinemas" Content="View cinemas"  VerticalAlignment="Bottom" Margin="0" IsChecked="True" Click="radShowCinemas_Click"/>
                             <RadioButton x:Name="radShowCast" Content="View Cast"  VerticalAlignment="Bottom" Margin="10, 0" IsChecked="False" Click="radShowCast_Click" Visibility="{Binding SelectedFilm.FilmCast, Converter={StaticResource VisibilityConverter}}"/>
                         </StackPanel>

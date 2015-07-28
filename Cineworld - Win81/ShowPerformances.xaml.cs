@@ -23,6 +23,7 @@ using Windows.Networking.Connectivity;
 using Windows.Media.PlayTo;
 using Windows.UI.Popups;
 using Windows.System.Display;
+using Telerik.UI.Xaml.Controls.Input;
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace Cineworld
@@ -128,7 +129,7 @@ namespace Cineworld
                 if (ShowFilmDetails)
                 {
                     await this.LoadFilmDetails();
-                    //this.spReviewFilmButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    this.spFilmButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 }
                 
                 PerformanceData perfData = new PerformanceData(SelectedFilm.Performances);
@@ -203,7 +204,7 @@ namespace Cineworld
             if (perf != null)
             {
                 args.Request.Data.Properties.Description = (String.Format("Shall we go and see it {0} at {1}? Book here {2}", DateTimeToStringConverter.ConvertData(perf.PerformanceTS), perf.PerformanceTS.ToString("HH:mm"), perf.BookUrl.ToString()));
-                args.Request.Data.SetUri(perf.BookUrl);
+                args.Request.Data.SetWebLink(perf.BookUrl);
 
                 perf = null;
             }
@@ -239,7 +240,7 @@ namespace Cineworld
                 }
                 catch { }
             
-            btnPlay.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
+            this.btnPlay.Visibility = this.btnPlayTrailer.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
             this.mpTrailer.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
 
@@ -258,7 +259,11 @@ namespace Cineworld
             this.spCinemaButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
             int iCin = SelectedCinema.ID;
 
-            if (!SecondaryTile.Exists(iCin.ToString()))
+            string cinemastr = SelectedCinema.ID.ToString();
+            IReadOnlyList<SecondaryTile> tiles = await SecondaryTile.FindAllAsync();
+            SecondaryTile tile = tiles.FirstOrDefault(s => s.TileId == cinemastr);
+
+            if (tile == null)
             {
                 this.btnPinToStartMenu.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 this.btnUnPinToStartMenu.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -402,7 +407,7 @@ namespace Cineworld
         {
             List<int> Cinemas = Config.FavCinemas;
 
-            if (!Cinemas.Contains(SelectedCinema.ID))
+            if (Cinemas.Contains(SelectedCinema.ID))
             {
                 Cinemas.Remove(SelectedCinema.ID);
                 Config.FavCinemas = Cinemas;
@@ -474,40 +479,20 @@ namespace Cineworld
             return new Rect(point, new Size(element.ActualWidth, element.ActualHeight));
         }
 
-        private void btnTrailer_Click(object sender, RoutedEventArgs e)
+        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.btnPlay_Click(sender, e);
+            PersonDetails.castinfo = (sender as Image).Tag as CastInfo;
+
+            this.Frame.Navigate(typeof(PersonDetails));
         }
 
-        private void btnRateFilm_Click(object sender, RoutedEventArgs e)
+        private void RadFilmRating_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Flyout flyOut = new Flyout();
-            flyOut.Content = new Review();
+            (sender as RadRating).Value = SelectedFilm.AverageRating;
             
-            Review.ReviewTarget = Review.ReviewTargetDef.Film;
-            Review.SelectedFilm = SelectedFilm;
-
-            flyOut.Placement = FlyoutPlacementMode.Top;
-            flyOut.ShowAt(sender as FrameworkElement);
-        }
-
-        private void btnRateCinema_Click(object sender, RoutedEventArgs e)
-        {
-            Flyout flyOut = new Flyout();
-            flyOut.Content = new Review();
-            
-            Review.ReviewTarget = Review.ReviewTargetDef.Cinema;
-            Review.SelectedCinema = SelectedCinema;
-            
-            flyOut.Placement = FlyoutPlacementMode.Top;
-            flyOut.ShowAt(sender as FrameworkElement);
-        }
-
-        private void btnFilmReviews_Click(object sender, RoutedEventArgs e)
-        {
             Flyout flyOut = new Flyout();
             flyOut.Content = new ViewReviews();
-            
+
             ViewReviews.ReviewTarget = Review.ReviewTargetDef.Film;
             ViewReviews.SelectedFilm = SelectedFilm;
 
@@ -515,32 +500,18 @@ namespace Cineworld
             flyOut.ShowAt(sender as FrameworkElement);
         }
 
-        private void btnCinemaReviews_Click(object sender, RoutedEventArgs e)
+        private void RadCinemaRating_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            (sender as RadRating).Value = SelectedCinema.AverageRating;
+            
             Flyout flyOut = new Flyout();
             flyOut.Content = new ViewReviews();
-            
+
             ViewReviews.ReviewTarget = Review.ReviewTargetDef.Cinema;
             ViewReviews.SelectedCinema = SelectedCinema;
-            
+
             flyOut.Placement = FlyoutPlacementMode.Top;
             flyOut.ShowAt(sender as FrameworkElement);
-        }
-
-        private void btnReviews_Click(object sender, RoutedEventArgs e)
-        {
-            Flyout flyOut = new Flyout();
-            flyOut.Content = new ViewReviews();
-            
-            flyOut.Placement = FlyoutPlacementMode.Top;
-            flyOut.ShowAt(sender as FrameworkElement);
-        }
-
-        private void Image_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            PersonDetails.castinfo = (sender as Image).Tag as CastInfo;
-
-            this.Frame.Navigate(typeof(PersonDetails));
         }
     }
 }

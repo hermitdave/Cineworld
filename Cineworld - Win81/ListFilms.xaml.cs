@@ -37,7 +37,7 @@ namespace Cineworld
         System.Collections.ObjectModel.ObservableCollection<GroupInfoList<object>> GroupedFilms = new System.Collections.ObjectModel.ObservableCollection<GroupInfoList<object>>();
         bool bLoaded = false;
 
-        public ListFilms()
+        public ListFilms() : base(true)
         {
             this.InitializeComponent();
         }

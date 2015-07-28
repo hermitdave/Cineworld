@@ -51,7 +51,7 @@ namespace Cineworld
         static SettingsCommand command3 = null;
         static SettingsCommand command4 = null;
 
-        public CinemaDetails() : base(false)
+        public CinemaDetails()
         {
             this.InitializeComponent();
 
@@ -104,13 +104,6 @@ namespace Cineworld
 
             this.AllowSearch(false);
 
-            //if (!Landing.bLoaded)
-            //{
-            //    SettingsPane.GetForCurrentView().CommandsRequested -= MainPage_CommandsRequested;
-
-            //    SettingsPane.GetForCurrentView().CommandsRequested += MainPage_CommandsRequested;
-            //} 
-            
             DataTransferManager.GetForCurrentView().DataRequested += CinemaDetails_DataRequested;
 
             SpinAndWait(true);
@@ -154,7 +147,11 @@ namespace Cineworld
 
                     LoadFilmList(App.CinemaFilms[SelectedCinema.ID]);
 
-                    if (!SecondaryTile.Exists(iCin.ToString()))
+                    string cinemastr = SelectedCinema.ID.ToString();
+                    IReadOnlyList<SecondaryTile> tiles = await SecondaryTile.FindAllAsync();
+                    SecondaryTile tile = tiles.FirstOrDefault(t => t.TileId == cinemastr);
+
+                    if (tile == null)
                     {
                         this.btnPinToStartMenu.Visibility = Windows.UI.Xaml.Visibility.Visible;
                         this.btnUnPinToStartMenu.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -331,61 +328,6 @@ namespace Cineworld
             }
         }
 
-        //private void MainPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
-        //{
-        //    if (command == null)
-        //    {
-        //        command = new SettingsCommand("Support", "Support", (x) =>
-        //        {
-        //            SettingsFlyout settings = new SettingsFlyout();
-        //            settings.Content = new About();
-        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-        //            settings.Background = new SolidColorBrush(Colors.White);
-        //            settings.HeaderText =
-        //                "Support";
-        //            settings.IsOpen = true;
-        //        });
-        //    }
-
-        //    if (!args.Request.ApplicationCommands.Contains(command))
-        //        args.Request.ApplicationCommands.Add(command);
-
-        //    if (command2 == null)
-        //    {
-        //        command2 = new SettingsCommand("PrivacyPolicy", "Privacy Policy", (x) =>
-        //        {
-        //            SettingsFlyout settings = new SettingsFlyout();
-        //            settings.Content = new PrivacyPolicy();
-        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-        //            settings.Background = new SolidColorBrush(Colors.White);
-        //            settings.HeaderText =
-        //                "Privacy Policy";
-        //            settings.IsOpen = true;
-        //        });
-        //    }
-
-        //    if (!args.Request.ApplicationCommands.Contains(command2))
-        //        args.Request.ApplicationCommands.Add(command2);
-
-        //    if (command3 == null)
-        //    {
-        //        command3 = new SettingsCommand("Settings", "Options", (x) =>
-        //        {
-        //            SettingsFlyout settings = new SettingsFlyout();
-        //            settings.Content = new Settings();
-        //            settings.HeaderBrush = new SolidColorBrush(new HexColour("#FFB51C10"));
-        //            settings.Background = new SolidColorBrush(Colors.White);
-        //            settings.HeaderText =
-        //                "Options";
-        //            settings.IsOpen = true;
-        //        });
-        //    }
-
-        //    if (!args.Request.ApplicationCommands.Contains(command3))
-        //        args.Request.ApplicationCommands.Add(command3);
-
-        //}
-
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             SemanticZoom sz = this.semanticZoomShowByDate;
@@ -396,25 +338,6 @@ namespace Cineworld
         private void btnFilledViewOnly_Click(object sender, RoutedEventArgs e)
         {
             Windows.UI.ViewManagement.ApplicationView.TryUnsnap();
-        }
-
-        private void radShowingToday_Click(object sender, RoutedEventArgs e)
-        {
-            //if (radShowingToday.IsChecked == true)
-            //{
-            //    this.semanticZoomViewToday.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            //    this.semanticZoomViewByDate.Visibility = this.semanticZoomViewAll.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            //}
-            //else if (radViewByDate.IsChecked == true)
-            //{
-            //    this.semanticZoomViewByDate.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            //    this.semanticZoomViewToday.Visibility = this.semanticZoomViewAll.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            //}
-            //else
-            //{
-            //    this.semanticZoomViewAll.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            //    this.semanticZoomViewByDate.Visibility = this.semanticZoomViewToday.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            //}
         }
 
         private async void btnPinToStartMenu_Click(object sender, RoutedEventArgs e)
@@ -449,7 +372,7 @@ namespace Cineworld
         {
             List<int> Cinemas = Config.FavCinemas;
 
-            if (!Cinemas.Contains(SelectedCinema.ID))
+            if (Cinemas.Contains(SelectedCinema.ID))
             {
                 Cinemas.Remove(SelectedCinema.ID);
                 Config.FavCinemas = Cinemas;

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="InvokeITLimited.Cineworld" Publisher="CN=67FED6AA-5491-4F37-B955-D890A9B33074" Version="3.2.0.15" />
+  <Identity Name="InvokeITLimited.Cineworld" Publisher="CN=67FED6AA-5491-4F37-B955-D890A9B33074" Version="3.2.0.17" />
   <Properties>
     <DisplayName>Cineworld Unofficial</DisplayName>
     <PublisherDisplayName>Invoke IT Limited</PublisherDisplayName>

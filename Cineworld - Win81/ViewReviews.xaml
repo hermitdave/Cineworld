@@ -9,9 +9,14 @@
 
     <Grid RequestedTheme="Default" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <ListBox Grid.Row="0" x:Name="lvReviews" ItemTemplate="{StaticResource ReviewTemplate}" BorderBrush="Transparent"/>
+        <StackPanel Orientation="Horizontal" x:Name="spWriteReview" Tapped="spWriteReview_Tapped" HorizontalAlignment="Center">
+            <AppBarButton Icon="Edit" VerticalAlignment="Center"  Margin="-20, 0, -10, 0" Height="70" />
+            <TextBlock Text="Write a review" Style="{StaticResource HeaderTextStyle}" VerticalAlignment="Center" Margin="0, 0, 20, 0"/>
+        </StackPanel>
+        <ListBox Grid.Row="1" x:Name="lvReviews" ItemTemplate="{StaticResource ReviewTemplate}" BorderBrush="Transparent"/>
     </Grid>
 </Page>

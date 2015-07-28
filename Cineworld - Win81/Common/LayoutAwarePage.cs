@@ -49,7 +49,7 @@ namespace Cineworld.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="LayoutAwarePage"/> class.
         /// </summary>
-        public LayoutAwarePage(bool cachePage = true)
+        public LayoutAwarePage(bool cachePage = false)
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled) return;
 

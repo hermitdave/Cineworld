@@ -40,7 +40,7 @@ namespace Cineworld
         List<GroupInfoList<object>> dataLetter = null;
         public static FilmInfo SelectedFilm { get; set; }
 
-        public FilmDetails() : base(false)
+        public FilmDetails()
         {
             this.InitializeComponent();
         }
@@ -68,13 +68,6 @@ namespace Cineworld
         {
         }
 
-        //private void SpinAndWait(bool bNewVal)
-        //{
-        //    this.gBody.Visibility = bNewVal ? Windows.UI.Xaml.Visibility.Collapsed : Windows.UI.Xaml.Visibility.Visible;
-        //    this.gProgress.Visibility = bNewVal ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed;
-        //    this.prProgress.IsActive = bNewVal;
-        //}
-        
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -212,34 +205,10 @@ namespace Cineworld
                 catch { }
             }
 
-            //this.btnTrailer.Visibility = btnPlay.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
+            this.btnPlayTrailer.Visibility = btnPlay.Visibility = (trailerUrl != null ? Windows.UI.Xaml.Visibility.Visible : Windows.UI.Xaml.Visibility.Collapsed);
             this.mpTrailer.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
-            //if(taskFilmReviews != null)
-            //    await taskFilmReviews;
         }
-
-        //async Task LoadFilmReviews(int FilmEdi)
-        //{
-        //    try
-        //    {
-        //        List<FilmReview> filmReviews = await App.MobileService.GetTable<FilmReview>().Where(r => r.Movie == SelectedFilm.EDI).ToListAsync();
-
-        //        App.Reviews.Clear();
-
-        //        if (filmReviews != null && filmReviews.Count > 0)
-        //        {
-        //            App.Reviews.AddRange(filmReviews);
-        //            this.btnReviews.Visibility = Windows.UI.Xaml.Visibility.Visible;
-        //        }
-
-        //        this.filmRating.Value = App.AverageRating;
-        //        this.tbFilmReviewCount.Text = String.Format("{0} votes", App.ReviewCount);
-
-        //        this.spReviewButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
-        //    }
-        //    catch { }
-        //}
 
         void semanticZoom_ViewChangeStarted(object sender, SemanticZoomViewChangedEventArgs e)
         {
@@ -335,23 +304,6 @@ namespace Cineworld
             this.gBody.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             mpTrailer.Visibility = Windows.UI.Xaml.Visibility.Visible;
             mpTrailer.Source = this.trailerUrl.Uri;
-        }
-
-        private void btnTrailer_Click(object sender, RoutedEventArgs e)
-        {
-            this.btnPlay_Click(sender, e);
-        }
-
-        private void btnRateFilm_Click(object sender, RoutedEventArgs e)
-        {
-            Flyout flyOut = new Flyout();
-            flyOut.Content = new Review();
-
-            Review.ReviewTarget = Review.ReviewTargetDef.Film;
-            Review.SelectedFilm = SelectedFilm;
-
-            flyOut.Placement = FlyoutPlacementMode.Top;
-            flyOut.ShowAt(sender as FrameworkElement);
         }
 
         private void Image_Tapped(object sender, TappedRoutedEventArgs e)

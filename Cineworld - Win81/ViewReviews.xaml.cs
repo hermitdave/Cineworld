@@ -46,5 +46,14 @@ namespace Cineworld
             else
                 this.lvReviews.ItemsSource = SelectedCinema.Reviews;
         }
+
+        private void spWriteReview_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Content = new Review();
+
+            Review.ReviewTarget = ViewReviews.ReviewTarget;
+            Review.SelectedFilm = ViewReviews.SelectedFilm;
+            Review.SelectedCinema = ViewReviews.SelectedCinema;
+        }
     }
 }

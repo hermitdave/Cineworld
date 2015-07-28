@@ -90,9 +90,18 @@ namespace Cineworld
 
             await t;
 #else
-           //StorageFile inputfile = await ApplicationData.Current.LocalFolder;
-
-                
+            IReadOnlyList<StorageFile> files = await ApplicationData.Current.LocalFolder.GetFilesAsync();
+            foreach(var file in files)
+            {
+                if (file.FileType.Equals(".gz", StringComparison.OrdinalIgnoreCase))
+                {
+                    try
+                    {
+                        await file.DeleteAsync();
+                    }
+                    catch { }
+                }
+            }          
 #endif
         }
 

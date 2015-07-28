@@ -27,7 +27,7 @@ namespace Cineworld
     {
         List<GroupInfoList<object>> dataLetter = null;
 
-        public ListCinemas()
+        public ListCinemas() : base(true)
         {
             this.InitializeComponent();
 

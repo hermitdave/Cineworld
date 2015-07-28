@@ -28,7 +28,7 @@ namespace Cineworld
         public static bool bLoaded = false;
         HashSet<int> PinnedCinemas = new HashSet<int>();
 
-        public Landing()
+        public Landing() : base(true)
         {
             this.InitializeComponent();
         }
@@ -417,6 +417,8 @@ namespace Cineworld
         private async void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             bLoaded = false;
+
+            await new LocalStorageHelper().DeleteDataFiles();
             await ExecuteInitialDataLoad(true);
         }
 

@@ -129,14 +129,14 @@ namespace Cineworld
 
             this.SpinAndWait(false);
 
-            (this.Parent as Flyout).Hide();
+            (((this.Parent as FrameworkElement).Parent as FlyoutPresenter).Parent as Popup).IsOpen = false;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.SpinAndWait(false);
 
-            (this.Parent as Flyout).Hide();
+            (((this.Parent as FrameworkElement).Parent as FlyoutPresenter).Parent as Popup).IsOpen = false;
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
