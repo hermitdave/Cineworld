@@ -134,8 +134,6 @@ namespace CineWorld
                 ThreadPool.QueueUserWorkItem(new WaitCallback(GetProductListing));
             }
             
-            await CheckNokiaMusicCountryCode();
-            
             this.StartPeriodicAgent();
         }
 
@@ -235,19 +233,7 @@ namespace CineWorld
                 int i = 1;
             }
         }
-
-        private async Task CheckNokiaMusicCountryCode()
-        {
-            if (Config.AllowNokiaMusicSearch == null)
-            {
-                string countryCode = RegionInfo.CurrentRegion.TwoLetterISORegionName.ToLower();
-                CountryResolver resolver = new CountryResolver("1b41d6ef68154ed1a6f13814244c4134");
-                bool resp = await resolver.CheckAvailabilityAsync(countryCode);
-
-                Config.AllowNokiaMusicSearch = resp;
-            }
-        }
-
+        
         #region Phone application initialization
 
         // Avoid double-initialization

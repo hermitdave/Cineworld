@@ -11,3 +11,4 @@ packages
 *.user
 apppackages
 Telerik-WP7
+/CineAzure/TestResults

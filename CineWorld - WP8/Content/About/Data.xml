@@ -67,6 +67,11 @@
     </Item>
     <Item Title="history"
           Type="text">
+      3.2.2.9
+      Replaced new app ad as oppsoed to Ad Control for Windows 10
+      Tweak to banner spacing and added scrollview to settings 
+      Removed Nokia Music from OST search options.
+      
       3.2.2.8
       Added mechanism to delete local data files before requesting new set when refresh button is pressed on main page.
       Fixed an issue where navigation to cinema immediately was resulting in blank screen

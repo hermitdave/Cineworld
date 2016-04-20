@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="CineAzure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2013-10.2.2">
+<ServiceConfiguration serviceName="CineAzure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2015-04.2.6">
   <Role name="CineDataWorkerRole">
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="CineStorageConStr" value="DefaultEndpointsProtocol=http;AccountName=cineworlddata;AccountKey=AHP1j328ZRS/wGq28aBCMhkQsqPlHZWcLhgGpuZ6ypXrrlA8PldR/3COF1RdUawcVmo8YpYGDOnDEgeHoHy/7g==" />
+      <Setting name="CineStorageConStr" value="DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="hermitd" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEGJnGf4DFm+mSNsQXs5dqFswDQYJKoZIhvcNAQEBBQAEggEAQn8AXqzE36sctrLHm+O7TMFWvvr/8Yg8TA+iyOoD4YKvbXDLTr2ZPK4G3gm0vcDtFzMa7Hzx/RFFkJqP6xkDkplikg+utPk/g1OeOisL/AJd8BkxVRkmDl1Q8vKef2mDh1coRlP5gvbk3LddqRDOKGbEJVi9sQ8o9MhdI2nkZeObAbkcH4Gf1rZRpu/ucLb4Xhyi+Tvq+77XmkKNyyuZ9mEYht3rQ7WnHlYCs6Gzl3ABWwcv9fGKvChOljQmYge/PPDpgWDl5IDJVHzqMD+Jmup9FI+Oy/nEJDZQvYp/D6nn/TsGv4LT5NjL+xVn/l8bOeGHM5hQf/G+8FXKmeTBnTAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECLWQElLixt6wgBBdKl0pvcG401FiBblyQXtO" />

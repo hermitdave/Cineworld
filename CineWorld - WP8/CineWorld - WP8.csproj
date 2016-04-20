@@ -389,6 +389,7 @@
     <Content Include="Images\CineTileFront.png" />
     <Content Include="Images\FlipCycleMedium.png" />
     <Content Include="Images\FlipCycleSmall.png" />
+    <Content Include="Images\MOL-Ad.png" />
     <Content Include="Images\NoAds.png" />
     <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />

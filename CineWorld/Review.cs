@@ -72,5 +72,16 @@ namespace Cineworld
 
             this.PerformanceTS = pi.PerformanceTS;
         }
+
+        public BookingHistory()
+        {
+#if WINDOWS_PHONE || NETFX_CORE
+            if (App.MobileService == null)
+                App.MobileService = new MobileServiceClient("https://cineworld.azure-mobile.net/", "kpNUhnZFTNayzvLPaWxszNbpuBJnNQ87");
+#endif
+            this.PerformanceId = 999;
+
+            this.PerformanceTS = DateTime.Now;
+        }
     }
 }

@@ -52,7 +52,7 @@ namespace Cineworld
         public const string ThemeTag = "theme";
         public const string AudioSupportTag = "audiosupport";
         public const string CleanBackgroundTag = "cleanbackground";
-        public const string AllowNokiaMusicTag = "nokiamusicsearch";
+        public const string MOLAdTappedTag = "MOLAdTapped";
         
 #if WINDOWS_APP
         public static event Action RegionChanged = delegate { };
@@ -188,26 +188,26 @@ namespace Cineworld
             }
         }
 
-        public static bool? AllowNokiaMusicSearch
+        public static bool MolAdTapped
         {
             get
             {
-                bool? b = null;
+                bool b = false;
 
-                if (!Settings.Contains(AllowNokiaMusicTag))
+                if (!Settings.Contains(MOLAdTappedTag))
                 {
-                    Settings.Add(AllowNokiaMusicTag, null);
+                    Settings.Add(MOLAdTappedTag, false);
                     Settings.Save();
                 }
                 else
-                    b = (bool?)(Settings[AllowNokiaMusicTag]);
+                    b = (bool)(Settings[MOLAdTappedTag]);
 
                 return b;
             }
 
             set
             {
-                Settings[AllowNokiaMusicTag] = value;
+                Settings[MOLAdTappedTag] = value;
                 Settings.Save();
             }
         }

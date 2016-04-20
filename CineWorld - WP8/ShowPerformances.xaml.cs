@@ -165,35 +165,35 @@ namespace CineWorld
             this.ApplicationBar.Buttons.Add(this.abibShare);
         }
 
-        private void SetMusicSearchMenu()
-        {
-            string searchterm = String.Format("{0} soundtrack", SelectedFilm.CleanTitle);
+        //private void SetMusicSearchMenu()
+        //{
+        //    string searchterm = String.Format("{0} soundtrack", SelectedFilm.CleanTitle);
 
-            new AppBarPrompt(
-                new AppBarPromptAction("XBox Music", () =>
-                {
-                    new MarketplaceSearchTask()
-                    {
-                        ContentType = MarketplaceContentType.Music,
-                        SearchTerms = searchterm
-                    }.Show();
+        //    new AppBarPrompt(
+        //        new AppBarPromptAction("XBox Music", () =>
+        //        {
+        //            new MarketplaceSearchTask()
+        //            {
+        //                ContentType = MarketplaceContentType.Music,
+        //                SearchTerms = searchterm
+        //            }.Show();
 
-                }),
-                new AppBarPromptAction("Nokia Music", () =>
-                {
-                    new MusicSearchTask()
-                    {
-                        SearchTerms = searchterm
-                    }.Show();
-                })
-                ) { Foreground = new SolidColorBrush(Colors.White) }.Show();
-        }
+        //        }),
+        //        new AppBarPromptAction("Nokia Music", () =>
+        //        {
+        //            new MusicSearchTask()
+        //            {
+        //                SearchTerms = searchterm
+        //            }.Show();
+        //        })
+        //        ) { Foreground = new SolidColorBrush(Colors.White) }.Show();
+        //}
 
         void abibSoundTrack_Click(object sender, EventArgs e)
         {
-            if (Config.AllowNokiaMusicSearch == true)
-                SetMusicSearchMenu();
-            else
+            //if (Config.AllowNokiaMusicSearch == true)
+            //    SetMusicSearchMenu();
+            //else
             {
                 string searchterm = String.Format("{0} soundtrack", SelectedFilm.CleanTitle);
 

@@ -19,6 +19,7 @@ using System.IO.Compression;
 using System.IO;
 using System.ServiceModel;
 using CineDataWorkerRole.MobileService;
+using Microsoft.Azure;
 
 namespace CineDataWorkerRole
 {
@@ -171,7 +172,7 @@ namespace CineDataWorkerRole
                 }
                 
 #if DEBUG
-                break;
+                return;
 #else
                 Thread.Sleep(tenMinSleepDuration);
 #endif
@@ -355,7 +356,8 @@ namespace CineDataWorkerRole
 
         private void LogError(Exception ex, string message)
         {
-            Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["CineStorageConStr"].ConnectionString);
+            //ConfigurationManager.ConnectionStrings["CineStorageConStr"].ConnectionString
+            Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("CineStorageConStr"));
 
             Microsoft.WindowsAzure.Storage.Blob.CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
@@ -407,7 +409,7 @@ namespace CineDataWorkerRole
         
         private DateTime GetLastModified()
         {
-            Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["CineStorageConStr"].ConnectionString);
+            Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("CineStorageConStr"));
 
             Microsoft.WindowsAzure.Storage.Blob.CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
@@ -430,8 +432,8 @@ namespace CineDataWorkerRole
         {
             //return;
 
-            Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["CineStorageConStr"].ConnectionString);
-
+            Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("CineStorageConStr"));
+            
             Microsoft.WindowsAzure.Storage.Blob.CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
             // Retrieve a reference to a container. 
@@ -572,8 +574,14 @@ namespace CineDataWorkerRole
 
             CineMobileService mobileService = new CineMobileService();
             
-            foreach (var cinema in cinemas.cinemas)
+            //foreach (var cinema in cinemas.cinemas)
+            for(int i = 0; i < cinemas.cinemas.Count; i++)
             {
+                //if (i > 1)
+                //    break;
+
+                var cinema = cinemas.cinemas[i];
+
                 //if (cinema.id != 91)
                 //    continue;
 
@@ -738,7 +746,7 @@ namespace CineDataWorkerRole
 
             //return;
 
-            Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["CineStorageConStr"].ConnectionString);
+            Microsoft.WindowsAzure.Storage.CloudStorageAccount storageAccount = Microsoft.WindowsAzure.Storage.CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("CineStorageConStr"));
 
             Microsoft.WindowsAzure.Storage.Blob.CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
@@ -776,8 +784,14 @@ namespace CineDataWorkerRole
 
             CineMobileService mobileService = new CineMobileService();
             
-            foreach (var film in films.films)
+            //foreach (var film in films.films)
+            for(int i = 0; i < films.films.Count; i++)
             {
+                //if (i > 0)
+                //    break;
+
+                var film = films.films[i];
+
                 newFilmIds.Add(film.edi);
 
                 //if (film.edi != 128529 && film.edi != 139438)
@@ -894,7 +908,7 @@ namespace CineDataWorkerRole
                                 {
                                     foreach (var backdrop in tmovieImages.Result.Backdrops)
                                     {
-                                        string url = string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("mediumposterwidth"), backdrop.FilePath);
+                                        string url = string.Format("{0}{1}{2}", config.Images.BaseUrl, ConfigurationManager.AppSettings["mediumposterwidth"], backdrop.FilePath);
                                         filminfo.Backdrops.Add(new Uri(url));
                                     }
                                 }
@@ -903,7 +917,7 @@ namespace CineDataWorkerRole
                                 {
                                     foreach (var poster in tmovieImages.Result.Posters)
                                     {
-                                        string url = string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("mediumposterwidth"), poster.FilePath);
+                                        string url = string.Format("{0}{1}{2}", config.Images.BaseUrl, ConfigurationManager.AppSettings["mediumposterwidth"], poster.FilePath);
                                         filminfo.Posters.Add(new Uri(url));
                                     }
                                 }
@@ -912,9 +926,9 @@ namespace CineDataWorkerRole
                         
                         if (!String.IsNullOrEmpty(movieData.PosterPath))
                         {
-                            string poster = string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("posterwidth"), movieData.PosterPath);
+                            string poster = string.Format("{0}{1}{2}", config.Images.BaseUrl, ConfigurationManager.AppSettings["posterwidth"], movieData.PosterPath);
 
-                            string mediumposter = string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("mediumposterwidth"), movieData.PosterPath);
+                            string mediumposter = string.Format("{0}{1}{2}", config.Images.BaseUrl, ConfigurationManager.AppSettings["mediumposterwidth"], movieData.PosterPath);
 
                             if (!MoviePosters.ContainsKey(filminfo.TmdbId))
                             {
@@ -931,7 +945,7 @@ namespace CineDataWorkerRole
 
                         if (!String.IsNullOrEmpty(movieData.BackdropPath))
                         {
-                            string backdrop = string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("backdropwidth"), movieData.BackdropPath);
+                            string backdrop = string.Format("{0}{1}{2}", config.Images.BaseUrl, ConfigurationManager.AppSettings["backdropwidth"], movieData.BackdropPath);
                             filminfo.BackdropUrl = new Uri(backdrop);
                         }
 
@@ -948,7 +962,7 @@ namespace CineDataWorkerRole
                                     ID = cast.Id,
                                     Name = cast.Name,
                                     Character = cast.Character,
-                                    ProfilePath = (!String.IsNullOrEmpty(cast.ProfilePath) ? new Uri(string.Format("{0}{1}{2}", config.Images.BaseUrl, CloudConfigurationManager.GetSetting("posterwidth"), cast.ProfilePath)) : null)
+                                    ProfilePath = (!String.IsNullOrEmpty(cast.ProfilePath) ? new Uri(string.Format("{0}{1}{2}", config.Images.BaseUrl, ConfigurationManager.AppSettings["posterwidth"], cast.ProfilePath)) : null)
                                 });
                             }
                         }

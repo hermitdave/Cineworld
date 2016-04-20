@@ -35,7 +35,7 @@
                         <Image Source="/Images/NoAds.png" Stretch="Uniform"/>
                     </Controls:RadCustomHubTile.BackContent>
                 </Controls:RadCustomHubTile>
-                <TextBlock x:Name="tbTitle" Margin="0, 12, 12, 24" TextWrapping="NoWrap" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextTitle2Style}"/>
+                <TextBlock x:Name="tbTitle" Margin="12, 12, 12, 24" TextWrapping="NoWrap" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Bottom" Style="{StaticResource PhoneTextTitle2Style}"/>
             </Grid>
         </ScrollViewer>
         <UI:AdControl
@@ -51,6 +51,18 @@
             IsAutoRefreshEnabled="True"
             Visibility="Collapsed"
             />
+
+        <Controls:RadCustomHubTile Grid.Row="0" x:Name="btnMOLAd" Visibility="Collapsed" Height="80" Width="480" Background="Transparent" IsFrozen="True">
+            <Controls:RadCustomHubTile.FrontContent>
+                <Image Source="/Images/MOL-Ad.png" Stretch="Uniform"/>
+            </Controls:RadCustomHubTile.FrontContent>
+            <Controls:RadCustomHubTile.BackContent>
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" Foreground="Black" Text="Get Daily Mail Windows App" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Center" Foreground="Black" Text="Feed your daily addiction with stories &amp; photos" />
+                </StackPanel>
+            </Controls:RadCustomHubTile.BackContent>
+        </Controls:RadCustomHubTile>
 
         <Button 
             Width="456" 

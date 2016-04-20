@@ -304,7 +304,7 @@ namespace Cineworld
         
         public const string DevKey = "VR3kQprU"; // set the dev key
 
-        public const string BaseAPIUrl = "http://www.Cineworld.co.uk/api/quickbook/{0}";
+        public const string BaseAPIUrl = "http://46.248.186.122/api/quickbook/";
 
 //#if IE
 //        public const string CurrentTerritory = "IE";
@@ -328,7 +328,7 @@ namespace Cineworld
 
         public async Task<Performances> GetPerformances(RegionDef region, int cinema, int film, string date)
         {
-            string url = String.Format("{0}?{1}={2}&{3}={4}&{5}={6}&{7}={8}&{9}={10}", String.Format(BaseAPIUrl, PerformancesHandle), QSKeyParam, DevKey, QSCinemaParam, cinema, QSFilmParam, film, QSDateParam, date, QSTerritoryParam, region);
+            string url = $"{BaseAPIUrl}{PerformancesHandle}?{QSKeyParam}={DevKey}&{QSCinemaParam}={cinema}&{QSFilmParam}={film}&{QSDateParam}={date}&{QSTerritoryParam}={region}";
 
             //webclient.DownloadStringAsync(new Uri(url, UriKind.Absolute));
             AsyncWebClient awc = new AsyncWebClient();
@@ -344,7 +344,7 @@ namespace Cineworld
 
         public async Task<Dates> GetDates(RegionDef region, int cinema, int film)
         {
-            string url = String.Format("{0}?{1}={2}&{3}={4}&{5}={6}&{7}={8}", String.Format(BaseAPIUrl, DatesHandle), QSKeyParam, DevKey, QSCinemaParam, cinema, QSFilmParam, film, QSTerritoryParam, region);
+            string url = $"{BaseAPIUrl}{DatesHandle}?{QSKeyParam}={DevKey}&{QSCinemaParam}={cinema}&{QSFilmParam}={film}&{QSTerritoryParam}={region}";
 
             AsyncWebClient awc = new AsyncWebClient();
             string data = await awc.GetStringAsync(url);
@@ -379,16 +379,16 @@ namespace Cineworld
         public async Task<Cinemas> GetCinemas(RegionDef region, bool fullInfo = false, int cinema = int.MinValue, int film = int.MinValue)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat(BaseAPIUrl, CinemasHandle);
-            sb.AppendFormat("?{0}={1}&{2}={3}", QSKeyParam, DevKey, QSTerritoryParam, region);
+            sb.Append($"{BaseAPIUrl}{CinemasHandle}");
+            sb.Append($"?{QSKeyParam}={DevKey}&{QSTerritoryParam}={region}");
 
             if (cinema != int.MinValue)
-                sb.AppendFormat("&{0}={1}", QSCinemaParam, cinema);
+                sb.Append($"&{QSCinemaParam}={cinema}");
 
             if (film != int.MinValue)
-                sb.AppendFormat("&{0}={1}", QSFilmParam, film);
+                sb.Append($"&{QSFilmParam}={film}");
 
-            sb.AppendFormat("&{0}={1}", QSFullParam, fullInfo);
+            sb.Append($"&{QSFullParam}={fullInfo}");
 
             AsyncWebClient awc = new AsyncWebClient();
             string data = await awc.GetStringAsync(sb.ToString());
@@ -398,41 +398,19 @@ namespace Cineworld
             return c;
         }
 
-        //public async Task<Films> GetFilms(bool fullInfo = false, int cinema = int.MinValue, int film = int.MinValue)
-        //{
-        //    StringBuilder sb = new StringBuilder();
-        //    sb.AppendFormat(BaseAPIUrl, FilmsHandle);
-        //    sb.AppendFormat("?{0}={1}&{2}={3}", QSKeyParam, DevKey, QSTerritoryParam, CurrentTerritory);
-
-        //    if (cinema != int.MinValue)
-        //        sb.AppendFormat("&{0}={1}", QSCinemaParam, cinema);
-
-        //    if (film != int.MinValue)
-        //        sb.AppendFormat("&{0}={1}", QSFilmParam, film);
-
-        //    sb.AppendFormat("&{0}={1}", QSFullParam, fullInfo);
-
-        //    AsyncWebClient awc = new AsyncWebClient();
-        //    string data = await awc.GetStringAsync(sb.ToString());
-
-        //    Films f = JsonConvert.DeserializeObject<Films>(data);
-        //    f.Cinema = cinema;
-        //    return f;
-        //}
-
         public async Task<Films> GetFilms(RegionDef region, bool fullInfo = false, int cinema = int.MinValue, int film = int.MinValue)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat(BaseAPIUrl, FilmsHandle);
-            sb.AppendFormat("?{0}={1}&{2}={3}", QSKeyParam, DevKey, QSTerritoryParam, region);
+            sb.Append($"{BaseAPIUrl}{FilmsHandle}");
+            sb.Append($"?{QSKeyParam}={DevKey}&{QSTerritoryParam}={region}");
 
             if (cinema != int.MinValue)
-                sb.AppendFormat("&{0}={1}", QSCinemaParam, cinema);
+                sb.Append($"&{QSCinemaParam}={cinema}");
 
             if (film != int.MinValue)
-                sb.AppendFormat("&{0}={1}", QSFilmParam, film);
+                sb.Append($"&{QSFilmParam}={film}");
 
-            sb.AppendFormat("&{0}={1}", QSFullParam, fullInfo);
+            sb.Append($"&{QSFullParam}={fullInfo}");
 
             AsyncWebClient awc = new AsyncWebClient();
             string data = await awc.GetStringAsync(sb.ToString());
